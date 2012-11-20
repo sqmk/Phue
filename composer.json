@@ -1,0 +1,28 @@
+{
+    "name": "sqmk/phue",
+    "description": "Phue",
+    "type": "library",
+    "keywords": [
+        "phue",
+        "philips",
+        "hue",
+        "client"
+    ],
+    "homepage": "http://github.com/sqmk/phue",
+    "license": "BSD-3-Clause",
+    "require": {
+        "php": "5.4.*"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "3.7.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Phue": "library/",
+            "PhueTest": "tests/"
+        }
+    },
+    "bin": [
+        "bin/phue-authenticate"
+    ]
+}

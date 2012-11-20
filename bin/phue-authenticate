@@ -1,0 +1,6 @@
+#!/usr/bin/env php
+<?php
+
+require_once '../vendor/autoload.php';
+
+$client = new \Phue\Client('127.0.0.1');
