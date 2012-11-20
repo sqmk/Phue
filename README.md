@@ -12,7 +12,7 @@ To test connectivity and authenticate with the bridge, you can use the phue-auth
 
 First, you will want to determine the ip address of the bridge on your local network. I have created a wiki page that describes a few convenient ways of finding it: [Finding Philips Hue bridge on network](/sqmk/Phue/wiki/Finding-Philips-Hue-bridge-on-network).
 
-Next, if you haven't already, run ```composer install``` in the root directory of this repo. This will install dependencies, and set up class/namespacing mapping for autoloader for the Phue library. The authenticator script expects the autoloader to be installed. If you are not familiar with Composer, check out the project here: (Composer)[http://getcomposer.org]).
+Next, if you haven't already, run ```composer install``` in the root directory of this repo. This will install dependencies, and set up class/namespacing mapping for autoloader for the Phue library. The authenticator script expects the autoloader to be installed. If you are not familiar with Composer, check out the project here: [Composer](http://getcomposer.org).
 
 At this point, you should be ready to authenticate with the bridge. The bridge expects a 32 character hash as a username to authenticate with, but you can feed in any string into the phue-authenticate script, and if need be, it will hash automatically for you. Here's how to run the script:
 
