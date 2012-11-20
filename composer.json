@@ -1,6 +1,6 @@
 {
     "name": "sqmk/phue",
-    "description": "Phue",
+    "description": "Phue - Philips Hue PHP client",
     "type": "library",
     "keywords": [
         "phue",
