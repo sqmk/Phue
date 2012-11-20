@@ -1,6 +1,72 @@
 #!/usr/bin/env php
 <?php
 
-require_once '../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-$client = new \Phue\Client('127.0.0.1');
+// Show usage if host and username not passed
+if (!isset($argv[1], $argv[2])) {
+    echo "Philips Hue Authenticator\n",
+         "\n",
+         "Usage:\n",
+         "  <host> <username>\n",
+         "\n";
+
+    exit(1);
+}
+
+// Initialize client
+$client = new \Phue\Client($argv[1]);
+
+// Hash username if doesn't appear to be hash
+if (!preg_match('/[a-f\d]{32}/i', $argv[2])) {
+    echo "! - Username {$argv[2]} doesn't appear to be 32 character hash (A-Z, 0-9)\n";
+
+    // Hash username provided
+    $argv[2] = md5($argv[2]);
+
+    echo "! - Using this for username instead: {$argv[2]}\n\n"; 
+}
+
+$client->setUsername($argv[2]);
+
+echo "Testing connection to bridge at {$client->getHost()}\n";
+
+try {
+    $client->sendCommand(
+        new \Phue\Command\Ping()
+    );
+} catch (\Phue\Transport\Exception\ConnectionException $e) {
+    echo "Issue connecting to bridge\n";
+
+    exit(1);
+} catch (\Phue\Transport\Exception\BridgeException $e) {
+    echo "Response appears OK!\n";
+}
+
+echo "Waiting to authenticate ({$client->getUsername()}) (press the Bridge's button!)...\n";
+
+// Try X times to authenticate
+$maxTries = 30;
+for ($i = 1; $i <= $maxTries; ++$i) {
+    try {
+        $response = $client->sendCommand(
+            new \Phue\Command\Authenticate()
+        );
+
+        if ($response->username == $argv[2]) {
+            echo "Authentication for user {$argv[2]} was successful!\n";
+
+            exit(0);
+        }
+    } catch (\Phue\Transport\Exception\BridgeException $e) {
+        if ($e->getCode() == 101) {
+            echo "[$i]: Still waiting for button to be pressed...\n";
+        }
+    }
+
+    sleep(1);
+}
+
+echo "Failure to authenticate. Please try again!";
+
+exit(1);

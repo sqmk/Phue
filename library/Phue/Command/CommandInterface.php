@@ -2,29 +2,20 @@
 
 namespace Phue\Command;
 
+use Phue\Client,
+    Phue\Command;
+
 /**
  * Command Interface
  */
 interface CommandInterface
 {
     /**
-     * Get method for command
+     * Send command
      *
-     * @return string Method name
-     */
-    public function getMethod();
-
-    /**
-     * Get path for command
+     * @param Client $client Phue Client
      *
-     * @return string Path name
+     * @return mixed
      */
-    public function getPath();
-
-    /**
-     * Get data for command
-     *
-     * @return stdClass Object
-     */
-    public function getData();
+    public function send(Client $client);
 }

@@ -10,11 +10,13 @@ use Phue\Command\CommandInterface;
 interface TransportInterface
 {
     /**
-     * Send request by command
+     * Send request
      *
-     * @param CommandInterface $command Phue command
+     * @param string $method Method type
+     * @param string $path   API path
+     * @param string $data   Request data
      *
      * @return void
      */
-    public function sendRequestByCommand(CommandInterface $command);
+    public function sendRequest($method, $path, \stdClass $data = null);
 }

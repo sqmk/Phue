@@ -44,8 +44,8 @@ class Client
      */
     public function __construct($host, $username = null)
     {
-        $this->host     = $this->setHost($host);
-        $this->username = $this->setUsername($username);
+        $this->setHost($host);
+        $this->setUsername($username);
     }
 
     /**
@@ -95,10 +95,10 @@ class Client
      *
      * @return TransportInterface
      */
-    protected function getTransport()
+    public function getTransport()
     {
         // Set transport if haven't
-        if (!$this->transport) {
+        if ($this->transport === null) {
             $this->transport = new Http($this);
         }
 
@@ -112,10 +112,9 @@ class Client
      *
      * @return void
      */
-    public function sendCommand(Command $command)
+    public function sendCommand(CommandInterface $command)
     {
-        // Get transport and set connection details by command
-        $transport = $this->getTransport();
-        $transport->sendRequestByCommand($command);
+        // Send command
+        return $command->send($this);
     }
 }

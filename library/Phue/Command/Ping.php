@@ -6,9 +6,9 @@ use Phue\Client,
     Phue\Command\CommandInterface;
 
 /**
- * Authenticate command
+ * Ping command
  */
-class Authenticate implements CommandInterface
+class Ping implements CommandInterface
 {
     /**
      * Send command
@@ -19,14 +19,11 @@ class Authenticate implements CommandInterface
      */
     public function send(Client $client)
     {
-        // Get response
-        $response = $client->getTransport()->sendRequest(
-            'POST',
+        $client->getTransport()->sendRequest(
+            'GET',
             '',
             $this->buildRequestData($client)
         );
-
-        return $response;
     }
 
     /**
