@@ -47,7 +47,7 @@ for ($i = 1; $i <= $maxTries; ++$i) {
         );
 
         if ($response->username == $client->getUsername()) {
-            echo "\n", "Authentication for user {$argv[2]} was successful!", "\n\n";
+            echo "\n", "Authentication for user {$client->getUsername()} was successful!", "\n\n";
 
             exit(0);
         }
