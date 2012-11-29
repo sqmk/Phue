@@ -1,0 +1,10 @@
+language: php
+
+php:
+    - 5.4
+
+before_install:
+    - composer install --dev
+
+notifications:
+    email: false
