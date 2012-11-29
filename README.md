@@ -1,5 +1,7 @@
 ## Phue - Philips Hue PHP Client
 
+Master: [![CI Status](https://secure.travis-ci.org/sqmk/Phue.png?branch=master)](http://travis-ci.org/sqmk/Phue)
+
 Phue is a PHP 5.4 client used to connect to and manage the Philips Hue lighting system.
 
 It is currently registered with Packagist so that this library can easily be included in other projects. For example, one may want to bundle this library with Zend Framework or Symfony to build their own front-end for the Hue system.
