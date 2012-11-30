@@ -16,15 +16,11 @@ class Ping implements CommandInterface
      *
      * @param Client $client Phue Client
      *
-     * @return mixed
+     * @return void
      */
     public function send(Client $client)
     {
-        $client->getTransport()->sendRequest(
-            '',
-            Http::METHOD_GET,
-            $this->buildRequestData($client)
-        );
+        $client->getTransport()->sendRequest('none/config');
     }
 
     /**
