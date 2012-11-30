@@ -6,6 +6,7 @@ use Phue\Client,
     Phue\Command\CommandInterface,
     Phue\Transport\TransportInterface,
     Phue\Transport\Exception\BridgeException,
+    Phue\Transport\Exception\AuthorizationException,
     Phue\Transport\Exception\ConnectionException;
 
 /**
@@ -77,7 +78,10 @@ class Http implements TransportInterface
         curl_setopt($this->connection, CURLOPT_URL, $url);
         curl_setopt($this->connection, CURLOPT_HEADER, false);
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($this->connection, CURLOPT_POSTFIELDS, json_encode($data));
+
+        if ($data) {
+            curl_setopt($this->connection, CURLOPT_POSTFIELDS, json_encode($data));
+        }
 
         // Get results and status
         $results     = curl_exec($this->connection);
@@ -107,10 +111,23 @@ class Http implements TransportInterface
 
         // Throw bridge exception if error is returned in json
         if (isset($jsonResults->error)) {
-            throw new BridgeException(
-                $jsonResults->error->description,
-                $jsonResults->error->type
-            );
+            switch ($jsonResults->error->type) {
+                // Unauthenticated error
+                case 1:
+                    throw new AuthorizationException(
+                        $jsonResults->error->description,
+                        $jsonResults->error->type
+                    );
+                    break;
+
+                // Other errors
+                default:
+                    throw new BridgeException(
+                        $jsonResults->error->description,
+                        $jsonResults->error->type
+                    );
+                    break;
+            }
         }
 
         return $jsonResults;

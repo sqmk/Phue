@@ -1,0 +1,77 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+// Show usage if host and username not passed
+if (!isset($argv[1], $argv[2])) {
+    echo "Philips Hue Light Finder", "\n\n",
+         "Usage:", "\n",
+         "  <host> <username>", "\n\n";
+    exit(1);
+}
+
+// Initialize client
+$client = new \Phue\Client($argv[1], $argv[2]);
+
+// Hash username if doesn't appear to be hash
+if ($client->getUsername() != $argv[2]) {
+    echo "! - Username {$argv[2]} doesn't appear to be 32 character hash (A-F, 0-9)", "\n",
+         "! - Using this for username instead: {$client->getUsername()}", "\n\n"; 
+}
+
+echo "Testing connection to bridge at {$client->getHost()}", "\n";
+
+try {
+    $client->sendCommand(
+        new \Phue\Command\Ping
+    );
+} catch (\Phue\Transport\Exception\ConnectionException $e) {
+    echo "Issue connecting to bridge", "\n";
+
+    exit(1);
+} catch (\Phue\Transport\Exception\BridgeException $e) {
+    echo "Response appears OK!", "\n\n";
+}
+
+// Quit if user is not authenticated
+if (!$client->sendCommand(new \Phue\Command\IsAuthorized)) {
+    echo "{$client->getUsername()} is not authenticated with the bridge. Aborting.", "\n\n";
+
+    exit(1);
+}
+
+// Start light scan, 
+$client->sendCommand(
+    new \Phue\Command\StartLightScan
+);
+
+echo "Scanning for lights:", "\n";
+
+// Found lights
+$lights = [];
+
+do {
+   $response = $client->sendCommand(
+       new \Phue\Command\GetNewLights
+   );
+
+   // Don't continue if the scan isn't active
+   if (!$response->isScanActive()) {
+       break;
+   }
+
+   // Iterate through each found light
+   foreach ($response->getLights() as $lightId => $lightName) {
+       // Light already found in poll
+       if (isset($lights[$lightId])) {
+           continue;
+       }
+
+       $lights[$lightId] = $lightName;
+
+       echo "Found: Light #{$lightId}, {$lightName}", "\n";
+   }
+} while(true);
+
+echo "Done scanning", "\n\n";

@@ -24,7 +24,7 @@ echo "Testing connection to bridge at {$client->getHost()}", "\n";
 
 try {
     $client->sendCommand(
-        new \Phue\Command\Ping()
+        new \Phue\Command\Ping
     );
 } catch (\Phue\Transport\Exception\ConnectionException $e) {
     echo "Issue connecting to bridge", "\n";
@@ -43,7 +43,7 @@ $maxTries = 30;
 for ($i = 1; $i <= $maxTries; ++$i) {
     try {
         $response = $client->sendCommand(
-            new \Phue\Command\Authenticate()
+            new \Phue\Command\Authenticate
         );
 
         if ($response->username == $client->getUsername()) {
