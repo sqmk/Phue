@@ -23,6 +23,8 @@
         }
     },
     "bin": [
-        "bin/phue-authenticate"
+        "bin/phue-authenticate",
+        "bin/phue-light-finder",
+        "bin/phue-list-lights"
     ]
 }
