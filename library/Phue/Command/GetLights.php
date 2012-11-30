@@ -3,6 +3,7 @@
 namespace Phue\Command;
 
 use Phue\Client,
+    Phue\Transport\Http,
     Phue\Command\CommandInterface,
     Phue\Light;
 
@@ -22,8 +23,7 @@ class GetLights implements CommandInterface
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            'GET',
-            "{$client->getUsername()}"
+            $client->getUsername()
         );
 
         // Return empty list if no lights

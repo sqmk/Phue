@@ -12,11 +12,11 @@ interface TransportInterface
     /**
      * Send request
      *
-     * @param string $method Method type
      * @param string $path   API path
+     * @param string $method Method type
      * @param string $data   Request data
      *
      * @return void
      */
-    public function sendRequest($method, $path, \stdClass $data = null);
+    public function sendRequest($path, $method, \stdClass $data = null);
 }

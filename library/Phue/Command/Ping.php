@@ -3,6 +3,7 @@
 namespace Phue\Command;
 
 use Phue\Client,
+    Phue\Transport\Http,
     Phue\Command\CommandInterface;
 
 /**
@@ -20,8 +21,8 @@ class Ping implements CommandInterface
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
-            'GET',
             '',
+            Http::METHOD_GET,
             $this->buildRequestData($client)
         );
     }

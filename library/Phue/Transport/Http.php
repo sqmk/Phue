@@ -14,6 +14,9 @@ use Phue\Client,
  */
 class Http implements TransportInterface
 {
+    const METHOD_GET  = 'GET';
+    const METHOD_POST = 'POST';
+
     /**
      * Phue Client
      *
@@ -56,13 +59,13 @@ class Http implements TransportInterface
     /**
      * Send request
      *
-     * @param string   $method Request method
      * @param string   $path   API path
+     * @param string   $method Request method
      * @param stdClass $data   Post data
      *
      * @return void
      */
-    public function sendRequest($method, $path, \stdClass $data = null)
+    public function sendRequest($path, $method = self::METHOD_GET, \stdClass $data = null)
     {
         // Build base URL
         $url = 'http://' . $this->client->getHost() . '/api/';

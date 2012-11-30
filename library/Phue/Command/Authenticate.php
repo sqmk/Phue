@@ -3,6 +3,7 @@
 namespace Phue\Command;
 
 use Phue\Client,
+    Phue\Transport\Http,
     Phue\Command\CommandInterface;
 
 /**
@@ -21,8 +22,8 @@ class Authenticate implements CommandInterface
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            'POST',
             '',
+            Http::METHOD_POST,
             $this->buildRequestData($client)
         );
 

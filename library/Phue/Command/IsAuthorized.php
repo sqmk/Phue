@@ -3,6 +3,7 @@
 namespace Phue\Command;
 
 use Phue\Client,
+    Phue\Transport\Http,
     Phue\Command\CommandInterface;
 
 /**
@@ -22,7 +23,6 @@ class IsAuthorized implements CommandInterface
         // Get response
         try {
             $client->getTransport()->sendRequest(
-                'GET',
                 $client->getUsername()
             );
         } catch (\Exception $e) {

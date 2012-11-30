@@ -3,6 +3,7 @@
 namespace Phue\Command;
 
 use Phue\Client,
+    Phue\Transport\Http,
     Phue\Command\CommandInterface;
 
 /**
@@ -35,7 +36,6 @@ class GetNewLights implements CommandInterface
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            'GET',
             "{$client->getUsername()}/lights/new"
         );
 
