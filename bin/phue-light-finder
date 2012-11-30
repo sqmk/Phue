@@ -46,7 +46,7 @@ $client->sendCommand(
     new \Phue\Command\StartLightScan
 );
 
-echo "Scanning for lights:", "\n";
+echo "Scanning for lights. Turn at least one light off, then on...", "\n";
 
 // Found lights
 $lights = [];
