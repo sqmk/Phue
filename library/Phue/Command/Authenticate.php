@@ -16,7 +16,7 @@ class Authenticate implements CommandInterface
      *
      * @param Client $client Phue Client
      *
-     * @return mixed
+     * @return stdClass Authentication response
      */
     public function send(Client $client)
     {
