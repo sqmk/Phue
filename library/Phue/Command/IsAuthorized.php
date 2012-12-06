@@ -12,6 +12,7 @@ namespace Phue\Command;
 
 use Phue\Client;
 use Phue\Transport\Http;
+use Phue\Transport\Exception\AuthorizationException;
 use Phue\Command\CommandInterface;
 
 /**
@@ -36,7 +37,7 @@ class IsAuthorized implements CommandInterface
             $client->getTransport()->sendRequest(
                 $client->getUsername()
             );
-        } catch (\Exception $e) {
+        } catch (AuthorizationException $e) {
             return false;
         }
         

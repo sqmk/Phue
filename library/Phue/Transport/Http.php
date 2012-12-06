@@ -120,7 +120,7 @@ class Http implements TransportInterface
             $jsonResults = $jsonResults->success;
         }
 
-        // Throw bridge exception if error is returned in json
+        // Get error type
         if (isset($jsonResults->error)) {
             switch ($jsonResults->error->type) {
                 // Unauthenticated error
