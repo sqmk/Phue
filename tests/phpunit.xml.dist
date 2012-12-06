@@ -1,0 +1,24 @@
+<phpunit bootstrap="./bootstrap.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         stopOnError="false"
+         stopOnFailure="false"
+         stopOnIncomplete="false"
+         stopOnSkipped="false"
+         forceCoversAnnotation="true">
+    <testsuites>
+        <testsuite name="Phue Test Suite">
+            <directory>./PhueTest</directory>
+        </testsuite>
+    </testsuites>
+    <logging>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
+    </logging>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">../library</directory>
+        </whitelist>
+    </filter>
+</phpunit>

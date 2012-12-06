@@ -3,6 +3,7 @@
 namespace Phue;
 
 use Phue\Transport\Http,
+    Phue\Transport\TransportInterface,
     Phue\Command\CommandInterface;
 
 /**
@@ -88,7 +89,7 @@ class Client
     public function setUsername($username)
     {
         // Hash username if not already in hash format
-        if (!preg_match('/a-f0-9{32}/i', $username)) {
+        if (!preg_match('/[a-f0-9]{32}/i', $username)) {
             $username = md5($username);
         }
 
@@ -108,6 +109,18 @@ class Client
         }
 
         return $this->transport;
+    }
+
+    /**
+     * Set transport
+     *
+     * @param TransportInterface $transport Transport
+     *
+     * @return void
+     */
+    public function setTransport(TransportInterface $transport)
+    {
+        $this->transport = $transport;
     }
 
     /**
