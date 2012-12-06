@@ -2,8 +2,6 @@
 
 namespace Phue\Transport;
 
-use Phue\Command\CommandInterface;
-
 /**
  * Transport Interface
  */

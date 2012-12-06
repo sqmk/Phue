@@ -2,9 +2,9 @@
 
 namespace Phue\Command;
 
-use Phue\Client,
-    Phue\Transport\Http,
-    Phue\Command\CommandInterface;
+use Phue\Client;
+use Phue\Transport\Http;
+use Phue\Command\CommandInterface;
 
 /**
  * Ping command

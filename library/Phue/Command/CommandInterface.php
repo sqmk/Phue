@@ -2,8 +2,8 @@
 
 namespace Phue\Command;
 
-use Phue\Client,
-    Phue\Command;
+use Phue\Client;
+use Phue\Command;
 
 /**
  * Command Interface

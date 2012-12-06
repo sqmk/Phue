@@ -2,12 +2,12 @@
 
 namespace Phue\Transport;
 
-use Phue\Client,
-    Phue\Command\CommandInterface,
-    Phue\Transport\TransportInterface,
-    Phue\Transport\Exception\BridgeException,
-    Phue\Transport\Exception\AuthorizationException,
-    Phue\Transport\Exception\ConnectionException;
+use Phue\Client;
+use Phue\Command\CommandInterface;
+use Phue\Transport\TransportInterface;
+use Phue\Transport\Exception\BridgeException;
+use Phue\Transport\Exception\AuthorizationException;
+use Phue\Transport\Exception\ConnectionException;
 
 /**
  * Http transport
@@ -16,6 +16,7 @@ class Http implements TransportInterface
 {
     const METHOD_GET  = 'GET';
     const METHOD_POST = 'POST';
+    const METHOD_PUT  = 'PUT';
 
     /**
      * Phue Client

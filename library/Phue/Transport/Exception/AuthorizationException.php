@@ -7,4 +7,6 @@ use Phue\Transport\Exception\BridgeException;
 /**
  * Bridge exception
  */
-class AuthorizationException extends BridgeException {}
+class AuthorizationException extends BridgeException
+{
+}

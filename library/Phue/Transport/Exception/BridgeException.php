@@ -5,4 +5,6 @@ namespace Phue\Transport\Exception;
 /**
  * Bridge exception
  */
-class BridgeException extends \Exception {}
+class BridgeException extends \Exception
+{
+}

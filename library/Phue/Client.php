@@ -2,9 +2,9 @@
 
 namespace Phue;
 
-use Phue\Transport\Http,
-    Phue\Transport\TransportInterface,
-    Phue\Command\CommandInterface;
+use Phue\Transport\Http;
+use Phue\Transport\TransportInterface;
+use Phue\Command\CommandInterface;
 
 /**
  * Client for connecting to Philips Hue bridge
