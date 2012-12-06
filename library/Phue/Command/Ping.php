@@ -33,19 +33,4 @@ class Ping implements CommandInterface
     {
         $client->getTransport()->sendRequest('none/config');
     }
-
-    /**
-     * Build request data
-     *
-     * @param Client $client Phue client
-     *
-     * @return stdClass Request data object
-     */
-    protected function buildRequestData(Client $client)
-    {
-        return (object) [
-            'username'   => $client->getUsername(),
-            'devicetype' => $client::CLIENT_NAME
-        ];
-    }
 }
