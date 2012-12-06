@@ -71,7 +71,7 @@ class GetLightsTest extends \PHPUnit_Framework_TestCase
         // Mock transport's sendRequest method
         $this->mockTransport->expects($this->once())
                             ->method('sendRequest')
-                            ->with($this->equalTo('abcdefabcdef01234567890123456789'))
+                            ->with($this->equalTo($this->mockClient->getUsername()))
                             ->will($this->returnValue(new \stdClass));
 
         // Send command and get response
@@ -100,7 +100,7 @@ class GetLightsTest extends \PHPUnit_Framework_TestCase
         // Mock transport's sendRequest method
         $this->mockTransport->expects($this->once())
                             ->method('sendRequest')
-                            ->with($this->equalTo('abcdefabcdef01234567890123456789'))
+                            ->with($this->equalTo($this->mockClient->getUsername()))
                             ->will($this->returnValue($mockTransportResults));
 
         // Send command and get response

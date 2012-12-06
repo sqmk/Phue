@@ -10,17 +10,17 @@
 
 namespace PhueTest\Command;
 
-use Phue\Command\Authenticate;
+use Phue\Command\StartLightScan;
 use Phue\Client;
 use Phue\Transport\TransportInterface;
 
 /**
- * Tests for Phue\Command\Authenticate
+ * Tests for Phue\Command\StartLightScan
  *
  * @category Phue
  * @package  Phue
  */
-class AuthenticateTest extends \PHPUnit_Framework_TestCase
+class StartLightScanTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
@@ -36,20 +36,9 @@ class AuthenticateTest extends \PHPUnit_Framework_TestCase
                                     ])
                                     ->getMock();
 
-        // Mock transport's sendRequest method
-        $this->mockTransport->expects($this->once())
-                            ->method('sendRequest')
-                            ->with(
-                                $this->equalTo(''),
-                                $this->equalTo('POST'),
-                                $this->anything()
-                            )
-                            ->will($this->returnValue('success!'));
-
         // Mock client
         $this->mockClient = $this->getMockBuilder('\Phue\Client')
                                  ->setMethods([
-                                     'getUsername',
                                      'getTransport'
                                  ])
                                  ->setConstructorArgs([
@@ -66,18 +55,26 @@ class AuthenticateTest extends \PHPUnit_Framework_TestCase
         $this->mockClient->expects($this->any())
                          ->method('getTransport')
                          ->will($this->returnValue($this->mockTransport));
+
+        // Mock transport's sendRequest method
+        $this->mockTransport->expects($this->once())
+                            ->method('sendRequest')
+                            ->with(
+                                $this->equalTo($this->mockClient->getUsername() . '/lights'),
+                                $this->equalTo('POST')
+                            )
+                            ->will($this->returnValue('success!'));
     }
 
     /**
-     * Test: Send authentication command
+     * Test: Send start light scan command
      *
-     * @covers \Phue\Command\Authenticate::send
-     * @covers \Phue\Command\Authenticate::buildRequestData
+     * @covers \Phue\Command\StartLightScan::send
      */
     public function testSend()
     {
         $this->assertEquals(
-            (new Authenticate)->send($this->mockClient),
+            (new StartLightScan)->send($this->mockClient),
             'success!'
         );
     }
