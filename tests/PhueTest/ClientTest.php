@@ -33,13 +33,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Creating Client instance
+     * Test: Getting host
      *
      * @covers \Phue\Client::__construct
      * @covers \Phue\Client::getHost
      * @covers \Phue\Client::setHost
      */
-    public function testNewInstance()
+    public function testHost()
     {
         $this->assertEquals(
             $this->client->getHost(),
@@ -48,12 +48,12 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Creating Client instance with non-hashed username
+     * Test: Setting non-hashed username
      *
      * @covers \Phue\Client::getUsername
      * @covers \Phue\Client::setUsername
      */
-    public function testNewInstanceWithNonHashedUsername()
+    public function testNonHashedUsername()
     {
         $this->client->setUsername('dummy');
 
@@ -64,12 +64,12 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Creating Client instance with hashed username
+     * Test: Setting hashed username
      *
      * @covers \Phue\Client::getUsername
      * @covers \Phue\Client::setUsername
      */
-    public function testNewInstanceWithHashedUsername()
+    public function testHashedUsername()
     {
         $this->client->setUsername('275876e34cf609db118f3d84b799a790');
 
@@ -100,7 +100,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testPassingTransportDependency()
     {
-        $mockTransport = $this->getMock('Phue\Transport\TransportInterface');
+        $mockTransport = $this->getMock('\Phue\Transport\TransportInterface');
 
         $this->client->setTransport($mockTransport);
 
@@ -117,10 +117,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testSendingCommand()
     {
-        $mockCommand = $this->getMock(
-            'Phue\Command\CommandInterface',
-            array('send')
-        );
+        $mockCommand = $this->getMockBuilder('Phue\Command\CommandInterface')
+                            ->setMethods([
+                                'send'
+                            ])
+                            ->getMock();
 
         $mockCommand->expects($this->once())
                     ->method('send')

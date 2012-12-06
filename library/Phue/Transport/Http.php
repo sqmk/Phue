@@ -25,10 +25,6 @@ use Phue\Transport\Exception\ConnectionException;
  */
 class Http implements TransportInterface
 {
-    const METHOD_GET  = 'GET';
-    const METHOD_POST = 'POST';
-    const METHOD_PUT  = 'PUT';
-
     /**
      * Phue Client
      *

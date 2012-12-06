@@ -19,6 +19,21 @@ namespace Phue\Transport;
 interface TransportInterface
 {
     /**
+     * Get method
+     */
+    const METHOD_GET = 'GET';
+
+    /**
+     * Post method
+     */
+    const METHOD_POST = 'POST';
+
+    /**
+     * Put method
+     */
+    const METHOD_PUT  = 'PUT';
+
+    /**
      * Send request
      *
      * @param string $path   API path
@@ -27,5 +42,5 @@ interface TransportInterface
      *
      * @return void
      */
-    public function sendRequest($path, $method, \stdClass $data = null);
+    public function sendRequest($path, $method = self::METHOD_GET, \stdClass $data = null);
 }
