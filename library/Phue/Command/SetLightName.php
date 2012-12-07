@@ -32,7 +32,7 @@ class SetLightName implements CommandInterface
 
     /**
      * New name
-     * 
+     *
      * @var string
      */
     protected $name;

@@ -38,6 +38,9 @@ class LightTest extends \PHPUnit_Framework_TestCase
         // Build stub details
         $details                   = new \stdClass;
         $details->name             = 'Hue light';
+        $details->type             = 'Dummy type';
+        $details->modelid          = 'M123';
+        $details->swversion        = '12345';
         $details->state            = new \stdClass;
         $details->state->on        = true;
         $details->state->colormode = 'rgb';
@@ -92,6 +95,45 @@ class LightTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             'dummy',
             $this->light->getName()
+        );
+    }
+
+    /**
+     * Test: Get type
+     *
+     * @covers \Phue\Light::getType
+     */
+    public function testGetType()
+    {
+        $this->assertEquals(
+            $this->light->getType(),
+            'Dummy type'
+        );
+    }
+
+    /**
+     * Test: Get model Id
+     *
+     * @covers \Phue\Light::getModelId
+     */
+    public function testGetModelId()
+    {
+        $this->assertEquals(
+            $this->light->getModelId(),
+            'M123'
+        );
+    }
+
+    /**
+     * Test: Get software version
+     *
+     * @covers \Phue\Light::getSoftwareVersion
+     */
+    public function testSoftwareVersion()
+    {
+        $this->assertEquals(
+            $this->light->getSoftwareVersion(),
+            '12345'
         );
     }
 

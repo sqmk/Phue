@@ -24,14 +24,14 @@ class Light
 {
     /**
      * Id
-     * 
+     *
      * @var int
      */
     protected $id;
 
     /**
      * Light details
-     * 
+     *
      * @var stdClass
      */
     protected $details;
@@ -89,6 +89,36 @@ class Light
         $this->details->name = (string) $name;
 
         return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string Type
+     */
+    public function getType()
+    {
+        return $this->details->type;
+    }
+
+    /**
+     * Get model Id
+     *
+     * @return string Model Id
+     */
+    public function getModelId()
+    {
+        return $this->details->modelid;
+    }
+
+    /**
+     * Get software version
+     *
+     * @return string
+     */
+    public function getSoftwareVersion()
+    {
+        return $this->details->swversion;
     }
 
     /**

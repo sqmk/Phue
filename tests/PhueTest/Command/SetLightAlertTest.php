@@ -63,7 +63,7 @@ class SetLightAlertTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test: Get modes
-     * 
+     *
      * @covers \Phue\Command\SetLightAlert::getModes
      */
     public function testGetModes()

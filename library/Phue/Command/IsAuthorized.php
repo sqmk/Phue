@@ -40,7 +40,7 @@ class IsAuthorized implements CommandInterface
         } catch (AuthorizationException $e) {
             return false;
         }
-        
+
         return true;
     }
 }

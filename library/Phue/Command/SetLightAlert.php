@@ -42,7 +42,7 @@ class SetLightAlert implements CommandInterface
 
     /**
      * Alert mode
-     * 
+     *
      * @var string
      */
     protected $mode;
@@ -59,7 +59,7 @@ class SetLightAlert implements CommandInterface
         if (!in_array($mode, self::getModes())) {
             throw new \InvalidArgumentException(
                 "{$mode} is not a valid alert mode"
-            );    
+            );
         }
 
         $this->light = $light;
