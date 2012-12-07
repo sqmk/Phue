@@ -117,12 +117,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testSendingCommand()
     {
-        $mockCommand = $this->getMockBuilder('Phue\Command\CommandInterface')
-                            ->setMethods([
-                                'send'
-                            ])
-                            ->getMock();
+        // Mock command
+        $mockCommand = $this->getMock(
+            'Phue\Command\CommandInterface',
+            ['send']
+        );
 
+        // Stub command's send method
         $mockCommand->expects($this->once())
                     ->method('send')
                     ->with($this->equalTo($this->client))

@@ -10,6 +10,9 @@
 
 namespace Phue;
 
+use Phue\Client;
+use Phue\Command\SetLightAlert;
+
 /**
  * Light object
  *
@@ -33,14 +36,22 @@ class Light
     protected $details;
 
     /**
+     * Phue client
+     *
+     * @var Client
+     */
+    protected $client;
+
+    /**
      * Construct a Phue Light object
      *
      * @param stdClass $details Light details
      */
-    public function __construct($id, \stdClass $details)
+    public function __construct($id, \stdClass $details, Client $client)
     {
         $this->id      = (int) $id;
         $this->details = $details;
+        $this->client  = $client;
     }
 
     /**
@@ -81,5 +92,21 @@ class Light
     public function getColorMode()
     {
         return $this->details->state->colormode;
+    }
+
+    /**
+     * Set light alert
+     *
+     * @param string $mode Alert mode
+     *
+     * @return Light self object
+     */
+    public function setAlert($mode)
+    {
+        $this->client->sendCommand(
+            new SetLightAlert($this, $mode)
+        );
+
+        return $this;
     }
 }

@@ -11,6 +11,7 @@
 namespace PhueTest;
 
 use Phue\Light;
+use Phue\Client;
 
 /**
  * Tests for Phue\Light
@@ -27,6 +28,13 @@ class LightTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
+        // Mock client
+        $this->mockClient = $this->getMock(
+            '\Phue\Client',
+            ['sendCommand'],
+            ['127.0.0.1']
+        );
+
         // Build stub details
         $details                   = new \stdClass;
         $details->name             = 'Hue light';
@@ -35,7 +43,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
         $details->state->colormode = 'rgb';
 
         // Create light object
-        $this->light = new Light(5, $details);
+        $this->light = new Light(5, $details, $this->mockClient);
     }
 
     /**
@@ -78,5 +86,25 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetColorMode()
     {
         $this->assertEquals($this->light->getColorMode(), 'rgb');
+    }
+
+    /**
+     * Test: Set alert
+     *
+     * @covers \Phue\Light::setAlert
+     */
+    public function testSetAlert()
+    {
+        // Expect client's sendCommand usage
+        $this->mockClient->expects($this->once())
+                         ->method('sendCommand')
+                         ->with($this->isInstanceOf('\Phue\Command\SetLightAlert'))
+                         ->will($this->returnValue($this->light));
+
+        // Ensure setAlert returns self
+        $this->assertEquals(
+            $this->light,
+            $this->light->setAlert('lselect')
+        );
     }
 }

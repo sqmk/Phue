@@ -29,29 +29,20 @@ class PingTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        // Mock transport
-        $this->mockTransport = $this->getMockBuilder('\Phue\Transport\TransportInterface')
-                                    ->setMethods([
-                                        'sendRequest'
-                                    ])
-                                    ->getMock();
-
-        // Mock transport's sendRequest method
-        $this->mockTransport->expects($this->once())
-                            ->method('sendRequest')
-                            ->with($this->equalTo('none/config'));
-
         // Mock client
-        $this->mockClient = $this->getMockBuilder('\Phue\Client')
-                                 ->setMethods([
-                                     'getTransport'
-                                 ])
-                                 ->setConstructorArgs([
-                                     '127.0.0.1'
-                                 ])
-                                 ->getMock();
+        $this->mockClient = $this->getMock(
+            '\Phue\Client',
+            ['getTransport'],
+            ['127.0.0.1']
+        );
 
-        // Mock client's getTransport method
+        // Mock transport
+        $this->mockTransport = $this->getMock(
+            '\Phue\Transport\TransportInterface',
+            ['sendRequest']
+        );
+
+        // Stub client getTransport usage
         $this->mockClient->expects($this->any())
                          ->method('getTransport')
                          ->will($this->returnValue($this->mockTransport));
@@ -64,6 +55,11 @@ class PingTest extends \PHPUnit_Framework_TestCase
      */
     public function testSend()
     {
+        // Stub transport's sendRequest usage
+        $this->mockTransport->expects($this->once())
+                            ->method('sendRequest')
+                            ->with($this->equalTo('none/config'));
+
         (new Ping)->send($this->mockClient);
     }
 }

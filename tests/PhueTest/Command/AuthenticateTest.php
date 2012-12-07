@@ -29,40 +29,25 @@ class AuthenticateTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        // Mock transport
-        $this->mockTransport = $this->getMockBuilder('\Phue\Transport\TransportInterface')
-                                    ->setMethods([
-                                        'sendRequest'
-                                    ])
-                                    ->getMock();
-
-        // Mock transport's sendRequest method
-        $this->mockTransport->expects($this->once())
-                            ->method('sendRequest')
-                            ->with(
-                                $this->equalTo(''),
-                                $this->equalTo('POST'),
-                                $this->anything()
-                            )
-                            ->will($this->returnValue('success!'));
-
         // Mock client
-        $this->mockClient = $this->getMockBuilder('\Phue\Client')
-                                 ->setMethods([
-                                     'getUsername',
-                                     'getTransport'
-                                 ])
-                                 ->setConstructorArgs([
-                                     '127.0.0.1'
-                                 ])
-                                 ->getMock();
+        $this->mockClient = $this->getMock(
+            '\Phue\Client',
+            ['getUsername', 'getTransport'],
+            ['127.0.0.1']
+        );
 
-        // Mock client's getUsername method
+        // Mock transport
+        $this->mockTransport = $this->getMock(
+            '\Phue\Transport\TransportInterface',
+            ['sendRequest']
+        );
+
+        // Stub client's getUsername method
         $this->mockClient->expects($this->any())
                          ->method('getUsername')
                          ->will($this->returnValue('abcdefabcdef01234567890123456789'));
 
-        // Mock client's getTransport method
+        // Stub client's getTransport method
         $this->mockClient->expects($this->any())
                          ->method('getTransport')
                          ->will($this->returnValue($this->mockTransport));
@@ -76,6 +61,16 @@ class AuthenticateTest extends \PHPUnit_Framework_TestCase
      */
     public function testSend()
     {
+        // Stub transport's sendRequest method
+        $this->mockTransport->expects($this->once())
+                            ->method('sendRequest')
+                            ->with(
+                                $this->equalTo(''),
+                                $this->equalTo('POST'),
+                                $this->anything()
+                            )
+                            ->will($this->returnValue('success!'));
+
         $this->assertEquals(
             (new Authenticate)->send($this->mockClient),
             'success!'

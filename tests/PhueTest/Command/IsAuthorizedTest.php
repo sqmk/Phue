@@ -30,29 +30,25 @@ class IsAuthorizedTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        // Mock transport
-        $this->mockTransport = $this->getMockBuilder('\Phue\Transport\TransportInterface')
-                                    ->setMethods([
-                                        'sendRequest'
-                                    ])
-                                    ->getMock();
-
         // Mock client
-        $this->mockClient = $this->getMockBuilder('\Phue\Client')
-                                 ->setMethods([
-                                     'getTransport'
-                                 ])
-                                 ->setConstructorArgs([
-                                     '127.0.0.1'
-                                 ])
-                                 ->getMock();
+        $this->mockClient = $this->getMock(
+            '\Phue\Client',
+            ['getTransport'],
+            ['127.0.0.1']
+        );
 
-        // Mock client's getUsername method
+        // Mock transport
+        $this->mockTransport = $this->getMock(
+            '\Phue\Transport\TransportInterface',
+            ['sendRequest']
+        );
+
+        // Stub client's getUsername method
         $this->mockClient->expects($this->any())
                          ->method('getUsername')
                          ->will($this->returnValue('abcdefabcdef01234567890123456789'));
 
-        // Mock client's getTransport method
+        // Stub client's getTransport method
         $this->mockClient->expects($this->any())
                          ->method('getTransport')
                          ->will($this->returnValue($this->mockTransport));
@@ -65,7 +61,7 @@ class IsAuthorizedTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsAuthorized()
     {
-        // Mock transport's sendRequest method
+        // Stub transport's sendRequest method
         $this->mockTransport->expects($this->once())
                             ->method('sendRequest')
                             ->with($this->equalTo($this->mockClient->getUsername()));
@@ -82,7 +78,7 @@ class IsAuthorizedTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsNotAuthorized()
     {
-        // Mock transport's sendRequest method
+        // Stub transport's sendRequest
         $this->mockTransport->expects($this->once())
                             ->method('sendRequest')
                             ->with($this->equalTo($this->mockClient->getUsername()))
