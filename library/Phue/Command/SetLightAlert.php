@@ -48,10 +48,10 @@ class SetLightAlert implements CommandInterface
     protected $mode;
 
     /**
-     * Constructor
+     * Constructs a command
      *
      * @param Light $light Light
-     * @param string $mode
+     * @param string $mode Mode
      */
     public function __construct(Light $light, $mode)
     {

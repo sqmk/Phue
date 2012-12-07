@@ -52,7 +52,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
      * @covers \Phue\Light::__construct
      * @covers \Phue\Light::getId
      */
-    public function testGettingId()
+    public function testGetId()
     {
         $this->assertEquals($this->light->getId(), 5);
     }
@@ -63,9 +63,36 @@ class LightTest extends \PHPUnit_Framework_TestCase
      * @covers \Phue\Light::__construct
      * @covers \Phue\Light::getName
      */
-    public function testGettingName()
+    public function testGetName()
     {
         $this->assertEquals($this->light->getName(), 'Hue light');
+    }
+
+    /**
+     * Test: Setting name
+     *
+     * @covers \Phue\Light::setName
+     * @covers \Phue\Light::getName
+     */
+    public function testSetName()
+    {
+        // Expect client's sendCommand usage
+        $this->mockClient->expects($this->once())
+                         ->method('sendCommand')
+                         ->with($this->isInstanceOf('\Phue\Command\SetLightName'))
+                         ->will($this->returnValue($this->light));
+
+        // Ensure setName returns self
+        $this->assertEquals(
+            $this->light,
+            $this->light->setName('dummy')
+        );
+
+        // Ensure new name can be retrieved by getName
+        $this->assertEquals(
+            'dummy',
+            $this->light->getName()
+        );
     }
 
     /**

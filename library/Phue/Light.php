@@ -12,6 +12,7 @@ namespace Phue;
 
 use Phue\Client;
 use Phue\Command\SetLightAlert;
+use Phue\Command\SetLightName;
 
 /**
  * Light object
@@ -72,6 +73,22 @@ class Light
     public function getName()
     {
         return $this->details->name;
+    }
+
+    /**
+     * Set name of light
+     *
+     * @return Light self object
+     */
+    public function setName($name)
+    {
+        $this->client->sendCommand(
+            new SetLightName($this, (string) $name)
+        );
+
+        $this->details->name = (string) $name;
+
+        return $this;
     }
 
     /**
