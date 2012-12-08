@@ -78,7 +78,7 @@ class Light
     /**
      * Set name of light
      *
-     * @return Light self object
+     * @return Light Self object
      */
     public function setName($name)
     {
@@ -132,29 +132,31 @@ class Light
     }
 
     /**
-     * Get color mode of light
-     *
-     * @return string Color mode
-     */
-    public function getColorMode()
-    {
-        return $this->details->state->colormode;
-    }
-
-    /**
      * Set light on/off
      *
      * @param bool $flag True for on, false for off
      *
-     * @return Light self object
+     * @return Light Self object
      */
-    public function setOn($flag)
+    public function setOn($flag = true)
     {
         $this->client->sendCommand(
-            (new SetLightState($this))->on($flag)
+            (new SetLightState($this))->on((bool) $flag)
         );
 
+        $this->details->state->on = (bool) $flag;
+
         return $this;
+    }
+
+    /**
+     * Get alert
+     *
+     * @return string Alert mode
+     */
+    public function getAlert()
+    {
+        return $this->details->state->alert;
     }
 
     /**
@@ -162,15 +164,55 @@ class Light
      *
      * @param string $mode Alert mode
      *
-     * @return Light self object
+     * @return Light Self object
      */
-    public function setAlert($mode)
+    public function setAlert($mode = SetLightState::ALERT_LONG_SELECT)
     {
         $this->client->sendCommand(
             (new SetLightState($this))->alert($mode)
         );
 
+        $this->details->state->alert = $mode;
+
         return $this;
+    }
+
+    /**
+     * Get brightness
+     *
+     * @return int Brightness level
+     */
+    public function getBrightness()
+    {
+        return $this->details->state->bri;
+    }
+
+    /**
+     * Set brightness
+     *
+     * @param int $level Brightness level
+     *
+     * @return Light Self object
+     */
+    public function setBrightness($level = SetLightState::BRIGHTNESS_MIN)
+    {
+        $this->client->sendCommand(
+            (new SetLightState($this))->brightness((int) $level)
+        );
+
+        $this->details->state->bri = (int) $level;
+
+        return $this;
+    }
+
+    /**
+     * Get color mode of light
+     *
+     * @return string Color mode
+     */
+    public function getColorMode()
+    {
+        return $this->details->state->colormode;
     }
 
     /**

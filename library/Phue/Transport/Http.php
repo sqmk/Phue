@@ -13,9 +13,10 @@ namespace Phue\Transport;
 use Phue\Client;
 use Phue\Command\CommandInterface;
 use Phue\Transport\TransportInterface;
+use Phue\Transport\Exception\ConnectionException;
 use Phue\Transport\Exception\BridgeException;
 use Phue\Transport\Exception\AuthorizationException;
-use Phue\Transport\Exception\ConnectionException;
+use Phue\Transport\Exception\ThrottleException;
 
 /**
  * Http transport
@@ -126,6 +127,13 @@ class Http implements TransportInterface
                 // Unauthenticated error
                 case 1:
                     throw new AuthorizationException(
+                        $jsonResults->error->description,
+                        $jsonResults->error->type
+                    );
+                    break;
+
+                case 901:
+                    throw new ThrottleException(
                         $jsonResults->error->description,
                         $jsonResults->error->type
                     );

@@ -24,6 +24,21 @@ use Phue\Command\CommandInterface;
 class SetLightState implements CommandInterface
 {
     /**
+     * Brightness min
+     */
+    const BRIGHTNESS_MIN = 0;
+
+    /**
+     * Brightness max
+     */
+    const BRIGHTNESS_MAX = 254;
+
+    /**
+     * Alert none mode
+     */
+    const ALERT_NONE = 'none';
+
+    /**
      * Alert select mode
      */
     const ALERT_SELECT = 'select';
@@ -55,6 +70,7 @@ class SetLightState implements CommandInterface
     public static function getAlertModes()
     {
         return [
+            self::ALERT_NONE,
             self::ALERT_SELECT,
             self::ALERT_LONG_SELECT,
         ];
@@ -75,7 +91,7 @@ class SetLightState implements CommandInterface
      *
      * @param bool $flag True if on, false if not
      *
-     * @return SetLightState self object
+     * @return SetLightState Self object
      */
     public function on($flag = true)
     {
@@ -85,13 +101,34 @@ class SetLightState implements CommandInterface
     }
 
     /**
+     * Set brightness
+     *
+     * @param int $level Brightness level
+     *
+     * @return SetLightState Self object
+     */
+    public function brightness($level = self::BRIGHTNESS_MAX)
+    {
+        if (!(self::BRIGHTNESS_MIN <= $level && $level <= self::BRIGHTNESS_MAX)) {
+            throw new \InvalidArgumentException(
+                "Brightness must be between " . self::BRIGHTNESS_MIN
+                . " and " . self::BRIGHTNESS_MAX
+            );
+        }
+
+        $this->params['bri'] = (int) $level;
+
+        return $this;
+    }
+
+    /**
      * Set alert parameter
      *
      * @param string $mode Alert mode
      *
-     * @return SetLightState self object
+     * @return SetLightState Self object
      */
-    public function alert($mode)
+    public function alert($mode = self::ALERT_LONG_SELECT)
     {
         // Don't continue if mode is not valid
         if (!in_array($mode, self::getAlertModes())) {

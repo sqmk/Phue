@@ -100,6 +100,38 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Invalid brightness
+     *
+     * @dataProvider providerInvalidBrightness
+     *
+     * @covers \Phue\Command\SetLightState::brightness
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testInvalidBrightness($brightness)
+    {
+        (new SetLightState($this->mockLight))->brightness($brightness);
+    }
+
+    /**
+     * Test: Set brightness
+     *
+     * @dataProvider providerValidBrightness
+     *
+     * @covers \Phue\Command\SetLightState::brightness
+     */
+    public function testBrightness($brightness)
+    {
+        $command = new SetLightState($this->mockLight);
+
+        // Ensure instance is returned
+        $this->assertEquals(
+            $command,
+            $command->brightness($brightness)
+        ); 
+    }
+
+    /**
      * Test: Invalid alert mode
      *
      * @covers \Phue\Command\SetLightState::alert
@@ -112,13 +144,19 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Valid alert mode
+     * Test: Set alert mode
      *
      * @covers \Phue\Command\SetLightState::alert
      */
-    public function testValidAlertMode()
+    public function testAlertMode()
     {
-        (new SetLightState($this->mockLight))->alert(SetLightState::ALERT_SELECT);
+        $command = new SetLightState($this->mockLight);
+
+        // Ensure instance is returned
+        $this->assertEquals(
+            $command,
+            $command->alert(SetLightState::ALERT_SELECT)
+        );        
     }
 
     /**
@@ -162,5 +200,32 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
                                 $this->equalTo('PUT'),
                                 $payload
                             );
+    }
+
+    /**
+     * Provider: Invalid brightness
+     *
+     * @return array
+     */
+    public function providerInvalidBrightness()
+    {
+        return [
+            [-1],
+            [255],
+        ];
+    }
+
+    /**
+     * Provider: Valid brightness
+     *
+     * @return array
+     */
+    public function providerValidBrightness()
+    {
+        return [
+            [0],
+            [128],
+            [254]
+        ];
     }
 }
