@@ -24,11 +24,11 @@ use Phue\Command\CommandInterface;
 class SetLightName implements CommandInterface
 {
     /**
-     * Light
+     * Light Id
      *
-     * @var Light
+     * @var string
      */
-    protected $light;
+    protected $lightId;
 
     /**
      * New name
@@ -40,13 +40,13 @@ class SetLightName implements CommandInterface
     /**
      * Constructs a command
      *
-     * @param Light $light Light
+     * @param mixed $light Light Id or Light object
      * @param string $name Name of light
      */
-    public function __construct(Light $light, $name)
+    public function __construct($light, $name)
     {
-        $this->light = $light;
-        $this->name  = (string) $name;
+        $this->lightId = (string) $light;
+        $this->name    = (string) $name;
     }
 
     /**
@@ -59,7 +59,7 @@ class SetLightName implements CommandInterface
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/lights/{$this->light->getId()}",
+            "{$client->getUsername()}/lights/{$this->lightId}",
             Http::METHOD_PUT,
             (object) [
                 'name' => $this->name

@@ -11,8 +11,8 @@
 namespace Phue;
 
 use Phue\Client;
-use Phue\Command\SetLightAlert;
 use Phue\Command\SetLightName;
+use Phue\Command\SetLightState;
 
 /**
  * Light object
@@ -142,6 +142,22 @@ class Light
     }
 
     /**
+     * Set light on/off
+     *
+     * @param bool $flag True for on, false for off
+     *
+     * @return Light self object
+     */
+    public function setOn($flag)
+    {
+        $this->client->sendCommand(
+            (new SetLightState($this))->on($flag)
+        );
+
+        return $this;
+    }
+
+    /**
      * Set light alert
      *
      * @param string $mode Alert mode
@@ -151,9 +167,19 @@ class Light
     public function setAlert($mode)
     {
         $this->client->sendCommand(
-            new SetLightAlert($this, $mode)
+            (new SetLightState($this))->alert($mode)
         );
 
         return $this;
+    }
+
+    /**
+     * __toString
+     *
+     * @return string Light Id
+     */
+    public function __toString()
+    {
+        return (string) $this->getId();
     }
 }

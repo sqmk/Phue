@@ -87,7 +87,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetName()
     {
-        // Expect client's sendCommand usage
+        // Stub client's sendCommand method
         $this->mockClient->expects($this->once())
                          ->method('sendCommand')
                          ->with($this->isInstanceOf('\Phue\Command\SetLightName'))
@@ -169,22 +169,53 @@ class LightTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Set on
+     *
+     * @covers \Phue\Light::setOn
+     */
+    public function testSetOn()
+    {
+        // Stub client's sendCommand method
+        $this->mockClient->expects($this->once())
+                         ->method('sendCommand')
+                         ->with($this->isInstanceOf('\Phue\Command\SetLightState'));
+
+        // Ensure setOn returns self
+        $this->assertEquals(
+            $this->light,
+            $this->light->setOn(true)
+        );
+    }
+
+    /**
      * Test: Set alert
      *
      * @covers \Phue\Light::setAlert
      */
     public function testSetAlert()
     {
-        // Expect client's sendCommand usage
+        // Stub client's sendCommand method
         $this->mockClient->expects($this->once())
                          ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\SetLightAlert'))
-                         ->will($this->returnValue($this->light));
+                         ->with($this->isInstanceOf('\Phue\Command\SetLightState'));
 
         // Ensure setAlert returns self
         $this->assertEquals(
             $this->light,
             $this->light->setAlert('lselect')
+        );
+    }
+
+    /**
+     * Test: toString
+     *
+     * @covers \Phue\Light::__toString
+     */
+    public function testToString()
+    {
+        $this->assertEquals(
+            (string) $this->light,
+            5
         );
     }
 }
