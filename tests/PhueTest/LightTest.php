@@ -36,17 +36,19 @@ class LightTest extends \PHPUnit_Framework_TestCase
         );
 
         // Build stub details
-        $details                   = new \stdClass;
-        $details->name             = 'Hue light';
-        $details->type             = 'Dummy type';
-        $details->modelid          = 'M123';
-        $details->swversion        = '12345';
-        $details->state            = new \stdClass;
-        $details->state->on        = true;
-        $details->state->colormode = 'rgb';
+        $this->details = (object) [
+            'name'      => 'Hue light',
+            'type'      => 'Dummy type',
+            'modelid'   => 'M123',
+            'swversion' => '12345',
+            'state'     => (object) [
+                'on'        => true,
+                'colormode' => 'rgb',
+            ],
+        ];
 
         // Create light object
-        $this->light = new Light(5, $details, $this->mockClient);
+        $this->light = new Light(5, $this->details, $this->mockClient);
     }
 
     /**
@@ -57,7 +59,10 @@ class LightTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetId()
     {
-        $this->assertEquals($this->light->getId(), 5);
+        $this->assertEquals(
+            $this->light->getId(),
+            5
+        );
     }
 
     /**
@@ -68,7 +73,10 @@ class LightTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetName()
     {
-        $this->assertEquals($this->light->getName(), 'Hue light');
+        $this->assertEquals(
+            $this->light->getName(),
+            $this->details->name
+        );
     }
 
     /**
@@ -88,13 +96,13 @@ class LightTest extends \PHPUnit_Framework_TestCase
         // Ensure setName returns self
         $this->assertEquals(
             $this->light,
-            $this->light->setName('dummy')
+            $this->light->setName('new name')
         );
 
         // Ensure new name can be retrieved by getName
         $this->assertEquals(
-            'dummy',
-            $this->light->getName()
+            $this->light->getName(),
+            'new name'
         );
     }
 
@@ -107,7 +115,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->light->getType(),
-            'Dummy type'
+            $this->details->type
         );
     }
 
@@ -120,7 +128,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->light->getModelId(),
-            'M123'
+            $this->details->modelid
         );
     }
 
@@ -133,7 +141,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->light->getSoftwareVersion(),
-            '12345'
+            $this->details->swversion
         );
     }
 
@@ -154,7 +162,10 @@ class LightTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetColorMode()
     {
-        $this->assertEquals($this->light->getColorMode(), 'rgb');
+        $this->assertEquals(
+            $this->light->getColorMode(),
+            $this->details->state->colormode
+        );
     }
 
     /**

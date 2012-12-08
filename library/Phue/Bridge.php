@@ -111,7 +111,7 @@ class Bridge
      *
      * @return string Netmask
      */
-    public function getNetMask()
+    public function getNetmask()
     {
         return $this->details->netmask;
     }
@@ -179,8 +179,8 @@ class Bridge
         foreach ($this->details->whitelist as $username => $record) {
             $whitelist[$username] = [
                 'name'          => $record->name,
-                'create_date'   => $record->{"create date"},
-                'last_use_date' => $record->{"last use date"},
+                'create_date'   => $record->{'create date'},
+                'last_use_date' => $record->{'last use date'},
             ];
         }
 

@@ -33,13 +33,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Getting host
+     * Test: Get host
      *
      * @covers \Phue\Client::__construct
      * @covers \Phue\Client::getHost
      * @covers \Phue\Client::setHost
      */
-    public function testHost()
+    public function testGetHost()
     {
         $this->assertEquals(
             $this->client->getHost(),
@@ -80,6 +80,76 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Get bridge
+     * 
+     * @covers \Phue\Client::getBridge
+     */
+    public function testGetBridge()
+    {
+        // Mock transport
+        $mockTransport = $this->getMock(
+            '\Phue\Transport\TransportInterface',
+            ['sendRequest']
+        );
+
+        // Stub transports sendRequest method
+        $mockTransport->expects($this->once())
+                      ->method('sendRequest')
+                      ->will($this->returnValue(new \stdClass));
+
+        // Set transport
+        $this->client->setTransport($mockTransport);
+
+        // Ensure return type is Bridge
+        $this->assertInstanceOf(
+            '\Phue\Bridge',
+            $this->client->getBridge()
+        );
+    }
+
+    /**
+     * Test: Get lights
+     *
+     * @covers \Phue\Client::getLights
+     */
+    public function testGetLights()
+    {
+        // Mock transport
+        $mockTransport = $this->getMock(
+            '\Phue\Transport\TransportInterface',
+            ['sendRequest']
+        );
+
+        // Mock results for sendRequest
+        $mockResults = (object) [
+            'lights' => [
+                '1' => new \stdClass,
+                '2' => new \stdClass,
+            ]
+        ];
+
+        // Stub transports sendRequest method
+        $mockTransport->expects($this->once())
+                      ->method('sendRequest')
+                      ->will($this->returnValue($mockResults));
+
+        // Set transport
+        $this->client->setTransport($mockTransport);
+
+        // Get lights
+        $lights = $this->client->getLights();
+
+        // Ensure at least two lights
+        $this->assertEquals(2, count($lights));
+
+        // Ensure return type is an array of lights
+        $this->assertContainsOnlyInstancesOf(
+            '\Phue\Light',
+            $lights
+        );
+    }
+
+    /**
      * Test: Not passing in Transport dependency will yield default
      *
      * @covers \Phue\Client::getTransport
@@ -100,6 +170,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testPassingTransportDependency()
     {
+        // Mock transport
         $mockTransport = $this->getMock('\Phue\Transport\TransportInterface');
 
         $this->client->setTransport($mockTransport);
@@ -115,7 +186,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \Phue\Client::sendCommand
      */
-    public function testSendingCommand()
+    public function testSendCommand()
     {
         // Mock command
         $mockCommand = $this->getMock(
