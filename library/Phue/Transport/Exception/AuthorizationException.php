@@ -13,7 +13,7 @@ namespace Phue\Transport\Exception;
 use Phue\Transport\Exception\BridgeException;
 
 /**
- * Bridge exception
+ * Authorization exception
  *
  * @category Phue
  * @package  Phue
