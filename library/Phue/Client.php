@@ -13,6 +13,8 @@ namespace Phue;
 use Phue\Transport\Http;
 use Phue\Transport\TransportInterface;
 use Phue\Command\CommandInterface;
+use Phue\Command\GetBridge;
+use Phue\Command\GetLights;
 
 /**
  * Client for connecting to Philips Hue bridge
@@ -105,6 +107,30 @@ class Client
         }
 
         $this->username = (string) $username;
+    }
+
+    /**
+     * Get bridge
+     *
+     * @return Bridge Bridge object
+     */
+    public function getBridge()
+    {
+        return $this->sendCommand(
+            new GetBridge()
+        );
+    }
+
+    /**
+     * Get lights
+     *
+     * @return array List of Light objects
+     */
+    public function getLights()
+    {
+        return $this->sendCommand(
+            new GetLights()
+        );
     }
 
     /**
