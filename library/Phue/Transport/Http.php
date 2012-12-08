@@ -16,6 +16,7 @@ use Phue\Transport\TransportInterface;
 use Phue\Transport\Exception\ConnectionException;
 use Phue\Transport\Exception\BridgeException;
 use Phue\Transport\Exception\AuthorizationException;
+use Phue\Transport\Exception\LinkButtonException;
 use Phue\Transport\Exception\ThrottleException;
 
 /**
@@ -123,30 +124,10 @@ class Http implements TransportInterface
 
         // Get error type
         if (isset($jsonResults->error)) {
-            switch ($jsonResults->error->type) {
-                // Unauthenticated error
-                case 1:
-                    throw new AuthorizationException(
-                        $jsonResults->error->description,
-                        $jsonResults->error->type
-                    );
-                    break;
-
-                case 901:
-                    throw new ThrottleException(
-                        $jsonResults->error->description,
-                        $jsonResults->error->type
-                    );
-                    break;
-
-                // Other errors
-                default:
-                    throw new BridgeException(
-                        $jsonResults->error->description,
-                        $jsonResults->error->type
-                    );
-                    break;
-            }
+            $this->throwExceptionByType(
+                $jsonResults->error->type,
+                $jsonResults->error->description
+            );
         }
 
         return $jsonResults;
@@ -167,6 +148,37 @@ class Http implements TransportInterface
         curl_close($this->connection);
 
         $this->connection = null;
+    }
+
+    /**
+     * Throw exception by type
+     *
+     * @param string $type        Error type
+     * @param string $description Description of error
+     *
+     * @return void
+     */
+    public function throwExceptionByType($type, $description)
+    {
+        switch ($type) {
+            case 1:
+                $exception = new AuthorizationException($description, $type);
+                break;
+
+            case 101:
+                $exception = new LinkButtonException($description, $type);
+                break;
+
+            case 901:
+                $exception = new ThrottleException($description, $type);
+                break;
+
+            default:
+                $exception = new BridgeException($description, $type);
+                break;
+        }
+
+        throw $exception;
     }
 
     /**

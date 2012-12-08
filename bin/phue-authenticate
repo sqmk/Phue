@@ -51,10 +51,8 @@ for ($i = 1; $i <= $maxTries; ++$i) {
 
             exit(0);
         }
-    } catch (\Phue\Transport\Exception\BridgeException $e) {
-        if ($e->getCode() == 101) {
-            echo ".";
-        }
+    } catch (\Phue\Transport\Exception\LinkButtonException $e) {
+        echo ".";
     }
 
     sleep(1);
