@@ -42,10 +42,14 @@ class LightTest extends \PHPUnit_Framework_TestCase
             'modelid'   => 'M123',
             'swversion' => '12345',
             'state'     => (object) [
-                'on'        => true,
-                'alert'     => 'none',
+                'on'        => false,
                 'bri'       => '66',
-                'colormode' => 'rgb',
+                'hue'       => '60123',
+                'sat'       => 213,
+                'xy'        => [.5, .4],
+                'ct'        => 300,
+                'alert'     => 'none',
+                'colormode' => 'hs',
             ],
         ];
 
@@ -148,26 +152,17 @@ class LightTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Light is on?
+     * Test: Is/Set on
      *
      * @covers \Phue\Light::isOn
-     */
-    public function testIsOn()
-    {
-        $this->assertTrue($this->light->isOn());
-    }
-
-    /**
-     * Test: Set on
-     *
      * @covers \Phue\Light::setOn
      */
-    public function testSetOn()
+    public function testIsSetOn()
     {
-        // Stub client's sendCommand method
-        $this->mockClient->expects($this->once())
-                         ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\SetLightState'));
+        $this->stubMockClientSendSetLightStateCommand();
+
+        // Make sure original on state is retrievable
+        $this->assertFalse($this->light->isOn());
 
         // Ensure setOn returns self
         $this->assertEquals(
@@ -180,22 +175,19 @@ class LightTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Set brightness
+     * Test: Get/Set brightness
      *
      * @covers \Phue\Light::getBrightness
      * @covers \Phue\Light::setBrightness
      */
     public function testGetSetBrightness()
     {
-        // Stub client's sendCommand method
-        $this->mockClient->expects($this->once())
-                         ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\SetLightState'));
+        $this->stubMockClientSendSetLightStateCommand();
 
         // Make sure original brightness is retrievable
         $this->assertEquals(
             $this->light->getBrightness(),
-            66
+            $this->details->state->bri
         );
 
         // Ensure setBrightness returns self
@@ -212,6 +204,125 @@ class LightTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Get/Set hue
+     * 
+     * @covers \Phue\Light::getHue
+     * @covers \Phue\Light::setHue
+     */
+    public function testGetSetHue()
+    {
+        $this->stubMockClientSendSetLightStateCommand();
+
+        // Make sure original hue is retrievable
+        $this->assertEquals(
+            $this->light->getHue(),
+            $this->details->state->hue
+        );
+
+        // Ensure setHue returns self
+        $this->assertEquals(
+            $this->light,
+            $this->light->setHue(30000)
+        );
+
+        // Make sure light details are updated
+        $this->assertEquals(
+            $this->light->getHue(),
+            30000
+        );
+    }
+
+    /**
+     * Test: Get/Set saturation
+     * 
+     * @covers \Phue\Light::getSaturation
+     * @covers \Phue\Light::setSaturation
+     */
+    public function testGetSetSaturation()
+    {
+        $this->stubMockClientSendSetLightStateCommand();
+
+        // Make sure original saturation is retrievable
+        $this->assertEquals(
+            $this->light->getSaturation(),
+            $this->details->state->sat
+        );
+
+        // Ensure setSaturation returns self
+        $this->assertEquals(
+            $this->light,
+            $this->light->setSaturation(200)
+        );
+
+        // Make sure light details are updated
+        $this->assertEquals(
+            $this->light->getSaturation(),
+            200
+        );
+    }
+
+    /**
+     * Test: Get/Set XY
+     * 
+     * @covers \Phue\Light::getXY
+     * @covers \Phue\Light::setXY
+     */
+    public function testGetSetXY()
+    {
+        $this->stubMockClientSendSetLightStateCommand();
+
+        // Make sure original xy is retrievable
+        $this->assertEquals(
+            $this->light->getXY(),
+            [
+                'x' => $this->details->state->xy[0],
+                'y' => $this->details->state->xy[1]
+            ]
+        );
+
+        // Ensure setXY returns self
+        $this->assertEquals(
+            $this->light,
+            $this->light->setXY(.1, .2)
+        );
+
+        // Make sure light details are updated
+        $this->assertEquals(
+            $this->light->getXY(),
+            ['x' => .1, 'y' => .2]
+        );
+    }
+
+    /**
+     * Test: Get/Set Color temp
+     * 
+     * @covers \Phue\Light::getColorTemp
+     * @covers \Phue\Light::setColorTemp
+     */
+    public function testGetSetColorTemp()
+    {
+        $this->stubMockClientSendSetLightStateCommand();
+
+        // Make sure original color temp is retrievable
+        $this->assertEquals(
+            $this->light->getColorTemp(),
+            $this->details->state->ct
+        );
+
+        // Ensure setColorTemp returns self
+        $this->assertEquals(
+            $this->light,
+            $this->light->setColorTemp(412)
+        );
+
+        // Make sure light details are updated
+        $this->assertEquals(
+            $this->light->getColorTemp(),
+            412
+        );
+    }
+
+    /**
      * Test: Get/Set alert
      *
      * @covers \Phue\Light::getAlert
@@ -219,15 +330,12 @@ class LightTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSetAlert()
     {
-        // Stub client's sendCommand method
-        $this->mockClient->expects($this->once())
-                         ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\SetLightState'));
+        $this->stubMockClientSendSetLightStateCommand();
 
         // Make sure original alert is retrievable
         $this->assertEquals(
             $this->light->getAlert(),
-            'none'
+            $this->details->state->alert
         );
 
         // Ensure setAlert returns self
@@ -248,7 +356,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \Phue\Light::getColorMode
      */
-    public function testGetColorMode()
+    public function testGetColormode()
     {
         $this->assertEquals(
             $this->light->getColorMode(),
@@ -265,7 +373,19 @@ class LightTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             (string) $this->light,
-            5
+            $this->light->getId()
         );
+    }
+
+    /**
+     * Stub mock client's send command
+     *
+     * @return void
+     */
+    protected function stubMockClientSendSetLightStateCommand()
+    {
+        $this->mockClient->expects($this->once())
+                         ->method('sendCommand')
+                         ->with($this->isInstanceOf('\Phue\Command\SetLightState'));
     }
 }

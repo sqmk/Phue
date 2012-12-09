@@ -34,6 +34,46 @@ class SetLightState implements CommandInterface
     const BRIGHTNESS_MAX = 254;
 
     /**
+     * Hue min
+     */
+    const HUE_MIN = 0;
+
+    /**
+     * Hue max
+     */
+    const HUE_MAX = 65535;
+
+    /**
+     * Saturation min
+     */
+    const SATURATION_MIN = 0;
+
+    /**
+     * Saturation max
+     */
+    const SATURATION_MAX = 255;
+
+    /**
+     * XY Min
+     */
+    const XY_MIN = 0.0;
+
+    /**
+     * XY Max
+     */
+    const XY_MAX = 1.0;
+
+    /**
+     * Color temperature min
+     */
+    const COLOR_TEMP_MIN = 154;
+
+    /**
+     * Color temperature max
+     */
+    const COLOR_TEMP_MAX = 500;
+
+    /**
      * Alert none mode
      */
     const ALERT_NONE = 'none';
@@ -63,9 +103,9 @@ class SetLightState implements CommandInterface
     protected $params = [];
 
     /**
-     * Get modes
+     * Get alert modes
      *
-     * @return array List of modes
+     * @return array List of alert modes
      */
     public static function getAlertModes()
     {
@@ -109,6 +149,7 @@ class SetLightState implements CommandInterface
      */
     public function brightness($level = self::BRIGHTNESS_MAX)
     {
+        // Don't continue if brightness level is invalid
         if (!(self::BRIGHTNESS_MIN <= $level && $level <= self::BRIGHTNESS_MAX)) {
             throw new \InvalidArgumentException(
                 "Brightness must be between " . self::BRIGHTNESS_MIN
@@ -117,6 +158,97 @@ class SetLightState implements CommandInterface
         }
 
         $this->params['bri'] = (int) $level;
+
+        return $this;
+    }
+
+    /**
+     * Set hue
+     *
+     * @param int $value Hue value
+     *
+     * @return SetLightState Self object
+     */
+    public function hue($value)
+    {
+        // Don't continue if hue value is invalid
+        if (!(self::HUE_MIN <= $value && $value <= self::HUE_MAX)) {
+            throw new \InvalidArgumentException(
+                "Hue value must be between " . self::HUE_MIN
+                . " and " . self::HUE_MAX
+            );
+        }
+
+        $this->params['hue'] = (int) $value;
+
+        return $this;
+    }
+
+    /**
+     * Set saturation
+     *
+     * @param int $value Saturation value
+     *
+     * @return SetLightState Self object
+     */
+    public function saturation($value)
+    {
+        // Don't continue if saturation value is invalid
+        if (!(self::SATURATION_MIN <= $value && $value <= self::SATURATION_MAX)) {
+            throw new \InvalidArgumentException(
+                "Saturation value must be between " . self::SATURATION_MIN
+                . " and " . self::SATURATION_MAX
+            );
+        }
+
+        $this->params['sat'] = (int) $value;
+
+        return $this;
+    }
+
+    /**
+     * Set xy
+     *
+     * @param float $x X value
+     * @param float $y Y value
+     *
+     * @return SetLightState Self object
+     */
+    public function xy($x, $y)
+    {
+        // Don't continue if x or y values are invalid
+        foreach ([$x, $y] as $value) {
+            if (!(self::XY_MIN <= $value && $value <= self::XY_MAX)) {
+                throw new \InvalidArgumentException(
+                    "x/y value must be between " . self::XY_MIN
+                    . " and " . self::XY_MAX
+                );
+            }
+        }
+
+        $this->params['xy'] = [(float) $x, (float) $y];
+
+        return $this;
+    }
+
+    /**
+     * Set color temperature
+     *
+     * @param int $value Color temperature value
+     *
+     * @return SetLightState Self object
+     */
+    public function colorTemp($value)
+    {
+        // Don't continue if color temperature is invalid
+        if (!(self::COLOR_TEMP_MIN <= $value && $value <= self::COLOR_TEMP_MAX)) {
+            throw new \InvalidArgumentException(
+                "Color temperature value must be between " . self::COLOR_TEMP_MIN
+                . " and " . self::COLOR_TEMP_MAX
+            );
+        }
+
+        $this->params['ct'] = $value;
 
         return $this;
     }
@@ -138,6 +270,28 @@ class SetLightState implements CommandInterface
         }
 
         $this->params['alert'] = $mode;
+
+        return $this;
+    }
+
+    /**
+     * Transition time
+     *
+     * @param double $seconds Time in seconds
+     *
+     * @return SetLightState Self object
+     */
+    public function transitionTime($seconds)
+    {
+        // Don't continue if seconds is not valid
+        if ((double) $seconds < 0) {
+            throw new \InvalidArgumentException(
+                "Time must be at least 0"
+            );
+        }
+
+        // Value is in 1/10 seconds, so convert automatically
+        $this->params['transitiontime'] = (int) ($seconds * 10);
 
         return $this;
     }

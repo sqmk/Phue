@@ -206,6 +206,130 @@ class Light
     }
 
     /**
+     * Get hue
+     *
+     * @return int Hue value
+     */
+    public function getHue()
+    {
+        return $this->details->state->hue;
+    }
+
+    /**
+     * Set hue
+     *
+     * @param int $value Hue value
+     *
+     * @return Light Self object
+     */
+    public function setHue($value)
+    {
+        $this->client->sendCommand(
+            (new SetLightState($this))->hue((int) $value)
+        );
+
+        // Change both hue and color mode state
+        $this->details->state->hue       = (int) $value;
+        $this->details->state->colormode = 'hs';
+
+        return $this;
+    }
+
+    /**
+     * Get saturation
+     *
+     * @return int Saturation value
+     */
+    public function getSaturation()
+    {
+        return $this->details->state->sat;
+    }
+
+    /**
+     * Set saturation
+     *
+     * @param int $value Saturation value
+     *
+     * @return Light Self object
+     */
+    public function setSaturation($value)
+    {
+        $this->client->sendCommand(
+            (new SetLightState($this))->saturation((int) $value)
+        );
+
+        // Change both saturation and color mode state
+        $this->details->state->sat       = (int) $value;
+        $this->details->state->colormode = 'hs';
+
+        return $this;
+    }
+
+    /**
+     * Get XY 
+     *
+     * @return array X, Y key/value
+     */
+    public function getXY()
+    {
+        return [
+            'x' => $this->details->state->xy[0],
+            'y' => $this->details->state->xy[1],
+        ];
+    }
+
+    /**
+     * Set XY
+     *
+     * @param float $x X value
+     * @param float $y Y value
+     *
+     * @return Light Self object
+     */
+    public function setXY($x, $y)
+    {
+        $this->client->sendCommand(
+            (new SetLightState($this))->xy((float) $x, (float) $y)
+        );
+
+        // Change both internal xy and colormode state
+        $this->details->state->xy        = [$x, $y];
+        $this->details->state->colormode = 'xy';
+
+        return $this;
+    }
+
+    /**
+     * Get Color temperature
+     *
+     * @return int Color temperature value
+     */
+    public function getColorTemp()
+    {
+        return $this->details->state->ct;
+    }
+
+    /**
+     * Set Color temperature
+     *
+     * @param int $value Color temperature value
+     *
+     * @return Light Self object
+     */
+    public function setColorTemp($value)
+    {
+        $this->client->sendCommand(
+            (new SetLightState($this))->colorTemp((int) $value)
+        );
+
+        // Change both internal color temp and colormode state
+        $this->details->state->ct        = (int) $value;
+        $this->details->state->colormode = 'ct';
+
+        return $this;
+    }
+
+    /**
      * Get color mode of light
      *
      * @return string Color mode
