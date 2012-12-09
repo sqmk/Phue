@@ -18,6 +18,7 @@ use Phue\Transport\Exception\BridgeException;
 use Phue\Transport\Exception\AuthorizationException;
 use Phue\Transport\Exception\LinkButtonException;
 use Phue\Transport\Exception\ThrottleException;
+use Phue\Transport\Exception\ResourceException;
 
 /**
  * Http transport
@@ -163,6 +164,10 @@ class Http implements TransportInterface
         switch ($type) {
             case 1:
                 $exception = new AuthorizationException($description, $type);
+                break;
+
+            case 3:
+                $exception = new ResourceException($description, $type);
                 break;
 
             case 101:

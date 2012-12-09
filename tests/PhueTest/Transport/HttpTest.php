@@ -61,6 +61,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [1,   'Authorization', 'Phue\Transport\Exception\AuthorizationException'],
+            [3,   'Resource',      'Phue\Transport\Exception\ResourceException'],
             [101, 'Link Button',   'Phue\Transport\Exception\LinkButtonException'],
             [901, 'Throttle',      'Phue\Transport\Exception\ThrottleException'],
             [-1,  'Unknown',       'Phue\Transport\Exception\BridgeException'],
