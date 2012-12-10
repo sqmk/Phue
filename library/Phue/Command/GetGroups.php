@@ -11,35 +11,42 @@
 namespace Phue\Command;
 
 use Phue\Client;
-use Phue\Transport\Exception\AuthorizationException;
 use Phue\Command\CommandInterface;
+use Phue\Group;
 
 /**
- * Authenticate command
+ * Get groups command
  *
  * @category Phue
  * @package  Phue
  */
-class IsAuthorized implements CommandInterface
+class GetGroups implements CommandInterface
 {
     /**
      * Send command
      *
      * @param Client $client Phue Client
      *
-     * @return bool True if authorized, false if not
+     * @return array List of Group objects
      */
     public function send(Client $client)
     {
         // Get response
-        try {
-            $client->getTransport()->sendRequest(
-                $client->getUsername()
-            );
-        } catch (AuthorizationException $e) {
-            return false;
+        $response = $client->getTransport()->sendRequest(
+            $client->getUsername()
+        );
+
+        // Return empty list if no groups
+        if (!isset($response->groups)) {
+            return [];
         }
 
-        return true;
+        $groups = [];
+
+        foreach ($response->groups as $groupId => $details) {
+            $groups[$groupId] = new Group($groupId, $details, $client);
+        }
+
+        return $groups;
     }
 }

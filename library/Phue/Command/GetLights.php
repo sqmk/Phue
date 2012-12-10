@@ -11,7 +11,6 @@
 namespace Phue\Command;
 
 use Phue\Client;
-use Phue\Transport\Http;
 use Phue\Command\CommandInterface;
 use Phue\Light;
 

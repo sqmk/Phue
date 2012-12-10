@@ -12,31 +12,31 @@ namespace Phue\Command;
 
 use Phue\Client;
 use Phue\Command\CommandInterface;
-use Phue\Light;
+use Phue\Group;
 
 /**
- * Get light by id command
+ * Get group by id command
  *
  * @category Phue
  * @package  Phue
  */
-class GetLightById implements CommandInterface
+class GetGroupById implements CommandInterface
 {
     /**
-     * Light Id
+     * Group Id
      *
      * @var string
      */
-    protected $lightId;
+    protected $groupId;
 
     /**
      * Constructs a command
      *
-     * @param int $lightId Light Id
+     * @param int $groupId Group Id
      */
-    public function __construct($lightId)
+    public function __construct($groupId)
     {
-        $this->lightId = (int) $lightId;
+        $this->groupId = (int) $groupId;
     }
 
     /**
@@ -44,15 +44,15 @@ class GetLightById implements CommandInterface
      *
      * @param Client $client Phue Client
      *
-     * @return Light Light object
+     * @return Group Group object
      */
     public function send(Client $client)
     {
         // Get response
         $details = $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/lights/{$this->lightId}"
+            "{$client->getUsername()}/groups/{$this->groupId}"
         );
 
-        return new Light($this->lightId, $details, $client);
+        return new Group($this->groupId, $details, $client);
     }
 }

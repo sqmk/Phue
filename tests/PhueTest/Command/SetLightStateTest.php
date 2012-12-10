@@ -13,7 +13,6 @@ namespace PhueTest\Command;
 use Phue\Command\SetLightState;
 use Phue\Client;
 use Phue\Transport\TransportInterface;
-use Phue\Light;
 
 /**
  * Tests for Phue\Command\SetLightState
@@ -392,7 +391,7 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Sent command
+     * Test: Send command
      *
      * @covers \Phue\Command\SetLightState::__construct
      * @covers \Phue\Command\SetLightState::send

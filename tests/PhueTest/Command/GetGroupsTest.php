@@ -10,17 +10,17 @@
 
 namespace PhueTest\Command;
 
-use Phue\Command\GetLights;
+use Phue\Command\GetGroups;
 use Phue\Client;
 use Phue\Transport\TransportInterface;
 
 /**
- * Tests for Phue\Command\GetLights
+ * Tests for Phue\Command\GetGroups
  *
  * @category Phue
  * @package  Phue
  */
-class GetLightsTest extends \PHPUnit_Framework_TestCase
+class GetGroupsTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
@@ -29,7 +29,7 @@ class GetLightsTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->getLights = new GetLights();
+        $this->getGroups = new GetGroups();
 
         // Mock client
         $this->mockClient = $this->getMock(
@@ -56,11 +56,11 @@ class GetLightsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Found no lights
+     * Test: Found no groups
      *
-     * @covers \Phue\Command\GetLights::send
+     * @covers \Phue\Command\GetGroups::send
      */
-    public function testFoundNoLights()
+    public function testFoundNoGroups()
     {
         // Stub transport's sendRequest method
         $this->mockTransport->expects($this->once())
@@ -69,7 +69,7 @@ class GetLightsTest extends \PHPUnit_Framework_TestCase
                             ->will($this->returnValue(new \stdClass));
 
         // Send command and get response
-        $response = $this->getLights->send($this->mockClient);
+        $response = $this->getGroups->send($this->mockClient);
 
         // Ensure we have an empty array
         $this->assertInternalType('array', $response);
@@ -77,15 +77,15 @@ class GetLightsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Found lights
+     * Test: Found groups
      *
-     * @covers \Phue\Command\GetLights::send
+     * @covers \Phue\Command\GetGroups::send
      */
-    public function testFoundLights()
+    public function testFoundGroups()
     {
         // Mock transport results
         $mockTransportResults = (object) [
-            'lights' => [
+            'groups' => [
                 1 => new \stdClass,
                 2 => new \stdClass,
             ]
@@ -98,10 +98,10 @@ class GetLightsTest extends \PHPUnit_Framework_TestCase
                             ->will($this->returnValue($mockTransportResults));
 
         // Send command and get response
-        $response = $this->getLights->send($this->mockClient);
+        $response = $this->getGroups->send($this->mockClient);
 
-        // Ensure we have an array of Lights
+        // Ensure we have an array of Groups
         $this->assertInternalType('array', $response);
-        $this->assertContainsOnlyInstancesOf('\Phue\Light', $response);
+        $this->assertContainsOnlyInstancesOf('\Phue\Group', $response);
     }
 }

@@ -10,17 +10,17 @@
 
 namespace PhueTest\Command;
 
-use Phue\Command\GetLightById;
+use Phue\Command\GetGroupById;
 use Phue\Client;
 use Phue\Transport\TransportInterface;
 
 /**
- * Tests for Phue\Command\GetLightById
+ * Tests for Phue\Command\GetGroupById
  *
  * @category Phue
  * @package  Phue
  */
-class GetLightByIdTest extends \PHPUnit_Framework_TestCase
+class GetGroupByIdTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
@@ -54,26 +54,26 @@ class GetLightByIdTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Send get light by id command
+     * Test: Send get group by id command
      *
-     * @covers \Phue\Command\GetLightById::__construct
-     * @covers \Phue\Command\GetLightById::send
+     * @covers \Phue\Command\GetGroupById::__construct
+     * @covers \Phue\Command\GetGroupById::send
      */
     public function testSend()
     {
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
                             ->method('sendRequest')
-                            ->with("{$this->mockClient->getUsername()}/lights/10")
+                            ->with("{$this->mockClient->getUsername()}/groups/5")
                             ->will($this->returnValue(new \stdClass));
 
         // Get group
-        $light = (new GetLightById(10))->send($this->mockClient);
+        $group = (new GetGroupById(5))->send($this->mockClient);
 
         // Ensure type is correct
         $this->assertInstanceOf(
-            '\Phue\Light',
-            $light
+            '\Phue\Group',
+            $group
         );
     }
 }

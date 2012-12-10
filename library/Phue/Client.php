@@ -15,6 +15,7 @@ use Phue\Transport\TransportInterface;
 use Phue\Command\CommandInterface;
 use Phue\Command\GetBridge;
 use Phue\Command\GetLights;
+use Phue\Command\GetGroups;
 
 /**
  * Client for connecting to Philips Hue bridge
@@ -130,6 +131,18 @@ class Client
     {
         return $this->sendCommand(
             new GetLights()
+        );
+    }
+
+    /**
+     * Get groups
+     *
+     * @return array List of Group objects
+     */
+    public function getGroups()
+    {
+        return $this->sendCommand(
+            new GetGroups()
         );
     }
 

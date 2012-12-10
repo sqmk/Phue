@@ -14,11 +14,14 @@ use Phue\Client;
 use Phue\Command\CommandInterface;
 use Phue\Transport\TransportInterface;
 use Phue\Transport\Exception\ConnectionException;
-use Phue\Transport\Exception\BridgeException;
 use Phue\Transport\Exception\AuthorizationException;
-use Phue\Transport\Exception\LinkButtonException;
-use Phue\Transport\Exception\ThrottleException;
 use Phue\Transport\Exception\ResourceException;
+use Phue\Transport\Exception\MethodException;
+use Phue\Transport\Exception\InvalidValueException;
+use Phue\Transport\Exception\LinkButtonException;
+use Phue\Transport\Exception\GroupTableFullException;
+use Phue\Transport\Exception\ThrottleException;
+use Phue\Transport\Exception\BridgeException;
 
 /**
  * Http transport
@@ -170,8 +173,20 @@ class Http implements TransportInterface
                 $exception = new ResourceException($description, $type);
                 break;
 
+            case 4:
+                $exception = new MethodException($description, $type);
+                break;
+
+            case 7:
+                $exception = new InvalidValueException($description, $type);
+                break;
+
             case 101:
                 $exception = new LinkButtonException($description, $type);
+                break;
+
+            case 301:
+                $exception = new GroupTableFullException($description, $type);
                 break;
 
             case 901:
@@ -179,6 +194,7 @@ class Http implements TransportInterface
                 break;
 
             default:
+                var_dump($type);
                 $exception = new BridgeException($description, $type);
                 break;
         }

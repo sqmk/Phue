@@ -150,6 +150,48 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Get groups
+     *
+     * @covers \Phue\Client::getGroups
+     */
+    public function testGetGroups()
+    {
+        // Mock transport
+        $mockTransport = $this->getMock(
+            '\Phue\Transport\TransportInterface',
+            ['sendRequest']
+        );
+
+        // Mock results for sendRequest
+        $mockResults = (object) [
+            'groups' => [
+                '1' => new \stdClass,
+                '2' => new \stdClass,
+            ]
+        ];
+
+        // Stub transports sendRequest method
+        $mockTransport->expects($this->once())
+                      ->method('sendRequest')
+                      ->will($this->returnValue($mockResults));
+
+        // Set transport
+        $this->client->setTransport($mockTransport);
+
+        // Get groups
+        $groups = $this->client->getGroups();
+
+        // Ensure at least two groups
+        $this->assertEquals(2, count($groups));
+
+        // Ensure return type is an array of groups
+        $this->assertContainsOnlyInstancesOf(
+            '\Phue\Group',
+            $groups
+        );
+    }
+
+    /**
      * Test: Not passing in Transport dependency will yield default
      *
      * @covers \Phue\Client::getTransport

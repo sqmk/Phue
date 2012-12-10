@@ -10,17 +10,17 @@
 
 namespace PhueTest\Command;
 
-use Phue\Command\GetLightById;
+use Phue\Command\DeleteGroup;
 use Phue\Client;
 use Phue\Transport\TransportInterface;
 
 /**
- * Tests for Phue\Command\GetLightById
+ * Tests for Phue\Command\DeleteGroup
  *
  * @category Phue
  * @package  Phue
  */
-class GetLightByIdTest extends \PHPUnit_Framework_TestCase
+class DeleteGroupTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
@@ -32,7 +32,7 @@ class GetLightByIdTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getTransport'],
+            ['getUsername', 'getTransport'],
             ['127.0.0.1']
         );
 
@@ -47,33 +47,31 @@ class GetLightByIdTest extends \PHPUnit_Framework_TestCase
                          ->method('getUsername')
                          ->will($this->returnValue('abcdefabcdef01234567890123456789'));
 
-        // Stub client getTransport usage
+        // Stub client's getTransport method
         $this->mockClient->expects($this->any())
                          ->method('getTransport')
                          ->will($this->returnValue($this->mockTransport));
     }
 
     /**
-     * Test: Send get light by id command
+     * Test: Send command
      *
-     * @covers \Phue\Command\GetLightById::__construct
-     * @covers \Phue\Command\GetLightById::send
+     * @covers \Phue\Command\DeleteGroup::__construct
+     * @covers \Phue\Command\DeleteGroup::send
      */
     public function testSend()
     {
+        $command = new DeleteGroup(5);
+
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
                             ->method('sendRequest')
-                            ->with("{$this->mockClient->getUsername()}/lights/10")
-                            ->will($this->returnValue(new \stdClass));
+                            ->with(
+                                $this->equalTo("{$this->mockClient->getUsername()}/groups/5"),
+                                $this->equalTo(TransportInterface::METHOD_DELETE)
+                            );
 
-        // Get group
-        $light = (new GetLightById(10))->send($this->mockClient);
-
-        // Ensure type is correct
-        $this->assertInstanceOf(
-            '\Phue\Light',
-            $light
-        );
+        // Send command
+        $command->send($this->mockClient);
     }
 }

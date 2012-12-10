@@ -31,7 +31,12 @@ interface TransportInterface
     /**
      * Put method
      */
-    const METHOD_PUT  = 'PUT';
+    const METHOD_PUT = 'PUT';
+
+    /**
+     * Delete method
+     */
+    const METHOD_DELETE = 'DELETE';
 
     /**
      * Send request

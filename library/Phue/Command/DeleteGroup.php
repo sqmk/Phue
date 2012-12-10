@@ -11,32 +11,32 @@
 namespace Phue\Command;
 
 use Phue\Client;
+use Phue\Transport\Http;
 use Phue\Command\CommandInterface;
-use Phue\Light;
 
 /**
- * Get light by id command
+ * Delete group command
  *
  * @category Phue
  * @package  Phue
  */
-class GetLightById implements CommandInterface
+class DeleteGroup implements CommandInterface
 {
     /**
-     * Light Id
-     *
+     * Group Id
+     * 
      * @var string
      */
-    protected $lightId;
+    protected $groupId;
 
     /**
      * Constructs a command
      *
-     * @param int $lightId Light Id
+     * @param mixed $group Group Id or Group object
      */
-    public function __construct($lightId)
+    public function __construct($group)
     {
-        $this->lightId = (int) $lightId;
+        $this->groupId = (string) $group;
     }
 
     /**
@@ -44,15 +44,13 @@ class GetLightById implements CommandInterface
      *
      * @param Client $client Phue Client
      *
-     * @return Light Light object
+     * @return void
      */
     public function send(Client $client)
     {
-        // Get response
-        $details = $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/lights/{$this->lightId}"
+        $client->getTransport()->sendRequest(
+            "{$client->getUsername()}/groups/{$this->groupId}",
+            Http::METHOD_DELETE
         );
-
-        return new Light($this->lightId, $details, $client);
     }
 }
