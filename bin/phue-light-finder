@@ -30,8 +30,6 @@ try {
     echo "Issue connecting to bridge", "\n";
 
     exit(1);
-} catch (\Phue\Transport\Exception\BridgeException $e) {
-    echo "Response appears OK!", "\n\n";
 }
 
 // Quit if user is not authenticated

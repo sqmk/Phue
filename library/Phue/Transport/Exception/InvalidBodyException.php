@@ -11,11 +11,11 @@
 namespace Phue\Transport\Exception;
 
 /**
- * Invalid value exception
+ * Invalid body exception
  *
  * @category Phue
  * @package  Phue
  */
-class InvalidValueException extends \Exception
+class InvalidBodyException extends \Exception
 {
 }

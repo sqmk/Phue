@@ -15,8 +15,11 @@ use Phue\Command\CommandInterface;
 use Phue\Transport\TransportInterface;
 use Phue\Transport\Exception\ConnectionException;
 use Phue\Transport\Exception\AuthorizationException;
+use Phue\Transport\Exception\InvalidBodyException;
 use Phue\Transport\Exception\ResourceException;
 use Phue\Transport\Exception\MethodException;
+use Phue\Transport\Exception\InvalidParameterException;
+use Phue\Transport\Exception\ParameterUnavailableException;
 use Phue\Transport\Exception\InvalidValueException;
 use Phue\Transport\Exception\LinkButtonException;
 use Phue\Transport\Exception\GroupTableFullException;
@@ -169,12 +172,24 @@ class Http implements TransportInterface
                 $exception = new AuthorizationException($description, $type);
                 break;
 
+            case 2:
+                $exception = new InvalidBodyException($description, $type);
+                break;
+
             case 3:
                 $exception = new ResourceException($description, $type);
                 break;
 
             case 4:
                 $exception = new MethodException($description, $type);
+                break;
+
+            case 5:
+                $exception = new InvalidParameterException($description, $type);
+                break;
+
+            case 6:
+                $exception = new ParameterUnavailableException($description, $type);
                 break;
 
             case 7:

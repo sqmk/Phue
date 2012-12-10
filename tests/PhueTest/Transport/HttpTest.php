@@ -60,14 +60,17 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function providerErrorTypes()
     {
         return [
-            [1,   'Authorization',    'Phue\Transport\Exception\AuthorizationException'],
-            [3,   'Resource',         'Phue\Transport\Exception\ResourceException'],
-            [4,   'Method',           'Phue\Transport\Exception\MethodException'],
-            [7,   'Invalid Value',    'Phue\Transport\Exception\InvalidValueException'],
-            [101, 'Link Button',      'Phue\Transport\Exception\LinkButtonException'],
-            [301, 'Group Table Full', 'Phue\Transport\Exception\GroupTableFullException'],
-            [901, 'Throttle',         'Phue\Transport\Exception\ThrottleException'],
-            [-1,  'Unknown',          'Phue\Transport\Exception\BridgeException'],
+            [1,   'Authorization',         'Phue\Transport\Exception\AuthorizationException'],
+            [2,   'Invalid Body',          'Phue\Transport\Exception\InvalidBodyException'],
+            [3,   'Resource',              'Phue\Transport\Exception\ResourceException'],
+            [4,   'Method',                'Phue\Transport\Exception\MethodException'],
+            [5,   'Invalid Parameter',     'Phue\Transport\Exception\InvalidParameterException'],
+            [6,   'Parameter Unavailable', 'Phue\Transport\Exception\ParameterUnavailableException'],
+            [7,   'Invalid Value',         'Phue\Transport\Exception\InvalidValueException'],
+            [101, 'Link Button',           'Phue\Transport\Exception\LinkButtonException'],
+            [301, 'Group Table Full',      'Phue\Transport\Exception\GroupTableFullException'],
+            [901, 'Throttle',              'Phue\Transport\Exception\ThrottleException'],
+            [-1,  'Unknown',               'Phue\Transport\Exception\BridgeException'],
         ];
     }
 }

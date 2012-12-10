@@ -53,7 +53,7 @@ class CreateGroup implements CommandInterface
      *
      * @param string $name Name
      *
-     * @return Group Self object
+     * @return CreateGroup Self object
      */
     public function name($name)
     {
@@ -67,7 +67,7 @@ class CreateGroup implements CommandInterface
      *
      * @param array $lights List of light Ids or Light objects
      *
-     * @return Group Self object
+     * @return CreateGroup Self object
      */
     public function lights(array $lights = [])
     {
