@@ -194,7 +194,6 @@ class Http implements TransportInterface
                 break;
 
             default:
-                var_dump($type);
                 $exception = new BridgeException($description, $type);
                 break;
         }
