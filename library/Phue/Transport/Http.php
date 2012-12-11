@@ -13,18 +13,6 @@ namespace Phue\Transport;
 use Phue\Client;
 use Phue\Command\CommandInterface;
 use Phue\Transport\TransportInterface;
-use Phue\Transport\Exception\ConnectionException;
-use Phue\Transport\Exception\AuthorizationException;
-use Phue\Transport\Exception\InvalidBodyException;
-use Phue\Transport\Exception\ResourceException;
-use Phue\Transport\Exception\MethodException;
-use Phue\Transport\Exception\InvalidParameterException;
-use Phue\Transport\Exception\ParameterUnavailableException;
-use Phue\Transport\Exception\InvalidValueException;
-use Phue\Transport\Exception\LinkButtonException;
-use Phue\Transport\Exception\GroupTableFullException;
-use Phue\Transport\Exception\ThrottleException;
-use Phue\Transport\Exception\BridgeException;
 
 /**
  * Http transport
@@ -47,6 +35,25 @@ class Http implements TransportInterface
      * @var resource Curl resource
      */
     protected $connection = null;
+
+    /**
+     * Exception map
+     *
+     * @var array
+     */
+    protected static $exceptionMap = [
+        0   => 'Phue\Transport\Exception\BridgeException',
+        1   => 'Phue\Transport\Exception\AuthorizationException',
+        2   => 'Phue\Transport\Exception\InvalidBodyException',
+        3   => 'Phue\Transport\Exception\ResourceException',
+        4   => 'Phue\Transport\Exception\MethodException',
+        5   => 'Phue\Transport\Exception\InvalidParameterException',
+        6   => 'Phue\Transport\Exception\ParameterUnavailableException',
+        7   => 'Phue\Transport\Exception\InvalidValueException',
+        101 => 'Phue\Transport\Exception\LinkButtonException',
+        301 => 'Phue\Transport\Exception\GroupTableFullException',
+        901 => 'Phue\Transport\Exception\ThrottleException',
+    ];
 
     /**
      * Construct Http transport
@@ -167,53 +174,12 @@ class Http implements TransportInterface
      */
     public function throwExceptionByType($type, $description)
     {
-        switch ($type) {
-            case 1:
-                $exception = new AuthorizationException($description, $type);
-                break;
+        // Determine exception
+        $exceptionClass = isset(static::$exceptionMap[$type])
+                        ? static::$exceptionMap[$type]
+                        : static::$exceptionMap[0];
 
-            case 2:
-                $exception = new InvalidBodyException($description, $type);
-                break;
-
-            case 3:
-                $exception = new ResourceException($description, $type);
-                break;
-
-            case 4:
-                $exception = new MethodException($description, $type);
-                break;
-
-            case 5:
-                $exception = new InvalidParameterException($description, $type);
-                break;
-
-            case 6:
-                $exception = new ParameterUnavailableException($description, $type);
-                break;
-
-            case 7:
-                $exception = new InvalidValueException($description, $type);
-                break;
-
-            case 101:
-                $exception = new LinkButtonException($description, $type);
-                break;
-
-            case 301:
-                $exception = new GroupTableFullException($description, $type);
-                break;
-
-            case 901:
-                $exception = new ThrottleException($description, $type);
-                break;
-
-            default:
-                $exception = new BridgeException($description, $type);
-                break;
-        }
-
-        throw $exception;
+        throw new $exceptionClass($description, $type);
     }
 
     /**
