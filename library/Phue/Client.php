@@ -16,6 +16,7 @@ use Phue\Command\CommandInterface;
 use Phue\Command\GetBridge;
 use Phue\Command\GetLights;
 use Phue\Command\GetGroups;
+use Phue\Command\GetSchedules;
 
 /**
  * Client for connecting to Philips Hue bridge
@@ -143,6 +144,18 @@ class Client
     {
         return $this->sendCommand(
             new GetGroups()
+        );
+    }
+
+    /**
+     * Get schedules
+     *
+     * @return array List of Schedule objects
+     */
+    public function getSchedules()
+    {
+        return $this->sendCommand(
+            new GetSchedules()
         );
     }
 

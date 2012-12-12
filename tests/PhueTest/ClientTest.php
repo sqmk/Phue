@@ -192,6 +192,49 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Get schedules
+     *
+     * @covers \Phue\Client::getSchedules
+     */
+    public function testGetSchedules()
+    {
+        // Mock transport
+        $mockTransport = $this->getMock(
+            '\Phue\Transport\TransportInterface',
+            ['sendRequest']
+        );
+
+        // Mock results for sendRequest
+        $mockResults = (object) [
+            'schedules' => [
+                '1' => new \stdClass,
+                '2' => new \stdClass,
+                '3' => new \stdClass,
+            ]
+        ];
+
+        // Stub transports sendRequest method
+        $mockTransport->expects($this->once())
+                      ->method('sendRequest')
+                      ->will($this->returnValue($mockResults));
+
+        // Set transport
+        $this->client->setTransport($mockTransport);
+
+        // Get schedules
+        $schedules = $this->client->getSchedules();
+
+        // Ensure at least three schedules
+        $this->assertEquals(3, count($schedules));
+
+        // Ensure return type is an array of schedules
+        $this->assertContainsOnlyInstancesOf(
+            '\Phue\Schedule',
+            $schedules
+        );
+    }
+
+    /**
      * Test: Not passing in Transport dependency will yield default
      *
      * @covers \Phue\Client::getTransport
