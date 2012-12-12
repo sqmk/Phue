@@ -6,19 +6,54 @@ Phue is a PHP 5.4 client used to connect to and manage the Philips Hue lighting 
 
 It is currently registered with Packagist so that this library can easily be included in other projects. For example, one may want to bundle this library with Zend Framework or Symfony to build their own front-end for the Hue system.
 
-Currently, the client's only capabilities are:
-* Testing connection to the bridge
-* Authenticatication with the bridge
-* Starting scan of new lights
-* Getting a list of new lights found by active/previous scan
+The client has the ability to make full use of the Hue's API, including:
+* Authenticating
+* Updating the bridge
+* Finding new lights
+* Getting and managing lights
+* Creating, updating, and deleting groups
+* Creating and deleting schedules
+
+## Installing Phue
+
+The Phue library is available in Packagist. You'll want to include ```sqmk/Phue``` as a dependency in your project using composer. If you are not familiar with composer, check it out here: [Composer](http://getcomposer.org)
+
+You can also use this library without composer. The library directory is ```library```. You'll want to map your namespace ```Phue``` to this directory in your autoloader of choice.
+
+The scripts in ```bin``` are dependent on composer's class/namespace mapper within ```vendor```. You'll need to ```composer install``` from root directory of this repo to get those working.
+
+## Finding your Bridge
+
+Included in this package is ```bin/phue-bridge-finder```, a script that will help find your Philips Hue bridges on your network. When plugging in your bridge into your router with an internet connection, the bridge will phone home to Philips *meethue* servers. The bridge will periodically send its assigned network IP and MAC address to *meethue*. Philips *meethue* service allows iPhone and Android apps to pull a list of the bridges directly from their servers by matching IPs originating from your requesting devices and bridges. ```bin/phue-bridge-finder``` uses same technique.
+
+Prior to running this script, make sure your bridge is powered up and linked to your router. All lights should be lit up on the bridge.
+
+Here's how to run this script:
+```
+$ ./bin/phue-bridge-finder
+```
+
+Assuming all goes well, you'll get results like this:
+```
+Philips Hue Bridge Finder
+
+Checking meethue.com if the bridge has phoned home:
+  Request succeeded
+
+Number of bridges found: 1
+	Bridge #1
+		ID: 001788fffe09dddd
+		Internal IP Address: 10.0.1.31
+		MAC Address: 00:17:88:09:dd:dd
+```
+
+The internal IP address(es) listed in the results is what you need for the Phue client.
+
+If the script provided doesn't find your bridge, or if you don't have internet connection on your network, I have created a wiki page that describes a few other convenient ways of finding it: [Finding Philips Hue bridge on network](/sqmk/Phue/wiki/Finding-Philips-Hue-bridge-on-network).
 
 ## Authentication
 
-To test connectivity and authenticate with the bridge, you can use the ```phue-authenticate``` script included in the ```bin``` directory. The script uses the Phue library to make requests and receive responses from the Philips Hue bridge.
-
-First, you will want to determine the ip address of the bridge on your local network. I have created a wiki page that describes a few convenient ways of finding it: [Finding Philips Hue bridge on network](/sqmk/Phue/wiki/Finding-Philips-Hue-bridge-on-network).
-
-Next, if you haven't already, run ```composer install``` in the root directory of this repo. This will install dependencies, and set up class/namespacing mapping for autoloader for the Phue library. The authenticator script expects the autoloader to be installed. If you are not familiar with Composer, check out the project here: [Composer](http://getcomposer.org).
+To test connectivity and authenticate with the bridge, you can use ```bin/phue-authenticate```. The script uses the Phue library to make requests and receive responses from the Philips Hue bridge.
 
 At this point, you should be ready to authenticate with the bridge. The bridge expects a 32 character hash as a username to authenticate with, but you can feed in any string into the client and it will automatically hash for you. This is much easier to remember than the hash!
 
