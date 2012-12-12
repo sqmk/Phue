@@ -5,7 +5,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 // Show usage if host and username not passed
 if (!isset($argv[1], $argv[2])) {
-    echo "Philips Hue Light Finder", "\n\n",
+    echo "Philips Hue Light Lister", "\n\n",
          "Usage:", "\n",
          "  <host> <username>", "\n\n";
     exit(1);
@@ -52,3 +52,8 @@ foreach ($lights as $light) {
     echo "\t", "#{$light->getId()} - ", $light->isOn() ? 'On' : 'Off',
          " - {$light->getName()}", "\n";
 }
+
+
+$client->sendCommand(
+	(new \Phue\Command\SetGroupAction(0))->brightness(254)->on(true)->hue(50000)->saturation(255)
+);
