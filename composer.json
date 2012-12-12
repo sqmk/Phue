@@ -24,6 +24,7 @@
     },
     "bin": [
         "bin/phue-authenticate",
+        "bin/phue-bridge-finder",
         "bin/phue-light-finder",
         "bin/phue-list-lights"
     ]
