@@ -56,6 +56,10 @@ class Http implements TransportInterface
      */
     public function __construct(Client $client)
     {
+        if (!extension_loaded('curl')) {
+            throw new \BadFunctionCallException('The cURL extension is required.');
+        }
+
         $this->client = $client;
     }
 
