@@ -11,7 +11,8 @@
     "homepage": "http://github.com/sqmk/phue",
     "license": "BSD-3-Clause",
     "require": {
-        "php": "5.4.*"
+        "php": "5.4.*",
+        "ext-curl": "*"
     },
     "require-dev": {
         "phpunit/PHPUnit": "3.7.*"
