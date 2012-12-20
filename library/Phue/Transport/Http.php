@@ -14,6 +14,8 @@ use Phue\Client;
 use Phue\Command\CommandInterface;
 use Phue\Transport\TransportInterface;
 use Phue\Transport\Exception\ConnectionException;
+use Phue\Transport\Adapter\AdapterInterface;
+use Phue\Transport\Adapter\Curl as DefaultAdapter;
 
 /**
  * Http transport
@@ -28,7 +30,14 @@ class Http implements TransportInterface
      *
      * @var Client
      */
-    protected $client = null;
+    protected $client;
+
+    /**
+     * Adapter
+     *
+     * @var AdapterInterface
+     */
+    protected $adapter;
 
     /**
      * Exception map
@@ -56,11 +65,37 @@ class Http implements TransportInterface
      */
     public function __construct(Client $client)
     {
-        if (!extension_loaded('curl')) {
-            throw new \BadFunctionCallException('The cURL extension is required.');
+        $this->client = $client;
+    }
+
+    /**
+     * Get adapter for transport
+     *
+     * Auto created adapter if one is not present
+     *
+     * @return AdapterInterface Adapter
+     */
+    public function getAdapter()
+    {
+        if (!$this->adapter) {
+            $this->setAdapter(new DefaultAdapter);
         }
 
-        $this->client = $client;
+        return $this->adapter;
+    }
+
+    /**
+     * Set adapter
+     *
+     * @param AdapterInterface $adapter Transport adapter
+     *
+     * @return Http Self object
+     */
+    public function setAdapter(AdapterInterface $adapter)
+    {
+        $this->adapter = $adapter;
+
+        return $this;
     }
 
     /**
@@ -70,37 +105,27 @@ class Http implements TransportInterface
      * @param string   $method Request method
      * @param stdClass $data   Post data
      *
-     * @return void
+     * @return string Request response
      */
     public function sendRequest($path, $method = self::METHOD_GET, \stdClass $data = null)
     {
         // Build request url
         $url = "http://{$this->client->getHost()}/api/{$path}";
 
-        // Initialize connection
-        $curl = curl_init();
+        // Open connection
+        $this->getAdapter()->open();
 
-        // Set connection options
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-        if ($data) {
-            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
-        }
-
-        // Get results and status
-        $results     = curl_exec($curl);
-        $status      = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        $contentType = curl_getinfo($curl, CURLINFO_CONTENT_TYPE);
+        // Send and get response
+        $results     = $this->getAdapter()->send($url, $method, $data ? json_encode($data) : null);
+        $status      = $this->getAdapter()->getHttpStatusCode();
+        $contentType = $this->getAdapter()->getContentType();        
 
         // Close connection
-        curl_close($curl);
+        $this->getAdapter()->close();
 
-        // Throw connection exception if status code isn't 200
-        if ($status != 200 && $contentType != 'application/json') {
-            throw new ConnectionException("Connection failure");
+        // Throw connection exception if status code isn't 200 or wrong content type
+        if ($status != 200 || $contentType != 'application/json') {
+            throw new ConnectionException('Connection failure');
         }
 
         // Parse json results
@@ -111,37 +136,37 @@ class Http implements TransportInterface
             $jsonResults = $jsonResults[0];
         }
 
-        // Get success object only if available
-        if (isset($jsonResults->success)) {
-            $jsonResults = $jsonResults->success;
-        }
-
         // Get error type
         if (isset($jsonResults->error)) {
-            $this->throwExceptionByType(
+            throw $this->getExceptionByType(
                 $jsonResults->error->type,
                 $jsonResults->error->description
             );
+        }
+
+        // Get success object only if available
+        if (isset($jsonResults->success)) {
+            $jsonResults = $jsonResults->success;
         }
 
         return $jsonResults;
     }
 
     /**
-     * Throw exception by type
+     * Get exception by type
      *
      * @param string $type        Error type
      * @param string $description Description of error
      *
-     * @return void
+     * @return Exception Built exception
      */
-    public function throwExceptionByType($type, $description)
+    public function getExceptionByType($type, $description)
     {
         // Determine exception
         $exceptionClass = isset(static::$exceptionMap[$type])
                         ? static::$exceptionMap[$type]
                         : static::$exceptionMap[0];
 
-        throw new $exceptionClass($description, $type);
+        return new $exceptionClass($description, $type);
     }
 }

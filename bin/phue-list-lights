@@ -52,8 +52,3 @@ foreach ($lights as $light) {
     echo "\t", "#{$light->getId()} - ", $light->isOn() ? 'On' : 'Off',
          " - {$light->getName()}", "\n";
 }
-
-
-$client->sendCommand(
-	(new \Phue\Command\SetGroupAction(0))->brightness(254)->on(true)->hue(50000)->saturation(255)
-);
