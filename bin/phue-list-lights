@@ -41,14 +41,9 @@ if (!$client->sendCommand(new \Phue\Command\IsAuthorized)) {
     exit(1);
 }
 
-// Get list of lights 
-$lights = $client->sendCommand(
-    new \Phue\Command\GetLights
-);
-
 echo "List of lights:", "\n";
 
-foreach ($lights as $light) {
+foreach ($client->getLights() as $light) {
     echo "\t", "#{$light->getId()} - ", $light->isOn() ? 'On' : 'Off',
          " - {$light->getName()}", "\n";
 }

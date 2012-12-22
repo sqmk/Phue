@@ -13,7 +13,7 @@ namespace Phue\Transport\Adapter;
 use Phue\Transport\Adapter\AdapterInterface;
 
 /**
- * Curl Http adapter
+ * cURL Http adapter
  *
  * @category Phue
  * @package  Phue
@@ -21,20 +21,20 @@ use Phue\Transport\Adapter\AdapterInterface;
 class Curl implements AdapterInterface
 {
     /**
-     * Curl resource
+     * cURL resource
      *
      * @var resource
      */
     protected $curl;
 
     /**
-     * Constructs a curl adapter
+     * Constructs a cURL adapter
      *
      * @return void
      */
     public function __construct()
     {
-        // Throw exception if curl extension is not loaded
+        // Throw exception if cURL extension is not loaded
         if (!extension_loaded('curl')) {
             throw new \BadFunctionCallException('The cURL extension is required.');
         }
@@ -53,9 +53,9 @@ class Curl implements AdapterInterface
     /**
      * Sends request
      *
-     * @param string    $address Request path
-     * @param string    $method  Request method
-     * @param \stdClass $data    Body data
+     * @param string $address Request path
+     * @param string $method  Request method
+     * @param string $data    Body data
      *
      * @return string Result
      */
@@ -95,7 +95,7 @@ class Curl implements AdapterInterface
     }
 
     /**
-     * Closes the curl connection
+     * Closes the cURL connection
      *
      * @return void
      */
