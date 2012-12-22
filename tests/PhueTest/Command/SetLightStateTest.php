@@ -412,6 +412,32 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Get schedulable params
+     *
+     * @covers \Phue\Command\SetLightState::getSchedulableParams
+     */
+    public function testGetSchedulableParams()
+    {
+        // Build command
+        $setLightStateCmd = new SetLightState($this->mockLight);
+
+        // Change alert
+        $setLightStateCmd->alert('select');
+
+        // Ensure schedulable params are expected
+        $this->assertEquals(
+            $setLightStateCmd->getSchedulableParams($this->mockClient),
+            [
+                'address' => "{$this->mockClient->getUsername()}/lights/{$this->mockLight->getId()}/state",
+                'method'  => 'PUT',
+                'body'    => (object) [
+                    'alert' => 'select'
+                ]
+            ]
+        );
+    }
+
+    /**
      * Stub transport's sendRequest with an expected payload
      *
      * @param \stdClass $payload Payload

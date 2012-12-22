@@ -13,6 +13,7 @@ namespace Phue\Command;
 use Phue\Client;
 use Phue\Transport\Http;
 use Phue\Command\SetLightState;
+use Phue\Command\SchedulableInterface;
 
 /**
  * Set group action command
@@ -20,7 +21,8 @@ use Phue\Command\SetLightState;
  * @category Phue
  * @package  Phue
  */
-class SetGroupAction extends SetLightState
+class SetGroupAction extends SetLightState implements
+    SchedulableInterface
 {
     /**
      * Group Id
@@ -48,10 +50,30 @@ class SetGroupAction extends SetLightState
      */
     public function send(Client $client)
     {
+        // Get params
+        $params = $this->getSchedulableParams($client);
+
+        // Send request
         $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/groups/{$this->groupId}/action",
-            Http::METHOD_PUT,
-            (object) $this->params
+            $params['address'],
+            $params['method'],
+            $params['body']
         );
+    }
+
+    /**
+     * Get schedulable params
+     *
+     * @param Client $client Phue Client
+     *
+     * @return array Key/value pairs of params
+     */
+    public function getSchedulableParams(Client $client)
+    {
+        return [
+            'address' => "{$client->getUsername()}/groups/{$this->groupId}/action",
+            'method'  => Http::METHOD_PUT,
+            'body'    => (object) $this->params
+        ];
     }
 }

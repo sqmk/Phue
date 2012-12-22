@@ -47,22 +47,22 @@ class Curl implements AdapterInterface
      */
     public function open()
     {
-        $this->curl = curl_init();  
+        $this->curl = curl_init();
     }
 
     /**
      * Sends request
      *
-     * @param string    $url    Request URL
-     * @param string    $method Request method
-     * @param \stdClass $data   Body data
+     * @param string    $address Request path
+     * @param string    $method  Request method
+     * @param \stdClass $data    Body data
      *
      * @return string Result
      */
-    public function send($url, $method, $body = null)
+    public function send($address, $method, $body = null)
     {
         // Set connection options
-        curl_setopt($this->curl, CURLOPT_URL, $url);
+        curl_setopt($this->curl, CURLOPT_URL, $address);
         curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($this->curl, CURLOPT_HEADER, false);
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);

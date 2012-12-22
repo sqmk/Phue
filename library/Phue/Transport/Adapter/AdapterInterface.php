@@ -28,13 +28,13 @@ interface AdapterInterface
     /**
      * Sends request
      *
-     * @param string $url    Request URL
-     * @param string $method Request method
-     * @param string $data   Body data
+     * @param string $address Request path
+     * @param string $method  Request method
+     * @param string $data    Body data
      *
      * @return string Result
      */
-    public function send($url, $method, $body = null);
+    public function send($address, $method, $body = null);
 
     /**
      * Get http status code from response

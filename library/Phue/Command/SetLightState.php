@@ -13,6 +13,7 @@ namespace Phue\Command;
 use Phue\Client;
 use Phue\Transport\Http;
 use Phue\Command\CommandInterface;
+use Phue\Command\SchedulableInterface;
 
 /**
  * Set light alert command
@@ -20,7 +21,7 @@ use Phue\Command\CommandInterface;
  * @category Phue
  * @package  Phue
  */
-class SetLightState implements CommandInterface
+class SetLightState implements CommandInterface, SchedulableInterface
 {
     /**
      * Brightness min
@@ -304,10 +305,30 @@ class SetLightState implements CommandInterface
      */
     public function send(Client $client)
     {
+        // Get params
+        $params = $this->getSchedulableParams($client);
+
+        // Send request
         $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/lights/{$this->lightId}/state",
-            Http::METHOD_PUT,
-            (object) $this->params
+            $params['address'],
+            $params['method'],
+            $params['body']
         );
+    }
+
+    /**
+     * Get schedulable params
+     *
+     * @param Client $client Phue Client
+     *
+     * @return array Key/value pairs of params
+     */
+    public function getSchedulableParams(Client $client)
+    {
+        return [
+            'address' => "{$client->getUsername()}/lights/{$this->lightId}/state",
+            'method'  => Http::METHOD_PUT,
+            'body'    => (object) $this->params
+        ];
     }
 }

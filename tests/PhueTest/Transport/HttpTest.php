@@ -203,6 +203,24 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Build request URL
+     *
+     * @covers Phue\Transport\Http::buildRequestUrl
+     */
+    public function testBuildRequestUrl()
+    {
+        $this->assertEquals(
+            $this->transport->buildRequestUrl('dummy', true),
+            "http://{$this->mockClient->getHost()}/api/dummy"
+        );
+
+        $this->assertEquals(
+            $this->transport->buildRequestUrl('dummy'),
+            "/api/dummy"
+        );
+    }
+
+    /**
      * Test: Throw exception by type
      *
      * @dataProvider providerErrorTypes

@@ -54,6 +54,21 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         $this->mockClient->expects($this->any())
                          ->method('getTransport')
                          ->will($this->returnValue($this->mockTransport));
+
+        // Mock schedulable command
+        $this->mockCommand = $this->getMock(
+            '\Phue\Command\SchedulableInterface',
+            ['getSchedulableParams']
+        );
+
+        // Stub command's getSchedulableParams method
+        $this->mockCommand->expects($this->any())
+                          ->method('getSchedulableParams')
+                          ->will($this->returnValue([
+                              'address' => '/api/endpoint',
+                              'method'  => 'POST',
+                              'body'    => 'Dummy'
+                          ]));
     }
 
     /**
@@ -123,15 +138,11 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testCommand()
     {
-        $command = (new CreateSchedule())->command('address!', 'method!', 'body!');
+        $command = (new CreateSchedule())->command($this->mockCommand);
 
         // Ensure properties are set properly
         $this->assertAttributeEquals(
-            (object) [
-                'method'  => 'method!',
-                'address' => 'address!',
-                'body'    => 'body!'
-            ],
+           $this->mockCommand,
             'command',
             $command
         );
@@ -143,15 +154,14 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Send command
      *
+     * @covers \Phue\Command\CreateSchedule::__construct
+     * @covers \Phue\Command\CreateSchedule::convertTimeToUtcDate
      * @covers \Phue\Command\CreateSchedule::send
      */
     public function testSend()
     {
-        $command = new CreateSchedule();
-        $command->name('Dummy!')
-                ->description('Description!')
-                ->time('2012-12-30T10:11:12')
-                ->command("api/test/", TransportInterface::METHOD_POST, "body");
+        $command = new CreateSchedule('Dummy!', '2012-12-30T10:11:12', $this->mockCommand);
+        $command->description('Description!');
 
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
@@ -163,10 +173,10 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
                                     'name'        => 'Dummy!',
                                     'description' => 'Description!',
                                     'time'        => '2012-12-30T10:11:12',
-                                    'command'     => (object) [
+                                    'command'     => [
                                         'method'  => TransportInterface::METHOD_POST,
-                                        'address' => "api/test/",
-                                        'body'    => "body"
+                                        'address' => "/api/endpoint",
+                                        'body'    => "Dummy"
                                     ]
                                 ])
                             )

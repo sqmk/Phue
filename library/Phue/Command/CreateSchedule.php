@@ -13,6 +13,7 @@ namespace Phue\Command;
 use Phue\Client;
 use Phue\Transport\Http;
 use Phue\Command\CommandInterface;
+use Phue\Command\SchedulableInterface;
 
 /**
  * Create schedule command
@@ -46,9 +47,31 @@ class CreateSchedule implements CommandInterface
     /**
      * Command
      *
-     * @var \stdClass
+     * @var SchedulableInterface
      */
     protected $command;
+
+    /**
+     * Constructs a create schedule command
+     *
+     * @param string                $name    Name of schedule
+     * @param string                $time    Time to run command
+     * @param SchedulableInterface  $command Schedulable command
+     *
+     * @return void
+     */
+    public function __construct(
+        $name = null,
+        $time = null,
+        SchedulableInterface $command = null
+    )
+    {
+        // Set name, time, command if passed
+        $name    !== null && $this->name($name);
+        $time    !== null && $this->time($time);
+        $command !== null && $this->command($command);
+
+    }
 
     /**
      * Set name
@@ -95,19 +118,13 @@ class CreateSchedule implements CommandInterface
     /**
      * Set command
      *
-     * @param string $address Address
-     * @param mixed  $method  Method
-     * @param string $body    Body
+     * @param SchedulableInterface $command Schedulable command
      *
      * @return CreateSchedule Self object
      */
-    public function command($address = '', $method = Http::METHOD_GET, $body)
+    public function command(SchedulableInterface $command)
     {
-        $this->command = (object) [
-            'method'  => $method,
-            'address' => $address,
-            'body'    => $body
-        ];
+        $this->command = $command;
 
         return $this;
     }
@@ -121,22 +138,34 @@ class CreateSchedule implements CommandInterface
      */
     public function send(Client $client)
     {
-        $setTime = new \DateTime($this->time);
-        $setTime->setTimeZone(
-            new \DateTimeZone('UTC')
-        );
-
         $scheduleId = $client->getTransport()->sendRequest(
             "{$client->getUsername()}/schedules",
             Http::METHOD_POST,
             (object) [
                 'name'        => $this->name,
                 'description' => $this->description,
-                'time'        => $setTime->format('Y-m-d\TH:i:s'),
-                'command'     => $this->command
+                'time'        => $this->convertTimeToUtcDate($this->time),
+                'command'     => $this->command->getSchedulableParams($client)
             ]
         );
 
         return $scheduleId;
+    }
+
+    /**
+     * Convert time to UTC date
+     *
+     * @param string $time Time to convert
+     *
+     * @return string
+     */
+    protected function convertTimeToUtcDate($time)
+    {
+        $setTime = new \DateTime($time);
+        $setTime->setTimeZone(
+            new \DateTimeZone('UTC')
+        );
+
+        return $setTime->format('Y-m-d\TH:i:s');
     }
 }

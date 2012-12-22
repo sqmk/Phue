@@ -41,9 +41,9 @@ interface TransportInterface
     /**
      * Send request
      *
-     * @param string $path   API path
-     * @param string $method Method type
-     * @param string $data   Request data
+     * @param string $address API address
+     * @param string $method  Request method
+     * @param string $body    Request body
      *
      * @return void
      */

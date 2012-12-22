@@ -101,22 +101,22 @@ class Http implements TransportInterface
     /**
      * Send request
      *
-     * @param string   $path   API path
-     * @param string   $method Request method
-     * @param stdClass $data   Post data
+     * @param string   $address API address
+     * @param string   $method  Request method
+     * @param stdClass $body    Post body
      *
      * @return string Request response
      */
-    public function sendRequest($path, $method = self::METHOD_GET, \stdClass $data = null)
+    public function sendRequest($address, $method = self::METHOD_GET, \stdClass $body = null)
     {
         // Build request url
-        $url = "http://{$this->client->getHost()}/api/{$path}";
+        $url = $this->buildRequestUrl($address, true);
 
         // Open connection
         $this->getAdapter()->open();
 
         // Send and get response
-        $results     = $this->getAdapter()->send($url, $method, $data ? json_encode($data) : null);
+        $results     = $this->getAdapter()->send($url, $method, $body ? json_encode($body) : null);
         $status      = $this->getAdapter()->getHttpStatusCode();
         $contentType = $this->getAdapter()->getContentType();        
 
@@ -150,6 +150,27 @@ class Http implements TransportInterface
         }
 
         return $jsonResults;
+    }
+
+    /**
+     * Build request URL
+     *
+     * @param string $path        Request path
+     * @param bool   $includeHost Include host in path
+     *
+     * @return string Request URL
+     */
+    public function buildRequestUrl($path, $includeHost = false)
+    {
+        // Start with full path
+        $fullPath = "/api/{$path}";
+
+        // Include host if necessary
+        if ($includeHost) {
+            $fullPath = "http://{$this->client->getHost()}" . $fullPath;
+        }
+
+        return $fullPath;
     }
 
     /**

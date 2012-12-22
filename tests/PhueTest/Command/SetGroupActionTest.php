@@ -82,6 +82,32 @@ class SetGroupActionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Get schedulable params
+     *
+     * @covers \Phue\Command\SetGroupAction::getSchedulableParams
+     */
+    public function testGetSchedulableParams()
+    {
+        // Build command
+        $setGroupActionCmd = new SetGroupAction($this->mockGroup);
+
+        // Change alert
+        $setGroupActionCmd->alert('select');
+
+        // Ensure schedulable params are expected
+        $this->assertEquals(
+            $setGroupActionCmd->getSchedulableParams($this->mockClient),
+            [
+                'address' => "{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action",
+                'method'  => 'PUT',
+                'body'    => (object) [
+                    'alert' => 'select'
+                ]
+            ]
+        );
+    }
+
+    /**
      * Stub transport's sendRequest with an expected payload
      *
      * @param \stdClass $payload Payload
