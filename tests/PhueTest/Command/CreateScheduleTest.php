@@ -115,20 +115,34 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      * Test: Set time
      *
      * @covers \Phue\Command\CreateSchedule::time
+     * @covers \Phue\Command\CreateSchedule::convertTimeToUtcDate
      */
     public function testTime()
     {
-        $command = (new CreateSchedule())->time('2010-20-10T10:11:12');
+        $command = (new CreateSchedule())->time('2010-10-20T10:11:12');
 
         // Ensure property is set properly
         $this->assertAttributeEquals(
-            '2010-20-10T10:11:12',
+            '2010-10-20T10:11:12',
             'time',
             $command
         );
 
         // Ensure self object is returned
         $this->assertEquals($command, $command->time('+10 seconds'));
+    }
+
+    /**
+     * Test: Set invalid time
+     *
+     * @covers \Phue\Command\CreateSchedule::time
+     * @covers \Phue\Command\CreateSchedule::convertTimeToUtcDate
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testInvalidTime()
+    {
+        (new CreateSchedule())->time('+4 elephants');
     }
 
     /**
@@ -155,7 +169,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      * Test: Send command
      *
      * @covers \Phue\Command\CreateSchedule::__construct
-     * @covers \Phue\Command\CreateSchedule::convertTimeToUtcDate
      * @covers \Phue\Command\CreateSchedule::send
      */
     public function testSend()

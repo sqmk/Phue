@@ -109,7 +109,9 @@ class CreateSchedule implements CommandInterface
      */
     public function time($time)
     {
-        $this->time = (string) $time;
+        $this->time = $this->convertTimeToUtcDate(
+            (string) $time
+        );
 
         return $this;
     }
@@ -143,7 +145,7 @@ class CreateSchedule implements CommandInterface
             (object) [
                 'name'        => $this->name,
                 'description' => $this->description,
-                'time'        => $this->convertTimeToUtcDate($this->time),
+                'time'        => $this->time,
                 'command'     => $this->command->getSchedulableParams($client)
             ]
         );
@@ -160,10 +162,14 @@ class CreateSchedule implements CommandInterface
      */
     protected function convertTimeToUtcDate($time)
     {
-        $setTime = new \DateTime($time);
-        $setTime->setTimeZone(
-            new \DateTimeZone('UTC')
-        );
+        try {
+            $setTime = new \DateTime($time);
+            $setTime->setTimeZone(
+                new \DateTimeZone('UTC')
+            );
+        } catch (\Exception $e) {
+            throw new \InvalidArgumentException('time value could not be parsed');
+        }
 
         return $setTime->format('Y-m-d\TH:i:s');
     }
