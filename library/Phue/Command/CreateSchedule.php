@@ -64,8 +64,7 @@ class CreateSchedule implements CommandInterface
         $name = null,
         $time = null,
         SchedulableInterface $command = null
-    )
-    {
+    ) {
         // Set name, time, command if passed
         $name    !== null && $this->name($name);
         $time    !== null && $this->time($time);

@@ -118,7 +118,7 @@ class Http implements TransportInterface
         // Send and get response
         $results     = $this->getAdapter()->send($url, $method, $body ? json_encode($body) : null);
         $status      = $this->getAdapter()->getHttpStatusCode();
-        $contentType = $this->getAdapter()->getContentType();        
+        $contentType = $this->getAdapter()->getContentType();
 
         // Close connection
         $this->getAdapter()->close();

@@ -66,9 +66,9 @@ class Bridge
     public function setName($name)
     {
         $this->client->sendCommand(
-            new SetBridgeConfig([
-                'name' => (string) $name
-            ])
+            new SetBridgeConfig(
+                ['name' => (string) $name]
+            )
         );
 
         $this->details->name = (string) $name;

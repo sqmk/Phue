@@ -66,9 +66,9 @@ class Streaming implements AdapterInterface
             $streamOptions['content'] = $body;
         }
 
-        $this->streamContext = stream_context_create([
-            'http' => $streamOptions
-        ]);
+        $this->streamContext = stream_context_create(
+            ['http' => $streamOptions]
+        );
 
         // Make request
         $this->fileStream = @fopen($address, 'r', false, $this->streamContext);
