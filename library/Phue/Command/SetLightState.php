@@ -11,7 +11,7 @@
 namespace Phue\Command;
 
 use Phue\Client;
-use Phue\Transport\Http;
+use Phue\Transport\TransportInterface;
 use Phue\Command\CommandInterface;
 use Phue\Command\SchedulableInterface;
 
@@ -327,7 +327,7 @@ class SetLightState implements CommandInterface, SchedulableInterface
     {
         return [
             'address' => "{$client->getUsername()}/lights/{$this->lightId}/state",
-            'method'  => Http::METHOD_PUT,
+            'method'  => TransportInterface::METHOD_PUT,
             'body'    => (object) $this->params
         ];
     }

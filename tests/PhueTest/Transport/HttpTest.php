@@ -203,24 +203,6 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Build request URL
-     *
-     * @covers Phue\Transport\Http::buildRequestUrl
-     */
-    public function testBuildRequestUrl()
-    {
-        $this->assertEquals(
-            $this->transport->buildRequestUrl('dummy', true),
-            "http://{$this->mockClient->getHost()}/api/dummy"
-        );
-
-        $this->assertEquals(
-            $this->transport->buildRequestUrl('dummy'),
-            "/api/dummy"
-        );
-    }
-
-    /**
      * Test: Throw exception by type
      *
      * @dataProvider providerErrorTypes
@@ -251,6 +233,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
             [6,   'Phue\Transport\Exception\ParameterUnavailableException'],
             [7,   'Phue\Transport\Exception\InvalidValueException'],
             [101, 'Phue\Transport\Exception\LinkButtonException'],
+            [201, 'Phue\Transport\Exception\ParameterUnmodifiableException'],
             [301, 'Phue\Transport\Exception\GroupTableFullException'],
             [901, 'Phue\Transport\Exception\ThrottleException'],
             [-1,  'Phue\Transport\Exception\BridgeException'],

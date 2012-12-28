@@ -10,12 +10,14 @@
 
 namespace Phue\Transport\Exception;
 
+use Phue\Transport\Exception\BridgeException;
+
 /**
  * Invalid value exception
  *
  * @category Phue
  * @package  Phue
  */
-class InvalidValueException extends \Exception
+class InvalidValueException extends BridgeException
 {
 }

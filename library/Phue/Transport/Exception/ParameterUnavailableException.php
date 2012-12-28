@@ -10,12 +10,14 @@
 
 namespace Phue\Transport\Exception;
 
+use Phue\Transport\Exception\BridgeException;
+
 /**
  * Parameter unavailable exception
  *
  * @category Phue
  * @package  Phue
  */
-class ParameterUnavailableException extends \Exception
+class ParameterUnavailableException extends BridgeException
 {
 }

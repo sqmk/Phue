@@ -13,11 +13,11 @@ namespace Phue\Transport\Exception;
 use Phue\Transport\Exception\BridgeException;
 
 /**
- * Invalid body exception
+ * Parameter unmodifiable exception
  *
  * @category Phue
  * @package  Phue
  */
-class InvalidBodyException extends BridgeException
+class ParameterUnmodifiableException extends BridgeException
 {
 }

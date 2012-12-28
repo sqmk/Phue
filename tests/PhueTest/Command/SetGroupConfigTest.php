@@ -74,10 +74,12 @@ class SetGroupConfigTest extends \PHPUnit_Framework_TestCase
         $setGroupConfigCmd = new SetGroupConfig($this->mockGroup);
 
         // Set expected payload
-        $this->stubTransportSendRequestWithPayload((object) [
-            'name'   => 'Dummy!',
-            'lights' => [3]
-        ]);
+        $this->stubTransportSendRequestWithPayload(
+            (object) [
+                'name'   => 'Dummy!',
+                'lights' => [3]
+            ]
+        );
 
         // Change name and lights
         $setGroupConfigCmd->name('Dummy!')

@@ -74,9 +74,11 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         $command = new SetLightState($this->mockLight);
 
         // Set expected payload
-        $this->stubTransportSendRequestWithPayload((object) [
-            'on' => $state
-        ]);
+        $this->stubTransportSendRequestWithPayload(
+            (object) [
+                'on' => $state
+            ]
+        );
 
         // Ensure instance is returned
         $this->assertEquals(
@@ -116,9 +118,11 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         $command = new SetLightState($this->mockLight);
 
         // Set expected payload
-        $this->stubTransportSendRequestWithPayload((object) [
-            'bri' => $brightness
-        ]);
+        $this->stubTransportSendRequestWithPayload(
+            (object) [
+                'bri' => $brightness
+            ]
+        );
 
         // Ensure instance is returned
         $this->assertEquals(
@@ -156,9 +160,11 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         $command = new SetLightState($this->mockLight);
 
         // Set expected payload
-        $this->stubTransportSendRequestWithPayload((object) [
-            'hue' => $value
-        ]);
+        $this->stubTransportSendRequestWithPayload(
+            (object) [
+                'hue' => $value
+            ]
+        );
 
         // Ensure instance is returned
         $this->assertEquals(
@@ -196,9 +202,11 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         $command = new SetLightState($this->mockLight);
 
         // Set expected payload
-        $this->stubTransportSendRequestWithPayload((object) [
-            'sat' => $value
-        ]);
+        $this->stubTransportSendRequestWithPayload(
+            (object) [
+                'sat' => $value
+            ]
+        );
 
         // Ensure instance is returned
         $this->assertEquals(
@@ -238,9 +246,11 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         $command = new SetLightState($this->mockLight);
 
         // Set expected payload
-        $this->stubTransportSendRequestWithPayload((object) [
-            'xy' => [$x, $y]
-        ]);
+        $this->stubTransportSendRequestWithPayload(
+            (object) [
+                'xy' => [$x, $y]
+            ]
+        );
 
         // Ensure instance is returned
         $this->assertEquals(
@@ -280,9 +290,11 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         $command = new SetLightState($this->mockLight);
 
         // Set expected payload
-        $this->stubTransportSendRequestWithPayload((object) [
-            'ct' => $temp
-        ]);
+        $this->stubTransportSendRequestWithPayload(
+            (object) [
+                'ct' => $temp
+            ]
+        );
 
         // Ensure instance is returned
         $this->assertEquals(
@@ -336,9 +348,11 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         $command = new SetLightState($this->mockLight);
 
         // Set expected payload
-        $this->stubTransportSendRequestWithPayload((object) [
-            'alert' => $mode
-        ]);
+        $this->stubTransportSendRequestWithPayload(
+            (object) [
+                'alert' => $mode
+            ]
+        );
 
         // Ensure instance is returned
         $this->assertEquals(
@@ -376,9 +390,11 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         $command = new SetLightState($this->mockLight);
 
         // Set expected payload
-        $this->stubTransportSendRequestWithPayload((object) [
-            'transitiontime' => $time * 10
-        ]);
+        $this->stubTransportSendRequestWithPayload(
+            (object) [
+                'transitiontime' => $time * 10
+            ]
+        );
 
         // Ensure instance is returned
         $this->assertEquals(
@@ -402,9 +418,11 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         $setLightStateCmd = new SetLightState($this->mockLight);
 
         // Set expected payload
-        $this->stubTransportSendRequestWithPayload((object) [
-            'alert' => 'select'
-        ]);
+        $this->stubTransportSendRequestWithPayload(
+            (object) [
+                'alert' => 'select'
+            ]
+        );
 
         // Change alert and set state
         $setLightStateCmd->alert('select')

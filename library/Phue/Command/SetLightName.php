@@ -12,7 +12,7 @@ namespace Phue\Command;
 
 use Phue\Client;
 use Phue\Light;
-use Phue\Transport\Http;
+use Phue\Transport\TransportInterface;
 use Phue\Command\CommandInterface;
 
 /**
@@ -60,7 +60,7 @@ class SetLightName implements CommandInterface
     {
         $client->getTransport()->sendRequest(
             "{$client->getUsername()}/lights/{$this->lightId}",
-            Http::METHOD_PUT,
+            TransportInterface::METHOD_PUT,
             (object) [
                 'name' => $this->name
             ]

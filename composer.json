@@ -10,6 +10,13 @@
     ],
     "homepage": "http://github.com/sqmk/phue",
     "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name":  "Michael Squires",
+            "email": "sqmk@php.net",
+            "role":  "lead"
+        }
+    ],
     "require": {
         "php": "5.4.*"
     },

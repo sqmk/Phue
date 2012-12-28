@@ -11,7 +11,7 @@
 namespace Phue\Command;
 
 use Phue\Client;
-use Phue\Transport\Http;
+use Phue\Transport\TransportInterface;
 use Phue\Command\SetLightState;
 use Phue\Command\SchedulableInterface;
 
@@ -72,7 +72,7 @@ class SetGroupAction extends SetLightState implements
     {
         return [
             'address' => "{$client->getUsername()}/groups/{$this->groupId}/action",
-            'method'  => Http::METHOD_PUT,
+            'method'  => TransportInterface::METHOD_PUT,
             'body'    => (object) $this->params
         ];
     }

@@ -11,7 +11,7 @@
 namespace Phue\Command;
 
 use Phue\Client;
-use Phue\Transport\Http;
+use Phue\Transport\TransportInterface;
 use Phue\Command\CommandInterface;
 
 /**
@@ -50,7 +50,7 @@ class DeleteSchedule implements CommandInterface
     {
         $client->getTransport()->sendRequest(
             "{$client->getUsername()}/schedules/{$this->scheduleId}",
-            Http::METHOD_DELETE
+            TransportInterface::METHOD_DELETE
         );
     }
 }

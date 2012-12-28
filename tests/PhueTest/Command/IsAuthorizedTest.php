@@ -82,9 +82,11 @@ class IsAuthorizedTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
                             ->method('sendRequest')
                             ->with($this->equalTo($this->mockClient->getUsername()))
-                            ->will($this->throwException(
-                                $this->getMock('\Phue\Transport\Exception\AuthorizationException')
-                            ));
+                            ->will(
+                                $this->throwException(
+                                    $this->getMock('\Phue\Transport\Exception\AuthorizationException')
+                                )
+                            );
 
         $this->assertFalse(
             (new IsAuthorized)->send($this->mockClient)

@@ -11,7 +11,7 @@
 namespace Phue\Command;
 
 use Phue\Client;
-use Phue\Transport\Http;
+use Phue\Transport\TransportInterface;
 use Phue\Command\CommandInterface;
 use Phue\Command\SchedulableInterface;
 
@@ -70,6 +70,8 @@ class CreateSchedule implements CommandInterface
         $time    !== null && $this->time($time);
         $command !== null && $this->command($command);
 
+        // Copy description
+        $this->description = $this->name;
     }
 
     /**
@@ -141,7 +143,7 @@ class CreateSchedule implements CommandInterface
     {
         $scheduleId = $client->getTransport()->sendRequest(
             "{$client->getUsername()}/schedules",
-            Http::METHOD_POST,
+            TransportInterface::METHOD_POST,
             (object) [
                 'name'        => $this->name,
                 'description' => $this->description,

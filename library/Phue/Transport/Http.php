@@ -54,6 +54,7 @@ class Http implements TransportInterface
         6   => 'Phue\Transport\Exception\ParameterUnavailableException',
         7   => 'Phue\Transport\Exception\InvalidValueException',
         101 => 'Phue\Transport\Exception\LinkButtonException',
+        201 => 'Phue\Transport\Exception\ParameterUnmodifiableException',
         301 => 'Phue\Transport\Exception\GroupTableFullException',
         901 => 'Phue\Transport\Exception\ThrottleException',
     ];
@@ -110,7 +111,7 @@ class Http implements TransportInterface
     public function sendRequest($address, $method = self::METHOD_GET, \stdClass $body = null)
     {
         // Build request url
-        $url = $this->buildRequestUrl($address, true);
+        $url = "http://{$this->client->getHost()}/api/{$address}";
 
         // Open connection
         $this->getAdapter()->open();
@@ -150,27 +151,6 @@ class Http implements TransportInterface
         }
 
         return $jsonResults;
-    }
-
-    /**
-     * Build request URL
-     *
-     * @param string $path        Request path
-     * @param bool   $includeHost Include host in path
-     *
-     * @return string Request URL
-     */
-    public function buildRequestUrl($path, $includeHost = false)
-    {
-        // Start with full path
-        $fullPath = "/api/{$path}";
-
-        // Include host if necessary
-        if ($includeHost) {
-            $fullPath = "http://{$this->client->getHost()}" . $fullPath;
-        }
-
-        return $fullPath;
     }
 
     /**

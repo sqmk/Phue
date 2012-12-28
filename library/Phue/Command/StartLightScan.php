@@ -11,7 +11,7 @@
 namespace Phue\Command;
 
 use Phue\Client;
-use Phue\Transport\Http;
+use Phue\Transport\TransportInterface;
 use Phue\Command\CommandInterface;
 
 /**
@@ -34,7 +34,7 @@ class StartLightScan implements CommandInterface
         // Get response
         $response = $client->getTransport()->sendRequest(
             "{$client->getUsername()}/lights",
-            Http::METHOD_POST
+            TransportInterface::METHOD_POST
         );
 
         return $response;

@@ -10,12 +10,14 @@
 
 namespace Phue\Transport\Exception;
 
+use Phue\Transport\Exception\BridgeException;
+
 /**
  * Method exception
  *
  * @category Phue
  * @package  Phue
  */
-class MethodException extends \Exception
+class MethodException extends BridgeException
 {
 }

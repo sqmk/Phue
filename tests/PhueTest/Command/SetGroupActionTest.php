@@ -72,9 +72,11 @@ class SetGroupActionTest extends \PHPUnit_Framework_TestCase
         $setGroupActionCmd = new SetGroupAction($this->mockGroup);
 
         // Set expected payload
-        $this->stubTransportSendRequestWithPayload((object) [
-            'ct' => '300'
-        ]);
+        $this->stubTransportSendRequestWithPayload(
+            (object) [
+                'ct' => '300'
+            ]
+        );
 
         // Change color temp and set state
         $setGroupActionCmd->colorTemp(300)

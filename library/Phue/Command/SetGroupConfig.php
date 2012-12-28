@@ -11,7 +11,7 @@
 namespace Phue\Command;
 
 use Phue\Client;
-use Phue\Transport\Http;
+use Phue\Transport\TransportInterface;
 use Phue\Command\CommandInterface;
 
 /**
@@ -91,7 +91,7 @@ class SetGroupConfig implements CommandInterface
     {
         $client->getTransport()->sendRequest(
             "{$client->getUsername()}/groups/{$this->groupId}",
-            Http::METHOD_PUT,
+            TransportInterface::METHOD_PUT,
             (object) $this->params
         );
     }

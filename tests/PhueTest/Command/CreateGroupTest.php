@@ -111,10 +111,12 @@ class CreateGroupTest extends \PHPUnit_Framework_TestCase
                             ->with(
                                 $this->equalTo("{$this->mockClient->getUsername()}/groups"),
                                 $this->equalTo(TransportInterface::METHOD_POST),
-                                $this->equalTo((object) [
-                                    'name'   => 'Dummy',
-                                    'lights' => [2, 3]
-                                ])
+                                $this->equalTo(
+                                    (object) [
+                                        'name'   => 'Dummy',
+                                        'lights' => [2, 3]
+                                    ]
+                                )
                             )
                             ->will($this->returnValue((object)['id' => '/path/5']));
 
