@@ -89,7 +89,7 @@ try {
 
 After the user is authenticated, you won't have to authenticate again unless you reset the bridge!
 
-## Managing lights
+### Managing lights
 
 Now that you have an authorized user, you can start managing the lights with the client.
 
@@ -201,7 +201,7 @@ $client->sendCommand(
 
 ```
 
-## Managing groups
+### Managing groups
 
 The bridge API allows you to create, update, and delete groups. Groups are useful for controlling multiple lights at the same time.
 
@@ -315,10 +315,10 @@ Just like the bulbs, each *set* method on the ```\Phue\Group``` object will send
 
 ```php
 // Retrieve group
-$group = $client->getGroup()[1];
+$group = $client->getGroups()[1];
 
 // Setting the brightness, color temp, and transition at the same time
-$command = new \Phue\Command\SetLightState($light);
+$command = new \Phue\Command\SetGroupAction($group);
 $command->brightness(200)
         ->colorTemp(500)
         ->transitionTime(0);
@@ -327,7 +327,6 @@ $command->brightness(200)
 $client->sendCommand(
     $command
 );
-
 ```
 
 Deleting a group is also simple. You can either delete from the ```\Phue\Group``` object, or issue a command:
@@ -343,7 +342,7 @@ $client->sendCommand(
 );
 ```
 
-There's a special "all" group that can be retrieved with the ```GetGroupById``` command. This group normally has all lights associated with it. You can retrieve this group with the following:
+There's a special "all" group that can be retrieved with the ```GetGroupById``` command. This group normally has all lights associated with it. You can retrieve this group by passing *id* 0 to the ```GetGroupById``` command:
 
 ```php
 // Get all group
@@ -354,6 +353,60 @@ $allGroup = $client->sendCommand(
 // Set brightness on all bulbs
 $allGroup->setBrightness(254);
 ```
+
+### Managing Schedules
+
+The bridge has the ability to handle scheduling commands at a given time. Schedules, unfortunately, are not reoccurring. The bridge will delete a schedule once it fires the scheduled command.
+
+Retrievable commands will return an array or single instance of a ```\Phue\Schedule``` object. It is not possible to edit a schedule, but deleting is permitted.
+
+```php
+// Create command to dim all lights
+$groupCommand = new \Phue\Command\SetGroupAction(0);
+$groupCommand->brightness(30);
+
+// Create schedule command to run 10 seconds from now
+// Time is a parsable DateTime date.
+$scheduleCommand = new \Phue\Command\CreateSchedule(
+	'Dim all lights',
+	'+10 seconds',
+	$groupCommand
+);
+
+// Set a custom description on the schedule, defaults to name
+$scheduleCommand->description('Dims all lights in house to 30');
+
+// Send the schedule to bridge
+$scheduleId = $client->sendCommand($scheduleCommand);
+$client->sendCommand($scheduleCommand);
+
+// Show list of schedules
+foreach ($client->getSchedules() as $scheduleId => $schedule) {
+	echo $schedule->getId(), "\n",
+	     $schedule->getName(), "\n",
+	     $schedule->getDescription(), "\n",
+	     $schedule->getTime(), "\n",
+	     $schedule->getCommand()['address'], "\n",
+	     $schedule->getCommand()['method'], "\n",
+	     json_encode($schedule->getCommand()['body']), "\n";
+}
+
+// Delete a given schedule
+$schedule = $client->getSchedules()[2];
+$schedule->delete();
+```
+
+If you noticed in the above example, a ```Schedulable``` command must be passed to ```CreateSchedule```. The only commands that are schedulable are:
+* ```SetLightState```
+* ```SetGroupAction```
+
+### Other commands
+
+Not all commands have been documented. You can view all the available commands by looking in the ```library/Phue/Command/``` directory.
+
+Some notable commands not yet documented include managing the bridge itself.
+* ```\Phue\Command\GetBridge```
+* ```\Phue\Command\SetBridgeConfig```
 
 ## Example/convenience scripts
 
