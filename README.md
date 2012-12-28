@@ -311,6 +311,25 @@ $group->setXY(0.25, 0.5);
 $group->setColorTemp(300);
 ```
 
+Just like the bulbs, each *set* method on the ```\Phue\Group``` object will send a request for each call. To minimize calls and to change multiple properties on the group at once, use the ```SetGroupConfig``` command. The ```SetGroupConfig``` command has all the options as ```SetLightState```.
+
+```php
+// Retrieve group
+$group = $client->getGroup()[1];
+
+// Setting the brightness, color temp, and transition at the same time
+$command = new \Phue\Command\SetLightState($light);
+$command->brightness(200)
+        ->colorTemp(500)
+        ->transitionTime(0);
+
+// Send the command
+$client->sendCommand(
+    $command
+);
+
+```
+
 Deleting a group is also simple. You can either delete from the ```\Phue\Group``` object, or issue a command:
 
 ```php
@@ -324,16 +343,17 @@ $client->sendCommand(
 );
 ```
 
-There's a special "all" group that can be retrieved with the ``GetGroupById``` command. This group normally has all lights associated with it. You can retrieve this group with the following:
+There's a special "all" group that can be retrieved with the ```GetGroupById``` command. This group normally has all lights associated with it. You can retrieve this group with the following:
 
 ```php
+// Get all group
 $allGroup = $client->sendCommand(
 	new \Phue\Command\GetGroupById(0)
 );
 
+// Set brightness on all bulbs
 $allGroup->setBrightness(254);
 ```
-
 
 ## Example/convenience scripts
 
