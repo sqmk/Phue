@@ -46,7 +46,7 @@ Here's how to instantiate a client object:
 $client = new \Phue\Client('10.0.1.31', 'sqmk');
 ```
 
-### Testing connection and authorization
+### Issuing commands, testing connection and authorization
 
 You can issue a Ping command to the bridge to test making a request to it. If a ConnectionException exception is thrown, then there is a problem with talking to the bridge:
 
@@ -59,6 +59,18 @@ try {
 	echo 'There was a problem accessing the bridge';
 }
 ```
+
+In the above example, you'll notice that to send a command, you instantiate a command object, and then pass the command to the client using the ```sendCommand``` method. There is also another way to send commands that may be a bit more elegant. Here is another way to issue commands to the bridge via the client:
+
+```php
+try {
+	(new \Phue\Command\Ping)->send($client);
+} catch (\Phue\Transport\Exception\ConnectionException $e) {
+	echo 'There was a problem accessing the bridge';
+}
+```
+
+All commands can be issued in a similar manner as the previous two examples.
 
 Once you have determined you can make requests to the bridge, you can test if the username you provided is authenticated.
 
@@ -311,7 +323,7 @@ $group->setXY(0.25, 0.5);
 $group->setColorTemp(300);
 ```
 
-Just like the bulbs, each *set* method on the ```\Phue\Group``` object will send a request for each call. To minimize calls and to change multiple properties on the group at once, use the ```SetGroupConfig``` command. The ```SetGroupConfig``` command has all the options as ```SetLightState```.
+Just like the bulbs, each *set* method on the ```\Phue\Group``` object will send a request for each call. To minimize calls and to change multiple properties on the group at once, use the ```SetGroupAction``` command. The ```SetGroupAction``` command has all the options as ```SetLightState```.
 
 ```php
 // Retrieve group
