@@ -30,7 +30,6 @@
     "autoload": {
         "psr-0": {
             "Phue": "library/",
-            "PhueTest": "tests/"
         }
     },
     "bin": [
