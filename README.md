@@ -14,6 +14,8 @@ The client has the ability to make full use of the Hue's API, including:
 * Creating, updating, and deleting groups
 * Creating and deleting schedules
 
+Interested in API docs? You can check out the auto-generated documentation at [GitApiDoc](http://gitapidoc.com/api/sqmk/Phue/)
+
 ## Installing Phue
 
 The Phue library is available in Packagist. You'll want to include ```sqmk/Phue``` as a dependency in your project using composer. If you are not familiar with composer, check it out here: [Composer](http://getcomposer.org)
