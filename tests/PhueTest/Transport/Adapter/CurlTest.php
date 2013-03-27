@@ -5,7 +5,6 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace PhueTest\Transport\Adapter;
@@ -14,16 +13,11 @@ use Phue\Transport\Adapter\Curl as CurlAdapter;
 
 /**
  * Tests for Phue\Transport\Adapter\Curl
- *
- * @category Phue
- * @package  Phue
  */
 class CurlTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -38,7 +32,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test: Instantiation without exception
-     * 
+     *
      * @covers Phue\Transport\Adapter\Curl::__construct
      */
     public function testInstantiation()

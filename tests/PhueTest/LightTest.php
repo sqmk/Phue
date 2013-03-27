@@ -5,7 +5,6 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace PhueTest;
@@ -15,16 +14,11 @@ use Phue\Client;
 
 /**
  * Tests for Phue\Light
- *
- * @category Phue
- * @package  Phue
  */
 class LightTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -205,7 +199,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test: Get/Set hue
-     * 
+     *
      * @covers \Phue\Light::getHue
      * @covers \Phue\Light::setHue
      */
@@ -234,7 +228,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test: Get/Set saturation
-     * 
+     *
      * @covers \Phue\Light::getSaturation
      * @covers \Phue\Light::setSaturation
      */
@@ -263,7 +257,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test: Get/Set XY
-     * 
+     *
      * @covers \Phue\Light::getXY
      * @covers \Phue\Light::setXY
      */
@@ -295,7 +289,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test: Get/Set Color temp
-     * 
+     *
      * @covers \Phue\Light::getColorTemp
      * @covers \Phue\Light::setColorTemp
      */
@@ -379,8 +373,6 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Stub mock client's send command
-     *
-     * @return void
      */
     protected function stubMockClientSendSetLightStateCommand()
     {

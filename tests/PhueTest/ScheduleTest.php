@@ -5,7 +5,6 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace PhueTest;
@@ -15,16 +14,11 @@ use Phue\Client;
 
 /**
  * Tests for Phue\Schedule
- *
- * @category Phue
- * @package  Phue
  */
 class ScheduleTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
-     *
-     * @return void
      */
     public function setUp()
     {

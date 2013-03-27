@@ -5,7 +5,6 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace PhueTest\Command;
@@ -16,16 +15,11 @@ use Phue\Transport\TransportInterface;
 
 /**
  * Tests for Phue\Command\SetGroupAction
- *
- * @category Phue
- * @package  Phue
  */
 class SetGroupActionTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -113,8 +107,6 @@ class SetGroupActionTest extends \PHPUnit_Framework_TestCase
      * Stub transport's sendRequest with an expected payload
      *
      * @param \stdClass $payload Payload
-     *
-     * @return void
      */
     protected function stubTransportSendRequestWithPayload(\stdClass $payload)
     {

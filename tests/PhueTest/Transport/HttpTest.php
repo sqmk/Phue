@@ -5,7 +5,6 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace PhueTest\Transport;
@@ -14,16 +13,11 @@ use Phue\Transport\Http;
 
 /**
  * Tests for Phue\Transport\Http
- *
- * @category Phue
- * @package  Phue
  */
 class HttpTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -235,6 +229,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
             [101, 'Phue\Transport\Exception\LinkButtonException'],
             [201, 'Phue\Transport\Exception\ParameterUnmodifiableException'],
             [301, 'Phue\Transport\Exception\GroupTableFullException'],
+            [302, 'Phue\Transport\Exception\LightGroupTableFullException'],
             [901, 'Phue\Transport\Exception\ThrottleException'],
             [-1,  'Phue\Transport\Exception\BridgeException'],
         ];
@@ -246,8 +241,6 @@ class HttpTest extends \PHPUnit_Framework_TestCase
      * @param string $response       Response body
      * @param string $httpStatusCode Http status code
      * @param string $contentType    Content type
-     *
-     * @return void
      */
     protected function stubMockAdapterResponseMethods($response, $httpStatusCode, $contentType)
     {

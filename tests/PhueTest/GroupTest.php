@@ -5,7 +5,6 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace PhueTest;
@@ -15,16 +14,11 @@ use Phue\Client;
 
 /**
  * Tests for Phue\Group
- *
- * @category Phue
- * @package  Phue
  */
 class GroupTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -362,8 +356,6 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Stub mock client's send command
-     *
-     * @return void
      */
     protected function stubMockClientSendSetGroupActionCommand()
     {
