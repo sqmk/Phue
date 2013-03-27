@@ -89,6 +89,16 @@ class SetLightState implements CommandInterface, SchedulableInterface
     const ALERT_LONG_SELECT = 'lselect';
 
     /**
+     * Effect none
+     */
+    const EFFECT_NONE = 'none';
+
+    /**
+     * Effect colorloop
+     */
+    const EFFECT_COLORLOOP = 'colorloop';
+
+    /**
      * Light Id
      *
      * @var string
@@ -113,6 +123,19 @@ class SetLightState implements CommandInterface, SchedulableInterface
             self::ALERT_NONE,
             self::ALERT_SELECT,
             self::ALERT_LONG_SELECT,
+        ];
+    }
+
+    /**
+     * Get effect modes
+     *
+     * @return array List of color modes
+     */
+    public static function getEffectModes()
+    {
+        return [
+            self::EFFECT_NONE,
+            self::EFFECT_COLORLOOP,
         ];
     }
 
@@ -270,6 +293,27 @@ class SetLightState implements CommandInterface, SchedulableInterface
         }
 
         $this->params['alert'] = $mode;
+
+        return $this;
+    }
+
+    /**
+     * Set effect mode
+     *
+     * @param string $mode Effect mode
+     *
+     * @return SetLightState Self object
+     */
+    public function effect($mode = self::EFFECT_COLORLOOP)
+    {
+        // Don't continue if mode is not valid
+        if (!in_array($mode, self::getEffectModes())) {
+            throw new \InvalidArgumentException(
+                "{$mode} is not a valid effect modes"
+            );
+        }
+
+        $this->params['effect'] = $mode;
 
         return $this;
     }

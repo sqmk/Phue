@@ -180,6 +180,34 @@ class Light
     }
 
     /**
+     * Get effect mode
+     *
+     * @return string effect mode
+     */
+    public function getEffect()
+    {
+        return $this->details->state->effect;
+    }
+
+    /**
+     * Set effect
+     *
+     * @param string $mode Effect mode
+     *
+     * @return Light Self object
+     */
+    public function setEffect($mode = SetLightState::EFFECT_NONE)
+    {
+        $this->client->sendCommand(
+            (new SetLightState($this))->effect($mode)
+        );
+
+        $this->details->state->effect = $mode;
+
+        return $this;
+    }
+
+    /**
      * Get brightness
      *
      * @return int Brightness level
@@ -268,7 +296,7 @@ class Light
     }
 
     /**
-     * Get XY 
+     * Get XY
      *
      * @return array X, Y key/value
      */
