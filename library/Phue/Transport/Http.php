@@ -56,6 +56,7 @@ class Http implements TransportInterface
         101 => 'Phue\Transport\Exception\LinkButtonException',
         201 => 'Phue\Transport\Exception\ParameterUnmodifiableException',
         301 => 'Phue\Transport\Exception\GroupTableFullException',
+        302 => 'Phue\Transport\Exception\LightGroupTableFullException',
         901 => 'Phue\Transport\Exception\ThrottleException',
     ];
 
