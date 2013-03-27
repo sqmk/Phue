@@ -15,7 +15,7 @@ use Phue\Command\CommandInterface;
 use Phue\Transport\TransportInterface;
 use Phue\Transport\Exception\ConnectionException;
 use Phue\Transport\Adapter\AdapterInterface;
-use Phue\Transport\Adapter\Streaming as DefaultAdapter;
+use Phue\Transport\Adapter\Curl as DefaultAdapter;
 
 /**
  * Http transport
