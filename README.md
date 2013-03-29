@@ -162,6 +162,7 @@ echo $light->getId(), "\n",
      $light->getSaturation(), "\n",
      $light->getXY()['x'], "\n",
      $light->getXY()['y'], "\n",
+     $light->getEffect(), "\n",
      $light->getColorTemp(), "\n",
      $light->getColorMode(), "\n";
 
@@ -189,6 +190,9 @@ $light->setXY(0.25, 0.5);
 
 // Set color temp (154 min, 500 max), changes color mode to 'ct'
 $light->setColorTemp(300);
+
+// Set effect (none|colorloop)
+$light->setEffect('colorloop');
 ```
 
 Each *set* method above issues a single request to the bridge. In order to update multiple attributes of a light with a single request, the ```SetLightState``` command should be used manually. You also get access to the *transition time* option with the command.
