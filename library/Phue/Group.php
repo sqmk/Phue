@@ -305,6 +305,34 @@ class Group
     }
 
     /**
+     * Get effect mode
+     *
+     * @return string effect mode
+     */
+    public function getEffect()
+    {
+        return $this->details->action->effect;
+    }
+
+    /**
+     * Set effect
+     *
+     * @param string $mode Effect mode
+     *
+     * @return Group Self object
+     */
+    public function setEffect($mode = SetLightState::EFFECT_NONE)
+    {
+        $this->client->sendCommand(
+            (new SetGroupAction($this))->effect($mode)
+        );
+
+        $this->details->action->effect = $mode;
+
+        return $this;
+    }
+
+    /**
      * Get color mode of group
      *
      * @return string Color mode

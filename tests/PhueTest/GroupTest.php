@@ -40,6 +40,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
                 'xy'        => [.5, .4],
                 'ct'        => 300,
                 'colormode' => 'hs',
+                'effect'    => 'none',
             ],
             'lights'    => [2, 3, 5]
         ];
@@ -311,6 +312,35 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $this->group->getColorTemp(),
             412
+        );
+    }
+
+    /**
+     * Test: Get/Set effect
+     *
+     * @covers \Phue\Group::getEffect
+     * @covers \Phue\Group::setEffect
+     */
+    public function testGetSetEffect()
+    {
+        $this->stubMockClientSendSetGroupActionCommand();
+
+        // Make sure original effect is retrievable
+        $this->assertEquals(
+            $this->group->getEffect(),
+            $this->details->action->effect
+        );
+
+        // Ensure setEffect returns self
+        $this->assertEquals(
+            $this->group,
+            $this->group->setEffect('colorloop')
+        );
+
+        // Make sure group details are updated
+        $this->assertEquals(
+            $this->group->getEffect(),
+            'colorloop'
         );
     }
 
