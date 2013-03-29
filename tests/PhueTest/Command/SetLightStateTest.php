@@ -548,7 +548,7 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [-1],
-            [255],
+            [256],
         ];
     }
 
@@ -562,7 +562,7 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         return [
             [0],
             [128],
-            [254]
+            [255]
         ];
     }
 
@@ -631,7 +631,7 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     public function providerInvalidColorTemp()
     {
         return [
-            [153],
+            [152],
             [550],
             [-130],
         ];
@@ -645,7 +645,7 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     public function providerColorTemp()
     {
         return [
-            [154],
+            [153],
             [200],
             [500],
         ];

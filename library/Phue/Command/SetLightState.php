@@ -25,7 +25,7 @@ class SetLightState implements CommandInterface, SchedulableInterface
     /**
      * Brightness max
      */
-    const BRIGHTNESS_MAX = 254;
+    const BRIGHTNESS_MAX = 255;
 
     /**
      * Hue min
@@ -60,7 +60,7 @@ class SetLightState implements CommandInterface, SchedulableInterface
     /**
      * Color temperature min
      */
-    const COLOR_TEMP_MIN = 154;
+    const COLOR_TEMP_MIN = 153;
 
     /**
      * Color temperature max
