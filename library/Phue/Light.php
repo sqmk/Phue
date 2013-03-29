@@ -5,20 +5,14 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace Phue;
 
-use Phue\Client;
-use Phue\Command\SetLightName;
 use Phue\Command\SetLightState;
 
 /**
  * Light object
- *
- * @category Phue
- * @package  Phue
  */
 class Light
 {
@@ -85,7 +79,7 @@ class Light
     public function setName($name)
     {
         $this->client->sendCommand(
-            new SetLightName($this, (string) $name)
+            new Command\SetLightName($this, (string) $name)
         );
 
         $this->details->name = (string) $name;

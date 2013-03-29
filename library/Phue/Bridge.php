@@ -5,19 +5,14 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace Phue;
 
-use Phue\Client;
 use Phue\Command\SetBridgeConfig;
 
 /**
  * Bridge object
- *
- * @category Phue
- * @package  Phue
  */
 class Bridge
 {

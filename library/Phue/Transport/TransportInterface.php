@@ -5,16 +5,12 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace Phue\Transport;
 
 /**
  * Transport Interface
- *
- * @category Phue
- * @package  Phue
  */
 interface TransportInterface
 {
@@ -44,8 +40,6 @@ interface TransportInterface
      * @param string $address API address
      * @param string $method  Request method
      * @param string $body    Request body
-     *
-     * @return void
      */
     public function sendRequest($path, $method = self::METHOD_GET, \stdClass $data = null);
 }

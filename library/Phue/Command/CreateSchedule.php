@@ -5,21 +5,15 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace Phue\Command;
 
 use Phue\Client;
 use Phue\Transport\TransportInterface;
-use Phue\Command\CommandInterface;
-use Phue\Command\SchedulableInterface;
 
 /**
  * Create schedule command
- *
- * @category Phue
- * @package  Phue
  */
 class CreateSchedule implements CommandInterface
 {
@@ -57,8 +51,6 @@ class CreateSchedule implements CommandInterface
      * @param string                $name    Name of schedule
      * @param string                $time    Time to run command
      * @param SchedulableInterface  $command Schedulable command
-     *
-     * @return void
      */
     public function __construct(
         $name = null,

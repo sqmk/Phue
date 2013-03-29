@@ -5,18 +5,12 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace Phue\Transport\Adapter;
 
-use Phue\Transport\Adapter\AdapterInterface;
-
 /**
  * cURL Http adapter
- *
- * @category Phue
- * @package  Phue
  */
 class Curl implements AdapterInterface
 {
@@ -29,8 +23,6 @@ class Curl implements AdapterInterface
 
     /**
      * Constructs a cURL adapter
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -42,8 +34,6 @@ class Curl implements AdapterInterface
 
     /**
      * Opens the connection
-     *
-     * @return void
      */
     public function open()
     {
@@ -96,8 +86,6 @@ class Curl implements AdapterInterface
 
     /**
      * Closes the cURL connection
-     *
-     * @return void
      */
     public function close()
     {

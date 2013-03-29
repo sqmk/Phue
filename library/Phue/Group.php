@@ -5,12 +5,10 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace Phue;
 
-use Phue\Client;
 use Phue\Command\SetGroupConfig;
 use Phue\Command\SetGroupAction;
 use Phue\Command\SetLightState;
@@ -18,9 +16,6 @@ use Phue\Command\DeleteGroup;
 
 /**
  * Group object
- *
- * @category Phue
- * @package  Phue
  */
 class Group
 {
@@ -110,7 +105,7 @@ class Group
      *
      * @param array $lights Light ids or Light objects
      *
-     * @return array 
+     * @return Group Self object
      */
     public function setLights(array $lights)
     {
@@ -246,7 +241,7 @@ class Group
     }
 
     /**
-     * Get XY 
+     * Get XY
      *
      * @return array X, Y key/value
      */
@@ -321,8 +316,6 @@ class Group
 
     /**
      * Delete group
-     *
-     * @return void
      */
     public function delete()
     {

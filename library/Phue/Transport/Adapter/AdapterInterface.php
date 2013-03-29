@@ -5,23 +5,17 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace Phue\Transport\Adapter;
 
 /**
  * Adapter Interface
- *
- * @category Phue
- * @package  Phue
  */
 interface AdapterInterface
 {
     /**
      * Opens the connection
-     *
-     * @return void
      */
     public function open();
 
@@ -52,8 +46,6 @@ interface AdapterInterface
 
     /**
      * Closes the connection
-     *
-     * @return void
      */
     public function close();
 }

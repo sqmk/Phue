@@ -5,7 +5,6 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace Phue;
@@ -20,9 +19,6 @@ use Phue\Command\GetSchedules;
 
 /**
  * Client for connecting to Philips Hue bridge
- *
- * @category Phue
- * @package  Phue
  */
 class Client
 {
@@ -76,8 +72,6 @@ class Client
 
     /**
      * Set host
-     *
-     * @return void
      */
     public function setHost($host)
     {
@@ -98,8 +92,6 @@ class Client
      * Set username
      *
      * @param string $username Username
-     *
-     * @return void
      */
     public function setUsername($username)
     {
@@ -178,8 +170,6 @@ class Client
      * Set transport
      *
      * @param TransportInterface $transport Transport
-     *
-     * @return void
      */
     public function setTransport(TransportInterface $transport)
     {
@@ -190,8 +180,6 @@ class Client
      * Send command to server
      *
      * @param Command $command Phue command
-     *
-     * @return void
      */
     public function sendCommand(CommandInterface $command)
     {

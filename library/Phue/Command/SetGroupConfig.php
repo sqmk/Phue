@@ -5,20 +5,15 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace Phue\Command;
 
 use Phue\Client;
 use Phue\Transport\TransportInterface;
-use Phue\Command\CommandInterface;
 
 /**
  * Set group config command
- *
- * @category Phue
- * @package  Phue
  */
 class SetGroupConfig implements CommandInterface
 {
@@ -84,8 +79,6 @@ class SetGroupConfig implements CommandInterface
      * Send command
      *
      * @param Client $client Phue Client
-     *
-     * @return void
      */
     public function send(Client $client)
     {

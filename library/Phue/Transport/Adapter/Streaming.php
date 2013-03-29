@@ -5,18 +5,12 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace Phue\Transport\Adapter;
 
-use Phue\Transport\Adapter\AdapterInterface;
-
 /**
  * Streaming Http adapter
- *
- * @category Phue
- * @package  Phue
  */
 class Streaming implements AdapterInterface
 {
@@ -29,15 +23,13 @@ class Streaming implements AdapterInterface
 
     /**
      * File stream
-     * 
+     *
      * @var resource
      */
     protected $fileStream;
 
     /**
      * Opens the connection
-     *
-     * @return void
      */
     public function open()
     {
@@ -126,8 +118,6 @@ class Streaming implements AdapterInterface
 
     /**
      * Closes the streaming connection
-     *
-     * @return void
      */
     public function close()
     {

@@ -5,19 +5,12 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
- * @package   Phue
  */
 
 namespace Phue;
 
-use Phue\Client;
-use Phue\Command\DeleteSchedule;
-
 /**
  * Schedule object
- *
- * @category Phue
- * @package  Phue
  */
 class Schedule
 {
@@ -99,7 +92,7 @@ class Schedule
     /**
      * Get command
      *
-     * @return array Command details 
+     * @return array Command details
      */
     public function getCommand()
     {
@@ -112,13 +105,11 @@ class Schedule
 
     /**
      * Delete schedule
-     *
-     * @return void
      */
     public function delete()
     {
         $this->client->sendCommand(
-            (new DeleteSchedule($this))
+            (new Command\DeleteSchedule($this))
         );
     }
 
