@@ -43,6 +43,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
                 'xy'        => [.5, .4],
                 'ct'        => 300,
                 'alert'     => 'none',
+                'effect'    => 'none',
                 'colormode' => 'hs',
             ],
         ];
@@ -342,6 +343,35 @@ class LightTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $this->light->getAlert(),
             'lselect'
+        );
+    }
+
+    /**
+     * Test: Get/Set effect
+     *
+     * @covers \Phue\Light::getEffect
+     * @covers \Phue\Light::setEffect
+     */
+    public function testGetSetEffect()
+    {
+        $this->stubMockClientSendSetLightStateCommand();
+
+        // Make sure original effect is retrievable
+        $this->assertEquals(
+            $this->light->getEffect(),
+            $this->details->state->effect
+        );
+
+        // Ensure setEffect returns self
+        $this->assertEquals(
+            $this->light,
+            $this->light->setEffect('colorloop')
+        );
+
+        // Make sure light details are updated
+        $this->assertEquals(
+            $this->light->getEffect(),
+            'colorloop'
         );
     }
 

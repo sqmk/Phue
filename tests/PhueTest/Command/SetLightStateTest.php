@@ -359,6 +359,64 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Get effect modes
+     *
+     * @covers \Phue\Command\SetLightState::getEffectModes
+     */
+    public function testGetEffectModes()
+    {
+        $this->assertNotEmpty(
+            SetLightState::getEffectModes()
+        );
+
+        $this->assertTrue(
+            in_array(SetLightState::EFFECT_NONE, SetLightState::getEffectModes())
+        );
+    }
+
+    /**
+     * Test: Invalid effect mode
+     *
+     * @covers \Phue\Command\SetLightState::effect
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testInvalidEffectMode()
+    {
+        (new SetLightState($this->mockLight))->effect('invalidmode');
+    }
+
+    /**
+     * Test: Set effect mode
+     *
+     * @dataProvider providerEffect
+     *
+     * @covers \Phue\Command\SetLightState::effect
+     * @covers \Phue\Command\SetLightState::send
+     */
+    public function testEffectSend($mode)
+    {
+        // Build command
+        $command = new SetLightState($this->mockLight);
+
+        // Set expected payload
+        $this->stubTransportSendRequestWithPayload(
+            (object) [
+                'effect' => $mode
+            ]
+        );
+
+        // Ensure instance is returned
+        $this->assertEquals(
+            $command,
+            $command->effect($mode)
+        );
+
+        // Send
+        $command->send($this->mockClient);
+    }
+
+    /**
      * Test: Invalid transition time
      *
      * @covers \Phue\Command\SetLightState::transitionTime
@@ -603,7 +661,20 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         return [
             [SetLightState::ALERT_NONE],
             [SetLightState::ALERT_SELECT],
-            [SetLightState::ALERT_LONG_SELECT]
+            [SetLightState::ALERT_LONG_SELECT],
+        ];
+    }
+
+    /**
+     * Provider: Effect
+     *
+     * @return array
+     */
+    public function providerEffect()
+    {
+        return [
+            [SetLightState::EFFECT_NONE],
+            [SetLightState::EFFECT_COLORLOOP],
         ];
     }
 
