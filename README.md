@@ -298,7 +298,8 @@ echo $group->getId(), "\n",
      $group->getXY()['x'], "\n",
      $group->getXY()['y'], "\n",
      $group->getColorTemp(), "\n",
-     $group->getColorMode(), "\n";
+     $group->getColorMode(), "\n",
+     $group->getEffect(), "\n";
 
 // Setting name
 $group->setName('Office');
@@ -327,6 +328,9 @@ $group->setXY(0.25, 0.5);
 
 // Set color temp (154 min, 500 max), changes color mode to 'ct'
 $group->setColorTemp(300);
+
+// Set effect (none|colorloop)
+$group->setEffect('colorloop');
 ```
 
 Just like the bulbs, each *set* method on the ```\Phue\Group``` object will send a request for each call. To minimize calls and to change multiple properties on the group at once, use the ```SetGroupAction``` command. The ```SetGroupAction``` command has all the options as ```SetLightState```.
