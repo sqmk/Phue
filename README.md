@@ -512,12 +512,7 @@ $ ./bin/phue-light-finder 10.0.1.31 your.username
 Example results are as follows:
 
 ```
-! - Username your.username doesn't appear to be 32 character hash (A-F, 0-9)
-! - Using this for username instead: af8caecf12655838d10fa92d86d09e82
-
 Testing connection to bridge at 10.0.1.31
-Response appears OK!
-
 Scanning for lights. Turn at least one light off, then on...
 Found: Light #1, Hue Lamp 1
 Found: Light #2, Hue Lamp 2
