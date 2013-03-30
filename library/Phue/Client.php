@@ -25,7 +25,7 @@ class Client
     /**
      * Client name
      */
-    const CLIENT_NAME = 'Phue';
+    const DEFAULT_DEVICE_TYPE = 'Phue';
 
     /**
      * Host address
@@ -95,11 +95,6 @@ class Client
      */
     public function setUsername($username)
     {
-        // Hash username if not already in hash format
-        if (!preg_match('/[a-f0-9]{32}/i', $username)) {
-            $username = md5($username);
-        }
-
         $this->username = (string) $username;
     }
 

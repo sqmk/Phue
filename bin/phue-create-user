@@ -9,7 +9,7 @@ if (is_file(__DIR__ . '/../vendor/autoload.php')) {
 
 // Show usage if host and username not passed
 if (!isset($argv[1], $argv[2])) {
-    echo "Philips Hue Authenticator", "\n\n",
+    echo "Philips Hue User Creator", "\n\n",
          "Usage:", "\n",
          "  <host> <username>", "\n\n";
     exit(1);
@@ -17,12 +17,6 @@ if (!isset($argv[1], $argv[2])) {
 
 // Initialize client
 $client = new \Phue\Client($argv[1], $argv[2]);
-
-// Hash username if doesn't appear to be hash
-if ($client->getUsername() != $argv[2]) {
-    echo "! - Username {$argv[2]} doesn't appear to be 32 character hash (A-F, 0-9)", "\n",
-         "! - Using this for username instead: {$client->getUsername()}", "\n\n"; 
-}
 
 echo "Testing connection to bridge at {$client->getHost()}", "\n";
 
@@ -36,30 +30,31 @@ try {
     exit(1);
 }
 
-echo "Attempting to authenticate ({$client->getUsername()}):", "\n",
+echo "Attempting to create user:", "\n",
      "Press the Bridge's button!", "\n",
      "Waiting.";
 
-// Try X times to authenticate
+// Try X times to create user
 $maxTries = 30;
 for ($i = 1; $i <= $maxTries; ++$i) {
     try {
         $response = $client->sendCommand(
-            new \Phue\Command\Authenticate
+            new \Phue\Command\CreateUser($argv[2])
         );
 
-        if ($response->username == $client->getUsername()) {
-            echo "\n", "Authentication for user {$client->getUsername()} was successful!", "\n\n";
+        echo "\n", "Successfully created new user: {$response->username}", "\n\n";
 
-            exit(0);
-        }
+        break;
     } catch (\Phue\Transport\Exception\LinkButtonException $e) {
         echo ".";
+    } catch (Exception $e) {
+        echo "\n", "Failure to create user. Please try again!",
+             "\n", "Reason: {$e->getMessage()}", "\n\n";
+
+        break;
     }
 
     sleep(1);
 }
-
-echo "\n", "Failure to authenticate. Please try again!", "\n\n";
 
 exit(1);

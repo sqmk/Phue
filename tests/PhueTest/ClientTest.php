@@ -47,29 +47,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      * @covers \Phue\Client::getUsername
      * @covers \Phue\Client::setUsername
      */
-    public function testNonHashedUsername()
+    public function testGetSetUsername()
     {
         $this->client->setUsername('dummy');
 
         $this->assertEquals(
             $this->client->getUsername(),
-            '275876e34cf609db118f3d84b799a790'
-        );
-    }
-
-    /**
-     * Test: Setting hashed username
-     *
-     * @covers \Phue\Client::getUsername
-     * @covers \Phue\Client::setUsername
-     */
-    public function testHashedUsername()
-    {
-        $this->client->setUsername('275876e34cf609db118f3d84b799a790');
-
-        $this->assertEquals(
-            $this->client->getUsername(),
-            '275876e34cf609db118f3d84b799a790'
+            'dummy'
         );
     }
 
