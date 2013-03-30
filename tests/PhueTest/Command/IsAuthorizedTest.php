@@ -12,7 +12,7 @@ namespace PhueTest\Command;
 use Phue\Command\IsAuthorized;
 use Phue\Client;
 use Phue\Transport\TransportInterface;
-use Phue\Transport\Exception\AuthorizationException;
+use Phue\Transport\Exception\UnauthorizedUserException;
 
 /**
  * Tests for Phue\Command\IsAuthorized
@@ -78,7 +78,7 @@ class IsAuthorizedTest extends \PHPUnit_Framework_TestCase
                             ->with($this->equalTo($this->mockClient->getUsername()))
                             ->will(
                                 $this->throwException(
-                                    $this->getMock('\Phue\Transport\Exception\AuthorizationException')
+                                    $this->getMock('\Phue\Transport\Exception\UnauthorizedUserException')
                                 )
                             );
 

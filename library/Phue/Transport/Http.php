@@ -41,18 +41,19 @@ class Http implements TransportInterface
      */
     protected static $exceptionMap = [
         0   => 'Phue\Transport\Exception\BridgeException',
-        1   => 'Phue\Transport\Exception\AuthorizationException',
-        2   => 'Phue\Transport\Exception\InvalidBodyException',
-        3   => 'Phue\Transport\Exception\ResourceException',
-        4   => 'Phue\Transport\Exception\MethodException',
-        5   => 'Phue\Transport\Exception\InvalidParameterException',
+        1   => 'Phue\Transport\Exception\UnauthorizedUserException',
+        2   => 'Phue\Transport\Exception\InvalidJsonBodyException',
+        3   => 'Phue\Transport\Exception\ResourceUnavailableException',
+        4   => 'Phue\Transport\Exception\MethodUnavailableException',
+        5   => 'Phue\Transport\Exception\MissingParameterException',
         6   => 'Phue\Transport\Exception\ParameterUnavailableException',
         7   => 'Phue\Transport\Exception\InvalidValueException',
+        8   => 'Phue\Transport\Exception\ParameterUnmodifiableException',
         101 => 'Phue\Transport\Exception\LinkButtonException',
-        201 => 'Phue\Transport\Exception\ParameterUnmodifiableException',
+        201 => 'Phue\Transport\Exception\DeviceParameterUnmodifiableException',
         301 => 'Phue\Transport\Exception\GroupTableFullException',
         302 => 'Phue\Transport\Exception\LightGroupTableFullException',
-        901 => 'Phue\Transport\Exception\ThrottleException',
+        901 => 'Phue\Transport\Exception\InternalErrorException',
     ];
 
     /**

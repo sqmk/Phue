@@ -10,8 +10,8 @@
 namespace Phue\Transport\Exception;
 
 /**
- * Invalid body exception
+ * Invalid JSON body exception
  */
-class InvalidBodyException extends BridgeException
+class InvalidJsonBodyException extends BridgeException
 {
 }

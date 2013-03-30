@@ -10,8 +10,8 @@
 namespace Phue\Transport\Exception;
 
 /**
- * Method exception
+ * Internal error exception
  */
-class MethodException extends BridgeException
+class InternalErrorException extends BridgeException
 {
 }
