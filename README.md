@@ -31,7 +31,7 @@ After all the packages are installed, include composer's generated autoloader. T
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$client = new \Phue\Client('10.0.1.1', 'your.username');
+$client = new \Phue\Client('10.0.1.1', 'yourusername');
 ```
 
 ## Using the client
@@ -472,7 +472,7 @@ At this point, you should be ready to authenticate with the bridge. The bridge e
 Here's how to run the script for authenticating/creating a user:
 
 ```
-$ ./bin/phue-create-user 10.0.1.31 your.username
+$ ./bin/phue-create-user 10.0.1.31 yourusername
 ```
 
 If the connection is ok, you will get a response similar to this:
@@ -492,7 +492,7 @@ Attempting to create user:
 Press the Bridge's button!
 Waiting..........
 
-Successfully created new user: whateverok
+Successfully created new user: yourusername
 ```
 
 From then on, you should be able to use the username you just created for interacting with the Philips Hue bridge!
@@ -506,7 +506,7 @@ Another convenience script has been created to demonstrate how to use Phue to ge
 You can pass the same arguments for ```phue-light-finder``` as you did with ```phue-create-user```. Here's how to use the script:
 
 ```
-$ ./bin/phue-light-finder 10.0.1.31 your.username
+$ ./bin/phue-light-finder 10.0.1.31 yourusername
 ```
 
 Example results are as follows:
