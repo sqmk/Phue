@@ -18,12 +18,6 @@ if (!isset($argv[1], $argv[2])) {
 // Initialize client
 $client = new \Phue\Client($argv[1], $argv[2]);
 
-// Hash username if doesn't appear to be hash
-if ($client->getUsername() != $argv[2]) {
-    echo "! - Username {$argv[2]} doesn't appear to be 32 character hash (A-F, 0-9)", "\n",
-         "! - Using this for username instead: {$client->getUsername()}", "\n\n"; 
-}
-
 echo "Testing connection to bridge at {$client->getHost()}", "\n";
 
 try {

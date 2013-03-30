@@ -42,13 +42,13 @@ for ($i = 1; $i <= $maxTries; ++$i) {
             new \Phue\Command\CreateUser($argv[2])
         );
 
-        echo "\n", "Successfully created new user: {$response->username}", "\n\n";
+        echo "\n\n", "Successfully created new user: {$response->username}", "\n\n";
 
         break;
     } catch (\Phue\Transport\Exception\LinkButtonException $e) {
         echo ".";
     } catch (Exception $e) {
-        echo "\n", "Failure to create user. Please try again!",
+        echo "\n\n", "Failure to create user. Please try again!",
              "\n", "Reason: {$e->getMessage()}", "\n\n";
 
         break;
