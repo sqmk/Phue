@@ -162,27 +162,6 @@ class Bridge
     }
 
     /**
-     * Get whitelisted users
-     *
-     * @return array List of whitelisted users
-     */
-    public function getWhitelist()
-    {
-        $whitelist = [];
-
-        // Iterate through each whitelist record and add to list
-        foreach ($this->details->whitelist as $username => $record) {
-            $whitelist[$username] = [
-                'name'          => $record->name,
-                'create_date'   => $record->{'create date'},
-                'last_use_date' => $record->{'last use date'},
-            ];
-        }
-
-        return $whitelist;
-    }
-
-    /**
      * Is the link button on?
      *
      * @return bool True if the link button on, false if not

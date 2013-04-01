@@ -13,6 +13,7 @@ use Phue\Transport\Http;
 use Phue\Transport\TransportInterface;
 use Phue\Command\CommandInterface;
 use Phue\Command\GetBridge;
+use Phue\Command\GetUsers;
 use Phue\Command\GetLights;
 use Phue\Command\GetGroups;
 use Phue\Command\GetSchedules;
@@ -107,6 +108,18 @@ class Client
     {
         return $this->sendCommand(
             new GetBridge()
+        );
+    }
+
+    /**
+     * Get users
+     *
+     * @return array List of User objects
+     */
+    public function getUsers()
+    {
+        return $this->sendCommand(
+            new GetUsers()
         );
     }
 

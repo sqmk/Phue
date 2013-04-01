@@ -213,37 +213,6 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Getting whitelist
-     *
-     * @covers \Phue\Bridge::getWhitelist
-     */
-    public function testGetWhitelist()
-    {
-        $whitelist = $this->bridge->getWhitelist();
-        $username  = 'abcdefabcdef01234567890123456789';
-
-        $this->assertEquals(
-            count($whitelist),
-            1
-        );
-
-        $this->assertEquals(
-            $whitelist[$username]['name'],
-            $this->details->whitelist[$username]->name
-        );
-
-        $this->assertEquals(
-            $whitelist[$username]['create_date'],
-            $this->details->whitelist[$username]->{'create date'}
-        );
-
-        $this->assertEquals(
-            $whitelist[$username]['last_use_date'],
-            $this->details->whitelist[$username]->{'last use date'}
-        );
-    }
-
-    /**
      * Test: Is Link Button On?
      *
      * @covers \Phue\Bridge::isLinkButtonOn

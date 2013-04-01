@@ -86,6 +86,49 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Get users
+     *
+     * @covers \Phue\Client::getUsers
+     */
+    public function testGetUsers()
+    {
+        // Mock transport
+        $mockTransport = $this->getMock(
+            '\Phue\Transport\TransportInterface',
+            ['sendRequest']
+        );
+
+        // Mock results for sendRequest
+        $mockResults = (object) [
+            'whitelist' => [
+                'someusername'    => new \stdClass,
+                'anotherusername' => new \stdClass,
+                'thirdusername'   => new \stdClass,
+            ]
+        ];
+
+        // Stub transports sendRequest method
+        $mockTransport->expects($this->once())
+                      ->method('sendRequest')
+                      ->will($this->returnValue($mockResults));
+
+        // Set transport
+        $this->client->setTransport($mockTransport);
+
+        // Get users
+        $users = $this->client->getUsers();
+
+        // Ensure at least three users
+        $this->assertEquals(3, count($users));
+
+        // Ensure return type is an array of lights
+        $this->assertContainsOnlyInstancesOf(
+            '\Phue\User',
+            $users
+        );
+    }
+
+    /**
      * Test: Get lights
      *
      * @covers \Phue\Client::getLights
