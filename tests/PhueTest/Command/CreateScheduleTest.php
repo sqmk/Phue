@@ -79,11 +79,7 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         $command = (new CreateSchedule())->name('Dummy!');
 
         // Ensure property is set properly
-        $this->assertAttributeEquals(
-            'Dummy!',
-            'name',
-            $command
-        );
+        $this->assertAttributeContains('Dummy!', 'attributes', $command);
 
         // Ensure self object is returned
         $this->assertEquals($command, $command->name('Dummy!'));
@@ -99,11 +95,7 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         $command = (new CreateSchedule())->description('Description!');
 
         // Ensure property is set properly
-        $this->assertAttributeEquals(
-            'Description!',
-            'description',
-            $command
-        );
+        $this->assertAttributeContains('Description!', 'attributes', $command);
 
         // Ensure self object is returned
         $this->assertEquals($command, $command->name('Description!'));
@@ -120,11 +112,7 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         $command = (new CreateSchedule())->time('2010-10-20T10:11:12');
 
         // Ensure property is set properly
-        $this->assertAttributeEquals(
-            '2010-10-20T10:11:12',
-            'time',
-            $command
-        );
+        $this->assertAttributeContains('2010-10-20T10:11:12', 'attributes', $command);
 
         // Ensure self object is returned
         $this->assertEquals($command, $command->time('+10 seconds'));
@@ -160,7 +148,7 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         );
 
         // Ensure self object is returned
-        $this->assertEquals($command, $command->time('+10 seconds'));
+        $this->assertEquals($command, $command->command($this->mockCommand));
     }
 
     /**
