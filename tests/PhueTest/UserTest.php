@@ -104,8 +104,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
     public function testDelete()
     {
         $this->mockClient->expects($this->once())
-                         ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\DeleteUser'));
+            ->method('sendCommand')
+            ->with($this->isInstanceOf('\Phue\Command\DeleteUser'));
 
         $this->user->delete();
     }

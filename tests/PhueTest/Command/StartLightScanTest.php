@@ -38,13 +38,13 @@ class StartLightScanTest extends \PHPUnit_Framework_TestCase
 
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
-                         ->method('getUsername')
-                         ->will($this->returnValue('abcdefabcdef01234567890123456789'));
+            ->method('getUsername')
+            ->will($this->returnValue('abcdefabcdef01234567890123456789'));
 
         // Stub client's getTransport method
         $this->mockClient->expects($this->any())
-                         ->method('getTransport')
-                         ->will($this->returnValue($this->mockTransport));
+            ->method('getTransport')
+            ->will($this->returnValue($this->mockTransport));
     }
 
     /**
@@ -56,12 +56,12 @@ class StartLightScanTest extends \PHPUnit_Framework_TestCase
     {
         // Stub transport's sendRequest method
         $this->mockTransport->expects($this->once())
-                            ->method('sendRequest')
-                            ->with(
-                                $this->equalTo($this->mockClient->getUsername() . '/lights'),
-                                $this->equalTo('POST')
-                            )
-                            ->will($this->returnValue('success!'));
+            ->method('sendRequest')
+            ->with(
+                $this->equalTo($this->mockClient->getUsername() . '/lights'),
+                $this->equalTo('POST')
+            )
+            ->will($this->returnValue('success!'));
 
         $this->assertEquals(
             (new StartLightScan)->send($this->mockClient),

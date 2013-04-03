@@ -38,13 +38,13 @@ class GetScheduleByIdTest extends \PHPUnit_Framework_TestCase
 
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
-                         ->method('getUsername')
-                         ->will($this->returnValue('abcdefabcdef01234567890123456789'));
+            ->method('getUsername')
+            ->will($this->returnValue('abcdefabcdef01234567890123456789'));
 
         // Stub client getTransport usage
         $this->mockClient->expects($this->any())
-                         ->method('getTransport')
-                         ->will($this->returnValue($this->mockTransport));
+            ->method('getTransport')
+            ->will($this->returnValue($this->mockTransport));
     }
 
     /**
@@ -57,9 +57,9 @@ class GetScheduleByIdTest extends \PHPUnit_Framework_TestCase
     {
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
-                            ->method('sendRequest')
-                            ->with("{$this->mockClient->getUsername()}/schedules/9")
-                            ->will($this->returnValue(new \stdClass));
+            ->method('sendRequest')
+            ->with("{$this->mockClient->getUsername()}/schedules/9")
+            ->will($this->returnValue(new \stdClass));
 
         // Get schedule
         $schedule = (new GetScheduleById(9))->send($this->mockClient);

@@ -41,13 +41,13 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
 
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
-                         ->method('getUsername')
-                         ->will($this->returnValue('abcdefabcdef01234567890123456789'));
+            ->method('getUsername')
+            ->will($this->returnValue('abcdefabcdef01234567890123456789'));
 
         // Stub client's getTransport method
         $this->mockClient->expects($this->any())
-                         ->method('getTransport')
-                         ->will($this->returnValue($this->mockTransport));
+            ->method('getTransport')
+            ->will($this->returnValue($this->mockTransport));
 
         // Mock schedulable command
         $this->mockCommand = $this->getMock(
@@ -57,16 +57,14 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
 
         // Stub command's getSchedulableParams method
         $this->mockCommand->expects($this->any())
-                          ->method('getSchedulableParams')
-                          ->will(
-                              $this->returnValue(
-                                  [
-                                      'address' => '/api/endpoint',
-                                      'method'  => 'POST',
-                                      'body'    => 'Dummy'
-                                  ]
-                              )
-                          );
+            ->method('getSchedulableParams')
+            ->will(
+                $this->returnValue([
+                    'address' => '/api/endpoint',
+                    'method'  => 'POST',
+                    'body'    => 'Dummy'
+                ])
+            );
     }
 
     /**
@@ -164,24 +162,24 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
 
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
-                            ->method('sendRequest')
-                            ->with(
-                                $this->equalTo("{$this->mockClient->getUsername()}/schedules"),
-                                $this->equalTo(TransportInterface::METHOD_POST),
-                                $this->equalTo(
-                                    (object) [
-                                        'name'        => 'Dummy!',
-                                        'description' => 'Description!',
-                                        'time'        => '2012-12-30T10:11:12',
-                                        'command'     => [
-                                            'method'  => TransportInterface::METHOD_POST,
-                                            'address' => "/api/endpoint",
-                                            'body'    => "Dummy"
-                                        ]
-                                    ]
-                                )
-                            )
-                            ->will($this->returnValue(4));
+            ->method('sendRequest')
+            ->with(
+                $this->equalTo("{$this->mockClient->getUsername()}/schedules"),
+                $this->equalTo(TransportInterface::METHOD_POST),
+                $this->equalTo(
+                    (object) [
+                        'name'        => 'Dummy!',
+                        'description' => 'Description!',
+                        'time'        => '2012-12-30T10:11:12',
+                        'command'     => [
+                            'method'  => TransportInterface::METHOD_POST,
+                            'address' => "/api/endpoint",
+                            'body'    => "Dummy"
+                        ]
+                    ]
+                )
+            )
+            ->will($this->returnValue(4));
 
         // Send command and get response
         $scheduleId = $command->send($this->mockClient);

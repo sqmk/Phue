@@ -40,13 +40,13 @@ class GetNewLightsTest extends \PHPUnit_Framework_TestCase
 
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
-                         ->method('getUsername')
-                         ->will($this->returnValue('abcdefabcdef01234567890123456789'));
+            ->method('getUsername')
+            ->will($this->returnValue('abcdefabcdef01234567890123456789'));
 
         // Stub client's getTransport method
         $this->mockClient->expects($this->any())
-                         ->method('getTransport')
-                         ->will($this->returnValue($this->mockTransport));
+            ->method('getTransport')
+            ->will($this->returnValue($this->mockTransport));
 
         // Mock transport results
         $mockTransportResults = (object) [
@@ -57,9 +57,9 @@ class GetNewLightsTest extends \PHPUnit_Framework_TestCase
 
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
-                            ->method('sendRequest')
-                            ->with($this->equalTo("{$this->mockClient->getUsername()}/lights/new"))
-                            ->will($this->returnValue($mockTransportResults));
+            ->method('sendRequest')
+            ->with($this->equalTo("{$this->mockClient->getUsername()}/lights/new"))
+            ->will($this->returnValue($mockTransportResults));
     }
 
     /**

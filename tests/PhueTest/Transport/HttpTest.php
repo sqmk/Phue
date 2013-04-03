@@ -247,17 +247,17 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     {
         // Stub send method on transport adapter
         $this->mockAdapter->expects($this->once())
-                          ->method('send')
-                          ->will($this->returnValue(json_encode($response)));
+            ->method('send')
+            ->will($this->returnValue(json_encode($response)));
 
         // Stub getHttpStatusCode on transport adapter
         $this->mockAdapter->expects($this->once())
-                          ->method('getHttpStatusCode')
-                          ->will($this->returnValue($httpStatusCode));
+            ->method('getHttpStatusCode')
+            ->will($this->returnValue($httpStatusCode));
 
         // Stub getContentType on transport adapter
         $this->mockAdapter->expects($this->once())
-                          ->method('getContentType')
-                          ->will($this->returnValue($contentType));
+            ->method('getContentType')
+            ->will($this->returnValue($contentType));
     }
 }

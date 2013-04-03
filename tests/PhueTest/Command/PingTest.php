@@ -38,8 +38,8 @@ class PingTest extends \PHPUnit_Framework_TestCase
 
         // Stub client getTransport usage
         $this->mockClient->expects($this->any())
-                         ->method('getTransport')
-                         ->will($this->returnValue($this->mockTransport));
+            ->method('getTransport')
+            ->will($this->returnValue($this->mockTransport));
     }
 
     /**
@@ -51,8 +51,8 @@ class PingTest extends \PHPUnit_Framework_TestCase
     {
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
-                            ->method('sendRequest')
-                            ->with($this->equalTo('none/config'));
+            ->method('sendRequest')
+            ->with($this->equalTo('none/config'));
 
         (new Ping)->send($this->mockClient);
     }

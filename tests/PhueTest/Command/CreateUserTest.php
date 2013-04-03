@@ -38,13 +38,13 @@ class CreateUserTest extends \PHPUnit_Framework_TestCase
 
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
-                         ->method('getUsername')
-                         ->will($this->returnValue('abcdefabcdef01234567890123456789'));
+            ->method('getUsername')
+            ->will($this->returnValue('abcdefabcdef01234567890123456789'));
 
         // Stub client's getTransport method
         $this->mockClient->expects($this->any())
-                         ->method('getTransport')
-                         ->will($this->returnValue($this->mockTransport));
+            ->method('getTransport')
+            ->will($this->returnValue($this->mockTransport));
     }
 
     /**
@@ -86,13 +86,13 @@ class CreateUserTest extends \PHPUnit_Framework_TestCase
 
         // Stub transport's sendRequest method
         $this->mockTransport->expects($this->once())
-                            ->method('sendRequest')
-                            ->with(
-                                $this->equalTo(''),
-                                $this->equalTo('POST'),
-                                $this->anything()
-                            )
-                            ->will($this->returnValue('success!'));
+            ->method('sendRequest')
+            ->with(
+                $this->equalTo(''),
+                $this->equalTo('POST'),
+                $this->anything()
+            )
+            ->will($this->returnValue('success!'));
 
         $this->assertEquals(
             (new CreateUser('testuser0123', 'phpunit'))->send($this->mockClient),

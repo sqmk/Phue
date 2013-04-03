@@ -90,9 +90,9 @@ class LightTest extends \PHPUnit_Framework_TestCase
     {
         // Stub client's sendCommand method
         $this->mockClient->expects($this->once())
-                         ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\SetLightName'))
-                         ->will($this->returnValue($this->light));
+            ->method('sendCommand')
+            ->with($this->isInstanceOf('\Phue\Command\SetLightName'))
+            ->will($this->returnValue($this->light));
 
         // Ensure setName returns self
         $this->assertEquals(
@@ -407,7 +407,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
     protected function stubMockClientSendSetLightStateCommand()
     {
         $this->mockClient->expects($this->once())
-                         ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\SetLightState'));
+            ->method('sendCommand')
+            ->with($this->isInstanceOf('\Phue\Command\SetLightState'));
     }
 }

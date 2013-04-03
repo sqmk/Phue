@@ -87,9 +87,9 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     {
         // Stub client's sendCommand method
         $this->mockClient->expects($this->once())
-                         ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\SetGroupAttributes'))
-                         ->will($this->returnValue($this->group));
+            ->method('sendCommand')
+            ->with($this->isInstanceOf('\Phue\Command\SetGroupAttributes'))
+            ->will($this->returnValue($this->group));
 
         // Ensure setName returns self
         $this->assertEquals(
@@ -127,9 +127,9 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     {
         // Stub client's sendCommand method
         $this->mockClient->expects($this->once())
-                         ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\SetGroupAttributes'))
-                         ->will($this->returnValue($this->group));
+            ->method('sendCommand')
+            ->with($this->isInstanceOf('\Phue\Command\SetGroupAttributes'))
+            ->will($this->returnValue($this->group));
 
         // Ensure setLights return self
         $this->assertEquals(
@@ -365,8 +365,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     public function testDelete()
     {
         $this->mockClient->expects($this->once())
-                         ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\DeleteGroup'));
+            ->method('sendCommand')
+            ->with($this->isInstanceOf('\Phue\Command\DeleteGroup'));
 
         $this->group->delete();
     }
@@ -390,7 +390,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     protected function stubMockClientSendSetGroupStateCommand()
     {
         $this->mockClient->expects($this->once())
-                         ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\SetGroupState'));
+            ->method('sendCommand')
+            ->with($this->isInstanceOf('\Phue\Command\SetGroupState'));
     }
 }
