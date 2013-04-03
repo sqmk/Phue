@@ -44,10 +44,10 @@ class GetGroupById implements CommandInterface
     public function send(Client $client)
     {
         // Get response
-        $details = $client->getTransport()->sendRequest(
+        $attributes = $client->getTransport()->sendRequest(
             "{$client->getUsername()}/groups/{$this->groupId}"
         );
 
-        return new Group($this->groupId, $details, $client);
+        return new Group($this->groupId, $attributes, $client);
     }
 }

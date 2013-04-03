@@ -29,8 +29,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             ['127.0.0.1']
         );
 
-        // Build stub details
-        $this->details = (object) [
+        // Build stub attributes
+        $this->attributes = (object) [
             'name'      => 'Dummy group',
             'action'    => (object) [
                 'on'        => false,
@@ -46,7 +46,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         ];
 
         // Create group object
-        $this->group = new Group(6, $this->details, $this->mockClient);
+        $this->group = new Group(6, $this->attributes, $this->mockClient);
     }
 
     /**
@@ -73,7 +73,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->group->getName(),
-            $this->details->name
+            $this->attributes->name
         );
     }
 
@@ -113,7 +113,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->group->getLightIds(),
-            $this->details->lights
+            $this->attributes->lights
         );
     }
 
@@ -163,7 +163,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             $this->group->setOn(true)
         );
 
-        // Make sure group details are updated
+        // Make sure group attributes are updated
         $this->assertTrue($this->group->isOn());
     }
 
@@ -180,7 +180,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         // Make sure original brightness is retrievable
         $this->assertEquals(
             $this->group->getBrightness(),
-            $this->details->action->bri
+            $this->attributes->action->bri
         );
 
         // Ensure setBrightness returns self
@@ -189,7 +189,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             $this->group->setBrightness(254)
         );
 
-        // Make sure group details are updated
+        // Make sure group attributes are updated
         $this->assertEquals(
             $this->group->getBrightness(),
             254
@@ -209,7 +209,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         // Make sure original hue is retrievable
         $this->assertEquals(
             $this->group->getHue(),
-            $this->details->action->hue
+            $this->attributes->action->hue
         );
 
         // Ensure setHue returns self
@@ -218,7 +218,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             $this->group->setHue(30000)
         );
 
-        // Make sure group details are updated
+        // Make sure group attributes are updated
         $this->assertEquals(
             $this->group->getHue(),
             30000
@@ -238,7 +238,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         // Make sure original saturation is retrievable
         $this->assertEquals(
             $this->group->getSaturation(),
-            $this->details->action->sat
+            $this->attributes->action->sat
         );
 
         // Ensure setSaturation returns self
@@ -247,7 +247,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             $this->group->setSaturation(200)
         );
 
-        // Make sure group details are updated
+        // Make sure group attributes are updated
         $this->assertEquals(
             $this->group->getSaturation(),
             200
@@ -268,8 +268,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $this->group->getXY(),
             [
-                'x' => $this->details->action->xy[0],
-                'y' => $this->details->action->xy[1]
+                'x' => $this->attributes->action->xy[0],
+                'y' => $this->attributes->action->xy[1]
             ]
         );
 
@@ -279,7 +279,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             $this->group->setXY(.1, .2)
         );
 
-        // Make sure group details are updated
+        // Make sure group attributes are updated
         $this->assertEquals(
             $this->group->getXY(),
             ['x' => .1, 'y' => .2]
@@ -299,7 +299,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         // Make sure original color temp is retrievable
         $this->assertEquals(
             $this->group->getColorTemp(),
-            $this->details->action->ct
+            $this->attributes->action->ct
         );
 
         // Ensure setColorTemp returns self
@@ -308,7 +308,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             $this->group->setColorTemp(412)
         );
 
-        // Make sure group details are updated
+        // Make sure group attributes are updated
         $this->assertEquals(
             $this->group->getColorTemp(),
             412
@@ -328,7 +328,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         // Make sure original effect is retrievable
         $this->assertEquals(
             $this->group->getEffect(),
-            $this->details->action->effect
+            $this->attributes->action->effect
         );
 
         // Ensure setEffect returns self
@@ -337,7 +337,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             $this->group->setEffect('colorloop')
         );
 
-        // Make sure group details are updated
+        // Make sure group attributes are updated
         $this->assertEquals(
             $this->group->getEffect(),
             'colorloop'
@@ -353,7 +353,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->group->getColorMode(),
-            $this->details->action->colormode
+            $this->attributes->action->colormode
         );
     }
 

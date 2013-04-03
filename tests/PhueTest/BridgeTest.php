@@ -29,8 +29,8 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
             ['127.0.0.1']
         );
 
-        // Build stub details
-        $this->details = (object) [
+        // Build stub attributes
+        $this->attributes = (object) [
             'name'           => 'Hue Bridge',
             'mac'            => '00:11:22:33:44:55',
             'dhcp'           => true,
@@ -53,7 +53,7 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
         ];
 
         // Create bridge object
-        $this->bridge = new Bridge($this->details, $this->mockClient);
+        $this->bridge = new Bridge($this->attributes, $this->mockClient);
     }
 
     /**
@@ -66,7 +66,7 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->bridge->getName(),
-            $this->details->name
+            $this->attributes->name
         );
     }
 
@@ -105,7 +105,7 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->bridge->getMacAddress(),
-            $this->details->mac
+            $this->attributes->mac
         );
     }
 
@@ -143,7 +143,7 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->bridge->getNetmask(),
-            $this->details->netmask
+            $this->attributes->netmask
         );
     }
 
@@ -156,7 +156,7 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->bridge->getGateway(),
-            $this->details->gateway
+            $this->attributes->gateway
         );
     }
 
@@ -169,7 +169,7 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->bridge->getProxyAddress(),
-            $this->details->proxyaddress
+            $this->attributes->proxyaddress
         );
     }
 
@@ -182,7 +182,7 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->bridge->getProxyPort(),
-            $this->details->proxyport
+            $this->attributes->proxyport
         );
     }
 
@@ -195,7 +195,7 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->bridge->getUtcDate(),
-            $this->details->UTC
+            $this->attributes->UTC
         );
     }
 
@@ -208,7 +208,7 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->bridge->getSoftwareVersion(),
-            $this->details->swversion
+            $this->attributes->swversion
         );
     }
 

@@ -17,11 +17,11 @@ use Phue\Command\SetBridgeConfig;
 class Bridge
 {
     /**
-     * Bridge details
+     * Bridge attributes
      *
      * @var stdClass
      */
-    protected $details;
+    protected $attributes;
 
     /**
      * Phue client
@@ -33,12 +33,12 @@ class Bridge
     /**
      * Construct a Phue Bridge object
      *
-     * @param stdClass $details Bridge details
+     * @param stdClass $attributes Bridge attributes
      */
-    public function __construct(\stdClass $details, Client $client)
+    public function __construct(\stdClass $attributes, Client $client)
     {
-        $this->details = $details;
-        $this->client  = $client;
+        $this->attributes = $attributes;
+        $this->client     = $client;
     }
 
     /**
@@ -48,7 +48,7 @@ class Bridge
      */
     public function getName()
     {
-        return $this->details->name;
+        return $this->attributes->name;
     }
 
     /**
@@ -66,7 +66,7 @@ class Bridge
             )
         );
 
-        $this->details->name = (string) $name;
+        $this->attributes->name = (string) $name;
 
         return $this;
     }
@@ -78,7 +78,7 @@ class Bridge
      */
     public function getMacAddress()
     {
-        return $this->details->mac;
+        return $this->attributes->mac;
     }
 
     /**
@@ -88,7 +88,7 @@ class Bridge
      */
     public function isDhcpEnabled()
     {
-        return (bool) $this->details->dhcp;
+        return (bool) $this->attributes->dhcp;
     }
 
     /**
@@ -98,7 +98,7 @@ class Bridge
      */
     public function getIpAddress()
     {
-        return $this->details->ipaddress;
+        return $this->attributes->ipaddress;
     }
 
     /**
@@ -108,7 +108,7 @@ class Bridge
      */
     public function getNetmask()
     {
-        return $this->details->netmask;
+        return $this->attributes->netmask;
     }
 
     /**
@@ -118,7 +118,7 @@ class Bridge
      */
     public function getGateway()
     {
-        return $this->details->gateway;
+        return $this->attributes->gateway;
     }
 
     /**
@@ -128,7 +128,7 @@ class Bridge
      */
     public function getProxyAddress()
     {
-        return $this->details->proxyaddress;
+        return $this->attributes->proxyaddress;
     }
 
     /**
@@ -138,7 +138,7 @@ class Bridge
      */
     public function getProxyPort()
     {
-        return $this->details->proxyport;
+        return $this->attributes->proxyport;
     }
 
     /**
@@ -148,7 +148,7 @@ class Bridge
      */
     public function getUtcDate()
     {
-        return $this->details->UTC;
+        return $this->attributes->UTC;
     }
 
     /**
@@ -158,7 +158,7 @@ class Bridge
      */
     public function getSoftwareVersion()
     {
-        return $this->details->swversion;
+        return $this->attributes->swversion;
     }
 
     /**
@@ -168,7 +168,7 @@ class Bridge
      */
     public function isLinkButtonOn()
     {
-        return (bool) $this->details->linkbutton;
+        return (bool) $this->attributes->linkbutton;
     }
 
     /**
@@ -178,6 +178,6 @@ class Bridge
      */
     public function arePortalServicesEnabled()
     {
-        return (bool) $this->details->portalservices;
+        return (bool) $this->attributes->portalservices;
     }
 }

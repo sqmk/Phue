@@ -24,11 +24,11 @@ class User
     protected $username;
 
     /**
-     * Details
+     * Attributes
      *
      * @var \stdClass
      */
-    protected $details;
+    protected $attributes;
 
     /**
      * Phue client
@@ -40,15 +40,15 @@ class User
     /**
      * Construct a User object
      *
-     * @param string    $username Username
-     * @param \stdClass $details  User details
-     * @param Client    $client   Phue client
+     * @param string    $username   Username
+     * @param \stdClass $attributes User attributes
+     * @param Client    $client     Phue client
      */
-    public function __construct($username, \stdClass $details, Client $client)
+    public function __construct($username, \stdClass $attributes, Client $client)
     {
-        $this->username = (string) $username;
-        $this->details  = $details;
-        $this->client   = $client;
+        $this->username   = (string) $username;
+        $this->attributes = $attributes;
+        $this->client     = $client;
     }
 
     /**
@@ -68,7 +68,7 @@ class User
      */
     public function getDeviceType()
     {
-        return $this->details->name;
+        return $this->attributes->name;
     }
 
     /**
@@ -78,7 +78,7 @@ class User
      */
     public function getCreateDate()
     {
-        return $this->details->{'create date'};
+        return $this->attributes->{'create date'};
     }
 
     /**
@@ -88,7 +88,7 @@ class User
      */
     public function getLastUseDate()
     {
-        return $this->details->{'last use date'};
+        return $this->attributes->{'last use date'};
     }
 
     /**

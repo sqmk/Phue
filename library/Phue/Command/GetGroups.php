@@ -38,8 +38,8 @@ class GetGroups implements CommandInterface
 
         $groups = [];
 
-        foreach ($response->groups as $groupId => $details) {
-            $groups[$groupId] = new Group($groupId, $details, $client);
+        foreach ($response->groups as $groupId => $attributes) {
+            $groups[$groupId] = new Group($groupId, $attributes, $client);
         }
 
         return $groups;

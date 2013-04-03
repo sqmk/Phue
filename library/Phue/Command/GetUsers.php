@@ -38,8 +38,8 @@ class GetUsers implements CommandInterface
 
         $users = [];
 
-        foreach ($response->whitelist as $username => $details) {
-            $users[$username] = new User($username, $details, $client);
+        foreach ($response->whitelist as $username => $attributes) {
+            $users[$username] = new User($username, $attributes, $client);
         }
 
         return $users;

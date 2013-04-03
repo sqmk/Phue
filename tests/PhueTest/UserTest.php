@@ -32,15 +32,15 @@ class UserTest extends \PHPUnit_Framework_TestCase
         // Stub username
         $this->username = 'phpunittest';
 
-        // Build stub details
-        $this->details = (object) [
+        // Build stub attributes
+        $this->attributes = (object) [
             'name'          => 'Phue',
             'create date'   => '1984-12-30T03:04:05',
             'last use date' => '1984-12-30T06:07:08',
         ];
 
         // Create user object
-        $this->user = new User($this->username, $this->details, $this->mockClient);
+        $this->user = new User($this->username, $this->attributes, $this->mockClient);
     }
 
     /**
@@ -66,7 +66,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->user->getDeviceType(),
-            $this->details->name
+            $this->attributes->name
         );
     }
 
@@ -79,7 +79,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->user->getCreateDate(),
-            $this->details->{'create date'}
+            $this->attributes->{'create date'}
         );
     }
 
@@ -92,7 +92,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->user->getLastUseDate(),
-            $this->details->{'last use date'}
+            $this->attributes->{'last use date'}
         );
     }
 

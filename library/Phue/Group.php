@@ -27,11 +27,11 @@ class Group
     protected $id;
 
     /**
-     * Group details
+     * Group attributes
      *
      * @var stdClass
      */
-    protected $details;
+    protected $attributes;
 
     /**
      * Phue client
@@ -43,15 +43,15 @@ class Group
     /**
      * Construct a Phue Group object
      *
-     * @param int      $id      Id
-     * @param stdClass $details Group details
-     * @param Client   $client  Phue client
+     * @param int      $id         Id
+     * @param stdClass $attributes Group attributes
+     * @param Client   $client     Phue client
      */
-    public function __construct($id, \stdClass $details, Client $client)
+    public function __construct($id, \stdClass $attributes, Client $client)
     {
-        $this->id      = (int) $id;
-        $this->details = $details;
-        $this->client  = $client;
+        $this->id         = (int) $id;
+        $this->attributes = $attributes;
+        $this->client     = $client;
     }
 
     /**
@@ -71,7 +71,7 @@ class Group
      */
     public function getName()
     {
-        return $this->details->name;
+        return $this->attributes->name;
     }
 
     /**
@@ -85,7 +85,7 @@ class Group
             (new SetGroupConfig($this))->name((string) $name)
         );
 
-        $this->details->name = (string) $name;
+        $this->attributes->name = (string) $name;
 
         return $this;
     }
@@ -97,7 +97,7 @@ class Group
      */
     public function getLightIds()
     {
-        return $this->details->lights;
+        return $this->attributes->lights;
     }
 
     /**
@@ -119,7 +119,7 @@ class Group
             (new SetGroupConfig($this))->lights($lightIds)
         );
 
-        $this->details->lights = $lightIds;
+        $this->attributes->lights = $lightIds;
 
         return $this;
     }
@@ -131,7 +131,7 @@ class Group
      */
     public function isOn()
     {
-        return (bool) $this->details->action->on;
+        return (bool) $this->attributes->action->on;
     }
 
     /**
@@ -147,7 +147,7 @@ class Group
             (new SetGroupAction($this))->on((bool) $flag)
         );
 
-        $this->details->action->on = (bool) $flag;
+        $this->attributes->action->on = (bool) $flag;
 
         return $this;
     }
@@ -159,7 +159,7 @@ class Group
      */
     public function getBrightness()
     {
-        return $this->details->action->bri;
+        return $this->attributes->action->bri;
     }
 
     /**
@@ -175,7 +175,7 @@ class Group
             (new SetGroupAction($this))->brightness((int) $level)
         );
 
-        $this->details->action->bri = (int) $level;
+        $this->attributes->action->bri = (int) $level;
 
         return $this;
     }
@@ -187,7 +187,7 @@ class Group
      */
     public function getHue()
     {
-        return $this->details->action->hue;
+        return $this->attributes->action->hue;
     }
 
     /**
@@ -204,8 +204,8 @@ class Group
         );
 
         // Change both hue and color mode state
-        $this->details->action->hue       = (int) $value;
-        $this->details->action->colormode = 'hs';
+        $this->attributes->action->hue       = (int) $value;
+        $this->attributes->action->colormode = 'hs';
 
         return $this;
     }
@@ -217,7 +217,7 @@ class Group
      */
     public function getSaturation()
     {
-        return $this->details->action->sat;
+        return $this->attributes->action->sat;
     }
 
     /**
@@ -234,8 +234,8 @@ class Group
         );
 
         // Change both saturation and color mode state
-        $this->details->action->sat       = (int) $value;
-        $this->details->action->colormode = 'hs';
+        $this->attributes->action->sat       = (int) $value;
+        $this->attributes->action->colormode = 'hs';
 
         return $this;
     }
@@ -248,8 +248,8 @@ class Group
     public function getXY()
     {
         return [
-            'x' => $this->details->action->xy[0],
-            'y' => $this->details->action->xy[1],
+            'x' => $this->attributes->action->xy[0],
+            'y' => $this->attributes->action->xy[1],
         ];
     }
 
@@ -268,8 +268,8 @@ class Group
         );
 
         // Change both internal xy and colormode state
-        $this->details->action->xy        = [$x, $y];
-        $this->details->action->colormode = 'xy';
+        $this->attributes->action->xy        = [$x, $y];
+        $this->attributes->action->colormode = 'xy';
 
         return $this;
     }
@@ -281,7 +281,7 @@ class Group
      */
     public function getColorTemp()
     {
-        return $this->details->action->ct;
+        return $this->attributes->action->ct;
     }
 
     /**
@@ -298,8 +298,8 @@ class Group
         );
 
         // Change both internal color temp and colormode state
-        $this->details->action->ct        = (int) $value;
-        $this->details->action->colormode = 'ct';
+        $this->attributes->action->ct        = (int) $value;
+        $this->attributes->action->colormode = 'ct';
 
         return $this;
     }
@@ -311,7 +311,7 @@ class Group
      */
     public function getEffect()
     {
-        return $this->details->action->effect;
+        return $this->attributes->action->effect;
     }
 
     /**
@@ -327,7 +327,7 @@ class Group
             (new SetGroupAction($this))->effect($mode)
         );
 
-        $this->details->action->effect = $mode;
+        $this->attributes->action->effect = $mode;
 
         return $this;
     }
@@ -339,7 +339,7 @@ class Group
      */
     public function getColorMode()
     {
-        return $this->details->action->colormode;
+        return $this->attributes->action->colormode;
     }
 
     /**

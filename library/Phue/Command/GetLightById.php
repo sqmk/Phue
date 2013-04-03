@@ -44,10 +44,10 @@ class GetLightById implements CommandInterface
     public function send(Client $client)
     {
         // Get response
-        $details = $client->getTransport()->sendRequest(
+        $attributes = $client->getTransport()->sendRequest(
             "{$client->getUsername()}/lights/{$this->lightId}"
         );
 
-        return new Light($this->lightId, $details, $client);
+        return new Light($this->lightId, $attributes, $client);
     }
 }

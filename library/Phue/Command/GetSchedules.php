@@ -38,8 +38,8 @@ class GetSchedules implements CommandInterface
 
         $schedules = [];
 
-        foreach ($response->schedules as $scheduleId => $details) {
-            $schedules[$scheduleId] = new Schedule($scheduleId, $details, $client);
+        foreach ($response->schedules as $scheduleId => $attributes) {
+            $schedules[$scheduleId] = new Schedule($scheduleId, $attributes, $client);
         }
 
         return $schedules;

@@ -38,8 +38,8 @@ class GetLights implements CommandInterface
 
         $lights = [];
 
-        foreach ($response->lights as $lightId => $details) {
-            $lights[$lightId] = new Light($lightId, $details, $client);
+        foreach ($response->lights as $lightId => $attributes) {
+            $lights[$lightId] = new Light($lightId, $attributes, $client);
         }
 
         return $lights;
