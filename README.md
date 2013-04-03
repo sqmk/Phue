@@ -175,8 +175,8 @@ $light->setOn(true);
 // Setting alert (select|lselect)
 $light->setAlert('lselect');
 
-// Setting brightness (0 for no light, 254 for max brightness)
-$light->setBrightness(254);
+// Setting brightness (0 for no light, 255 for max brightness)
+$light->setBrightness(255);
 
 // Set hue (0 to 65535), pairs with saturation, changes color mode to 'hs'
 $light->setHue(56000);
@@ -188,7 +188,7 @@ $light->setSaturation(255);
 // Changes color mode to 'xy'
 $light->setXY(0.25, 0.5);
 
-// Set color temp (154 min, 500 max), changes color mode to 'ct'
+// Set color temp (153 min, 500 max), changes color mode to 'ct'
 $light->setColorTemp(300);
 
 // Set effect (none|colorloop)
@@ -313,8 +313,8 @@ $group->setLights([
 // Setting on/off state (true|false)
 $group->setOn(true);
 
-// Setting brightness (0 for no light, 254 for max brightness)
-$group->setBrightness(254);
+// Setting brightness (0 for no light, 255 for max brightness)
+$group->setBrightness(255);
 
 // Set hue (0 to 65535), pairs with saturation, changes color mode to 'hs'
 $group->setHue(56000);
@@ -326,7 +326,7 @@ $group->setSaturation(255);
 // Changes color mode to 'xy'
 $group->setXY(0.25, 0.5);
 
-// Set color temp (154 min, 500 max), changes color mode to 'ct'
+// Set color temp (153 min, 500 max), changes color mode to 'ct'
 $group->setColorTemp(300);
 
 // Set effect (none|colorloop)
@@ -373,7 +373,7 @@ $allGroup = $client->sendCommand(
 );
 
 // Set brightness on all bulbs
-$allGroup->setBrightness(254);
+$allGroup->setBrightness(255);
 ```
 
 ### Managing Schedules
