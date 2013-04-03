@@ -88,7 +88,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         // Stub client's sendCommand method
         $this->mockClient->expects($this->once())
                          ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\SetGroupConfig'))
+                         ->with($this->isInstanceOf('\Phue\Command\SetGroupAttributes'))
                          ->will($this->returnValue($this->group));
 
         // Ensure setName returns self
@@ -128,7 +128,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         // Stub client's sendCommand method
         $this->mockClient->expects($this->once())
                          ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\SetGroupConfig'))
+                         ->with($this->isInstanceOf('\Phue\Command\SetGroupAttributes'))
                          ->will($this->returnValue($this->group));
 
         // Ensure setLights return self
@@ -152,7 +152,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsSetOn()
     {
-        $this->stubMockClientSendSetGroupActionCommand();
+        $this->stubMockClientSendSetGroupStateCommand();
 
         // Make sure original on action is retrievable
         $this->assertFalse($this->group->isOn());
@@ -175,7 +175,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSetBrightness()
     {
-        $this->stubMockClientSendSetGroupActionCommand();
+        $this->stubMockClientSendSetGroupStateCommand();
 
         // Make sure original brightness is retrievable
         $this->assertEquals(
@@ -204,7 +204,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSetHue()
     {
-        $this->stubMockClientSendSetGroupActionCommand();
+        $this->stubMockClientSendSetGroupStateCommand();
 
         // Make sure original hue is retrievable
         $this->assertEquals(
@@ -233,7 +233,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSetSaturation()
     {
-        $this->stubMockClientSendSetGroupActionCommand();
+        $this->stubMockClientSendSetGroupStateCommand();
 
         // Make sure original saturation is retrievable
         $this->assertEquals(
@@ -262,7 +262,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSetXY()
     {
-        $this->stubMockClientSendSetGroupActionCommand();
+        $this->stubMockClientSendSetGroupStateCommand();
 
         // Make sure original xy is retrievable
         $this->assertEquals(
@@ -294,7 +294,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSetColorTemp()
     {
-        $this->stubMockClientSendSetGroupActionCommand();
+        $this->stubMockClientSendSetGroupStateCommand();
 
         // Make sure original color temp is retrievable
         $this->assertEquals(
@@ -323,7 +323,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSetEffect()
     {
-        $this->stubMockClientSendSetGroupActionCommand();
+        $this->stubMockClientSendSetGroupStateCommand();
 
         // Make sure original effect is retrievable
         $this->assertEquals(
@@ -387,10 +387,10 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     /**
      * Stub mock client's send command
      */
-    protected function stubMockClientSendSetGroupActionCommand()
+    protected function stubMockClientSendSetGroupStateCommand()
     {
         $this->mockClient->expects($this->once())
                          ->method('sendCommand')
-                         ->with($this->isInstanceOf('\Phue\Command\SetGroupAction'));
+                         ->with($this->isInstanceOf('\Phue\Command\SetGroupState'));
     }
 }

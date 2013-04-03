@@ -9,8 +9,8 @@
 
 namespace Phue;
 
-use Phue\Command\SetGroupConfig;
-use Phue\Command\SetGroupAction;
+use Phue\Command\SetGroupAttributes;
+use Phue\Command\SetGroupState;
 use Phue\Command\SetLightState;
 use Phue\Command\DeleteGroup;
 
@@ -82,7 +82,7 @@ class Group
     public function setName($name)
     {
         $this->client->sendCommand(
-            (new SetGroupConfig($this))->name((string) $name)
+            (new SetGroupAttributes($this))->name((string) $name)
         );
 
         $this->attributes->name = (string) $name;
@@ -116,7 +116,7 @@ class Group
         }
 
         $this->client->sendCommand(
-            (new SetGroupConfig($this))->lights($lightIds)
+            (new SetGroupAttributes($this))->lights($lightIds)
         );
 
         $this->attributes->lights = $lightIds;
@@ -144,7 +144,7 @@ class Group
     public function setOn($flag = true)
     {
         $this->client->sendCommand(
-            (new SetGroupAction($this))->on((bool) $flag)
+            (new SetGroupState($this))->on((bool) $flag)
         );
 
         $this->attributes->action->on = (bool) $flag;
@@ -172,7 +172,7 @@ class Group
     public function setBrightness($level = SetLightState::BRIGHTNESS_MAX)
     {
         $this->client->sendCommand(
-            (new SetGroupAction($this))->brightness((int) $level)
+            (new SetGroupState($this))->brightness((int) $level)
         );
 
         $this->attributes->action->bri = (int) $level;
@@ -200,7 +200,7 @@ class Group
     public function setHue($value)
     {
         $this->client->sendCommand(
-            (new SetGroupAction($this))->hue((int) $value)
+            (new SetGroupState($this))->hue((int) $value)
         );
 
         // Change both hue and color mode state
@@ -230,7 +230,7 @@ class Group
     public function setSaturation($value)
     {
         $this->client->sendCommand(
-            (new SetGroupAction($this))->saturation((int) $value)
+            (new SetGroupState($this))->saturation((int) $value)
         );
 
         // Change both saturation and color mode state
@@ -264,7 +264,7 @@ class Group
     public function setXY($x, $y)
     {
         $this->client->sendCommand(
-            (new SetGroupAction($this))->xy((float) $x, (float) $y)
+            (new SetGroupState($this))->xy((float) $x, (float) $y)
         );
 
         // Change both internal xy and colormode state
@@ -294,7 +294,7 @@ class Group
     public function setColorTemp($value)
     {
         $this->client->sendCommand(
-            (new SetGroupAction($this))->colorTemp((int) $value)
+            (new SetGroupState($this))->colorTemp((int) $value)
         );
 
         // Change both internal color temp and colormode state
@@ -324,7 +324,7 @@ class Group
     public function setEffect($mode = SetLightState::EFFECT_NONE)
     {
         $this->client->sendCommand(
-            (new SetGroupAction($this))->effect($mode)
+            (new SetGroupState($this))->effect($mode)
         );
 
         $this->attributes->action->effect = $mode;

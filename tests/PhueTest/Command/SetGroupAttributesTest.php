@@ -9,14 +9,14 @@
 
 namespace PhueTest\Command;
 
-use Phue\Command\SetGroupAction;
+use Phue\Command\SetGroupAttributes;
 use Phue\Client;
 use Phue\Transport\TransportInterface;
 
 /**
- * Tests for Phue\Command\SetGroupAction
+ * Tests for Phue\Command\SetGroupAttributes
  */
-class SetGroupActionTest extends \PHPUnit_Framework_TestCase
+class SetGroupAttributesTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
@@ -57,50 +57,28 @@ class SetGroupActionTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Send command
      *
-     * @covers \Phue\Command\SetGroupAction::__construct
-     * @covers \Phue\Command\SetGroupAction::send
+     * @covers \Phue\Command\SetGroupAttributes::__construct
+     * @covers \Phue\Command\SetGroupAttributes::name
+     * @covers \Phue\Command\SetGroupAttributes::lights
+     * @covers \Phue\Command\SetGroupAttributes::send
      */
     public function testSend()
     {
         // Build command
-        $setGroupActionCmd = new SetGroupAction($this->mockGroup);
+        $setGroupAttributesCmd = new SetGroupAttributes($this->mockGroup);
 
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
             (object) [
-                'ct' => '300'
+                'name'   => 'Dummy!',
+                'lights' => [3]
             ]
         );
 
-        // Change color temp and set state
-        $setGroupActionCmd->colorTemp(300)
-                          ->send($this->mockClient);
-    }
-
-    /**
-     * Test: Get schedulable params
-     *
-     * @covers \Phue\Command\SetGroupAction::getSchedulableParams
-     */
-    public function testGetSchedulableParams()
-    {
-        // Build command
-        $setGroupActionCmd = new SetGroupAction($this->mockGroup);
-
-        // Change alert
-        $setGroupActionCmd->alert('select');
-
-        // Ensure schedulable params are expected
-        $this->assertEquals(
-            $setGroupActionCmd->getSchedulableParams($this->mockClient),
-            [
-                'address' => "{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action",
-                'method'  => 'PUT',
-                'body'    => (object) [
-                    'alert' => 'select'
-                ]
-            ]
-        );
+        // Change name and lights
+        $setGroupAttributesCmd->name('Dummy!')
+            ->lights([3])
+            ->send($this->mockClient);
     }
 
     /**
@@ -115,7 +93,7 @@ class SetGroupActionTest extends \PHPUnit_Framework_TestCase
                             ->method('sendRequest')
                             ->with(
                                 $this->equalTo(
-                                    "{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action"
+                                    "{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}"
                                 ),
                                 $this->equalTo('PUT'),
                                 $payload

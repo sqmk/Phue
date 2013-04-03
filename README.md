@@ -333,14 +333,14 @@ $group->setColorTemp(300);
 $group->setEffect('colorloop');
 ```
 
-Just like the bulbs, each *set* method on the ```\Phue\Group``` object will send a request for each call. To minimize calls and to change multiple properties on the group at once, use the ```SetGroupAction``` command. The ```SetGroupAction``` command has all the options as ```SetLightState```.
+Just like the bulbs, each *set* method on the ```\Phue\Group``` object will send a request for each call. To minimize calls and to change multiple properties on the group at once, use the ```SetGroupState``` command. The ```SetGroupState``` command has all the options as ```SetLightState```.
 
 ```php
 // Retrieve group
 $group = $client->getGroups()[1];
 
 // Setting the brightness, color temp, and transition at the same time
-$command = new \Phue\Command\SetGroupAction($group);
+$command = new \Phue\Command\SetGroupState($group);
 $command->brightness(200)
         ->colorTemp(500)
         ->transitionTime(0);
@@ -384,7 +384,7 @@ Retrievable commands will return an array or single instance of a ```\Phue\Sched
 
 ```php
 // Create command to dim all lights
-$groupCommand = new \Phue\Command\SetGroupAction(0);
+$groupCommand = new \Phue\Command\SetGroupState(0);
 $groupCommand->brightness(30);
 
 // Create schedule command to run 10 seconds from now
@@ -420,7 +420,7 @@ $schedule->delete();
 
 If you noticed in the above example, a ```Schedulable``` command must be passed to ```CreateSchedule```. The only commands that are schedulable are:
 * ```SetLightState```
-* ```SetGroupAction```
+* ```SetGroupState```
 
 ### Other commands
 
