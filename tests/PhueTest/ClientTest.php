@@ -23,7 +23,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-    	$this->client = new Client('127.0.0.1');
+        $this->client = new Client('127.0.0.1');
     }
 
     /**
@@ -72,8 +72,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
-			->method('sendRequest')
-			->will($this->returnValue(new \stdClass));
+            ->method('sendRequest')
+            ->will($this->returnValue(new \stdClass));
 
         // Set transport
         $this->client->setTransport($mockTransport);
@@ -109,8 +109,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
-			->method('sendRequest')
-			->will($this->returnValue($mockResults));
+            ->method('sendRequest')
+            ->will($this->returnValue($mockResults));
 
         // Set transport
         $this->client->setTransport($mockTransport);
@@ -151,8 +151,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
-			->method('sendRequest')
-			->will($this->returnValue($mockResults));
+            ->method('sendRequest')
+            ->will($this->returnValue($mockResults));
 
         // Set transport
         $this->client->setTransport($mockTransport);
@@ -193,8 +193,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
-			->method('sendRequest')
-			->will($this->returnValue($mockResults));
+            ->method('sendRequest')
+            ->will($this->returnValue($mockResults));
 
         // Set transport
         $this->client->setTransport($mockTransport);
@@ -236,8 +236,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
-			->method('sendRequest')
-			->will($this->returnValue($mockResults));
+            ->method('sendRequest')
+            ->will($this->returnValue($mockResults));
 
         // Set transport
         $this->client->setTransport($mockTransport);
@@ -302,9 +302,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         // Stub command's send method
         $mockCommand->expects($this->once())
-			->method('send')
-			->with($this->equalTo($this->client))
-			->will($this->returnValue('sample response'));
+            ->method('send')
+            ->with($this->equalTo($this->client))
+            ->will($this->returnValue('sample response'));
 
         $this->assertEquals(
             $this->client->sendCommand($mockCommand),

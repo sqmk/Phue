@@ -79,9 +79,9 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     {
         // Expect client's sendCommand usage
         $this->mockClient->expects($this->once())
-			->method('sendCommand')
-			->with($this->isInstanceOf('\Phue\Command\SetBridgeConfig'))
-			->will($this->returnValue($this->bridge));
+            ->method('sendCommand')
+            ->with($this->isInstanceOf('\Phue\Command\SetBridgeConfig'))
+            ->will($this->returnValue($this->bridge));
 
         // Ensure setName returns self
         $this->assertEquals(
