@@ -13,6 +13,7 @@ use Phue\Transport\Http;
 use Phue\Transport\TransportInterface;
 use Phue\Command\CommandInterface;
 use Phue\Command\GetBridge;
+use Phue\Command\GetUsers;
 use Phue\Command\GetLights;
 use Phue\Command\GetGroups;
 use Phue\Command\GetSchedules;
@@ -25,7 +26,7 @@ class Client
     /**
      * Client name
      */
-    const CLIENT_NAME = 'Phue';
+    const DEFAULT_DEVICE_TYPE = 'Phue';
 
     /**
      * Host address
@@ -95,11 +96,6 @@ class Client
      */
     public function setUsername($username)
     {
-        // Hash username if not already in hash format
-        if (!preg_match('/[a-f0-9]{32}/i', $username)) {
-            $username = md5($username);
-        }
-
         $this->username = (string) $username;
     }
 
@@ -112,6 +108,18 @@ class Client
     {
         return $this->sendCommand(
             new GetBridge()
+        );
+    }
+
+    /**
+     * Get users
+     *
+     * @return array List of User objects
+     */
+    public function getUsers()
+    {
+        return $this->sendCommand(
+            new GetUsers()
         );
     }
 

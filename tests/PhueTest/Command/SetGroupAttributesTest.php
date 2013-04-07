@@ -9,14 +9,14 @@
 
 namespace PhueTest\Command;
 
-use Phue\Command\SetGroupConfig;
+use Phue\Command\SetGroupAttributes;
 use Phue\Client;
 use Phue\Transport\TransportInterface;
 
 /**
- * Tests for Phue\Command\SetGroupConfig
+ * Tests for Phue\Command\SetGroupAttributes
  */
-class SetGroupConfigTest extends \PHPUnit_Framework_TestCase
+class SetGroupAttributesTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
@@ -45,27 +45,27 @@ class SetGroupConfigTest extends \PHPUnit_Framework_TestCase
 
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
-                         ->method('getUsername')
-                         ->will($this->returnValue('abcdefabcdef01234567890123456789'));
+            ->method('getUsername')
+            ->will($this->returnValue('abcdefabcdef01234567890123456789'));
 
         // Stub client's getTransport method
         $this->mockClient->expects($this->any())
-                         ->method('getTransport')
-                         ->will($this->returnValue($this->mockTransport));
+            ->method('getTransport')
+            ->will($this->returnValue($this->mockTransport));
     }
 
     /**
      * Test: Send command
      *
-     * @covers \Phue\Command\SetGroupConfig::__construct
-     * @covers \Phue\Command\SetGroupConfig::name
-     * @covers \Phue\Command\SetGroupConfig::lights
-     * @covers \Phue\Command\SetGroupConfig::send
+     * @covers \Phue\Command\SetGroupAttributes::__construct
+     * @covers \Phue\Command\SetGroupAttributes::name
+     * @covers \Phue\Command\SetGroupAttributes::lights
+     * @covers \Phue\Command\SetGroupAttributes::send
      */
     public function testSend()
     {
         // Build command
-        $setGroupConfigCmd = new SetGroupConfig($this->mockGroup);
+        $setGroupAttributesCmd = new SetGroupAttributes($this->mockGroup);
 
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
@@ -76,9 +76,9 @@ class SetGroupConfigTest extends \PHPUnit_Framework_TestCase
         );
 
         // Change name and lights
-        $setGroupConfigCmd->name('Dummy!')
-                          ->lights([3])
-                          ->send($this->mockClient);
+        $setGroupAttributesCmd->name('Dummy!')
+            ->lights([3])
+            ->send($this->mockClient);
     }
 
     /**
@@ -90,13 +90,13 @@ class SetGroupConfigTest extends \PHPUnit_Framework_TestCase
     {
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
-                            ->method('sendRequest')
-                            ->with(
-                                $this->equalTo(
-                                    "{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}"
-                                ),
-                                $this->equalTo('PUT'),
-                                $payload
-                            );
+            ->method('sendRequest')
+            ->with(
+                $this->equalTo(
+                    "{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}"
+                ),
+                $this->equalTo('PUT'),
+                $payload
+            );
     }
 }

@@ -31,7 +31,7 @@ After all the packages are installed, include composer's generated autoloader. T
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$client = new \Phue\Client('10.0.1.1', 'your.username');
+$client = new \Phue\Client('10.0.1.1', 'yourusername');
 ```
 
 ## Using the client
@@ -74,7 +74,7 @@ try {
 
 All commands can be issued in a similar manner as the previous two examples.
 
-Once you have determined you can make requests to the bridge, you can test if the username you provided is authenticated.
+Once you have determined you can make requests to the bridge, you can test if the username you provided is available.
 
 ```php
 $isAuthenticated = $client->sendCommand(
@@ -86,22 +86,22 @@ echo $isAuthenticated
    : 'You are not authenticated!';
 ```
 
-If the username provided is not authenticated, you can use the convenience script to authenticate, which is documented later in this README. Or, you can use the Authenticate command to do it yourself.
+If the username provided is not created, you can use the convenience script to authenticate, which is documented later in this README. Or, you can use the CreateUser command to do it yourself.
 
 ```php
 // Push the bridge's link button prior to running this
 try {
 	$client->sendCommand(
-		new \Phue\Command\Authenticate
+		new \Phue\Command\CreateUser($client->getUsername())
 	);
 
-	echo "{$client->getUsername()} is now authenticated";
+	echo "You are now authenticated";
 } catch (\Phue\Transport\Exception\LinkButtonException $e) {
 	echo 'The link button was not pressed!';
 }
 ```
 
-After the user is authenticated, you won't have to authenticate again unless you reset the bridge!
+After the user is created, you won't have to create it again unless you reset the bridge!
 
 ### Managing lights
 
@@ -175,8 +175,8 @@ $light->setOn(true);
 // Setting alert (select|lselect)
 $light->setAlert('lselect');
 
-// Setting brightness (0 for no light, 254 for max brightness)
-$light->setBrightness(254);
+// Setting brightness (0 for no light, 255 for max brightness)
+$light->setBrightness(255);
 
 // Set hue (0 to 65535), pairs with saturation, changes color mode to 'hs'
 $light->setHue(56000);
@@ -188,7 +188,7 @@ $light->setSaturation(255);
 // Changes color mode to 'xy'
 $light->setXY(0.25, 0.5);
 
-// Set color temp (154 min, 500 max), changes color mode to 'ct'
+// Set color temp (153 min, 500 max), changes color mode to 'ct'
 $light->setColorTemp(300);
 
 // Set effect (none|colorloop)
@@ -313,8 +313,8 @@ $group->setLights([
 // Setting on/off state (true|false)
 $group->setOn(true);
 
-// Setting brightness (0 for no light, 254 for max brightness)
-$group->setBrightness(254);
+// Setting brightness (0 for no light, 255 for max brightness)
+$group->setBrightness(255);
 
 // Set hue (0 to 65535), pairs with saturation, changes color mode to 'hs'
 $group->setHue(56000);
@@ -326,21 +326,21 @@ $group->setSaturation(255);
 // Changes color mode to 'xy'
 $group->setXY(0.25, 0.5);
 
-// Set color temp (154 min, 500 max), changes color mode to 'ct'
+// Set color temp (153 min, 500 max), changes color mode to 'ct'
 $group->setColorTemp(300);
 
 // Set effect (none|colorloop)
 $group->setEffect('colorloop');
 ```
 
-Just like the bulbs, each *set* method on the ```\Phue\Group``` object will send a request for each call. To minimize calls and to change multiple properties on the group at once, use the ```SetGroupAction``` command. The ```SetGroupAction``` command has all the options as ```SetLightState```.
+Just like the bulbs, each *set* method on the ```\Phue\Group``` object will send a request for each call. To minimize calls and to change multiple properties on the group at once, use the ```SetGroupState``` command. The ```SetGroupState``` command has all the options as ```SetLightState```.
 
 ```php
 // Retrieve group
 $group = $client->getGroups()[1];
 
 // Setting the brightness, color temp, and transition at the same time
-$command = new \Phue\Command\SetGroupAction($group);
+$command = new \Phue\Command\SetGroupState($group);
 $command->brightness(200)
         ->colorTemp(500)
         ->transitionTime(0);
@@ -373,7 +373,7 @@ $allGroup = $client->sendCommand(
 );
 
 // Set brightness on all bulbs
-$allGroup->setBrightness(254);
+$allGroup->setBrightness(255);
 ```
 
 ### Managing Schedules
@@ -384,7 +384,7 @@ Retrievable commands will return an array or single instance of a ```\Phue\Sched
 
 ```php
 // Create command to dim all lights
-$groupCommand = new \Phue\Command\SetGroupAction(0);
+$groupCommand = new \Phue\Command\SetGroupState(0);
 $groupCommand->brightness(30);
 
 // Create schedule command to run 10 seconds from now
@@ -420,7 +420,7 @@ $schedule->delete();
 
 If you noticed in the above example, a ```Schedulable``` command must be passed to ```CreateSchedule```. The only commands that are schedulable are:
 * ```SetLightState```
-* ```SetGroupAction```
+* ```SetGroupState```
 
 ### Other commands
 
@@ -463,48 +463,39 @@ The internal IP address(es) listed in the results is what you need for the Phue 
 
 If the script provided doesn't find your bridge, or if you don't have internet connection on your network, I have created a wiki page that describes a few other convenient ways of finding it: [Finding Philips Hue bridge on network](/sqmk/Phue/wiki/Finding-Philips-Hue-bridge-on-network).
 
-### Authentication
+### Authentication / Creating a User
 
-To test connectivity and authenticate with the bridge, you can use ```bin/phue-authenticate```. The script uses the Phue library to make requests and receive responses from the Philips Hue bridge.
+To test connectivity and authenticate with the bridge, you can use ```bin/phue-create-user```. The script uses the Phue library to make requests and receive responses from the Philips Hue bridge.
 
-At this point, you should be ready to authenticate with the bridge. The bridge expects a 32 character hash as a username to authenticate with, but you can feed in any string into the client and it will automatically hash for you. This is much easier to remember than the hash!
+At this point, you should be ready to authenticate with the bridge. The bridge expects a username between 10 and 40 characters with alphanumeric characters to authenticate with.
 
-Here's how to run the script for authenticating:
+Here's how to run the script for authenticating/creating a user:
 
 ```
-$ ./bin/phue-authenticate 10.0.1.31 your.username
+$ ./bin/phue-create-user 10.0.1.31 yourusername
 ```
 
 If the connection is ok, you will get a response similar to this:
 
 ```
-! - Username your.username doesn't appear to be 32 character hash (A-F, 0-9)
-! - Using this for username instead: af8caecf12655838d10fa92d86d09e82
-
 Testing connection to bridge at 10.0.1.31
-Response appears OK!
-
-Attempting to authenticate (af8caecf12655838d10fa92d86d09e82):
+Attempting to create user:
 Press the Bridge's button!
-Waiting.....
+Waiting.........
 ```
 
-The ```phue-authenticate``` script will attempt to authenticate with the bridge once every second. The bridge's connection button (the big round lit up one) needs to be pressed while the script runs. If the button is pressed during execution of the script, you should get a response like this:
+The ```phue-create-user``` script will attempt to create a user on the bridge once every second. The bridge's connection button (the big round lit up one) needs to be pressed while the script runs. If the button is pressed during execution of the script, you should get a response like this:
 
 ```
-! - Username your.username doesn't appear to be 32 character hash (A-F, 0-9)
-! - Using this for username instead: af8caecf12655838d10fa92d86d09e82
-
 Testing connection to bridge at 10.0.1.31
-Response appears OK!
-
-Attempting to authenticate (af8caecf12655838d10fa92d86d09e82):
+Attempting to create user:
 Press the Bridge's button!
-Waiting......
-Authentication for user your.username was successful!
+Waiting..........
+
+Successfully created new user: yourusername
 ```
 
-From then on, you should be able to use the final username for interacting with the Philips Hue bridge!
+From then on, you should be able to use the username you just created for interacting with the Philips Hue bridge!
 
 ### Scanning / registering new lights
 
@@ -512,21 +503,16 @@ Now that you have tested connection and authentication to the bridge, you can no
 
 Another convenience script has been created to demonstrate how to use Phue to get the bridge to start scanning for and retrieving new lights. This script is ```phue-light-finder```, and it is also located in the ```bin``` directory.
 
-You can pass the same arguments for ```phue-light-finder``` as you did with ```phue-authenticate```. Here's how to use the script:
+You can pass the same arguments for ```phue-light-finder``` as you did with ```phue-create-user```. Here's how to use the script:
 
 ```
-$ ./bin/phue-light-finder 10.0.1.31 your.username
+$ ./bin/phue-light-finder 10.0.1.31 yourusername
 ```
 
 Example results are as follows:
 
 ```
-! - Username your.username doesn't appear to be 32 character hash (A-F, 0-9)
-! - Using this for username instead: af8caecf12655838d10fa92d86d09e82
-
 Testing connection to bridge at 10.0.1.31
-Response appears OK!
-
 Scanning for lights. Turn at least one light off, then on...
 Found: Light #1, Hue Lamp 1
 Found: Light #2, Hue Lamp 2

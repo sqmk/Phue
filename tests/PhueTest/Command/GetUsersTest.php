@@ -9,21 +9,21 @@
 
 namespace PhueTest\Command;
 
-use Phue\Command\GetLights;
+use Phue\Command\GetUsers;
 use Phue\Client;
 use Phue\Transport\TransportInterface;
 
 /**
- * Tests for Phue\Command\GetLights
+ * Tests for Phue\Command\GetUsers
  */
-class GetLightsTest extends \PHPUnit_Framework_TestCase
+class GetUsersTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
      */
     public function setUp()
     {
-        $this->getLights = new GetLights();
+        $this->getUsers = new GetUsers();
 
         // Mock client
         $this->mockClient = $this->getMock(
@@ -50,20 +50,20 @@ class GetLightsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Found no lights
+     * Test: Found no users
      *
-     * @covers \Phue\Command\GetLights::send
+     * @covers \Phue\Command\GetUsers::send
      */
-    public function testFoundNoLights()
+    public function testFoundNoUsers()
     {
         // Stub transport's sendRequest method
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
-            ->with($this->equalTo($this->mockClient->getUsername()))
+            ->with($this->equalTo("{$this->mockClient->getUsername()}/config"))
             ->will($this->returnValue(new \stdClass));
 
         // Send command and get response
-        $response = $this->getLights->send($this->mockClient);
+        $response = $this->getUsers->send($this->mockClient);
 
         // Ensure we have an empty array
         $this->assertInternalType('array', $response);
@@ -71,31 +71,31 @@ class GetLightsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Found lights
+     * Test: Found users
      *
-     * @covers \Phue\Command\GetLights::send
+     * @covers \Phue\Command\GetUsers::send
      */
-    public function testFoundLights()
+    public function testFoundUsers()
     {
         // Mock transport results
         $mockTransportResults = (object) [
-            'lights' => [
-                1 => new \stdClass,
-                2 => new \stdClass,
+            'whitelist' => [
+                'someusername'    => new \stdClass,
+                'anotherusername' => new \stdClass,
             ]
         ];
 
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
-            ->with($this->equalTo($this->mockClient->getUsername()))
+            ->with($this->equalTo("{$this->mockClient->getUsername()}/config"))
             ->will($this->returnValue($mockTransportResults));
 
         // Send command and get response
-        $response = $this->getLights->send($this->mockClient);
+        $response = $this->getUsers->send($this->mockClient);
 
-        // Ensure we have an array of Lights
+        // Ensure we have an array of Users
         $this->assertInternalType('array', $response);
-        $this->assertContainsOnlyInstancesOf('\Phue\Light', $response);
+        $this->assertContainsOnlyInstancesOf('\Phue\User', $response);
     }
 }

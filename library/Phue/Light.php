@@ -24,11 +24,11 @@ class Light
     protected $id;
 
     /**
-     * Light details
+     * Light attributes
      *
      * @var stdClass
      */
-    protected $details;
+    protected $attributes;
 
     /**
      * Phue client
@@ -40,15 +40,15 @@ class Light
     /**
      * Construct a Phue Light object
      *
-     * @param int      $id      Id
-     * @param stdClass $details Light details
-     * @param Client   $client  Phue client
+     * @param int      $id         Id
+     * @param stdClass $attributes Light attributes
+     * @param Client   $client     Phue client
      */
-    public function __construct($id, \stdClass $details, Client $client)
+    public function __construct($id, \stdClass $attributes, Client $client)
     {
-        $this->id      = (int) $id;
-        $this->details = $details;
-        $this->client  = $client;
+        $this->id         = (int) $id;
+        $this->attributes = $attributes;
+        $this->client     = $client;
     }
 
     /**
@@ -68,7 +68,7 @@ class Light
      */
     public function getName()
     {
-        return $this->details->name;
+        return $this->attributes->name;
     }
 
     /**
@@ -82,7 +82,7 @@ class Light
             new Command\SetLightName($this, (string) $name)
         );
 
-        $this->details->name = (string) $name;
+        $this->attributes->name = (string) $name;
 
         return $this;
     }
@@ -94,7 +94,7 @@ class Light
      */
     public function getType()
     {
-        return $this->details->type;
+        return $this->attributes->type;
     }
 
     /**
@@ -104,7 +104,7 @@ class Light
      */
     public function getModelId()
     {
-        return $this->details->modelid;
+        return $this->attributes->modelid;
     }
 
     /**
@@ -114,7 +114,7 @@ class Light
      */
     public function getSoftwareVersion()
     {
-        return $this->details->swversion;
+        return $this->attributes->swversion;
     }
 
     /**
@@ -124,7 +124,7 @@ class Light
      */
     public function isOn()
     {
-        return (bool) $this->details->state->on;
+        return (bool) $this->attributes->state->on;
     }
 
     /**
@@ -140,7 +140,7 @@ class Light
             (new SetLightState($this))->on((bool) $flag)
         );
 
-        $this->details->state->on = (bool) $flag;
+        $this->attributes->state->on = (bool) $flag;
 
         return $this;
     }
@@ -152,7 +152,7 @@ class Light
      */
     public function getAlert()
     {
-        return $this->details->state->alert;
+        return $this->attributes->state->alert;
     }
 
     /**
@@ -168,7 +168,7 @@ class Light
             (new SetLightState($this))->alert($mode)
         );
 
-        $this->details->state->alert = $mode;
+        $this->attributes->state->alert = $mode;
 
         return $this;
     }
@@ -180,7 +180,7 @@ class Light
      */
     public function getEffect()
     {
-        return $this->details->state->effect;
+        return $this->attributes->state->effect;
     }
 
     /**
@@ -196,7 +196,7 @@ class Light
             (new SetLightState($this))->effect($mode)
         );
 
-        $this->details->state->effect = $mode;
+        $this->attributes->state->effect = $mode;
 
         return $this;
     }
@@ -208,7 +208,7 @@ class Light
      */
     public function getBrightness()
     {
-        return $this->details->state->bri;
+        return $this->attributes->state->bri;
     }
 
     /**
@@ -224,7 +224,7 @@ class Light
             (new SetLightState($this))->brightness((int) $level)
         );
 
-        $this->details->state->bri = (int) $level;
+        $this->attributes->state->bri = (int) $level;
 
         return $this;
     }
@@ -236,7 +236,7 @@ class Light
      */
     public function getHue()
     {
-        return $this->details->state->hue;
+        return $this->attributes->state->hue;
     }
 
     /**
@@ -253,8 +253,8 @@ class Light
         );
 
         // Change both hue and color mode state
-        $this->details->state->hue       = (int) $value;
-        $this->details->state->colormode = 'hs';
+        $this->attributes->state->hue       = (int) $value;
+        $this->attributes->state->colormode = 'hs';
 
         return $this;
     }
@@ -266,7 +266,7 @@ class Light
      */
     public function getSaturation()
     {
-        return $this->details->state->sat;
+        return $this->attributes->state->sat;
     }
 
     /**
@@ -283,8 +283,8 @@ class Light
         );
 
         // Change both saturation and color mode state
-        $this->details->state->sat       = (int) $value;
-        $this->details->state->colormode = 'hs';
+        $this->attributes->state->sat       = (int) $value;
+        $this->attributes->state->colormode = 'hs';
 
         return $this;
     }
@@ -297,8 +297,8 @@ class Light
     public function getXY()
     {
         return [
-            'x' => $this->details->state->xy[0],
-            'y' => $this->details->state->xy[1],
+            'x' => $this->attributes->state->xy[0],
+            'y' => $this->attributes->state->xy[1],
         ];
     }
 
@@ -317,8 +317,8 @@ class Light
         );
 
         // Change both internal xy and colormode state
-        $this->details->state->xy        = [$x, $y];
-        $this->details->state->colormode = 'xy';
+        $this->attributes->state->xy        = [$x, $y];
+        $this->attributes->state->colormode = 'xy';
 
         return $this;
     }
@@ -330,7 +330,7 @@ class Light
      */
     public function getColorTemp()
     {
-        return $this->details->state->ct;
+        return $this->attributes->state->ct;
     }
 
     /**
@@ -347,8 +347,8 @@ class Light
         );
 
         // Change both internal color temp and colormode state
-        $this->details->state->ct        = (int) $value;
-        $this->details->state->colormode = 'ct';
+        $this->attributes->state->ct        = (int) $value;
+        $this->attributes->state->colormode = 'ct';
 
         return $this;
     }
@@ -360,7 +360,7 @@ class Light
      */
     public function getColorMode()
     {
-        return $this->details->state->colormode;
+        return $this->attributes->state->colormode;
     }
 
     /**

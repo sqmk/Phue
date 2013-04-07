@@ -47,29 +47,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      * @covers \Phue\Client::getUsername
      * @covers \Phue\Client::setUsername
      */
-    public function testNonHashedUsername()
+    public function testGetSetUsername()
     {
         $this->client->setUsername('dummy');
 
         $this->assertEquals(
             $this->client->getUsername(),
-            '275876e34cf609db118f3d84b799a790'
-        );
-    }
-
-    /**
-     * Test: Setting hashed username
-     *
-     * @covers \Phue\Client::getUsername
-     * @covers \Phue\Client::setUsername
-     */
-    public function testHashedUsername()
-    {
-        $this->client->setUsername('275876e34cf609db118f3d84b799a790');
-
-        $this->assertEquals(
-            $this->client->getUsername(),
-            '275876e34cf609db118f3d84b799a790'
+            'dummy'
         );
     }
 
@@ -88,8 +72,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
-                      ->method('sendRequest')
-                      ->will($this->returnValue(new \stdClass));
+            ->method('sendRequest')
+            ->will($this->returnValue(new \stdClass));
 
         // Set transport
         $this->client->setTransport($mockTransport);
@@ -98,6 +82,49 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(
             '\Phue\Bridge',
             $this->client->getBridge()
+        );
+    }
+
+    /**
+     * Test: Get users
+     *
+     * @covers \Phue\Client::getUsers
+     */
+    public function testGetUsers()
+    {
+        // Mock transport
+        $mockTransport = $this->getMock(
+            '\Phue\Transport\TransportInterface',
+            ['sendRequest']
+        );
+
+        // Mock results for sendRequest
+        $mockResults = (object) [
+            'whitelist' => [
+                'someusername'    => new \stdClass,
+                'anotherusername' => new \stdClass,
+                'thirdusername'   => new \stdClass,
+            ]
+        ];
+
+        // Stub transports sendRequest method
+        $mockTransport->expects($this->once())
+            ->method('sendRequest')
+            ->will($this->returnValue($mockResults));
+
+        // Set transport
+        $this->client->setTransport($mockTransport);
+
+        // Get users
+        $users = $this->client->getUsers();
+
+        // Ensure at least three users
+        $this->assertEquals(3, count($users));
+
+        // Ensure return type is an array of lights
+        $this->assertContainsOnlyInstancesOf(
+            '\Phue\User',
+            $users
         );
     }
 
@@ -124,8 +151,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
-                      ->method('sendRequest')
-                      ->will($this->returnValue($mockResults));
+            ->method('sendRequest')
+            ->will($this->returnValue($mockResults));
 
         // Set transport
         $this->client->setTransport($mockTransport);
@@ -166,8 +193,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
-                      ->method('sendRequest')
-                      ->will($this->returnValue($mockResults));
+            ->method('sendRequest')
+            ->will($this->returnValue($mockResults));
 
         // Set transport
         $this->client->setTransport($mockTransport);
@@ -209,8 +236,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
-                      ->method('sendRequest')
-                      ->will($this->returnValue($mockResults));
+            ->method('sendRequest')
+            ->will($this->returnValue($mockResults));
 
         // Set transport
         $this->client->setTransport($mockTransport);
@@ -275,9 +302,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         // Stub command's send method
         $mockCommand->expects($this->once())
-                    ->method('send')
-                    ->with($this->equalTo($this->client))
-                    ->will($this->returnValue('sample response'));
+            ->method('send')
+            ->with($this->equalTo($this->client))
+            ->will($this->returnValue('sample response'));
 
         $this->assertEquals(
             $this->client->sendCommand($mockCommand),

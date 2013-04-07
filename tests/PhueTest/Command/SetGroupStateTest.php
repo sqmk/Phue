@@ -9,14 +9,14 @@
 
 namespace PhueTest\Command;
 
-use Phue\Command\SetGroupAction;
+use Phue\Command\SetGroupState;
 use Phue\Client;
 use Phue\Transport\TransportInterface;
 
 /**
- * Tests for Phue\Command\SetGroupAction
+ * Tests for Phue\Command\SetGroupState
  */
-class SetGroupActionTest extends \PHPUnit_Framework_TestCase
+class SetGroupStateTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
@@ -45,25 +45,25 @@ class SetGroupActionTest extends \PHPUnit_Framework_TestCase
 
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
-                         ->method('getUsername')
-                         ->will($this->returnValue('abcdefabcdef01234567890123456789'));
+            ->method('getUsername')
+            ->will($this->returnValue('abcdefabcdef01234567890123456789'));
 
         // Stub client's getTransport method
         $this->mockClient->expects($this->any())
-                         ->method('getTransport')
-                         ->will($this->returnValue($this->mockTransport));
+            ->method('getTransport')
+            ->will($this->returnValue($this->mockTransport));
     }
 
     /**
      * Test: Send command
      *
-     * @covers \Phue\Command\SetGroupAction::__construct
-     * @covers \Phue\Command\SetGroupAction::send
+     * @covers \Phue\Command\SetGroupState::__construct
+     * @covers \Phue\Command\SetGroupState::send
      */
     public function testSend()
     {
         // Build command
-        $setGroupActionCmd = new SetGroupAction($this->mockGroup);
+        $setGroupStateCmd = new SetGroupState($this->mockGroup);
 
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
@@ -73,26 +73,26 @@ class SetGroupActionTest extends \PHPUnit_Framework_TestCase
         );
 
         // Change color temp and set state
-        $setGroupActionCmd->colorTemp(300)
-                          ->send($this->mockClient);
+        $setGroupStateCmd->colorTemp(300)
+            ->send($this->mockClient);
     }
 
     /**
      * Test: Get schedulable params
      *
-     * @covers \Phue\Command\SetGroupAction::getSchedulableParams
+     * @covers \Phue\Command\SetGroupState::getSchedulableParams
      */
     public function testGetSchedulableParams()
     {
         // Build command
-        $setGroupActionCmd = new SetGroupAction($this->mockGroup);
+        $setGroupStateCmd = new SetGroupState($this->mockGroup);
 
         // Change alert
-        $setGroupActionCmd->alert('select');
+        $setGroupStateCmd->alert('select');
 
         // Ensure schedulable params are expected
         $this->assertEquals(
-            $setGroupActionCmd->getSchedulableParams($this->mockClient),
+            $setGroupStateCmd->getSchedulableParams($this->mockClient),
             [
                 'address' => "{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action",
                 'method'  => 'PUT',
@@ -112,13 +112,13 @@ class SetGroupActionTest extends \PHPUnit_Framework_TestCase
     {
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
-                            ->method('sendRequest')
-                            ->with(
-                                $this->equalTo(
-                                    "{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action"
-                                ),
-                                $this->equalTo('PUT'),
-                                $payload
-                            );
+            ->method('sendRequest')
+            ->with(
+                $this->equalTo(
+                    "{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action"
+                ),
+                $this->equalTo('PUT'),
+                $payload
+            );
     }
 }

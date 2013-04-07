@@ -10,8 +10,8 @@
 namespace Phue\Transport\Exception;
 
 /**
- * Throttle exception
+ * Resource unavailable exception
  */
-class ThrottleException extends BridgeException
+class ResourceUnavailableException extends BridgeException
 {
 }

@@ -10,8 +10,8 @@
 namespace Phue\Transport\Exception;
 
 /**
- * Resource exception
+ * Unauthorized user exception
  */
-class ResourceException extends BridgeException
+class UnauthorizedUserException extends BridgeException
 {
 }

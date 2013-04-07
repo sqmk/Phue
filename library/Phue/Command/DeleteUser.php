@@ -10,44 +10,40 @@
 namespace Phue\Command;
 
 use Phue\Client;
-use Phue\Group;
+use Phue\Transport\TransportInterface;
 
 /**
- * Get group by id command
+ * Delete user command
  */
-class GetGroupById implements CommandInterface
+class DeleteUser implements CommandInterface
 {
     /**
-     * Group Id
+     * Username
      *
      * @var string
      */
-    protected $groupId;
+    protected $username;
 
     /**
      * Constructs a command
      *
-     * @param int $groupId Group Id
+     * @param mixed $username Username or User object
      */
-    public function __construct($groupId)
+    public function __construct($username)
     {
-        $this->groupId = (int) $groupId;
+        $this->username = (string) $username;
     }
 
     /**
      * Send command
      *
      * @param Client $client Phue Client
-     *
-     * @return Group Group object
      */
     public function send(Client $client)
     {
-        // Get response
-        $attributes = $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/groups/{$this->groupId}"
+        $client->getTransport()->sendRequest(
+            "{$client->getUsername()}/config/whitelist/{$this->username}",
+            TransportInterface::METHOD_DELETE
         );
-
-        return new Group($this->groupId, $attributes, $client);
     }
 }

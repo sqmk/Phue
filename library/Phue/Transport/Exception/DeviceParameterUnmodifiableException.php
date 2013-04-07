@@ -10,8 +10,8 @@
 namespace Phue\Transport\Exception;
 
 /**
- * Invalid parameter exception
+ * Device parameter unmodifiable exception
  */
-class InvalidParameterException extends BridgeException
+class DeviceParameterUnmodifiableException extends BridgeException
 {
 }

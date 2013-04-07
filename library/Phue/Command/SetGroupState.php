@@ -15,8 +15,7 @@ use Phue\Transport\TransportInterface;
 /**
  * Set group action command
  */
-class SetGroupAction extends SetLightState implements
-    SchedulableInterface
+class SetGroupState extends SetLightState implements SchedulableInterface
 {
     /**
      * Group Id

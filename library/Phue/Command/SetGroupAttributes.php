@@ -13,9 +13,9 @@ use Phue\Client;
 use Phue\Transport\TransportInterface;
 
 /**
- * Set group config command
+ * Set group attributes command
  */
-class SetGroupConfig implements CommandInterface
+class SetGroupAttributes implements CommandInterface
 {
     /**
      * Group Id
@@ -25,11 +25,11 @@ class SetGroupConfig implements CommandInterface
     protected $groupId;
 
     /**
-     * Config parameters
+     * Group attributes
      *
      * @var array
      */
-    protected $params = [];
+    protected $attributes = [];
 
     /**
      * Constructs a command
@@ -50,7 +50,7 @@ class SetGroupConfig implements CommandInterface
      */
     public function name($name)
     {
-        $this->params['name'] = (string) $name;
+        $this->attributes['name'] = (string) $name;
 
         return $this;
     }
@@ -70,7 +70,7 @@ class SetGroupConfig implements CommandInterface
             $lightList[] = (string) $light;
         }
 
-        $this->params['lights'] = $lightList;
+        $this->attributes['lights'] = $lightList;
 
         return $this;
     }
@@ -85,7 +85,7 @@ class SetGroupConfig implements CommandInterface
         $client->getTransport()->sendRequest(
             "{$client->getUsername()}/groups/{$this->groupId}",
             TransportInterface::METHOD_PUT,
-            (object) $this->params
+            (object) $this->attributes
         );
     }
 }

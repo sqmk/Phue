@@ -10,28 +10,28 @@
 namespace Phue\Command;
 
 use Phue\Client;
-use Phue\Group;
+use Phue\Schedule;
 
 /**
- * Get group by id command
+ * Get schedule by id command
  */
-class GetGroupById implements CommandInterface
+class GetScheduleById implements CommandInterface
 {
     /**
-     * Group Id
+     * Schedule Id
      *
      * @var string
      */
-    protected $groupId;
+    protected $scheduleId;
 
     /**
      * Constructs a command
      *
-     * @param int $groupId Group Id
+     * @param int $scheduleId Schedule Id
      */
-    public function __construct($groupId)
+    public function __construct($scheduleId)
     {
-        $this->groupId = (int) $groupId;
+        $this->scheduleId = (int) $scheduleId;
     }
 
     /**
@@ -39,15 +39,15 @@ class GetGroupById implements CommandInterface
      *
      * @param Client $client Phue Client
      *
-     * @return Group Group object
+     * @return Schedule Schedule object
      */
     public function send(Client $client)
     {
         // Get response
         $attributes = $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/groups/{$this->groupId}"
+            "{$client->getUsername()}/schedules/{$this->scheduleId}"
         );
 
-        return new Group($this->groupId, $attributes, $client);
+        return new Schedule($this->scheduleId, $attributes, $client);
     }
 }

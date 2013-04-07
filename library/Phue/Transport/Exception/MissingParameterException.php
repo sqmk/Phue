@@ -10,8 +10,8 @@
 namespace Phue\Transport\Exception;
 
 /**
- * Authorization exception
+ * Missing parameter exception
  */
-class AuthorizationException extends BridgeException
+class MissingParameterException extends BridgeException
 {
 }

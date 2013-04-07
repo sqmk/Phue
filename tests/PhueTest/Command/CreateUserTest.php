@@ -9,14 +9,14 @@
 
 namespace PhueTest\Command;
 
-use Phue\Command\StartLightScan;
+use Phue\Command\CreateUser;
 use Phue\Client;
 use Phue\Transport\TransportInterface;
 
 /**
- * Tests for Phue\Command\StartLightScan
+ * Tests for Phue\Command\CreateUser
  */
-class StartLightScanTest extends \PHPUnit_Framework_TestCase
+class CreateUserTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
@@ -26,7 +26,7 @@ class StartLightScanTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getTransport'],
+            ['getUsername', 'getTransport'],
             ['127.0.0.1']
         );
 
@@ -48,23 +48,54 @@ class StartLightScanTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Send start light scan command
+     * Test: Instantiating CreateUser command
      *
-     * @covers \Phue\Command\StartLightScan::send
+     * @covers \Phue\Command\CreateUser::__construct
+     * @covers \Phue\Command\CreateUser::setUsername
+     * @covers \Phue\Command\CreateUser::setDeviceType
+     */
+    public function testInstantiation()
+    {
+        $command = new CreateUser('testuser0123', 'phpunit');
+    }
+
+    /**
+     * Test: Setting invalid username
+     *
+     * @covers \Phue\Command\CreateUser::setUsername
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testExceptionOnInvalidUsername()
+    {
+        $command = new CreateUser;
+        $command->setUsername('test');
+    }
+
+    /**
+     * Test: Send create user command
+     *
+     * @covers \Phue\Command\CreateUser::send
+     * @covers \Phue\Command\CreateUser::buildRequestData
      */
     public function testSend()
     {
+        // Set up username and device type to pass to create user command
+        $username   = 'testuser0123';
+        $deviceType = 'phpunit';
+
         // Stub transport's sendRequest method
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with(
-                $this->equalTo($this->mockClient->getUsername() . '/lights'),
-                $this->equalTo('POST')
+                $this->equalTo(''),
+                $this->equalTo('POST'),
+                $this->anything()
             )
             ->will($this->returnValue('success!'));
 
         $this->assertEquals(
-            (new StartLightScan)->send($this->mockClient),
+            (new CreateUser('testuser0123', 'phpunit'))->send($this->mockClient),
             'success!'
         );
     }

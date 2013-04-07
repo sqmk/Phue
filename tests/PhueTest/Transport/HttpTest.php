@@ -124,7 +124,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
      *
      * @covers Phue\Transport\Http::sendRequest
      *
-     * @expectedException Phue\Transport\Exception\AuthorizationException
+     * @expectedException Phue\Transport\Exception\UnauthorizedUserException
      */
     public function testSendRequestErrorResponse()
     {
@@ -219,18 +219,19 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function providerErrorTypes()
     {
         return [
-            [1,   'Phue\Transport\Exception\AuthorizationException'],
-            [2,   'Phue\Transport\Exception\InvalidBodyException'],
-            [3,   'Phue\Transport\Exception\ResourceException'],
-            [4,   'Phue\Transport\Exception\MethodException'],
-            [5,   'Phue\Transport\Exception\InvalidParameterException'],
+            [1,   'Phue\Transport\Exception\UnauthorizedUserException'],
+            [2,   'Phue\Transport\Exception\InvalidJsonBodyException'],
+            [3,   'Phue\Transport\Exception\ResourceUnavailableException'],
+            [4,   'Phue\Transport\Exception\MethodUnavailableException'],
+            [5,   'Phue\Transport\Exception\MissingParameterException'],
             [6,   'Phue\Transport\Exception\ParameterUnavailableException'],
             [7,   'Phue\Transport\Exception\InvalidValueException'],
+            [8,   'Phue\Transport\Exception\ParameterUnmodifiableException'],
             [101, 'Phue\Transport\Exception\LinkButtonException'],
-            [201, 'Phue\Transport\Exception\ParameterUnmodifiableException'],
+            [201, 'Phue\Transport\Exception\DeviceParameterUnmodifiableException'],
             [301, 'Phue\Transport\Exception\GroupTableFullException'],
             [302, 'Phue\Transport\Exception\LightGroupTableFullException'],
-            [901, 'Phue\Transport\Exception\ThrottleException'],
+            [901, 'Phue\Transport\Exception\InternalErrorException'],
             [-1,  'Phue\Transport\Exception\BridgeException'],
         ];
     }
@@ -246,17 +247,17 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     {
         // Stub send method on transport adapter
         $this->mockAdapter->expects($this->once())
-                          ->method('send')
-                          ->will($this->returnValue(json_encode($response)));
+            ->method('send')
+            ->will($this->returnValue(json_encode($response)));
 
         // Stub getHttpStatusCode on transport adapter
         $this->mockAdapter->expects($this->once())
-                          ->method('getHttpStatusCode')
-                          ->will($this->returnValue($httpStatusCode));
+            ->method('getHttpStatusCode')
+            ->will($this->returnValue($httpStatusCode));
 
         // Stub getContentType on transport adapter
         $this->mockAdapter->expects($this->once())
-                          ->method('getContentType')
-                          ->will($this->returnValue($contentType));
+            ->method('getContentType')
+            ->will($this->returnValue($contentType));
     }
 }

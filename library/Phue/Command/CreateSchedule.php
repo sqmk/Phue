@@ -18,25 +18,11 @@ use Phue\Transport\TransportInterface;
 class CreateSchedule implements CommandInterface
 {
     /**
-     * Name
+     * Schedule attributes
      *
-     * @var string
+     * @var array
      */
-    protected $name;
-
-    /**
-     * Description
-     *
-     * @var string
-     */
-    protected $description;
-
-    /**
-     * Time
-     *
-     * @var string
-     */
-    protected $time;
+    protected $attributes = [];
 
     /**
      * Command
@@ -63,7 +49,7 @@ class CreateSchedule implements CommandInterface
         $command !== null && $this->command($command);
 
         // Copy description
-        $this->description = $this->name;
+        $this->description = $name;
     }
 
     /**
@@ -75,7 +61,7 @@ class CreateSchedule implements CommandInterface
      */
     public function name($name)
     {
-        $this->name = (string) $name;
+        $this->attributes['name'] = (string) $name;
 
         return $this;
     }
@@ -89,7 +75,7 @@ class CreateSchedule implements CommandInterface
      */
     public function description($description)
     {
-        $this->description = (string) $description;
+        $this->attributes['description'] = (string) $description;
 
         return $this;
     }
@@ -103,7 +89,7 @@ class CreateSchedule implements CommandInterface
      */
     public function time($time)
     {
-        $this->time = $this->convertTimeToUtcDate(
+        $this->attributes['time'] = $this->convertTimeToUtcDate(
             (string) $time
         );
 
@@ -133,15 +119,16 @@ class CreateSchedule implements CommandInterface
      */
     public function send(Client $client)
     {
+        // Set command attribute if passed
+        if ($this->command) {
+            $this->attributes['command'] = $this->command->getSchedulableParams($client);
+        }
+
+        // Create schedule
         $scheduleId = $client->getTransport()->sendRequest(
             "{$client->getUsername()}/schedules",
             TransportInterface::METHOD_POST,
-            (object) [
-                'name'        => $this->name,
-                'description' => $this->description,
-                'time'        => $this->time,
-                'command'     => $this->command->getSchedulableParams($client)
-            ]
+            (object) $this->attributes
         );
 
         return $scheduleId;
@@ -154,7 +141,7 @@ class CreateSchedule implements CommandInterface
      *
      * @return string
      */
-    protected function convertTimeToUtcDate($time)
+    public function convertTimeToUtcDate($time)
     {
         try {
             $setTime = new \DateTime($time);

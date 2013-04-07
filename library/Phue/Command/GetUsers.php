@@ -10,38 +10,38 @@
 namespace Phue\Command;
 
 use Phue\Client;
-use Phue\Group;
+use Phue\User;
 
 /**
- * Get groups command
+ * Get users command
  */
-class GetGroups implements CommandInterface
+class GetUsers implements CommandInterface
 {
     /**
      * Send command
      *
      * @param Client $client Phue Client
      *
-     * @return array List of Group objects
+     * @return array List of User objects
      */
     public function send(Client $client)
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            $client->getUsername()
+            "{$client->getUsername()}/config"
         );
 
-        // Return empty list if no groups
-        if (!isset($response->groups)) {
+        // Return empty list if no users
+        if (!isset($response->whitelist)) {
             return [];
         }
 
-        $groups = [];
+        $users = [];
 
-        foreach ($response->groups as $groupId => $attributes) {
-            $groups[$groupId] = new Group($groupId, $attributes, $client);
+        foreach ($response->whitelist as $username => $attributes) {
+            $users[$username] = new User($username, $attributes, $client);
         }
 
-        return $groups;
+        return $users;
     }
 }
