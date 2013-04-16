@@ -95,7 +95,7 @@ try {
 		new \Phue\Command\CreateUser($client->getUsername())
 	);
 
-	echo "You are now authenticated";
+	echo 'You are now authenticated';
 } catch (\Phue\Transport\Exception\LinkButtonException $e) {
 	echo 'The link button was not pressed!';
 }
@@ -252,7 +252,7 @@ There are multiple ways of retrieving groups. Each way returns either an array o
 ```php
 // Convenient way of retrieving groups
 foreach ($client->getGroups() as $groupId => $group) {
-	echo $group->getId(), " - ",
+	echo $group->getId(), ' - ',
 	     $group->getName(), "\n";
 }
 
@@ -262,14 +262,14 @@ $groups = $client->sendCommand(
 );
 
 foreach ($client->getGroups() as $groupId => $group) {
-	echo $group->getId(), " - ",
+	echo $group->getId(), ' - ',
 	     $group->getName(), "\n";
 }
 
 // Convenient way of retrieving a single group by id
 $group = $client->getGroups()[1];
 
-echo $group->getId(), " - ",
+echo $group->getId(), ' - ',
      $group->getName(), "\n";
 
 // Manual command for retrieving group by id
@@ -277,7 +277,7 @@ $group = $client->sendCommand(
 	new \Phue\Command\GetGroupById(1)
 );
 
-echo $group->getId(), " - ",
+echo $group->getId(), ' - ',
      $group->getName(), "\n";
 ```
 
