@@ -399,7 +399,6 @@ $scheduleCommand = new \Phue\Command\CreateSchedule(
 $scheduleCommand->description('Dims all lights in house to 30');
 
 // Send the schedule to bridge
-$scheduleId = $client->sendCommand($scheduleCommand);
 $client->sendCommand($scheduleCommand);
 
 // Show list of schedules
