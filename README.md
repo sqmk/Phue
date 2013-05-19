@@ -1,4 +1,4 @@
-## Phue - Philips Hue PHP Client
+# Phue - Philips Hue PHP Client
 
 Master: [![CI Status](https://secure.travis-ci.org/sqmk/Phue.png?branch=master)](http://travis-ci.org/sqmk/Phue)
 
