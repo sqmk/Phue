@@ -4,7 +4,8 @@ php:
     - 5.4
 
 before_install:
-    - composer install --dev
+    - composer self-update
+    - composer install --verbose --dev --prefer-source --no-interaction -o
 
 script:
     - ./vendor/bin/phpcs --standard=tests/phpcs.xml library/
