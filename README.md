@@ -18,7 +18,7 @@ Interested in API docs? You can check out the auto-generated documentation at [G
 
 ## Installing Phue
 
-The Phue library is available in Packagist. You'll want to include ```sqmk/Phue``` as a dependency in your project using composer. If you are not familiar with composer, check it out here: [Composer](http://getcomposer.org)
+The Phue library is available in Packagist. You'll want to include ```sqmk/phue``` as a dependency in your project using composer. If you are not familiar with composer, check it out here: [Composer](http://getcomposer.org)
 
 You can also use this library without composer. The library directory is ```library```. You'll want to map your namespace ```Phue``` to this directory in your autoloader of choice.
 
@@ -420,6 +420,20 @@ $schedule->delete();
 If you noticed in the above example, a ```Schedulable``` command must be passed to ```CreateSchedule```. The only commands that are schedulable are:
 * ```SetLightState```
 * ```SetGroupState```
+
+### Don't have the cURL extension?
+
+Don't have the cURL extension compiled with your PHP install? You can override the transport adapter and use PHP's native streaming functions instead.
+
+```php
+// Instantiate a client object
+$client = new \Phue\Client('10.0.1.1', 'yourusername');
+
+// Override the default transport
+$client->setTransport(
+	new \Phue\Transport\Adapter\Streaming
+);
+```
 
 ### Other commands
 
