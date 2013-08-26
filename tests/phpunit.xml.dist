@@ -10,7 +10,7 @@
          forceCoversAnnotation="true">
     <testsuites>
         <testsuite name="Phue Test Suite">
-            <directory>./PhueTest</directory>
+            <directory>./Phue/Test</directory>
         </testsuite>
     </testsuites>
     <logging>
