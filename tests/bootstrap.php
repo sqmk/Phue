@@ -1,4 +1,4 @@
 <?php
 
 $autoloader = require __DIR__ . '/../vendor/autoload.php';
-$autoloader->add('PhueTest', __DIR__);
+$autoloader->add('Phue\\Test\\', __DIR__);
