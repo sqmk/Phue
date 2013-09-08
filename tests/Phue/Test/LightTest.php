@@ -33,7 +33,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
         $this->attributes = (object) [
             'name'      => 'Hue light',
             'type'      => 'Dummy type',
-            'modelid'   => 'M123',
+            'modelid'   => 'LCT001',
             'swversion' => '12345',
             'state'     => (object) [
                 'on'        => false,
@@ -130,6 +130,19 @@ class LightTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $this->light->getModelId(),
             $this->attributes->modelid
+        );
+    }
+
+    /**
+     * Test: Get model
+     *
+     * @covers \Phue\Light::getModel
+     */
+    public function testGetModel()
+    {
+        $this->assertInstanceOf(
+            '\Phue\LightModel\AbstractLightModel',
+            $this->light->getModel()
         );
     }
 
