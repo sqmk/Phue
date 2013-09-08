@@ -10,43 +10,13 @@
 namespace Phue;
 
 use Phue\Command\SetLightState;
+use Phue\LightModel\LightModelFactory;
 
 /**
  * Light object
  */
 class Light
 {
-    /**
-     * Hue unknown model.
-     */
-    const MODEL_UNKNOWN = 'Unknown';
-
-    /**
-     * Hue bulb.
-     */
-    const MODEL_HUE_BULB = 'Hue Bulb';
-
-    /**
-     * Hue LightStrips.
-     */
-    const MODEL_LIGHTSTRIPS = 'LightStrips';
-
-    /**
-     * Hue Bloom.
-     */
-    const MODEL_BLOOM = 'Bloom';
-
-    /**
-     * Model ids to models.
-     *
-     * @var array
-     */
-    protected static $modelIdToModelMapper = [
-        'LCT001' => self::MODEL_HUE_BULB,
-        'LST001' => self::MODEL_LIGHTSTRIPS,
-        'LLC012' => self::MODEL_BLOOM,
-    ];
-
     /**
      * Id
      *
@@ -145,9 +115,7 @@ class Light
      */
     public function getModel()
     {
-        return isset(self::$modelIdToModelMapper[$this->getModelId()])
-            ? self::$modelIdToModelMapper[$this->getModelId()]
-            : self::MODEL_UNKNOWN;
+        return LightModelFactory::build($this->getModelId());
     }
 
     /**
