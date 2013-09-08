@@ -2,6 +2,9 @@
 
 namespace Phue\LightModel;
 
+/**
+ * LightStrips model
+ */
 class ModelLst001 extends AbstractLightModel
 {
 	/**
