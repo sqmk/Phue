@@ -11,6 +11,7 @@ namespace Phue;
 
 use Phue\Command\SetLightState;
 use Phue\LightModel\LightModelFactory;
+use Phue\LightModel\AbstractLightModel;
 
 /**
  * Light object
@@ -111,7 +112,7 @@ class Light
     /**
      * Get model
      *
-     * @return string Model
+     * @return AbstractLightModel Light model
      */
     public function getModel()
     {
