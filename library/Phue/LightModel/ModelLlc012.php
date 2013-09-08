@@ -7,13 +7,13 @@ namespace Phue\LightModel;
  */
 class ModelLlc012 extends AbstractLightModel
 {
-	/**
-	 * Model id
-	 */
-	const MODEL_ID = 'LLC012';
+    /**
+     * Model id
+     */
+    const MODEL_ID = 'LLC012';
 
-	/**
-	 * Model name
-	 */
-	const MODEL_NAME = 'Bloom';
+    /**
+     * Model name
+     */
+    const MODEL_NAME = 'Bloom';
 }
