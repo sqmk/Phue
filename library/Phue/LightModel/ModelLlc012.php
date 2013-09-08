@@ -2,6 +2,9 @@
 
 namespace Phue\LightModel;
 
+/**
+ * Bloom model
+ */
 class ModelLlc012 extends AbstractLightModel
 {
 	/**
@@ -12,5 +15,5 @@ class ModelLlc012 extends AbstractLightModel
 	/**
 	 * Model name
 	 */
-	const MODEL_NAME = 'Hue Bulb';
+	const MODEL_NAME = 'Bloom';
 }

@@ -12,5 +12,5 @@ class ModelUnknown extends AbstractLightModel
 	/**
 	 * Model name
 	 */
-	const MODEL_NAME = 'Bloom';
+	const MODEL_NAME = 'Unknown';
 }
