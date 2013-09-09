@@ -16,4 +16,9 @@ class ModelLst001 extends AbstractLightModel
      * Model name
      */
     const MODEL_NAME = 'LightStrips';
+
+    /**
+     * Can retain state
+     */
+    const CAN_RETAIN_STATE = true;
 }
