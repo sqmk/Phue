@@ -2,6 +2,8 @@
 
 Master: [![CI Status](https://secure.travis-ci.org/sqmk/Phue.png?branch=master)](http://travis-ci.org/sqmk/Phue)
 
+## Introduction
+
 Phue is a PHP client used to connect to and manage the Philips Hue lighting system.
 
 It is currently registered with Packagist so that this library can easily be included in other projects. For example, one may want to bundle this library with Zend Framework or Symfony to build their own front-end for the Hue system.
@@ -16,7 +18,12 @@ The client has the ability to make full use of the Hue's API, including:
 
 Interested in API docs? You can check out the auto-generated documentation at [GitApiDoc](http://gitapidoc.com/api/sqmk/Phue/)
 
-## Installing Phue
+## Requirements
+
+* PHP 5.4
+* cURL extension (optional)
+
+## Installation
 
 The Phue library is available in Packagist. You'll want to include ```sqmk/phue``` as a dependency in your project using composer. If you are not familiar with composer, check it out here: [Composer](http://getcomposer.org)
 
@@ -34,7 +41,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 $client = new \Phue\Client('10.0.1.1', 'yourusername');
 ```
 
-## Using the client
+## Usage
 
 For all examples, it is assumed that the autoloader is included somewhere in your PHP app.
 
