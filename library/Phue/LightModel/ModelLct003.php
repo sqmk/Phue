@@ -3,7 +3,7 @@
 namespace Phue\LightModel;
 
 /**
- * Hue bulb model
+ * GU10 Hue bulb model
  */
 class ModelLct001 extends AbstractLightModel
 {
