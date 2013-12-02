@@ -16,9 +16,4 @@ class ModelLct002 extends AbstractLightModel
      * Model name
      */
     const MODEL_NAME = 'BR30 Hue Bulbs';
-
-    /**
-     * Can retain state
-     */
-    const CAN_RETAIN_STATE = false;
 }
