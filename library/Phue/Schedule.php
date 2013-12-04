@@ -106,7 +106,7 @@ class Schedule
     public function setDescription($description)
     {
         $this->client->sendCommand(
-            (new SetScheduleAttributes($this))->name((string) $description)
+            (new SetScheduleAttributes($this))->description((string) $description)
         );
 
         $this->attributes->description = (string) $description;
