@@ -15,3 +15,7 @@ script:
 
 notifications:
     email: false
+
+matrix:
+  allow_failures:
+    - php: hhvm
