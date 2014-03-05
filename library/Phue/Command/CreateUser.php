@@ -76,6 +76,12 @@ class CreateUser implements CommandInterface
      */
     public function setDeviceType($deviceType)
     {
+        if (strlen($deviceType) > 40) {
+            throw new \InvalidArgumentException(
+                "Device type must not have a length have more than 40 characters"
+            );
+        }
+
         $this->deviceType = (string) $deviceType;
 
         return $this;
