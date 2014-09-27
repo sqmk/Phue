@@ -22,7 +22,7 @@ class GetSchedules implements CommandInterface
      *
      * @param Client $client Phue Client
      *
-     * @return array List of Schedule objects
+     * @return Schedule[] List of Schedule objects
      */
     public function send(Client $client)
     {

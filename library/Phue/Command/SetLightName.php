@@ -44,11 +44,13 @@ class SetLightName implements CommandInterface
         $this->name    = (string) $name;
     }
 
-    /**
-     * Send command
-     *
-     * @param Client $client Phue Client
-     */
+	/**
+	 * Send command
+	 *
+	 * @param Client $client Phue Client
+	 *
+	 * @return mixed|void
+	 */
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(

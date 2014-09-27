@@ -19,7 +19,7 @@ class Bridge
     /**
      * Bridge attributes
      *
-     * @var stdClass
+     * @var \stdClass
      */
     protected $attributes;
 
@@ -30,12 +30,13 @@ class Bridge
      */
     protected $client;
 
-    /**
-     * Construct a Phue Bridge object
-     *
-     * @param stdClass $attributes Bridge attributes
-     */
-    public function __construct(\stdClass $attributes, Client $client)
+	/**
+	 * Construct a Phue Bridge object
+	 *
+	 * @param \stdClass $attributes Bridge attributes
+	 * @param Client $client
+	 */
+	public function __construct(\stdClass $attributes, Client $client)
     {
         $this->attributes = $attributes;
         $this->client     = $client;

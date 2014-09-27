@@ -157,13 +157,13 @@ class SetLightState implements CommandInterface, SchedulableInterface
         return $this;
     }
 
-    /**
-     * Set brightness
-     *
-     * @param int $level Brightness level
-     *
-     * @return SetLightState Self object
-     */
+	/**
+	 * Set brightness
+	 *
+	 * @param int $level Brightness level
+	 * @throws \InvalidArgumentException
+	 * @return SetLightState Self object
+	 */
     public function brightness($level = self::BRIGHTNESS_MAX)
     {
         // Don't continue if brightness level is invalid
@@ -179,13 +179,13 @@ class SetLightState implements CommandInterface, SchedulableInterface
         return $this;
     }
 
-    /**
-     * Set hue
-     *
-     * @param int $value Hue value
-     *
-     * @return SetLightState Self object
-     */
+	/**
+	 * Set hue
+	 *
+	 * @param int $value Hue value
+	 * @throws \InvalidArgumentException
+	 * @return SetLightState Self object
+	 */
     public function hue($value)
     {
         // Don't continue if hue value is invalid
@@ -201,13 +201,13 @@ class SetLightState implements CommandInterface, SchedulableInterface
         return $this;
     }
 
-    /**
-     * Set saturation
-     *
-     * @param int $value Saturation value
-     *
-     * @return SetLightState Self object
-     */
+	/**
+	 * Set saturation
+	 *
+	 * @param int $value Saturation value
+	 * @throws \InvalidArgumentException
+	 * @return SetLightState Self object
+	 */
     public function saturation($value)
     {
         // Don't continue if saturation value is invalid
@@ -223,14 +223,14 @@ class SetLightState implements CommandInterface, SchedulableInterface
         return $this;
     }
 
-    /**
-     * Set xy
-     *
-     * @param float $x X value
-     * @param float $y Y value
-     *
-     * @return SetLightState Self object
-     */
+	/**
+	 * Set xy
+	 *
+	 * @param float $x X value
+	 * @param float $y Y value
+	 * @throws \InvalidArgumentException
+	 * @return SetLightState Self object
+	 */
     public function xy($x, $y)
     {
         // Don't continue if x or y values are invalid
@@ -248,13 +248,13 @@ class SetLightState implements CommandInterface, SchedulableInterface
         return $this;
     }
 
-    /**
-     * Set color temperature
-     *
-     * @param int $value Color temperature value
-     *
-     * @return SetLightState Self object
-     */
+	/**
+	 * Set color temperature
+	 *
+	 * @param int $value Color temperature value
+	 * @throws \InvalidArgumentException
+	 * @return SetLightState Self object
+	 */
     public function colorTemp($value)
     {
         // Don't continue if color temperature is invalid
@@ -270,13 +270,13 @@ class SetLightState implements CommandInterface, SchedulableInterface
         return $this;
     }
 
-    /**
-     * Set alert parameter
-     *
-     * @param string $mode Alert mode
-     *
-     * @return SetLightState Self object
-     */
+	/**
+	 * Set alert parameter
+	 *
+	 * @param string $mode Alert mode
+	 * @throws \InvalidArgumentException
+	 * @return SetLightState Self object
+	 */
     public function alert($mode = self::ALERT_LONG_SELECT)
     {
         // Don't continue if mode is not valid
@@ -291,13 +291,13 @@ class SetLightState implements CommandInterface, SchedulableInterface
         return $this;
     }
 
-    /**
-     * Set effect mode
-     *
-     * @param string $mode Effect mode
-     *
-     * @return SetLightState Self object
-     */
+	/**
+	 * Set effect mode
+	 *
+	 * @param string $mode Effect mode
+	 * @throws \InvalidArgumentException
+	 * @return SetLightState Self object
+	 */
     public function effect($mode = self::EFFECT_COLORLOOP)
     {
         // Don't continue if mode is not valid
@@ -312,13 +312,13 @@ class SetLightState implements CommandInterface, SchedulableInterface
         return $this;
     }
 
-    /**
-     * Transition time
-     *
-     * @param double $seconds Time in seconds
-     *
-     * @return SetLightState Self object
-     */
+	/**
+	 * Transition time
+	 *
+	 * @param double $seconds Time in seconds
+	 * @throws \InvalidArgumentException
+	 * @return SetLightState Self object
+	 */
     public function transitionTime($seconds)
     {
         // Don't continue if seconds is not valid
@@ -334,11 +334,13 @@ class SetLightState implements CommandInterface, SchedulableInterface
         return $this;
     }
 
-    /**
-     * Send command
-     *
-     * @param Client $client Phue Client
-     */
+	/**
+	 * Send command
+	 *
+	 * @param Client $client Phue Client
+	 *
+	 * @return mixed|void
+	 */
     public function send(Client $client)
     {
         // Get params

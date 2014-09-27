@@ -60,7 +60,7 @@ class GetNewLights implements CommandInterface
     /**
      * Get lights
      *
-     * @return array List of new lights
+     * @return \Phue\Light[] List of new lights
      */
     public function getLights()
     {

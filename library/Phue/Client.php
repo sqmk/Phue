@@ -114,7 +114,7 @@ class Client
     /**
      * Get users
      *
-     * @return array List of User objects
+     * @return User[] List of User objects
      */
     public function getUsers()
     {
@@ -126,7 +126,7 @@ class Client
     /**
      * Get lights
      *
-     * @return array List of Light objects
+     * @return Light[] List of Light objects
      */
     public function getLights()
     {
@@ -138,7 +138,7 @@ class Client
     /**
      * Get groups
      *
-     * @return array List of Group objects
+     * @return Group[] List of Group objects
      */
     public function getGroups()
     {
@@ -150,7 +150,7 @@ class Client
     /**
      * Get schedules
      *
-     * @return array List of Schedule objects
+     * @return Schedule[] List of Schedule objects
      */
     public function getSchedules()
     {
@@ -184,12 +184,13 @@ class Client
         $this->transport = $transport;
     }
 
-    /**
-     * Send command to server
-     *
-     * @param Command $command Phue command
-     */
-    public function sendCommand(CommandInterface $command)
+	/**
+	 * Send command to server
+	 *
+	 * @param CommandInterface $command Phue command
+	 * @return mixed
+	 */
+	public function sendCommand(CommandInterface $command)
     {
         // Send command
         return $command->send($this);

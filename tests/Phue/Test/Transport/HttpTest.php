@@ -86,7 +86,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
      *
      * @covers Phue\Transport\Http::sendRequest
      *
-     * @expectedException Phue\Transport\Exception\ConnectionException
+     * @expectedException \Phue\Transport\Exception\ConnectionException
      */
     public function testSendRequestBadStatusCode()
     {
@@ -105,7 +105,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
      *
      * @covers Phue\Transport\Http::sendRequest
      *
-     * @expectedException Phue\Transport\Exception\ConnectionException
+     * @expectedException \Phue\Transport\Exception\ConnectionException
      */
     public function testSendRequestBadContentType()
     {
@@ -124,7 +124,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
      *
      * @covers Phue\Transport\Http::sendRequest
      *
-     * @expectedException Phue\Transport\Exception\UnauthorizedUserException
+     * @expectedException \Phue\Transport\Exception\UnauthorizedUserException
      */
     public function testSendRequestErrorResponse()
     {
@@ -149,7 +149,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Send request with array response
      *
-     * @covers Phue\Transport\Http::sendRequest
+     * @covers \Phue\Transport\Http::sendRequest
      */
     public function testSendRequestArray()
     {

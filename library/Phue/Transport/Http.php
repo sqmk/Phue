@@ -101,11 +101,13 @@ class Http implements TransportInterface
      *
      * @param string   $address API address
      * @param string   $method  Request method
-     * @param stdClass $body    Post body
+     * @param \stdClass $body    Post body
      *
      * @return string Request response
+	 * @throws Exception\ConnectionException
+	 * @throws \Exception
      */
-    public function sendRequest($address, $method = self::METHOD_GET, \stdClass $body = null)
+	public function sendRequest($address, $method = self::METHOD_GET, \stdClass $body = null)
     {
         // Build request url
         $url = "http://{$this->client->getHost()}/api/{$address}";
@@ -156,7 +158,7 @@ class Http implements TransportInterface
      * @param string $type        Error type
      * @param string $description Description of error
      *
-     * @return Exception Built exception
+     * @return \Exception Built exception
      */
     public function getExceptionByType($type, $description)
     {

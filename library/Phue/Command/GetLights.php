@@ -22,7 +22,7 @@ class GetLights implements CommandInterface
      *
      * @param Client $client Phue Client
      *
-     * @return array List of Light objects
+     * @return Light[] List of Light objects
      */
     public function send(Client $client)
     {
