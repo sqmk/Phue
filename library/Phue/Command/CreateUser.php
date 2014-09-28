@@ -47,7 +47,7 @@ class CreateUser implements CommandInterface
      * Set username
      *
      * @param string $username Username
-     *
+     * @throws \InvalidArgumentException
      * @return CreateUser Self object
      */
     public function setUsername($username)
@@ -71,7 +71,7 @@ class CreateUser implements CommandInterface
      * Set device type
      *
      * @param string $deviceType Device type
-     *
+     * @throws \InvalidArgumentException
      * @return CreateUser Self object
      */
     public function setDeviceType($deviceType)
@@ -92,7 +92,7 @@ class CreateUser implements CommandInterface
      *
      * @param Client $client Phue Client
      *
-     * @return stdClass Authentication response
+     * @return \stdClass Authentication response
      */
     public function send(Client $client)
     {
@@ -111,7 +111,7 @@ class CreateUser implements CommandInterface
      *
      * @param Client $client Phue client
      *
-     * @return stdClass Request data object
+     * @return \stdClass Request data object
      */
     protected function buildRequestData(Client $client)
     {

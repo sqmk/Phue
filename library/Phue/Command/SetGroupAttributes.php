@@ -46,7 +46,7 @@ class SetGroupAttributes implements CommandInterface
      *
      * @param string $name Name
      *
-     * @return Group Self object
+     * @return \Phue\Group Self object
      */
     public function name($name)
     {
@@ -60,7 +60,7 @@ class SetGroupAttributes implements CommandInterface
      *
      * @param array $lights List of light Ids or Light objects
      *
-     * @return Group Self object
+     * @return \Phue\Group Self object
      */
     public function lights(array $lights)
     {
@@ -79,6 +79,8 @@ class SetGroupAttributes implements CommandInterface
      * Send command
      *
      * @param Client $client Phue Client
+     *
+     * @return mixed|void
      */
     public function send(Client $client)
     {

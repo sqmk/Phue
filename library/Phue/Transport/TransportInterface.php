@@ -37,9 +37,10 @@ interface TransportInterface
     /**
      * Send request
      *
-     * @param string $address API address
+     * @param $path
      * @param string $method  Request method
-     * @param string $body    Request body
+     * @param \stdClass $data
+     * @return mixed
      */
     public function sendRequest($path, $method = self::METHOD_GET, \stdClass $data = null);
 }

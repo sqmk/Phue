@@ -29,7 +29,7 @@ class Group
     /**
      * Group attributes
      *
-     * @var stdClass
+     * @var \stdClass
      */
     protected $attributes;
 
@@ -44,7 +44,7 @@ class Group
      * Construct a Phue Group object
      *
      * @param int      $id         Id
-     * @param stdClass $attributes Group attributes
+     * @param \stdClass $attributes Group attributes
      * @param Client   $client     Phue client
      */
     public function __construct($id, \stdClass $attributes, Client $client)
@@ -76,6 +76,8 @@ class Group
 
     /**
      * Set name of group
+     *
+     * @param string $name
      *
      * @return Group Self object
      */

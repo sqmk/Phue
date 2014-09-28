@@ -28,7 +28,7 @@ class Light
     /**
      * Light attributes
      *
-     * @var stdClass
+     * @var \stdClass
      */
     protected $attributes;
 
@@ -43,7 +43,7 @@ class Light
      * Construct a Phue Light object
      *
      * @param int      $id         Id
-     * @param stdClass $attributes Light attributes
+     * @param \stdClass $attributes Light attributes
      * @param Client   $client     Phue client
      */
     public function __construct($id, \stdClass $attributes, Client $client)
@@ -75,6 +75,8 @@ class Light
 
     /**
      * Set name of light
+     *
+     * @param string $name
      *
      * @return Light Self object
      */

@@ -24,7 +24,7 @@ interface AdapterInterface
      *
      * @param string $address Request path
      * @param string $method  Request method
-     * @param string $data    Body data
+     * @param string $body    Body data
      *
      * @return string Result
      */

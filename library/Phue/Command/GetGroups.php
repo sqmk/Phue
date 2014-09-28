@@ -22,7 +22,7 @@ class GetGroups implements CommandInterface
      *
      * @param Client $client Phue Client
      *
-     * @return array List of Group objects
+     * @return Group[] List of Group objects
      */
     public function send(Client $client)
     {

@@ -38,6 +38,8 @@ class DeleteUser implements CommandInterface
      * Send command
      *
      * @param Client $client Phue Client
+     *
+     * @return mixed|void
      */
     public function send(Client $client)
     {

@@ -38,6 +38,8 @@ class SetScheduleAttributes extends CreateSchedule implements CommandInterface
      * Send command
      *
      * @param Client $client Phue Client
+     *
+     * @return int|mixed|void
      */
     public function send(Client $client)
     {

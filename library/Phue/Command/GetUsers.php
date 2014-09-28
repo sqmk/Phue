@@ -22,7 +22,7 @@ class GetUsers implements CommandInterface
      *
      * @param Client $client Phue Client
      *
-     * @return array List of User objects
+     * @return User[] List of User objects
      */
     public function send(Client $client)
     {

@@ -138,7 +138,7 @@ class CreateSchedule implements CommandInterface
      * Convert time to UTC date
      *
      * @param string $time Time to convert
-     *
+     * @throws \InvalidArgumentException
      * @return string
      */
     public function convertTimeToUtcDate($time)

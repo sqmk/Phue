@@ -27,7 +27,7 @@ class Schedule
     /**
      * Schedule attributes
      *
-     * @var stdClass
+     * @var \stdClass
      */
     protected $attributes;
 
@@ -42,7 +42,7 @@ class Schedule
      * Construct a Phue Schedule object
      *
      * @param int      $id         Id
-     * @param stdClass $attributes Schedule attributes
+     * @param \stdClass $attributes Schedule attributes
      * @param Client   $client     Phue client
      */
     public function __construct($id, \stdClass $attributes, Client $client)
@@ -75,6 +75,7 @@ class Schedule
     /**
      * Set name of schedule
      *
+     * @param string $name
      * @return Schedule Self object
      */
     public function setName($name)
@@ -100,6 +101,8 @@ class Schedule
 
     /**
      * Set descriptions
+     *
+     * @param string $description
      *
      * @return Schedule Self object
      */
