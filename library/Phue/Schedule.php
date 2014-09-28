@@ -39,13 +39,13 @@ class Schedule
     protected $client;
 
     /**
-	 * Construct a Phue Schedule object
-	 *
+     * Construct a Phue Schedule object
+     *
      * @param int      $id         Id
      * @param \stdClass $attributes Schedule attributes
      * @param Client   $client     Phue client
      */
-	public function __construct($id, \stdClass $attributes, Client $client)
+    public function __construct($id, \stdClass $attributes, Client $client)
     {
         $this->id         = (int) $id;
         $this->attributes = $attributes;
@@ -72,12 +72,12 @@ class Schedule
         return $this->attributes->name;
     }
 
-	/**
-	 * Set name of schedule
-	 *
-	 * @param string $name
-	 * @return Schedule Self object
-	 */
+    /**
+     * Set name of schedule
+     *
+     * @param string $name
+     * @return Schedule Self object
+     */
     public function setName($name)
     {
         $this->client->sendCommand(
@@ -99,13 +99,13 @@ class Schedule
         return $this->attributes->description;
     }
 
-	/**
-	 * Set descriptions
-	 *
-	 * @param string $description
-	 *
-	 * @return Schedule Self object
-	 */
+    /**
+     * Set descriptions
+     *
+     * @param string $description
+     *
+     * @return Schedule Self object
+     */
     public function setDescription($description)
     {
         $this->client->sendCommand(

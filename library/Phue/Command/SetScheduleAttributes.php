@@ -34,13 +34,13 @@ class SetScheduleAttributes extends CreateSchedule implements CommandInterface
         $this->scheduleId = (string) $schedule;
     }
 
-	/**
-	 * Send command
-	 *
-	 * @param Client $client Phue Client
-	 *
-	 * @return int|mixed|void
-	 */
+    /**
+     * Send command
+     *
+     * @param Client $client Phue Client
+     *
+     * @return int|mixed|void
+     */
     public function send(Client $client)
     {
         // Set command attribute if passed

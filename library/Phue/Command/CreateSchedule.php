@@ -134,13 +134,13 @@ class CreateSchedule implements CommandInterface
         return $scheduleId;
     }
 
-	/**
-	 * Convert time to UTC date
-	 *
-	 * @param string $time Time to convert
-	 * @throws \InvalidArgumentException
-	 * @return string
-	 */
+    /**
+     * Convert time to UTC date
+     *
+     * @param string $time Time to convert
+     * @throws \InvalidArgumentException
+     * @return string
+     */
     public function convertTimeToUtcDate($time)
     {
         try {

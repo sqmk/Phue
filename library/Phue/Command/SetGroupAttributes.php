@@ -75,13 +75,13 @@ class SetGroupAttributes implements CommandInterface
         return $this;
     }
 
-	/**
-	 * Send command
-	 *
-	 * @param Client $client Phue Client
-	 *
-	 * @return mixed|void
-	 */
+    /**
+     * Send command
+     *
+     * @param Client $client Phue Client
+     *
+     * @return mixed|void
+     */
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(

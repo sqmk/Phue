@@ -34,13 +34,13 @@ class DeleteUser implements CommandInterface
         $this->username = (string) $username;
     }
 
-	/**
-	 * Send command
-	 *
-	 * @param Client $client Phue Client
-	 *
-	 * @return mixed|void
-	 */
+    /**
+     * Send command
+     *
+     * @param Client $client Phue Client
+     *
+     * @return mixed|void
+     */
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(

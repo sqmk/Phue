@@ -73,13 +73,13 @@ class Light
         return $this->attributes->name;
     }
 
-	/**
-	 * Set name of light
-	 *
-	 * @param string $name
-	 *
-	 * @return Light Self object
-	 */
+    /**
+     * Set name of light
+     *
+     * @param string $name
+     *
+     * @return Light Self object
+     */
     public function setName($name)
     {
         $this->client->sendCommand(

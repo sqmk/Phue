@@ -74,13 +74,13 @@ class Group
         return $this->attributes->name;
     }
 
-	/**
-	 * Set name of group
-	 *
-	 * @param string $name
-	 *
-	 * @return Group Self object
-	 */
+    /**
+     * Set name of group
+     *
+     * @param string $name
+     *
+     * @return Group Self object
+     */
     public function setName($name)
     {
         $this->client->sendCommand(

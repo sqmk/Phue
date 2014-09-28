@@ -43,13 +43,13 @@ class CreateUser implements CommandInterface
         $this->setDeviceType($deviceType);
     }
 
-	/**
-	 * Set username
-	 *
-	 * @param string $username Username
-	 * @throws \InvalidArgumentException
-	 * @return CreateUser Self object
-	 */
+    /**
+     * Set username
+     *
+     * @param string $username Username
+     * @throws \InvalidArgumentException
+     * @return CreateUser Self object
+     */
     public function setUsername($username)
     {
         // Allow for null username
@@ -67,13 +67,13 @@ class CreateUser implements CommandInterface
         $this->username = $username;
     }
 
-	/**
-	 * Set device type
-	 *
-	 * @param string $deviceType Device type
-	 * @throws \InvalidArgumentException
-	 * @return CreateUser Self object
-	 */
+    /**
+     * Set device type
+     *
+     * @param string $deviceType Device type
+     * @throws \InvalidArgumentException
+     * @return CreateUser Self object
+     */
     public function setDeviceType($deviceType)
     {
         if (strlen($deviceType) > 40) {

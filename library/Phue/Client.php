@@ -184,13 +184,13 @@ class Client
         $this->transport = $transport;
     }
 
-	/**
-	 * Send command to server
-	 *
-	 * @param CommandInterface $command Phue command
-	 * @return mixed
-	 */
-	public function sendCommand(CommandInterface $command)
+    /**
+     * Send command to server
+     *
+     * @param CommandInterface $command Phue command
+     * @return mixed
+     */
+    public function sendCommand(CommandInterface $command)
     {
         // Send command
         return $command->send($this);

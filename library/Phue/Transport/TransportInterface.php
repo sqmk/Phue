@@ -34,13 +34,13 @@ interface TransportInterface
      */
     const METHOD_DELETE = 'DELETE';
 
-	/**
-	 * Send request
-	 *
-	 * @param $path
-	 * @param string $method  Request method
-	 * @param \stdClass $data
-	 * @return mixed
-	 */
-	public function sendRequest($path, $method = self::METHOD_GET, \stdClass $data = null);
+    /**
+     * Send request
+     *
+     * @param $path
+     * @param string $method  Request method
+     * @param \stdClass $data
+     * @return mixed
+     */
+    public function sendRequest($path, $method = self::METHOD_GET, \stdClass $data = null);
 }

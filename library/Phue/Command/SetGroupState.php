@@ -34,13 +34,13 @@ class SetGroupState extends SetLightState implements SchedulableInterface
         $this->groupId = (string) $group;
     }
 
-	/**
-	 * Send command
-	 *
-	 * @param Client $client Phue Client
-	 *
-	 * @return mixed|void
-	 */
+    /**
+     * Send command
+     *
+     * @param Client $client Phue Client
+     *
+     * @return mixed|void
+     */
     public function send(Client $client)
     {
         // Get params
