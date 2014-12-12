@@ -364,7 +364,7 @@ class SetLightState implements CommandInterface, SchedulableInterface
     public function getSchedulableParams(Client $client)
     {
         return [
-            'address' => "{$client->getUsername()}/lights/{$this->lightId}/state",
+            'address' => "/api/{$client->getUsername()}/lights/{$this->lightId}/state",
             'method'  => TransportInterface::METHOD_PUT,
             'body'    => (object) $this->params
         ];

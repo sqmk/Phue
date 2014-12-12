@@ -45,7 +45,7 @@ class GetLightById implements CommandInterface
     {
         // Get response
         $attributes = $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/lights/{$this->lightId}"
+            "/api/{$client->getUsername()}/lights/{$this->lightId}"
         );
 
         return new Light($this->lightId, $attributes, $client);

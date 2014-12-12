@@ -26,6 +26,6 @@ class Ping implements CommandInterface
      */
     public function send(Client $client)
     {
-        $client->getTransport()->sendRequest('none/config');
+        $client->getTransport()->sendRequest('/api/none/config');
     }
 }

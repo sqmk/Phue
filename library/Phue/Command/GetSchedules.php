@@ -28,17 +28,12 @@ class GetSchedules implements CommandInterface
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            $client->getUsername()
+            "/api/{$client->getUsername()}/schedules"
         );
-
-        // Return empty list if no schedules
-        if (!isset($response->schedules)) {
-            return [];
-        }
 
         $schedules = [];
 
-        foreach ($response->schedules as $scheduleId => $attributes) {
+        foreach ($response as $scheduleId => $attributes) {
             $schedules[$scheduleId] = new Schedule($scheduleId, $attributes, $client);
         }
 

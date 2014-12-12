@@ -64,7 +64,7 @@ class SetGroupState extends SetLightState implements SchedulableInterface
     public function getSchedulableParams(Client $client)
     {
         return [
-            'address' => "{$client->getUsername()}/groups/{$this->groupId}/action",
+            'address' => "/api/{$client->getUsername()}/groups/{$this->groupId}/action",
             'method'  => TransportInterface::METHOD_PUT,
             'body'    => (object) $this->params
         ];

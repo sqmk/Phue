@@ -49,7 +49,7 @@ class SetScheduleAttributes extends CreateSchedule implements CommandInterface
         }
 
         $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/schedules/{$this->scheduleId}",
+            "/api/{$client->getUsername()}/schedules/{$this->scheduleId}",
             TransportInterface::METHOD_PUT,
             (object) $this->attributes
         );

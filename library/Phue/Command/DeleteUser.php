@@ -44,7 +44,7 @@ class DeleteUser implements CommandInterface
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/config/whitelist/{$this->username}",
+            "/api/{$client->getUsername()}/config/whitelist/{$this->username}",
             TransportInterface::METHOD_DELETE
         );
     }

@@ -86,7 +86,7 @@ class CreateGroup implements CommandInterface
     public function send(Client $client)
     {
         $response = $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/groups",
+            "/api/{$client->getUsername()}/groups",
             TransportInterface::METHOD_POST,
             (object) [
                 'name'   => $this->name,

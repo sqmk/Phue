@@ -28,7 +28,7 @@ class GetBridge implements CommandInterface
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/config"
+            "/api/{$client->getUsername()}/config"
         );
 
         return new Bridge($response, $client);

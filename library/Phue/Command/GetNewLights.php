@@ -41,7 +41,7 @@ class GetNewLights implements CommandInterface
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/lights/new"
+            "/api/{$client->getUsername()}/lights/new"
         );
 
         $this->lastScan = $response->lastscan;

@@ -126,7 +126,7 @@ class CreateSchedule implements CommandInterface
 
         // Create schedule
         $scheduleId = $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/schedules",
+            "/api/{$client->getUsername()}/schedules",
             TransportInterface::METHOD_POST,
             (object) $this->attributes
         );
@@ -144,10 +144,8 @@ class CreateSchedule implements CommandInterface
     public function convertTimeToUtcDate($time)
     {
         try {
-            $setTime = new \DateTime($time);
-            $setTime->setTimeZone(
-                new \DateTimeZone('UTC')
-            );
+            $setTime = (new \DateTime($time))
+                ->setTimeZone(new \DateTimeZone('UTC'));
         } catch (\Exception $e) {
             throw new \InvalidArgumentException('time value could not be parsed');
         }

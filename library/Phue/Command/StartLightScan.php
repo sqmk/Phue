@@ -28,7 +28,7 @@ class StartLightScan implements CommandInterface
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/lights",
+            "/api/{$client->getUsername()}/lights",
             TransportInterface::METHOD_POST
         );
 

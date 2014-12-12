@@ -45,7 +45,7 @@ class GetScheduleById implements CommandInterface
     {
         // Get response
         $attributes = $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/schedules/{$this->scheduleId}"
+            "/api/{$client->getUsername()}/schedules/{$this->scheduleId}"
         );
 
         return new Schedule($this->scheduleId, $attributes, $client);

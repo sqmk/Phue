@@ -28,7 +28,7 @@ class GetGroups implements CommandInterface
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            $client->getUsername()
+            "/api/{$client->getUsername()}"
         );
 
         // Return empty list if no groups

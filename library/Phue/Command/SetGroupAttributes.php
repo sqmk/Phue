@@ -85,7 +85,7 @@ class SetGroupAttributes implements CommandInterface
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/groups/{$this->groupId}",
+            "/api/{$client->getUsername()}/groups/{$this->groupId}",
             TransportInterface::METHOD_PUT,
             (object) $this->attributes
         );

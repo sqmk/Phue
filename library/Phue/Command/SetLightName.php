@@ -54,7 +54,7 @@ class SetLightName implements CommandInterface
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/lights/{$this->lightId}",
+            "/api/{$client->getUsername()}/lights/{$this->lightId}",
             TransportInterface::METHOD_PUT,
             (object) [
                 'name' => $this->name

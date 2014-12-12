@@ -28,7 +28,7 @@ class GetUsers implements CommandInterface
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/config"
+            "/api/{$client->getUsername()}/config"
         );
 
         // Return empty list if no users

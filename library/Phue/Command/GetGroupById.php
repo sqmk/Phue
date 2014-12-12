@@ -45,7 +45,7 @@ class GetGroupById implements CommandInterface
     {
         // Get response
         $attributes = $client->getTransport()->sendRequest(
-            "{$client->getUsername()}/groups/{$this->groupId}"
+            "/api/{$client->getUsername()}/groups/{$this->groupId}"
         );
 
         return new Group($this->groupId, $attributes, $client);

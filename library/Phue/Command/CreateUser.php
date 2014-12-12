@@ -98,7 +98,7 @@ class CreateUser implements CommandInterface
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            '',
+            '/api',
             TransportInterface::METHOD_POST,
             $this->buildRequestData($client)
         );
