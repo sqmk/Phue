@@ -122,6 +122,7 @@ class CreateSchedule implements CommandInterface
         // Set command attribute if passed
         if ($this->command) {
             $this->attributes['command'] = $this->command->getSchedulableParams($client);
+            $this->attributes['command']['address'] = '/api/'. $this->attributes['command']['address'];
         }
 
         // Create schedule
