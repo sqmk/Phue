@@ -29,7 +29,7 @@ class IsAuthorized implements CommandInterface
         // Get response
         try {
             $client->getTransport()->sendRequest(
-                "/api/$client->getUsername()"
+                "/api/{$client->getUsername()}"
             );
         } catch (UnauthorizedUserException $e) {
             return false;
