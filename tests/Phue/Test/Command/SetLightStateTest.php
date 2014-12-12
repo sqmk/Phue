@@ -498,7 +498,7 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $setLightStateCmd->getSchedulableParams($this->mockClient),
             [
-                'address' => "{$this->mockClient->getUsername()}/lights/{$this->mockLight->getId()}/state",
+                'address' => "/api/{$this->mockClient->getUsername()}/lights/{$this->mockLight->getId()}/state",
                 'method'  => 'PUT',
                 'body'    => (object) [
                     'alert' => 'select'
@@ -519,7 +519,7 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
             ->method('sendRequest')
             ->with(
                 $this->equalTo(
-                    "{$this->mockClient->getUsername()}/lights/{$this->mockLight->getId()}/state"
+                    "/api/{$this->mockClient->getUsername()}/lights/{$this->mockLight->getId()}/state"
                 ),
                 $this->equalTo('PUT'),
                 $payload

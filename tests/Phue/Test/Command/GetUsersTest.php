@@ -59,7 +59,7 @@ class GetUsersTest extends \PHPUnit_Framework_TestCase
         // Stub transport's sendRequest method
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
-            ->with($this->equalTo("{$this->mockClient->getUsername()}/config"))
+            ->with($this->equalTo("/api/{$this->mockClient->getUsername()}/config"))
             ->will($this->returnValue(new \stdClass));
 
         // Send command and get response
@@ -88,7 +88,7 @@ class GetUsersTest extends \PHPUnit_Framework_TestCase
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
-            ->with($this->equalTo("{$this->mockClient->getUsername()}/config"))
+            ->with($this->equalTo("/api/{$this->mockClient->getUsername()}/config"))
             ->will($this->returnValue($mockTransportResults));
 
         // Send command and get response

@@ -58,7 +58,7 @@ class GetGroupByIdTest extends \PHPUnit_Framework_TestCase
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
-            ->with("{$this->mockClient->getUsername()}/groups/5")
+            ->with("/api/{$this->mockClient->getUsername()}/groups/5")
             ->will($this->returnValue(new \stdClass));
 
         // Get group

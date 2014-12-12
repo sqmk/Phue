@@ -58,7 +58,7 @@ class GetNewLightsTest extends \PHPUnit_Framework_TestCase
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
-            ->with($this->equalTo("{$this->mockClient->getUsername()}/lights/new"))
+            ->with($this->equalTo("/api/{$this->mockClient->getUsername()}/lights/new"))
             ->will($this->returnValue($mockTransportResults));
     }
 

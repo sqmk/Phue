@@ -58,7 +58,7 @@ class GetScheduleByIdTest extends \PHPUnit_Framework_TestCase
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
-            ->with("{$this->mockClient->getUsername()}/schedules/9")
+            ->with("/api/{$this->mockClient->getUsername()}/schedules/9")
             ->will($this->returnValue(new \stdClass));
 
         // Get schedule

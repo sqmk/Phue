@@ -93,7 +93,7 @@ class SetGroupAttributesTest extends \PHPUnit_Framework_TestCase
             ->method('sendRequest')
             ->with(
                 $this->equalTo(
-                    "{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}"
+                    "/api/{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}"
                 ),
                 $this->equalTo('PUT'),
                 $payload

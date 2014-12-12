@@ -88,7 +88,7 @@ class CreateUserTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with(
-                $this->equalTo(''),
+                $this->equalTo('/api'),
                 $this->equalTo('POST'),
                 $this->anything()
             )

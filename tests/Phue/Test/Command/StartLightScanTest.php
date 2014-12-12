@@ -58,7 +58,7 @@ class StartLightScanTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with(
-                $this->equalTo($this->mockClient->getUsername() . '/lights'),
+                $this->equalTo("/api/{$this->mockClient->getUsername()}/lights"),
                 $this->equalTo('POST')
             )
             ->will($this->returnValue('success!'));

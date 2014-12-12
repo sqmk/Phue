@@ -58,7 +58,7 @@ class GetLightByIdTest extends \PHPUnit_Framework_TestCase
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
-            ->with("{$this->mockClient->getUsername()}/lights/10")
+            ->with("/api/{$this->mockClient->getUsername()}/lights/10")
             ->will($this->returnValue(new \stdClass));
 
         // Get light

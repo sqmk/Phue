@@ -61,7 +61,7 @@ class DeleteScheduleTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with(
-                $this->equalTo("{$this->mockClient->getUsername()}/schedules/4"),
+                $this->equalTo("/api/{$this->mockClient->getUsername()}/schedules/4"),
                 $this->equalTo(TransportInterface::METHOD_DELETE)
             );
 

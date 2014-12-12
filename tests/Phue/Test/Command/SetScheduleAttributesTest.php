@@ -99,7 +99,7 @@ class SetScheduleAttributesTest extends \PHPUnit_Framework_TestCase
             ->method('sendRequest')
             ->with(
                 $this->equalTo(
-                    "{$this->mockClient->getUsername()}/schedules/{$this->mockSchedule->getId()}"
+                    "/api/{$this->mockClient->getUsername()}/schedules/{$this->mockSchedule->getId()}"
                 ),
                 $this->equalTo('PUT'),
                 $payload

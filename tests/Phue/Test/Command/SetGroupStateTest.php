@@ -94,7 +94,7 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $setGroupStateCmd->getSchedulableParams($this->mockClient),
             [
-                'address' => "{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action",
+                'address' => "/api/{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action",
                 'method'  => 'PUT',
                 'body'    => (object) [
                     'alert' => 'select'
@@ -115,7 +115,7 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
             ->method('sendRequest')
             ->with(
                 $this->equalTo(
-                    "{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action"
+                    "/api/{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action"
                 ),
                 $this->equalTo('PUT'),
                 $payload

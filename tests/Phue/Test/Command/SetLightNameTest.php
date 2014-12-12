@@ -68,7 +68,7 @@ class SetLightNameTest extends \PHPUnit_Framework_TestCase
             ->method('sendRequest')
             ->with(
                 $this->equalTo(
-                    "{$this->mockClient->getUsername()}/lights/{$this->mockLight->getId()}"
+                    "/api/{$this->mockClient->getUsername()}/lights/{$this->mockLight->getId()}"
                 ),
                 $this->equalTo('PUT'),
                 $this->isInstanceOf('\stdClass')

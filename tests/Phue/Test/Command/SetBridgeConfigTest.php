@@ -60,7 +60,7 @@ class SetBridgeConfigTest extends \PHPUnit_Framework_TestCase
             ->method('sendRequest')
             ->with(
                 $this->equalTo(
-                    "{$this->mockClient->getUsername()}/config"
+                    "/api/{$this->mockClient->getUsername()}/config"
                 ),
                 $this->equalTo('PUT'),
                 $this->isInstanceOf('\stdClass')

@@ -103,7 +103,7 @@ class CreateGroupTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with(
-                $this->equalTo("{$this->mockClient->getUsername()}/groups"),
+                $this->equalTo("/api/{$this->mockClient->getUsername()}/groups"),
                 $this->equalTo(TransportInterface::METHOD_POST),
                 $this->equalTo(
                     (object) [

@@ -227,11 +227,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         // Mock results for sendRequest
         $mockResults = (object) [
-            'schedules' => [
-                '1' => new \stdClass,
-                '2' => new \stdClass,
-                '3' => new \stdClass,
-            ]
+            '1' => new \stdClass,
+            '2' => new \stdClass,
+            '3' => new \stdClass,
         ];
 
         // Stub transports sendRequest method

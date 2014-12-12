@@ -58,7 +58,7 @@ class IsAuthorizedTest extends \PHPUnit_Framework_TestCase
         // Stub transport's sendRequest method
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
-            ->with($this->equalTo($this->mockClient->getUsername()));
+            ->with($this->equalTo("/api/{$this->mockClient->getUsername()}"));
 
         $this->assertTrue(
             (new IsAuthorized)->send($this->mockClient)
@@ -75,7 +75,7 @@ class IsAuthorizedTest extends \PHPUnit_Framework_TestCase
         // Stub transport's sendRequest
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
-            ->with($this->equalTo($this->mockClient->getUsername()))
+            ->with($this->equalTo("/api/{$this->mockClient->getUsername()}"))
             ->will(
                 $this->throwException(
                     $this->getMock('\Phue\Transport\Exception\UnauthorizedUserException')

@@ -52,7 +52,7 @@ class PingTest extends \PHPUnit_Framework_TestCase
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
-            ->with($this->equalTo('none/config'));
+            ->with($this->equalTo('/api/none/config'));
 
         (new Ping)->send($this->mockClient);
     }

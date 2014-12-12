@@ -61,7 +61,7 @@ class DeleteUserTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with(
-                $this->equalTo("{$this->mockClient->getUsername()}/config/whitelist/atestusername"),
+                $this->equalTo("/api/{$this->mockClient->getUsername()}/config/whitelist/atestusername"),
                 $this->equalTo(TransportInterface::METHOD_DELETE)
             );
 

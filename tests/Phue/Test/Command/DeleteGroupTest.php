@@ -61,7 +61,7 @@ class DeleteGroupTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with(
-                $this->equalTo("{$this->mockClient->getUsername()}/groups/5"),
+                $this->equalTo("/api/{$this->mockClient->getUsername()}/groups/5"),
                 $this->equalTo(TransportInterface::METHOD_DELETE)
             );
 
