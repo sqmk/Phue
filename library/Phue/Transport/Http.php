@@ -110,7 +110,7 @@ class Http implements TransportInterface
     public function sendRequest($address, $method = self::METHOD_GET, \stdClass $body = null)
     {
         // Build request url
-        $url = "http://{$this->client->getHost()}/api/{$address}";
+        $url = "http://{$this->client->getHost()}{$address}";
 
         // Open connection
         $this->getAdapter()->open();
