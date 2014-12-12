@@ -2,7 +2,7 @@
 /**
  * Example: List schedules.
  *
- * Usage: HUE_HOST=127.0.0.1 HUE_USERNAME=1234567890 php list-lights.php
+ * Usage: HUE_HOST=127.0.0.1 HUE_USERNAME=1234567890 php list-schedules.php
  */
 
 require_once 'common.php';
