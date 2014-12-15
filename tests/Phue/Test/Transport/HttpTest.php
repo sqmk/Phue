@@ -218,22 +218,15 @@ class HttpTest extends \PHPUnit_Framework_TestCase
      */
     public function providerErrorTypes()
     {
-        return [
-            [1,   'Phue\Transport\Exception\UnauthorizedUserException'],
-            [2,   'Phue\Transport\Exception\InvalidJsonBodyException'],
-            [3,   'Phue\Transport\Exception\ResourceUnavailableException'],
-            [4,   'Phue\Transport\Exception\MethodUnavailableException'],
-            [5,   'Phue\Transport\Exception\MissingParameterException'],
-            [6,   'Phue\Transport\Exception\ParameterUnavailableException'],
-            [7,   'Phue\Transport\Exception\InvalidValueException'],
-            [8,   'Phue\Transport\Exception\ParameterUnmodifiableException'],
-            [101, 'Phue\Transport\Exception\LinkButtonException'],
-            [201, 'Phue\Transport\Exception\DeviceParameterUnmodifiableException'],
-            [301, 'Phue\Transport\Exception\GroupTableFullException'],
-            [302, 'Phue\Transport\Exception\LightGroupTableFullException'],
-            [901, 'Phue\Transport\Exception\InternalErrorException'],
-            [-1,  'Phue\Transport\Exception\BridgeException'],
+        $errorTypes = [
+            [-1, 'Phue\Transport\Exception\BridgeException']
         ];
+
+        foreach (Http::$exceptionMap as $errorId => $errorClass) {
+            $errorTypes[] = [$errorId, $errorClass];
+        }
+
+        return $errorTypes;
     }
 
     /**
