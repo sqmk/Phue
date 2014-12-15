@@ -39,7 +39,7 @@ class Http implements TransportInterface
      *
      * @var array
      */
-    protected static $exceptionMap = [
+    public static $exceptionMap = [
         0   => 'Phue\Transport\Exception\BridgeException',
         1   => 'Phue\Transport\Exception\UnauthorizedUserException',
         2   => 'Phue\Transport\Exception\InvalidJsonBodyException',
@@ -49,10 +49,29 @@ class Http implements TransportInterface
         6   => 'Phue\Transport\Exception\ParameterUnavailableException',
         7   => 'Phue\Transport\Exception\InvalidValueException',
         8   => 'Phue\Transport\Exception\ParameterUnmodifiableException',
+        11  => 'Phue\Transport\Exception\TooManyItemsInListException',
+        12  => 'Phue\Transport\Exception\PortalConnectionRequiredException',
         101 => 'Phue\Transport\Exception\LinkButtonException',
+        110 => 'Phue\Transport\Exception\DisablingDhcpProhibitedException',
+        111 => 'Phue\Transport\Exception\InvalidUpdateStateException',
         201 => 'Phue\Transport\Exception\DeviceParameterUnmodifiableException',
         301 => 'Phue\Transport\Exception\GroupTableFullException',
         302 => 'Phue\Transport\Exception\LightGroupTableFullException',
+        304 => 'Phue\Transport\Exception\DeviceUnreachableException',
+        305 => 'Phue\Transport\Exception\GroupUnmodifiableException',
+        401 => 'Phue\Transport\Exception\SceneCreationInProgressException',
+        402 => 'Phue\Transport\Exception\SceneBufferFullException',
+        501 => 'Phue\Transport\Exception\SensorCreationProhibitedException',
+        502 => 'Phue\Transport\Exception\SensorListFullException',
+        601 => 'Phue\Transport\Exception\RuleListFullException',
+        607 => 'Phue\Transport\Exception\RuleConditionException',
+        608 => 'Phue\Transport\Exception\RuleActionException',
+        609 => 'Phue\Transport\Exception\RuleActivationException',
+        701 => 'Phue\Transport\Exception\ScheduleListFullException',
+        702 => 'Phue\Transport\Exception\InvalidScheduleTimeZoneException',
+        703 => 'Phue\Transport\Exception\ScheduleTimeUpdateException',
+        704 => 'Phue\Transport\Exception\InvalidScheduleTagException',
+        705 => 'Phue\Transport\Exception\ScheduleTimeInPastException',
         901 => 'Phue\Transport\Exception\InternalErrorException',
     ];
 
