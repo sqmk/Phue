@@ -28,17 +28,12 @@ class GetLights implements CommandInterface
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}"
+            "/api/{$client->getUsername()}/lights"
         );
-
-        // Return empty list if no lights
-        if (!isset($response->lights)) {
-            return [];
-        }
 
         $lights = [];
 
-        foreach ($response->lights as $lightId => $attributes) {
+        foreach ($response as $lightId => $attributes) {
             $lights[$lightId] = new Light($lightId, $attributes, $client);
         }
 
