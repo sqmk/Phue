@@ -1,9 +1,16 @@
 <?php
+/**
+ * Phue: Philips Hue PHP Client
+ *
+ * @author    Michael Squires <sqmk@php.net>
+ * @copyright Copyright (c) 2012-2014 Michael K. Squires
+ * @license   http://github.com/sqmk/Phue/wiki/License
+ */
 
 namespace Phue\LightModel;
 
 /**
- * BR30 model
+ * Hue Spot BR30
  */
 class ModelLct002 extends AbstractLightModel
 {
@@ -15,5 +22,5 @@ class ModelLct002 extends AbstractLightModel
     /**
      * Model name
      */
-    const MODEL_NAME = 'BR30 Hue Bulbs';
+    const MODEL_NAME = 'Hue Spot BR30';
 }

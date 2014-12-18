@@ -10,17 +10,17 @@
 namespace Phue\LightModel;
 
 /**
- * Hue Spot GU10
+ * Disney Living Colors
  */
-class ModelLct003 extends AbstractLightModel
+class ModelLlc013 extends AbstractLightModel
 {
     /**
      * Model id
      */
-    const MODEL_ID = 'LCT003';
+    const MODEL_ID = 'LLC013';
 
     /**
      * Model name
      */
-    const MODEL_NAME = 'Hue Spot GU10';
+    const MODEL_NAME = 'Disney Living Colors';
 }

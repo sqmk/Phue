@@ -1,9 +1,16 @@
 <?php
+/**
+ * Phue: Philips Hue PHP Client
+ *
+ * @author    Michael Squires <sqmk@php.net>
+ * @copyright Copyright (c) 2012-2014 Michael K. Squires
+ * @license   http://github.com/sqmk/Phue/wiki/License
+ */
 
 namespace Phue\LightModel;
 
 /**
- * Hue bulb model
+ * Hue bulb A19
  */
 class ModelLct001 extends AbstractLightModel
 {
@@ -15,5 +22,5 @@ class ModelLct001 extends AbstractLightModel
     /**
      * Model name
      */
-    const MODEL_NAME = 'Hue Bulb';
+    const MODEL_NAME = 'Hue bulb A19';
 }

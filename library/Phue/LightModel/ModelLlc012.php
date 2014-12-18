@@ -1,9 +1,16 @@
 <?php
+/**
+ * Phue: Philips Hue PHP Client
+ *
+ * @author    Michael Squires <sqmk@php.net>
+ * @copyright Copyright (c) 2012-2014 Michael K. Squires
+ * @license   http://github.com/sqmk/Phue/wiki/License
+ */
 
 namespace Phue\LightModel;
 
 /**
- * Bloom model
+ * Hue Living Colors Bloom
  */
 class ModelLlc012 extends AbstractLightModel
 {
@@ -15,7 +22,7 @@ class ModelLlc012 extends AbstractLightModel
     /**
      * Model name
      */
-    const MODEL_NAME = 'Bloom';
+    const MODEL_NAME = 'Hue Living Colors Bloom';
 
     /**
      * Can retain state
