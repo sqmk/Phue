@@ -11,6 +11,7 @@ namespace Phue\Test\Command;
 
 use Phue\Command\CreateSchedule;
 use Phue\Client;
+use Phue\Schedule;
 use Phue\Transport\TransportInterface;
 
 /**
@@ -103,7 +104,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      * Test: Set time
      *
      * @covers \Phue\Command\CreateSchedule::time
-     * @covers \Phue\Command\CreateSchedule::convertTimeToUtcDate
      */
     public function testTime()
     {
@@ -120,7 +120,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      * Test: Set invalid time
      *
      * @covers \Phue\Command\CreateSchedule::time
-     * @covers \Phue\Command\CreateSchedule::convertTimeToUtcDate
      *
      * @expectedException \InvalidArgumentException
      */
@@ -147,6 +146,38 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
 
         // Ensure self object is returned
         $this->assertEquals($command, $command->command($this->mockCommand));
+    }
+
+    /**
+     * Test: Set status
+     *
+     * @covers \Phue\Command\CreateSchedule::status
+     */
+    public function testStatus()
+    {
+        $command = (new CreateSchedule())->status(Schedule::STATUS_ENABLED);
+
+        // Ensure property is set properly
+        $this->assertAttributeContains(Schedule::STATUS_ENABLED, 'attributes', $command);
+
+        // Ensure self object is returned
+        $this->assertEquals($command, $command->status(Schedule::STATUS_ENABLED));
+    }
+
+    /**
+     * Test: Auto delete
+     *
+     * @covers \Phue\Command\CreateSchedule::autodelete
+     */
+    public function testAutoDelete()
+    {
+        $command = (new CreateSchedule())->autodelete(true);
+
+        // Ensure property is set properly
+        $this->assertAttributeContains(true, 'attributes', $command);
+
+        // Ensure self object is returned
+        $this->assertEquals($command, $command->autodelete(true));
     }
 
     /**

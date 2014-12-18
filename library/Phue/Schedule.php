@@ -11,12 +11,23 @@ namespace Phue;
 
 use Phue\Command\SetScheduleAttributes;
 use Phue\Command\SchedulableInterface;
+use Phue\TimePattern\AbsoluteTime;
 
 /**
  * Schedule object
  */
 class Schedule
 {
+    /**
+     * Status: Enabled
+     */
+    const STATUS_ENABLED = 'enabled';
+
+    /**
+     * Status: Disabled
+     */
+    const STATUS_DISABLED = 'disabled';
+
     /**
      * Id
      *
@@ -41,9 +52,9 @@ class Schedule
     /**
      * Construct a Phue Schedule object
      *
-     * @param int      $id         Id
+     * @param int       $id         Id
      * @param \stdClass $attributes Schedule attributes
-     * @param Client   $client     Phue client
+     * @param Client    $client     Phue client
      */
     public function __construct($id, \stdClass $attributes, Client $client)
     {
@@ -100,7 +111,7 @@ class Schedule
     }
 
     /**
-     * Set descriptions
+     * Set description
      *
      * @param string $description
      *
@@ -115,6 +126,72 @@ class Schedule
         $this->attributes->description = (string) $description;
 
         return $this;
+    }
+
+    /**
+     * Get command
+     *
+     * @return array Command attributes
+     */
+    public function getCommand()
+    {
+        return (array) $this->attributes->command;
+    }
+
+    /**
+     * Set command
+     *
+     * @param SchedulableInterface $command Schedulable command
+     *
+     * @return Schedule Self object
+     */
+    public function setCommand(SchedulableInterface $command)
+    {
+        $this->client->sendCommand(
+            (new SetScheduleAttributes($this))->command($command)
+        );
+
+        $this->attributes->command = $command->getSchedulableParams($this->client);
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string Get status.
+     */
+    public function getStatus()
+    {
+        return $this->attributes->status;
+    }
+
+    /**
+     * Set status.
+     *
+     * @param string $status Status.
+     *
+     * @return Schedule Self object
+     */
+    public function setStatus($status)
+    {
+        $this->client->sendCommand(
+            (new SetScheduleAttributes($this))->status((string) $status)
+        );
+
+        $this->attributes->status = (string) $status;
+
+        return $this;
+    }
+
+    /**
+     * Is schedule enabled.
+     *
+     * @return bool True if enabled, false if not.
+     */
+    public function isEnabled()
+    {
+        return $this->attributes->status == self::STATUS_ENABLED;
     }
 
     /**
@@ -136,50 +213,41 @@ class Schedule
      */
     public function setTime($time)
     {
-        // Init command
-        $command = new SetScheduleAttributes($this);
-
-        // Build new time
-        $time = $command->convertTimeToUtcDate($time);
-
-        // Update the time, and set internal attribute
         $this->client->sendCommand(
-            $command->time($time)
+            (new SetScheduleAttributes($this))
+                ->time($time)
         );
 
-        $this->attributes->time = $time;
+        $this->attributes->time = (string) $time;
 
         return $this;
     }
 
     /**
-     * Get command
+     * Is auto deleted?
      *
-     * @return array Command attributes
+     * @return bool True if auto delete, false if not
      */
-    public function getCommand()
+    public function isAutoDeleted()
     {
-        return [
-            'method'  => $this->attributes->command->method,
-            'address' => $this->attributes->command->address,
-            'body'    => $this->attributes->command->body
-        ];
+        return (bool) $this->attributes->autodelete;
     }
 
     /**
-     * Set command
+     * Set auto delete
      *
-     * @param SchedulableInterface $command Schedulable command
+     * @param bool $flag True to auto delete, false if not
      *
      * @return Schedule Self object
      */
-    public function setCommand(SchedulableInterface $command)
+    public function setAutoDelete($flag)
     {
         $this->client->sendCommand(
-            (new SetScheduleAttributes($this))->command($command)
+            (new SetScheduleAttributes($this))
+                ->autodelete((bool) $flag)
         );
 
-        $this->attributes->command = $command->getSchedulableParams($this->client);
+        $this->attributes->autodelete = (bool) $flag;
 
         return $this;
     }

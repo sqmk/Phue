@@ -16,5 +16,7 @@ foreach ($client->getSchedules() as $schedule) {
         "\t\t", "Time scheduled: {$schedule->getTime()}", "\n",
         "\t\t", "Method: {$schedule->getCommand()['method']}", "\n",
         "\t\t", "Address: {$schedule->getCommand()['address']}", "\n",
-        "\t\t", "Body: ", json_encode($schedule->getCommand()['body']), "\n";
+        "\t\t", "Body: ", json_encode($schedule->getCommand()['body']), "\n",
+        "\t\t", "Status: ", $schedule->getStatus(), "\n",
+        "\t\t", "Autodelete: ", $schedule->isAutoDeleted() ? 'Yes' : 'No', "\n";
 }

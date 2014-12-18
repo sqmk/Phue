@@ -10,6 +10,8 @@
 namespace Phue\Command;
 
 use Phue\Client;
+use Phue\TimePattern\AbsoluteTime;
+use Phue\TimePattern\TimePatternInterface;
 use Phue\Transport\TransportInterface;
 
 /**
@@ -32,10 +34,17 @@ class CreateSchedule implements CommandInterface
     protected $command;
 
     /**
+     * Time pattern
+     *
+     * @var TimePatternInterface
+     */
+    protected $time;
+
+    /**
      * Constructs a create schedule command
      *
      * @param string                $name    Name of schedule
-     * @param string                $time    Time to run command
+     * @param mixed                 $time    Time to run command
      * @param SchedulableInterface  $command Schedulable command
      */
     public function __construct(
@@ -89,9 +98,11 @@ class CreateSchedule implements CommandInterface
      */
     public function time($time)
     {
-        $this->attributes['time'] = $this->convertTimeToUtcDate(
-            (string) $time
-        );
+        if (!($time instanceof TimePatternInterface)) {
+            $time = new AbsoluteTime((string) $time);
+        }
+
+        $this->time = $time;
 
         return $this;
     }
@@ -111,6 +122,34 @@ class CreateSchedule implements CommandInterface
     }
 
     /**
+     * Set status
+     *
+     * @return string $status Status
+     *
+     * @return CreateSchedule Self object
+     */
+    public function status($status)
+    {
+        $this->attributes['status'] = (string) $status;
+
+        return $this;
+    }
+
+    /**
+     * Set autodelete
+     *
+     * @param bool $flag Flag
+     *
+     * @return CreateSchedule Self object
+     */
+    public function autodelete($flag)
+    {
+        $this->attributes['autodelete'] = (bool) $flag;
+
+        return $this;
+    }
+
+    /**
      * Send command
      *
      * @param Client $client Phue Client
@@ -124,6 +163,11 @@ class CreateSchedule implements CommandInterface
             $this->attributes['command'] = $this->command->getSchedulableParams($client);
         }
 
+        // Set time attribute if passed
+        if ($this->time) {
+            $this->attributes['time'] = (string) $this->time;
+        }
+
         // Create schedule
         $scheduleId = $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/schedules",
@@ -132,24 +176,5 @@ class CreateSchedule implements CommandInterface
         );
 
         return $scheduleId;
-    }
-
-    /**
-     * Convert time to UTC date
-     *
-     * @param string $time Time to convert
-     * @throws \InvalidArgumentException
-     * @return string
-     */
-    public function convertTimeToUtcDate($time)
-    {
-        try {
-            $setTime = (new \DateTime($time))
-                ->setTimeZone(new \DateTimeZone('UTC'));
-        } catch (\Exception $e) {
-            throw new \InvalidArgumentException('time value could not be parsed');
-        }
-
-        return $setTime->format('Y-m-d\TH:i:s');
     }
 }
