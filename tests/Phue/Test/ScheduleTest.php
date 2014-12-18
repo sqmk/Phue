@@ -309,7 +309,7 @@ class ScheduleTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->attributes->autodelete,
-            $this->schedule->isAutoDelete()
+            $this->schedule->isAutoDeleted()
         );
     }
 
@@ -317,7 +317,7 @@ class ScheduleTest extends \PHPUnit_Framework_TestCase
      * Test: Setting autodelete
      *
      * @covers \Phue\Schedule::setAutoDelete
-     * @covers \Phue\Schedule::isAutoDelete
+     * @covers \Phue\Schedule::isAutoDeleted
      */
     public function testSetAutoDelete()
     {
@@ -333,10 +333,10 @@ class ScheduleTest extends \PHPUnit_Framework_TestCase
             $this->schedule->setAutoDelete(true)
         );
 
-        // Ensure autodelete can be retrieved by isAutoDelete
+        // Ensure autodelete can be retrieved by isAutoDeleted
         $this->assertEquals(
             true,
-            $this->schedule->isAutoDelete()
+            $this->schedule->isAutoDeleted()
         );
     }
 
