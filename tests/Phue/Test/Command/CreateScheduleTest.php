@@ -110,7 +110,7 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         $command = (new CreateSchedule())->time('2010-10-20T10:11:12');
 
         // Ensure property is set properly
-        $this->assertAttributeContains('2010-10-20T10:11:12', 'attributes', $command);
+        $this->assertAttributeInstanceOf('\Phue\TimePattern\TimePatternInterface', 'time', $command);
 
         // Ensure self object is returned
         $this->assertEquals($command, $command->time('+10 seconds'));
