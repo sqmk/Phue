@@ -117,18 +117,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Set invalid time
-     *
-     * @covers \Phue\Command\CreateSchedule::time
-     *
-     * @expectedException \InvalidArgumentException
-     */
-    public function testInvalidTime()
-    {
-        (new CreateSchedule())->time('+4 elephants');
-    }
-
-    /**
      * Test: Set command
      *
      * @covers \Phue\Command\CreateSchedule::command
