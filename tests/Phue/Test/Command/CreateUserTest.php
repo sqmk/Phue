@@ -73,6 +73,19 @@ class CreateUserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Setting invalid device type
+     *
+     * @covers \Phue\Command\CreateUser::setDeviceType
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testExceptionOnInvalidDeviceType()
+    {
+        $command = new CreateUser;
+        $command->setDeviceType(str_repeat('X', 41));
+    }
+
+    /**
      * Test: Send create user command
      *
      * @covers \Phue\Command\CreateUser::send
