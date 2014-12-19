@@ -2,7 +2,7 @@
 /**
  * Example: Schedule all lights to change.
  *
- * Usage: HUE_HOST=127.0.0.1 HUE_USERNAME=1234567890 php schedule-recurringe.php
+ * Usage: HUE_HOST=127.0.0.1 HUE_USERNAME=1234567890 php schedule-recurring.php
  */
 
 require_once 'common.php';
