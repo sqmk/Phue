@@ -26,7 +26,7 @@ class RandomizedTime extends AbstractTimePattern
 
     /**
      * Random within seconds
-     * 
+     *
      * @var int
      */
     protected $randomWithinSeconds;

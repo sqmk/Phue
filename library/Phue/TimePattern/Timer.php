@@ -16,14 +16,14 @@ class Timer extends AbstractTimePattern
 {
     /**
      * Number of seconds until event
-     * 
+     *
      * @var integer
      */
     protected $seconds = 0;
 
     /**
      * Number of times to repeat
-     * 
+     *
      * @var integer
      */
     protected $repeat;
@@ -40,9 +40,9 @@ class Timer extends AbstractTimePattern
 
     /**
      * Repeat count.
-     * 
+     *
      * @param int $count Number of times to repeat
-     * 
+     *
      * @return self This object
      */
     public function repeat($count)
