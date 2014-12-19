@@ -252,6 +252,40 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Get timezones
+     *
+     * @cover \Phue\Client::getTimezones
+     */
+    public function testGetTimezones()
+    {
+        // Mock transport
+        $mockTransport = $this->getMock(
+            '\Phue\Transport\TransportInterface',
+            ['sendRequest', 'sendRequestBypassBodyValidation']
+        );
+
+        // Mock results for sendRequestBypassBodyValidation
+        $mockResults = [];
+
+        // Stub transports sendRequestBypassBodyValidation method
+        $mockTransport->expects($this->once())
+            ->method('sendRequestBypassBodyValidation')
+            ->will($this->returnValue($mockResults));
+
+        // Set transport
+        $this->client->setTransport($mockTransport);
+
+        // Get timezones
+        $timezones = $this->client->getTimezones();
+
+        // Ensure we get an array
+        $this->assertSame(
+            $mockResults,
+            $timezones
+        );
+    }
+
+    /**
      * Test: Not passing in Transport dependency will yield default
      *
      * @covers \Phue\Client::getTransport
