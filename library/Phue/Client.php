@@ -17,6 +17,7 @@ use Phue\Command\GetUsers;
 use Phue\Command\GetLights;
 use Phue\Command\GetGroups;
 use Phue\Command\GetSchedules;
+use Phue\Command\GetTimezones;
 
 /**
  * Client for connecting to Philips Hue bridge
@@ -156,6 +157,18 @@ class Client
     {
         return $this->sendCommand(
             new GetSchedules()
+        );
+    }
+
+    /**
+     * Get timezones
+     *
+     * @return array List of timezones
+     */
+    public function getTimezones()
+    {
+        return $this->sendCommand(
+            new GetTimezones()
         );
     }
 
