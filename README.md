@@ -13,8 +13,8 @@ The client has the ability to make full use of the Hue's API, including:
 * Updating the bridge
 * Finding new lights
 * Getting and managing lights
-* Creating, updating, and deleting groups
-* Creating and deleting schedules
+* Managing groups
+* Managing schedules with various time patterns
 
 Interested in API docs? You can check out the auto-generated documentation at [GitApiDoc](http://gitapidoc.com/api/sqmk/Phue/)
 
