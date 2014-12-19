@@ -3,7 +3,7 @@
  * Phue: Philips Hue PHP Client
  *
  * @author    Michael Squires <sqmk@php.net>
- * @copyright Copyright (c) 2012 Michael K. Squires
+ * @copyright Copyright (c) 2012-2014 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
 
@@ -37,9 +37,10 @@ interface TransportInterface
     /**
      * Send request
      *
-     * @param $path
-     * @param string $method  Request method
-     * @param \stdClass $data
+     * @param string    $path    API path
+     * @param string    $method  Request method
+     * @param \stdClass $data    Body data
+     *
      * @return mixed
      */
     public function sendRequest($path, $method = self::METHOD_GET, \stdClass $data = null);

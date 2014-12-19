@@ -116,39 +116,38 @@ class Http implements TransportInterface
     }
 
     /**
+     * Get exception by type
+     *
+     * @param string $type        Error type
+     * @param string $description Description of error
+     *
+     * @return \Exception Built exception
+     */
+    public function getExceptionByType($type, $description)
+    {
+        // Determine exception
+        $exceptionClass = isset(static::$exceptionMap[$type])
+                        ? static::$exceptionMap[$type]
+                        : static::$exceptionMap[0];
+
+        return new $exceptionClass($description, $type);
+    }
+
+    /**
      * Send request
      *
-     * @param string   $address API address
-     * @param string   $method  Request method
-     * @param \stdClass $body    Post body
+     * @param string    $address  API address
+     * @param string    $method   Request method
+     * @param \stdClass $body     Post body
      *
      * @return string Request response
+     *
      * @throws Exception\ConnectionException
      * @throws \Exception
      */
     public function sendRequest($address, $method = self::METHOD_GET, \stdClass $body = null)
     {
-        // Build request url
-        $url = "http://{$this->client->getHost()}{$address}";
-
-        // Open connection
-        $this->getAdapter()->open();
-
-        // Send and get response
-        $results     = $this->getAdapter()->send($url, $method, $body ? json_encode($body) : null);
-        $status      = $this->getAdapter()->getHttpStatusCode();
-        $contentType = $this->getAdapter()->getContentType();
-
-        // Close connection
-        $this->getAdapter()->close();
-
-        // Throw connection exception if status code isn't 200 or wrong content type
-        if ($status != 200 || $contentType != 'application/json') {
-            throw new ConnectionException('Connection failure');
-        }
-
-        // Parse json results
-        $jsonResults = json_decode($results);
+        $jsonResults = $this->getJsonResponse($address, $method, $body);
 
         // Get first element in array if it's an array response
         if (is_array($jsonResults)) {
@@ -172,20 +171,52 @@ class Http implements TransportInterface
     }
 
     /**
-     * Get exception by type
+     * Send request, bypass body validation
      *
-     * @param string $type        Error type
-     * @param string $description Description of error
+     * @param string    $address  API address
+     * @param string    $method   Request method
+     * @param \stdClass $body     Post body
      *
-     * @return \Exception Built exception
+     * @return string Request response
+     *
+     * @throws Exception\ConnectionException
+     * @throws \Exception
      */
-    public function getExceptionByType($type, $description)
+    public function sendRequestBypassBodyValidation($address, $method = self::METHOD_GET, \stdClass $body = null)
     {
-        // Determine exception
-        $exceptionClass = isset(static::$exceptionMap[$type])
-                        ? static::$exceptionMap[$type]
-                        : static::$exceptionMap[0];
+        return $this->getJsonResponse($address, $method, $body);
+    }
 
-        return new $exceptionClass($description, $type);
+    /**
+     * Send request
+     *
+     * @param string    $address  API address
+     * @param string    $method   Request method
+     * @param \stdClass $body     Post body
+     *
+     * @return \stdClass Json body
+     */
+    protected function getJsonResponse($address, $method = self::METHOD_GET, \stdClass $body = null)
+    {
+        // Build request url
+        $url = "http://{$this->client->getHost()}{$address}";
+
+        // Open connection
+        $this->getAdapter()->open();
+
+        // Send and get response
+        $results     = $this->getAdapter()->send($url, $method, $body ? json_encode($body) : null);
+        $status      = $this->getAdapter()->getHttpStatusCode();
+        $contentType = $this->getAdapter()->getContentType();
+
+        // Throw connection exception if status code isn't 200 or wrong content type
+        if ($status != 200 || $contentType != 'application/json') {
+            throw new ConnectionException('Connection failure');
+        }
+
+        // Parse json results
+        $jsonResults = json_decode($results);
+
+        return $jsonResults;
     }
 }
