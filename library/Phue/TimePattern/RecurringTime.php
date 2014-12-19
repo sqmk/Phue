@@ -29,6 +29,12 @@ class RecurringTime extends AbstractTimePattern
     const SUNDAY    = 1;
 
     /**
+     * Groups of days.
+     */
+    const WEEKDAY = 124;
+    const WEEKEND = 3;
+
+    /**
      * Days of week
      *
      * @var int
@@ -37,7 +43,7 @@ class RecurringTime extends AbstractTimePattern
 
     /**
      * Time of day
-     * 
+     *
      * @var string
      */
     protected $timeOfDay;
