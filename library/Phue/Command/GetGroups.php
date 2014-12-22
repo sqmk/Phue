@@ -27,18 +27,13 @@ class GetGroups implements CommandInterface
     public function send(Client $client)
     {
         // Get response
-        $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}"
+        $results = $client->getTransport()->sendRequest(
+            "/api/{$client->getUsername()}/groups"
         );
-
-        // Return empty list if no groups
-        if (!isset($response->groups)) {
-            return [];
-        }
 
         $groups = [];
 
-        foreach ($response->groups as $groupId => $attributes) {
+        foreach ($results as $groupId => $attributes) {
             $groups[$groupId] = new Group($groupId, $attributes, $client);
         }
 
