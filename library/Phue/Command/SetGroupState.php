@@ -35,11 +35,23 @@ class SetGroupState extends SetLightState implements SchedulableInterface
     }
 
     /**
+     * Set scene
+     *
+     * @param mixed $scene Scene id or Scene object
+     *
+     * @return self This object
+     */
+    public function scene($scene)
+    {
+        $this->params['scene'] = (string) $scene;
+
+        return $this;
+    }
+
+    /**
      * Send command
      *
      * @param Client $client Phue Client
-     *
-     * @return mixed|void
      */
     public function send(Client $client)
     {
