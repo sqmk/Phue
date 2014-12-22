@@ -75,10 +75,16 @@ class Client
 
     /**
      * Set host
+     *
+     * @param string $host Host
+     *
+     * @return self This object
      */
     public function setHost($host)
     {
         $this->host = (string) $host;
+
+        return $this;
     }
 
     /**
@@ -95,10 +101,14 @@ class Client
      * Set username
      *
      * @param string $username Username
+     *
+     * @return self This object
      */
     public function setUsername($username)
     {
         $this->username = (string) $username;
+
+        return $this;
     }
 
     /**
