@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\SetGroupState;
 use Phue\Client;
+use Phue\Command\SetGroupState;
 use Phue\Transport\TransportInterface;
 
 /**
@@ -122,14 +122,14 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
 
         // Ensure schedulable params are expected
         $this->assertEquals(
-            $setGroupStateCmd->getSchedulableParams($this->mockClient),
             [
                 'address' => "/api/{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action",
                 'method'  => 'PUT',
                 'body'    => (object) [
                     'alert' => 'select'
                 ]
-            ]
+            ],
+            $setGroupStateCmd->getSchedulableParams($this->mockClient)
         );
     }
 

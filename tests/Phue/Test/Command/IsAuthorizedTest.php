@@ -9,10 +9,10 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\IsAuthorized;
 use Phue\Client;
-use Phue\Transport\TransportInterface;
+use Phue\Command\IsAuthorized;
 use Phue\Transport\Exception\UnauthorizedUserException;
+use Phue\Transport\TransportInterface;
 
 /**
  * Tests for Phue\Command\IsAuthorized

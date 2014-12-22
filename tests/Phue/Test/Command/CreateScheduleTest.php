@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\CreateSchedule;
 use Phue\Client;
+use Phue\Command\CreateSchedule;
 use Phue\Schedule;
 use Phue\Transport\TransportInterface;
 
@@ -204,6 +204,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         $scheduleId = $command->send($this->mockClient);
 
         // Ensure we have a schedule id
-        $this->assertEquals($scheduleId, 4);
+        $this->assertEquals(4, $scheduleId);
     }
 }

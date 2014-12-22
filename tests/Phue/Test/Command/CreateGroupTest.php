@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\CreateGroup;
 use Phue\Client;
+use Phue\Command\CreateGroup;
 use Phue\Transport\TransportInterface;
 
 /**
@@ -118,6 +118,6 @@ class CreateGroupTest extends \PHPUnit_Framework_TestCase
         $groupId = $command->send($this->mockClient);
 
         // Ensure we have a group id
-        $this->assertEquals($groupId, 5);
+        $this->assertEquals(5, $groupId);
     }
 }

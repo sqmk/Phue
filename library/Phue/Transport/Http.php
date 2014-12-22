@@ -106,7 +106,7 @@ class Http implements TransportInterface
      *
      * @param AdapterInterface $adapter Transport adapter
      *
-     * @return Http Self object
+     * @return self This object
      */
     public function setAdapter(AdapterInterface $adapter)
     {
@@ -136,14 +136,14 @@ class Http implements TransportInterface
     /**
      * Send request
      *
-     * @param string    $address  API address
-     * @param string    $method   Request method
-     * @param \stdClass $body     Post body
+     * @param string    $address API address
+     * @param string    $method  Request method
+     * @param \stdClass $body    Post body
+     *
+     * @throws ConnectionException
+     * @throws \Exception
      *
      * @return string Request response
-     *
-     * @throws Exception\ConnectionException
-     * @throws \Exception
      */
     public function sendRequest($address, $method = self::METHOD_GET, \stdClass $body = null)
     {
@@ -173,14 +173,14 @@ class Http implements TransportInterface
     /**
      * Send request, bypass body validation
      *
-     * @param string    $address  API address
-     * @param string    $method   Request method
-     * @param \stdClass $body     Post body
+     * @param string    $address API address
+     * @param string    $method  Request method
+     * @param \stdClass $body    Post body
+     *
+     * @throws ConnectionException
+     * @throws \Exception
      *
      * @return string Request response
-     *
-     * @throws Exception\ConnectionException
-     * @throws \Exception
      */
     public function sendRequestBypassBodyValidation($address, $method = self::METHOD_GET, \stdClass $body = null)
     {
@@ -190,9 +190,9 @@ class Http implements TransportInterface
     /**
      * Send request
      *
-     * @param string    $address  API address
-     * @param string    $method   Request method
-     * @param \stdClass $body     Post body
+     * @param string    $address API address
+     * @param string    $method  Request method
+     * @param \stdClass $body    Post body
      *
      * @return \stdClass Json body
      */

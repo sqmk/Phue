@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\Ping;
 use Phue\Client;
+use Phue\Command\Ping;
 use Phue\Transport\TransportInterface;
 
 /**

@@ -9,8 +9,8 @@
 
 namespace Phue\Test;
 
-use Phue\Schedule;
 use Phue\Client;
+use Phue\Schedule;
 
 /**
  * Tests for Phue\Schedule

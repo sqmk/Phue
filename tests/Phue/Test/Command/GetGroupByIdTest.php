@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\GetGroupById;
 use Phue\Client;
+use Phue\Command\GetGroupById;
 use Phue\Transport\TransportInterface;
 
 /**

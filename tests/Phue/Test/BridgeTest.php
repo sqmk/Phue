@@ -65,8 +65,8 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $this->assertEquals(
-            $this->bridge->getName(),
-            $this->attributes->name
+            $this->attributes->name,
+            $this->bridge->getName()
         );
     }
 
@@ -91,8 +91,8 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
 
         // Ensure new name can be retrieved by getName
         $this->assertEquals(
-            $this->bridge->getName(),
-            'new name'
+            'new name',
+            $this->bridge->getName()
         );
     }
 
@@ -104,8 +104,8 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     public function testGetMacAddress()
     {
         $this->assertEquals(
-            $this->bridge->getMacAddress(),
-            $this->attributes->mac
+            $this->attributes->mac,
+            $this->bridge->getMacAddress()
         );
     }
 
@@ -129,8 +129,8 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     public function testGetIpAddress()
     {
         $this->assertEquals(
-            $this->bridge->getIpAddress(),
-            '127.0.0.1'
+            '127.0.0.1',
+            $this->bridge->getIpAddress()
         );
     }
 
@@ -142,8 +142,8 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     public function testGetNetmask()
     {
         $this->assertEquals(
-            $this->bridge->getNetmask(),
-            $this->attributes->netmask
+            $this->attributes->netmask,
+            $this->bridge->getNetmask()
         );
     }
 
@@ -155,8 +155,8 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     public function testGetGateway()
     {
         $this->assertEquals(
-            $this->bridge->getGateway(),
-            $this->attributes->gateway
+            $this->attributes->gateway,
+            $this->bridge->getGateway()
         );
     }
 
@@ -168,8 +168,8 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     public function testGetProxyAddress()
     {
         $this->assertEquals(
-            $this->bridge->getProxyAddress(),
-            $this->attributes->proxyaddress
+            $this->attributes->proxyaddress,
+            $this->bridge->getProxyAddress()
         );
     }
 
@@ -181,8 +181,8 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     public function testGetProxyPort()
     {
         $this->assertEquals(
-            $this->bridge->getProxyPort(),
-            $this->attributes->proxyport
+            $this->attributes->proxyport,
+            $this->bridge->getProxyPort()
         );
     }
 
@@ -194,8 +194,8 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     public function testGetUtcDate()
     {
         $this->assertEquals(
-            $this->bridge->getUtcDate(),
-            $this->attributes->UTC
+            $this->attributes->UTC,
+            $this->bridge->getUtcDate()
         );
     }
 
@@ -207,8 +207,8 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     public function testGetSoftwareVersion()
     {
         $this->assertEquals(
-            $this->bridge->getSoftwareVersion(),
-            $this->attributes->swversion
+            $this->attributes->swversion,
+            $this->bridge->getSoftwareVersion()
         );
     }
 
@@ -219,7 +219,9 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsLinkButtonOn()
     {
-        $this->assertTrue($this->bridge->isLinkButtonOn());
+        $this->assertTrue(
+            $this->bridge->isLinkButtonOn()
+        );
     }
 
     /**
@@ -229,6 +231,8 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
      */
     public function testArePortalServicesEnabled()
     {
-        $this->assertFalse($this->bridge->arePortalServicesEnabled());
+        $this->assertFalse(
+            $this->bridge->arePortalServicesEnabled()
+        );
     }
 }

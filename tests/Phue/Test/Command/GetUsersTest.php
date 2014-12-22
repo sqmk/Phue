@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\GetUsers;
 use Phue\Client;
+use Phue\Command\GetUsers;
 use Phue\Transport\TransportInterface;
 
 /**

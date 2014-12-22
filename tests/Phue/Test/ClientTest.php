@@ -10,8 +10,8 @@
 namespace Phue\Test;
 
 use Phue\Client;
-use Phue\Transport\TransportInterface;
 use Phue\Command\CommandInterface;
+use Phue\Transport\TransportInterface;
 
 /**
  * Tests for Phue\Client
@@ -39,8 +39,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->client->setHost('127.0.0.2');
 
         $this->assertEquals(
-            $this->client->getHost(),
-            '127.0.0.2'
+            '127.0.0.2',
+            $this->client->getHost()
         );
     }
 
@@ -55,8 +55,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->client->setUsername('dummy');
 
         $this->assertEquals(
-            $this->client->getUsername(),
-            'dummy'
+            'dummy',
+            $this->client->getUsername()
         );
     }
 
@@ -380,8 +380,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('sample response'));
 
         $this->assertEquals(
-            $this->client->sendCommand($mockCommand),
-            'sample response'
+            'sample response',
+            $this->client->sendCommand($mockCommand)
         );
     }
 }

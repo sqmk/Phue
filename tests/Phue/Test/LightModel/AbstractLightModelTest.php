@@ -35,8 +35,8 @@ class AbstractLightModelTest extends \PHPUnit_Framework_TestCase
     public function testGetId()
     {
         $this->assertEquals(
-            AbstractLightModel::MODEL_ID,
-            $this->mockAbstractLightModel->getId()
+            $this->mockAbstractLightModel->getId(),
+            AbstractLightModel::MODEL_ID
         );
     }
 
@@ -48,8 +48,8 @@ class AbstractLightModelTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $this->assertEquals(
-            AbstractLightModel::MODEL_NAME,
-            $this->mockAbstractLightModel->getName()
+            $this->mockAbstractLightModel->getName(),
+            AbstractLightModel::MODEL_NAME
         );
     }
 
@@ -61,8 +61,8 @@ class AbstractLightModelTest extends \PHPUnit_Framework_TestCase
     public function testCanRetainState()
     {
         $this->assertEquals(
-            AbstractLightModel::CAN_RETAIN_STATE,
-            $this->mockAbstractLightModel->canRetainState()
+            $this->mockAbstractLightModel->canRetainState(),
+            AbstractLightModel::CAN_RETAIN_STATE
         );
     }
 
@@ -74,8 +74,8 @@ class AbstractLightModelTest extends \PHPUnit_Framework_TestCase
     public function testToString()
     {
         $this->assertEquals(
-            AbstractLightModel::MODEL_NAME,
-            (string) $this->mockAbstractLightModel
+            (string) $this->mockAbstractLightModel,
+            AbstractLightModel::MODEL_NAME
         );
     }
 }

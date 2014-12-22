@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\SetLightState;
 use Phue\Client;
+use Phue\Command\SetLightState;
 use Phue\Transport\TransportInterface;
 
 /**
@@ -496,14 +496,14 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
 
         // Ensure schedulable params are expected
         $this->assertEquals(
-            $setLightStateCmd->getSchedulableParams($this->mockClient),
             [
                 'address' => "/api/{$this->mockClient->getUsername()}/lights/{$this->mockLight->getId()}/state",
                 'method'  => 'PUT',
                 'body'    => (object) [
                     'alert' => 'select'
                 ]
-            ]
+            ],
+            $setLightStateCmd->getSchedulableParams($this->mockClient)
         );
     }
 

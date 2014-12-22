@@ -9,8 +9,8 @@
 
 namespace Phue\Test;
 
-use Phue\User;
 use Phue\Client;
+use Phue\User;
 
 /**
  * Tests for Phue\User
@@ -52,8 +52,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
     public function testGetUsername()
     {
         $this->assertEquals(
-            $this->user->getUsername(),
-            $this->username
+            $this->username,
+            $this->user->getUsername()
         );
     }
 
@@ -65,8 +65,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
     public function testGetDeviceType()
     {
         $this->assertEquals(
-            $this->user->getDeviceType(),
-            $this->attributes->name
+            $this->attributes->name,
+            $this->user->getDeviceType()
         );
     }
 
@@ -78,8 +78,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
     public function testGetCreateDate()
     {
         $this->assertEquals(
-            $this->user->getCreateDate(),
-            $this->attributes->{'create date'}
+            $this->attributes->{'create date'},
+            $this->user->getCreateDate()
         );
     }
 
@@ -91,8 +91,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
     public function testGetLastUseDate()
     {
         $this->assertEquals(
-            $this->user->getLastUseDate(),
-            $this->attributes->{'last use date'}
+            $this->attributes->{'last use date'},
+            $this->user->getLastUseDate()
         );
     }
 
@@ -118,8 +118,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
     public function testToString()
     {
         $this->assertEquals(
-            (string) $this->user,
-            $this->user->getUsername()
+            $this->user->getUsername(),
+            (string) $this->user
         );
     }
 }

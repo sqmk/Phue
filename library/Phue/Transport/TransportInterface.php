@@ -41,7 +41,7 @@ interface TransportInterface
      * @param string    $method  Request method
      * @param \stdClass $data    Body data
      *
-     * @return mixed
+     * @return mixed Command result
      */
     public function sendRequest($path, $method = self::METHOD_GET, \stdClass $data = null);
 }

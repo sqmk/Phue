@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\StartLightScan;
 use Phue\Client;
+use Phue\Command\StartLightScan;
 use Phue\Transport\TransportInterface;
 
 /**
@@ -64,8 +64,8 @@ class StartLightScanTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('success!'));
 
         $this->assertEquals(
-            (new StartLightScan)->send($this->mockClient),
-            'success!'
+            'success!',
+            (new StartLightScan)->send($this->mockClient)
         );
     }
 }

@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\GetBridge;
 use Phue\Client;
+use Phue\Command\GetBridge;
 use Phue\Transport\TransportInterface;
 
 /**

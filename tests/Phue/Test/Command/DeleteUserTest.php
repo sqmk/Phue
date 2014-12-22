@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\DeleteUser;
 use Phue\Client;
+use Phue\Command\DeleteUser;
 use Phue\Transport\TransportInterface;
 
 /**

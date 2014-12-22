@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\CreateScene;
 use Phue\Client;
+use Phue\Command\CreateScene;
 use Phue\Transport\TransportInterface;
 
 /**

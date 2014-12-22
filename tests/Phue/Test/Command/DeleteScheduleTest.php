@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\DeleteSchedule;
 use Phue\Client;
+use Phue\Command\DeleteSchedule;
 use Phue\Transport\TransportInterface;
 
 /**

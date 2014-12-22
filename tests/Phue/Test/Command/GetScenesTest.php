@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\GetScenes;
 use Phue\Client;
+use Phue\Command\GetScenes;
 use Phue\Transport\TransportInterface;
 
 /**

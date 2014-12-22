@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\SetGroupAttributes;
 use Phue\Client;
+use Phue\Command\SetGroupAttributes;
 use Phue\Transport\TransportInterface;
 
 /**

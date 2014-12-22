@@ -34,7 +34,7 @@ class Bridge
      * Construct a Phue Bridge object
      *
      * @param \stdClass $attributes Bridge attributes
-     * @param Client $client
+     * @param Client    $client     Phue client
      */
     public function __construct(\stdClass $attributes, Client $client)
     {
@@ -45,7 +45,7 @@ class Bridge
     /**
      * Get name
      *
-     * @return string
+     * @return string Bridge name
      */
     public function getName()
     {

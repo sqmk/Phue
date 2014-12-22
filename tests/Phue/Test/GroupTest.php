@@ -9,8 +9,8 @@
 
 namespace Phue\Test;
 
-use Phue\Group;
 use Phue\Client;
+use Phue\Group;
 
 /**
  * Tests for Phue\Group
@@ -37,7 +37,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
                 'bri'       => '66',
                 'hue'       => '60123',
                 'sat'       => 213,
-                'xy'        => [.5, .4],
+                'xy'        => [0.5, 0.4],
                 'ct'        => 300,
                 'colormode' => 'hs',
                 'effect'    => 'none',
@@ -58,8 +58,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     public function testGetId()
     {
         $this->assertEquals(
-            $this->group->getId(),
-            6
+            6,
+            $this->group->getId()
         );
     }
 
@@ -72,8 +72,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $this->assertEquals(
-            $this->group->getName(),
-            $this->attributes->name
+            $this->attributes->name,
+            $this->group->getName()
         );
     }
 
@@ -99,8 +99,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Ensure new name can be retrieved by getName
         $this->assertEquals(
-            $this->group->getName(),
-            'new name'
+            'new name',
+            $this->group->getName()
         );
     }
 
@@ -112,8 +112,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     public function testGetLightIds()
     {
         $this->assertEquals(
-            $this->group->getLightIds(),
-            $this->attributes->lights
+            $this->attributes->lights,
+            $this->group->getLightIds()
         );
     }
 
@@ -139,8 +139,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Ensure lights can be retrieved by getLights
         $this->assertEquals(
-            $this->group->getLightIds(),
-            [1, 2, 3, 4]
+            [1, 2, 3, 4],
+            $this->group->getLightIds()
         );
     }
 
@@ -179,8 +179,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original brightness is retrievable
         $this->assertEquals(
-            $this->group->getBrightness(),
-            $this->attributes->action->bri
+            $this->attributes->action->bri,
+            $this->group->getBrightness()
         );
 
         // Ensure setBrightness returns self
@@ -191,8 +191,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Make sure group attributes are updated
         $this->assertEquals(
-            $this->group->getBrightness(),
-            254
+            254,
+            $this->group->getBrightness()
         );
     }
 
@@ -208,8 +208,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original hue is retrievable
         $this->assertEquals(
-            $this->group->getHue(),
-            $this->attributes->action->hue
+            $this->attributes->action->hue,
+            $this->group->getHue()
         );
 
         // Ensure setHue returns self
@@ -220,8 +220,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Make sure group attributes are updated
         $this->assertEquals(
-            $this->group->getHue(),
-            30000
+            30000,
+            $this->group->getHue()
         );
     }
 
@@ -237,8 +237,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original saturation is retrievable
         $this->assertEquals(
-            $this->group->getSaturation(),
-            $this->attributes->action->sat
+            $this->attributes->action->sat,
+            $this->group->getSaturation()
         );
 
         // Ensure setSaturation returns self
@@ -249,8 +249,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Make sure group attributes are updated
         $this->assertEquals(
-            $this->group->getSaturation(),
-            200
+            200,
+            $this->group->getSaturation()
         );
     }
 
@@ -266,23 +266,23 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original xy is retrievable
         $this->assertEquals(
-            $this->group->getXY(),
             [
                 'x' => $this->attributes->action->xy[0],
                 'y' => $this->attributes->action->xy[1]
-            ]
+            ],
+            $this->group->getXY()
         );
 
         // Ensure setXY returns self
         $this->assertEquals(
             $this->group,
-            $this->group->setXY(.1, .2)
+            $this->group->setXY(0.1, 0.2)
         );
 
         // Make sure group attributes are updated
         $this->assertEquals(
-            $this->group->getXY(),
-            ['x' => .1, 'y' => .2]
+            ['x' => 0.1, 'y' => 0.2],
+            $this->group->getXY()
         );
     }
 
@@ -298,8 +298,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original color temp is retrievable
         $this->assertEquals(
-            $this->group->getColorTemp(),
-            $this->attributes->action->ct
+            $this->attributes->action->ct,
+            $this->group->getColorTemp()
         );
 
         // Ensure setColorTemp returns self
@@ -310,8 +310,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Make sure group attributes are updated
         $this->assertEquals(
-            $this->group->getColorTemp(),
-            412
+            412,
+            $this->group->getColorTemp()
         );
     }
 
@@ -327,8 +327,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original effect is retrievable
         $this->assertEquals(
-            $this->group->getEffect(),
-            $this->attributes->action->effect
+            $this->attributes->action->effect,
+            $this->group->getEffect()
         );
 
         // Ensure setEffect returns self
@@ -339,8 +339,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Make sure group attributes are updated
         $this->assertEquals(
-            $this->group->getEffect(),
-            'colorloop'
+            'colorloop',
+            $this->group->getEffect()
         );
     }
 
@@ -352,8 +352,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     public function testGetColormode()
     {
         $this->assertEquals(
-            $this->group->getColorMode(),
-            $this->attributes->action->colormode
+            $this->attributes->action->colormode,
+            $this->group->getColorMode()
         );
     }
 
@@ -395,8 +395,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     public function testToString()
     {
         $this->assertEquals(
-            (string) $this->group,
-            $this->group->getId()
+            $this->group->getId(),
+            (string) $this->group
         );
     }
 

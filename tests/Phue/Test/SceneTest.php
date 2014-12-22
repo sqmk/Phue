@@ -49,8 +49,8 @@ class SceneTest extends \PHPUnit_Framework_TestCase
     public function testGetId()
     {
         $this->assertEquals(
-            $this->scene->getId(),
-            'custom-id'
+            'custom-id',
+            $this->scene->getId()
         );
     }
 
@@ -63,8 +63,8 @@ class SceneTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $this->assertEquals(
-            $this->scene->getName(),
-            $this->attributes->name
+            $this->attributes->name,
+            $this->scene->getName()
         );
     }
 
@@ -76,8 +76,8 @@ class SceneTest extends \PHPUnit_Framework_TestCase
     public function testGetLightIds()
     {
         $this->assertEquals(
-            $this->scene->getLightIds(),
-            $this->attributes->lights
+            $this->attributes->lights,
+            $this->scene->getLightIds()
         );
     }
 
@@ -89,8 +89,8 @@ class SceneTest extends \PHPUnit_Framework_TestCase
     public function testIsActive()
     {
         $this->assertEquals(
-            $this->scene->isActive(),
-            $this->attributes->active
+            $this->attributes->active,
+            $this->scene->isActive()
         );
     }
 
@@ -102,8 +102,8 @@ class SceneTest extends \PHPUnit_Framework_TestCase
     public function testToString()
     {
         $this->assertEquals(
-            (string) $this->scene,
-            $this->scene->getId()
+            $this->scene->getId(),
+            (string) $this->scene
         );
     }
 }

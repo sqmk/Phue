@@ -9,8 +9,8 @@
 
 namespace Phue\Test;
 
-use Phue\Light;
 use Phue\Client;
+use Phue\Light;
 
 /**
  * Tests for Phue\Light
@@ -61,8 +61,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetId()
     {
         $this->assertEquals(
-            $this->light->getId(),
-            5
+            5,
+            $this->light->getId()
         );
     }
 
@@ -75,8 +75,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $this->assertEquals(
-            $this->light->getName(),
-            $this->attributes->name
+            $this->attributes->name,
+            $this->light->getName()
         );
     }
 
@@ -102,8 +102,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Ensure new name can be retrieved by getName
         $this->assertEquals(
-            $this->light->getName(),
-            'new name'
+            'new name',
+            $this->light->getName()
         );
     }
 
@@ -115,8 +115,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetType()
     {
         $this->assertEquals(
-            $this->light->getType(),
-            $this->attributes->type
+            $this->attributes->type,
+            $this->light->getType()
         );
     }
 
@@ -128,8 +128,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetModelId()
     {
         $this->assertEquals(
-            $this->light->getModelId(),
-            $this->attributes->modelid
+            $this->attributes->modelid,
+            $this->light->getModelId()
         );
     }
 
@@ -154,8 +154,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testSoftwareVersion()
     {
         $this->assertEquals(
-            $this->light->getSoftwareVersion(),
-            $this->attributes->swversion
+            $this->attributes->swversion,
+            $this->light->getSoftwareVersion()
         );
     }
 
@@ -194,8 +194,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original brightness is retrievable
         $this->assertEquals(
-            $this->light->getBrightness(),
-            $this->attributes->state->bri
+            $this->attributes->state->bri,
+            $this->light->getBrightness()
         );
 
         // Ensure setBrightness returns self
@@ -206,8 +206,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure light attributes are updated
         $this->assertEquals(
-            $this->light->getBrightness(),
-            254
+            254,
+            $this->light->getBrightness()
         );
     }
 
@@ -223,8 +223,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original hue is retrievable
         $this->assertEquals(
-            $this->light->getHue(),
-            $this->attributes->state->hue
+            $this->attributes->state->hue,
+            $this->light->getHue()
         );
 
         // Ensure setHue returns self
@@ -235,8 +235,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure light attributes are updated
         $this->assertEquals(
-            $this->light->getHue(),
-            30000
+            30000,
+            $this->light->getHue()
         );
     }
 
@@ -252,8 +252,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original saturation is retrievable
         $this->assertEquals(
-            $this->light->getSaturation(),
-            $this->attributes->state->sat
+            $this->attributes->state->sat,
+            $this->light->getSaturation()
         );
 
         // Ensure setSaturation returns self
@@ -264,8 +264,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure light attributes are updated
         $this->assertEquals(
-            $this->light->getSaturation(),
-            200
+            200,
+            $this->light->getSaturation()
         );
     }
 
@@ -281,23 +281,23 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original xy is retrievable
         $this->assertEquals(
-            $this->light->getXY(),
             [
                 'x' => $this->attributes->state->xy[0],
                 'y' => $this->attributes->state->xy[1]
-            ]
+            ],
+            $this->light->getXY()
         );
 
         // Ensure setXY returns self
         $this->assertEquals(
             $this->light,
-            $this->light->setXY(.1, .2)
+            $this->light->setXY(0.1, 0.2)
         );
 
         // Make sure light attributes are updated
         $this->assertEquals(
-            $this->light->getXY(),
-            ['x' => .1, 'y' => .2]
+            ['x' => 0.1, 'y' => 0.2],
+            $this->light->getXY()
         );
     }
 
@@ -313,8 +313,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original color temp is retrievable
         $this->assertEquals(
-            $this->light->getColorTemp(),
-            $this->attributes->state->ct
+            $this->attributes->state->ct,
+            $this->light->getColorTemp()
         );
 
         // Ensure setColorTemp returns self
@@ -325,8 +325,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure light attributes are updated
         $this->assertEquals(
-            $this->light->getColorTemp(),
-            412
+            412,
+            $this->light->getColorTemp()
         );
     }
 
@@ -342,8 +342,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original alert is retrievable
         $this->assertEquals(
-            $this->light->getAlert(),
-            $this->attributes->state->alert
+            $this->attributes->state->alert,
+            $this->light->getAlert()
         );
 
         // Ensure setAlert returns self
@@ -354,8 +354,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure light attributes are updated
         $this->assertEquals(
-            $this->light->getAlert(),
-            'lselect'
+            'lselect',
+            $this->light->getAlert()
         );
     }
 
@@ -371,8 +371,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original effect is retrievable
         $this->assertEquals(
-            $this->light->getEffect(),
-            $this->attributes->state->effect
+            $this->attributes->state->effect,
+            $this->light->getEffect()
         );
 
         // Ensure setEffect returns self
@@ -383,8 +383,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure light attributes are updated
         $this->assertEquals(
-            $this->light->getEffect(),
-            'colorloop'
+            'colorloop',
+            $this->light->getEffect()
         );
     }
 
@@ -396,8 +396,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetColormode()
     {
         $this->assertEquals(
-            $this->light->getColorMode(),
-            $this->attributes->state->colormode
+            $this->attributes->state->colormode,
+            $this->light->getColorMode()
         );
     }
 
@@ -409,8 +409,8 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testToString()
     {
         $this->assertEquals(
-            (string) $this->light,
-            $this->light->getId()
+            $this->light->getId(),
+            (string) $this->light
         );
     }
 

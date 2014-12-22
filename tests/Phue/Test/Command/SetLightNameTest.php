@@ -9,10 +9,10 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\SetLightName;
 use Phue\Client;
-use Phue\Transport\TransportInterface;
+use Phue\Command\SetLightName;
 use Phue\Light;
+use Phue\Transport\TransportInterface;
 
 /**
  * Tests for Phue\Command\SetLightName

@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\GetLights;
 use Phue\Client;
+use Phue\Command\GetLights;
 use Phue\Transport\TransportInterface;
 
 /**

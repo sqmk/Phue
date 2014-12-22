@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\SetSceneLightState;
 use Phue\Client;
+use Phue\Command\SetSceneLightState;
 use Phue\Transport\TransportInterface;
 
 /**

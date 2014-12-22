@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\CreateUser;
 use Phue\Client;
+use Phue\Command\CreateUser;
 use Phue\Transport\TransportInterface;
 
 /**
@@ -108,8 +108,8 @@ class CreateUserTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('success!'));
 
         $this->assertEquals(
-            (new CreateUser('testuser0123', 'phpunit'))->send($this->mockClient),
-            'success!'
+            'success!',
+            (new CreateUser('testuser0123', 'phpunit'))->send($this->mockClient)
         );
     }
 }

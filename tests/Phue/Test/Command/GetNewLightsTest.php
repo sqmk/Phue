@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\GetNewLights;
 use Phue\Client;
+use Phue\Command\GetNewLights;
 use Phue\Transport\TransportInterface;
 
 /**
@@ -75,13 +75,13 @@ class GetNewLightsTest extends \PHPUnit_Framework_TestCase
         $response = $this->getNewLights->send($this->mockClient);
 
         // Ensure response is self object
-        $this->assertEquals($response, $this->getNewLights);
+        $this->assertEquals($this->getNewLights, $response);
 
         // Ensure array of lights
         $this->assertInternalType('array', $response->getLights());
 
         // Ensure expected number of lights
-        $this->assertEquals(count($response->getLights()), 2);
+        $this->assertEquals(2, count($response->getLights()));
 
         // Ensure lastscan is active
         $this->assertTrue($response->isScanActive());

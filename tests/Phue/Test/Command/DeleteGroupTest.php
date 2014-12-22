@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\DeleteGroup;
 use Phue\Client;
+use Phue\Command\DeleteGroup;
 use Phue\Transport\TransportInterface;
 
 /**

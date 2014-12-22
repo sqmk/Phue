@@ -9,8 +9,8 @@
 
 namespace Phue\Test\Command;
 
-use Phue\Command\GetSchedules;
 use Phue\Client;
+use Phue\Command\GetSchedules;
 use Phue\Transport\TransportInterface;
 
 /**
