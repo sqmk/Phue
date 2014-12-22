@@ -57,7 +57,7 @@ class Bridge
      *
      * @param string $name Name
      *
-     * @return Bridge Self object
+     * @return self This object
      */
     public function setName($name)
     {
