@@ -34,7 +34,7 @@ class CreateScene implements CommandInterface
     /**
      * Constructs a command
      *
-     * @param string $id     Id.
+     * @param string $id     Id
      * @param string $name   Name
      * @param array  $lights List of light Ids or Light objects
      */

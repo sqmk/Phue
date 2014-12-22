@@ -214,10 +214,14 @@ class Client
      * Set transport
      *
      * @param TransportInterface $transport Transport
+     *
+     * @return self This object
      */
     public function setTransport(TransportInterface $transport)
     {
         $this->transport = $transport;
+
+        return $this;
     }
 
     /**
