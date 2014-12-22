@@ -35,8 +35,8 @@ class SetLightName implements CommandInterface
     /**
      * Constructs a command
      *
-     * @param mixed $light Light Id or Light object
-     * @param string $name Name of light
+     * @param mixed  $light Light Id or Light object
+     * @param string $name  Name of light
      */
     public function __construct($light, $name)
     {
@@ -48,8 +48,6 @@ class SetLightName implements CommandInterface
      * Send command
      *
      * @param Client $client Phue Client
-     *
-     * @return mixed|void
      */
     public function send(Client $client)
     {

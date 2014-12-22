@@ -47,8 +47,10 @@ class CreateUser implements CommandInterface
      * Set username
      *
      * @param string $username Username
+     *
      * @throws \InvalidArgumentException
-     * @return CreateUser Self object
+     *
+     * @return self This object
      */
     public function setUsername($username)
     {
@@ -71,8 +73,10 @@ class CreateUser implements CommandInterface
      * Set device type
      *
      * @param string $deviceType Device type
+     *
      * @throws \InvalidArgumentException
-     * @return CreateUser Self object
+     *
+     * @return self This object
      */
     public function setDeviceType($deviceType)
     {

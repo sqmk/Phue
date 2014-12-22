@@ -148,7 +148,7 @@ class SetLightState implements CommandInterface, SchedulableInterface
      *
      * @param bool $flag True if on, false if not
      *
-     * @return SetLightState Self object
+     * @return self This object
      */
     public function on($flag = true)
     {
@@ -161,8 +161,10 @@ class SetLightState implements CommandInterface, SchedulableInterface
      * Set brightness
      *
      * @param int $level Brightness level
+     *
      * @throws \InvalidArgumentException
-     * @return SetLightState Self object
+     *
+     * @return self This object
      */
     public function brightness($level = self::BRIGHTNESS_MAX)
     {
@@ -183,8 +185,10 @@ class SetLightState implements CommandInterface, SchedulableInterface
      * Set hue
      *
      * @param int $value Hue value
+     *
      * @throws \InvalidArgumentException
-     * @return SetLightState Self object
+     *
+     * @return self This object
      */
     public function hue($value)
     {
@@ -205,8 +209,10 @@ class SetLightState implements CommandInterface, SchedulableInterface
      * Set saturation
      *
      * @param int $value Saturation value
+     *
      * @throws \InvalidArgumentException
-     * @return SetLightState Self object
+     *
+     * @return self This object
      */
     public function saturation($value)
     {
@@ -228,8 +234,10 @@ class SetLightState implements CommandInterface, SchedulableInterface
      *
      * @param float $x X value
      * @param float $y Y value
+     *
      * @throws \InvalidArgumentException
-     * @return SetLightState Self object
+     *
+     * @return self This object
      */
     public function xy($x, $y)
     {
@@ -252,8 +260,10 @@ class SetLightState implements CommandInterface, SchedulableInterface
      * Set color temperature
      *
      * @param int $value Color temperature value
+     *
      * @throws \InvalidArgumentException
-     * @return SetLightState Self object
+     *
+     * @return self This object
      */
     public function colorTemp($value)
     {
@@ -274,8 +284,10 @@ class SetLightState implements CommandInterface, SchedulableInterface
      * Set alert parameter
      *
      * @param string $mode Alert mode
+     *
      * @throws \InvalidArgumentException
-     * @return SetLightState Self object
+     *
+     * @return self This object
      */
     public function alert($mode = self::ALERT_LONG_SELECT)
     {
@@ -295,8 +307,10 @@ class SetLightState implements CommandInterface, SchedulableInterface
      * Set effect mode
      *
      * @param string $mode Effect mode
+     *
      * @throws \InvalidArgumentException
-     * @return SetLightState Self object
+     *
+     * @return self This object
      */
     public function effect($mode = self::EFFECT_COLORLOOP)
     {
@@ -316,8 +330,10 @@ class SetLightState implements CommandInterface, SchedulableInterface
      * Transition time
      *
      * @param double $seconds Time in seconds
+     *
      * @throws \InvalidArgumentException
-     * @return SetLightState Self object
+     *
+     * @return self This object
      */
     public function transitionTime($seconds)
     {
@@ -338,8 +354,6 @@ class SetLightState implements CommandInterface, SchedulableInterface
      * Send command
      *
      * @param Client $client Phue Client
-     *
-     * @return mixed|void
      */
     public function send(Client $client)
     {

@@ -34,8 +34,8 @@ class CreateGroup implements CommandInterface
     /**
      * Constructs a command
      *
-     * @param string $name Name
-     * @param array $lights List of light Ids or Light objects
+     * @param string $name   Name
+     * @param array  $lights List of light Ids or Light objects
      */
     public function __construct($name, array $lights = [])
     {
@@ -48,7 +48,7 @@ class CreateGroup implements CommandInterface
      *
      * @param string $name Name
      *
-     * @return CreateGroup Self object
+     * @return self This object
      */
     public function name($name)
     {
@@ -62,7 +62,7 @@ class CreateGroup implements CommandInterface
      *
      * @param array $lights List of light Ids or Light objects
      *
-     * @return CreateGroup Self object
+     * @return self This object
      */
     public function lights(array $lights = [])
     {

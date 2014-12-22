@@ -10,6 +10,7 @@
 namespace Phue\Command;
 
 use Phue\Client;
+use Phue\Light;
 
 /**
  * Get new lights command
@@ -35,7 +36,7 @@ class GetNewLights implements CommandInterface
      *
      * @param Client $client Phue Client
      *
-     * @return GetNewLights self object
+     * @return self This object
      */
     public function send(Client $client)
     {
@@ -60,7 +61,7 @@ class GetNewLights implements CommandInterface
     /**
      * Get lights
      *
-     * @return \Phue\Light[] List of new lights
+     * @return Light[] List of new lights
      */
     public function getLights()
     {
