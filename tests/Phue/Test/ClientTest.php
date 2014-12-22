@@ -20,6 +20,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
+     *
+     * @covers \Phue\Client::__construct
      */
     public function setUp()
     {
@@ -29,7 +31,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Get host
      *
-     * @covers \Phue\Client::__construct
      * @covers \Phue\Client::getHost
      * @covers \Phue\Client::setHost
      */

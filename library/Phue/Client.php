@@ -204,7 +204,7 @@ class Client
     {
         // Set transport if haven't
         if ($this->transport === null) {
-            $this->transport = new Http($this);
+            $this->setTransport(new Http($this));
         }
 
         return $this->transport;
