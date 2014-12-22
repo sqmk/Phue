@@ -296,7 +296,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Get timezones
      *
-     * @cover \Phue\Client::getTimezones
+     * @covers \Phue\Client::getTimezones
      */
     public function testGetTimezones()
     {
@@ -331,6 +331,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      * Test: Not passing in Transport dependency will yield default
      *
      * @covers \Phue\Client::getTransport
+     * @covers \Phue\Client::setTransport
      */
     public function testInstantiateDefaultTransport()
     {

@@ -198,7 +198,7 @@ class Client
     /**
      * Get transport
      *
-     * @return TransportInterface
+     * @return TransportInterface Transport
      */
     public function getTransport()
     {
@@ -228,11 +228,11 @@ class Client
      * Send command to server
      *
      * @param CommandInterface $command Phue command
-     * @return mixed
+     *
+     * @return mixed Command result
      */
     public function sendCommand(CommandInterface $command)
     {
-        // Send command
         return $command->send($this);
     }
 }
