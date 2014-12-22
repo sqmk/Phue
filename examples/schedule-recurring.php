@@ -1,6 +1,6 @@
 <?php
 /**
- * Example: Schedule all lights to change.
+ * Example: Schedule all lights to change, recurring date.
  *
  * Usage: HUE_HOST=127.0.0.1 HUE_USERNAME=1234567890 php schedule-recurring.php
  */
