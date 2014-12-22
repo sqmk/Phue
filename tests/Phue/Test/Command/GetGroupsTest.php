@@ -59,7 +59,7 @@ class GetGroupsTest extends \PHPUnit_Framework_TestCase
         // Stub transport's sendRequest method
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
-            ->with($this->equalTo("/api/{$this->mockClient->getUsername()}"))
+            ->with($this->equalTo("/api/{$this->mockClient->getUsername()}/groups"))
             ->will($this->returnValue(new \stdClass));
 
         // Send command and get response
@@ -79,16 +79,14 @@ class GetGroupsTest extends \PHPUnit_Framework_TestCase
     {
         // Mock transport results
         $mockTransportResults = (object) [
-            'groups' => [
-                1 => new \stdClass,
-                2 => new \stdClass,
-            ]
+            1 => new \stdClass,
+            2 => new \stdClass,
         ];
 
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
-            ->with($this->equalTo("/api/{$this->mockClient->getUsername()}"))
+            ->with($this->equalTo("/api/{$this->mockClient->getUsername()}/groups"))
             ->will($this->returnValue($mockTransportResults));
 
         // Send command and get response

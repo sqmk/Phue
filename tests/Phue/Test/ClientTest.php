@@ -183,10 +183,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         // Mock results for sendRequest
         $mockResults = (object) [
-            'groups' => [
-                '1' => new \stdClass,
-                '2' => new \stdClass,
-            ]
+            '1' => new \stdClass,
+            '2' => new \stdClass,
         ];
 
         // Stub transports sendRequest method
@@ -248,6 +246,47 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertContainsOnlyInstancesOf(
             '\Phue\Schedule',
             $schedules
+        );
+    }
+
+    /**
+     * Test: Get scenes
+     *
+     * @covers \Phue\Client::getScenes
+     */
+    public function testGetScenes()
+    {
+        // Mock transport
+        $mockTransport = $this->getMock(
+            '\Phue\Transport\TransportInterface',
+            ['sendRequest']
+        );
+
+        // Mock results for sendRequest
+        $mockResults = (object) [
+            '1' => new \stdClass,
+            '2' => new \stdClass,
+            '3' => new \stdClass,
+        ];
+
+        // Stub transports sendRequest method
+        $mockTransport->expects($this->once())
+            ->method('sendRequest')
+            ->will($this->returnValue($mockResults));
+
+        // Set transport
+        $this->client->setTransport($mockTransport);
+
+        // Get scenes
+        $scenes = $this->client->getScenes();
+
+        // Ensure at least three scenes
+        $this->assertEquals(3, count($scenes));
+
+        // Ensure return type is an array of schedules
+        $this->assertContainsOnlyInstancesOf(
+            '\Phue\Scene',
+            $scenes
         );
     }
 
