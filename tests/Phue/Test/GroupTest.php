@@ -42,7 +42,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
                 'colormode' => 'hs',
                 'effect'    => 'none',
             ],
-            'lights'    => [2, 3, 5]
+            'lights'    => [2, 3, 5],
+            'type'      => 'LightGroup',
         ];
 
         // Create group object
@@ -101,6 +102,19 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             'new name',
             $this->group->getName()
+        );
+    }
+
+    /**
+     * Test: Get type
+     *
+     * @covers \Phue\Group::getType
+     */
+    public function testGetType()
+    {
+        $this->assertEquals(
+            $this->attributes->type,
+            $this->group->getType()
         );
     }
 

@@ -43,9 +43,9 @@ class Group
     /**
      * Construct a Phue Group object
      *
-     * @param int      $id         Id
+     * @param int       $id         Id
      * @param \stdClass $attributes Group attributes
-     * @param Client   $client     Phue client
+     * @param Client    $client     Phue client
      */
     public function __construct($id, \stdClass $attributes, Client $client)
     {
@@ -72,6 +72,16 @@ class Group
     public function getName()
     {
         return $this->attributes->name;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string Group type
+     */
+    public function getType()
+    {
+        return $this->attributes->type;
     }
 
     /**
