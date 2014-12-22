@@ -1,6 +1,6 @@
 <?php
 /**
- * Example: Schedule all lights to change.
+ * Example: Delete all schedules.
  *
  * Usage: HUE_HOST=127.0.0.1 HUE_USERNAME=1234567890 php delete-all-schedules.php
  */

@@ -21,4 +21,4 @@ $groupId = $client->sendCommand(
     )
 );
 
-echo "Group Id: ", $groupId, "\n";
+echo 'Group Id: ', $groupId, "\n";

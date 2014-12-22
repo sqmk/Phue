@@ -12,5 +12,6 @@ $client = new \Phue\Client($hueHost, $hueUsername);
 echo 'Listing groups:', "\n";
 
 foreach ($client->getGroups() as $group) {
-    echo "\t", "#{$group->getId()} - {$group->getName()}", "\n";
+    echo "\t", "#{$group->getId()} - {$group->getName()}", "\n",
+        "\t\t Lights: ", implode(', ', $group->getLightIds()), "\n";
 }
