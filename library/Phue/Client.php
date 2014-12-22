@@ -9,15 +9,16 @@
 
 namespace Phue;
 
-use Phue\Transport\Http;
-use Phue\Transport\TransportInterface;
 use Phue\Command\CommandInterface;
 use Phue\Command\GetBridge;
-use Phue\Command\GetUsers;
-use Phue\Command\GetLights;
 use Phue\Command\GetGroups;
+use Phue\Command\GetLights;
+use Phue\Command\GetScenes;
 use Phue\Command\GetSchedules;
 use Phue\Command\GetTimezones;
+use Phue\Command\GetUsers;
+use Phue\Transport\Http;
+use Phue\Transport\TransportInterface;
 
 /**
  * Client for connecting to Philips Hue bridge
@@ -108,7 +109,7 @@ class Client
     public function getBridge()
     {
         return $this->sendCommand(
-            new GetBridge()
+            new GetBridge
         );
     }
 
@@ -120,7 +121,7 @@ class Client
     public function getUsers()
     {
         return $this->sendCommand(
-            new GetUsers()
+            new GetUsers
         );
     }
 
@@ -132,7 +133,7 @@ class Client
     public function getLights()
     {
         return $this->sendCommand(
-            new GetLights()
+            new GetLights
         );
     }
 
@@ -144,7 +145,7 @@ class Client
     public function getGroups()
     {
         return $this->sendCommand(
-            new GetGroups()
+            new GetGroups
         );
     }
 
@@ -156,7 +157,19 @@ class Client
     public function getSchedules()
     {
         return $this->sendCommand(
-            new GetSchedules()
+            new GetSchedules
+        );
+    }
+
+    /**
+     * Get scenes
+     *
+     * @return Scene[] List of Scene objects
+     */
+    public function getScenes()
+    {
+        return $this->sendCommand(
+            new GetScenes
         );
     }
 
@@ -168,7 +181,7 @@ class Client
     public function getTimezones()
     {
         return $this->sendCommand(
-            new GetTimezones()
+            new GetTimezones
         );
     }
 
