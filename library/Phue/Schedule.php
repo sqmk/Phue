@@ -87,7 +87,8 @@ class Schedule
      * Set name of schedule
      *
      * @param string $name
-     * @return Schedule Self object
+     *
+     * @return self This object
      */
     public function setName($name)
     {
@@ -115,7 +116,7 @@ class Schedule
      *
      * @param string $description
      *
-     * @return Schedule Self object
+     * @return self This object
      */
     public function setDescription($description)
     {
@@ -143,7 +144,7 @@ class Schedule
      *
      * @param SchedulableInterface $command Schedulable command
      *
-     * @return Schedule Self object
+     * @return self This object
      */
     public function setCommand(SchedulableInterface $command)
     {
@@ -171,7 +172,7 @@ class Schedule
      *
      * @param string $status Status.
      *
-     * @return Schedule Self object
+     * @return self This object
      */
     public function setStatus($status)
     {
@@ -209,7 +210,7 @@ class Schedule
      *
      * @param string $time Time
      *
-     * @return Schedule Self object
+     * @return self This object
      */
     public function setTime($time)
     {
@@ -238,7 +239,7 @@ class Schedule
      *
      * @param bool $flag True to auto delete, false if not
      *
-     * @return Schedule Self object
+     * @return self This object
      */
     public function setAutoDelete($flag)
     {

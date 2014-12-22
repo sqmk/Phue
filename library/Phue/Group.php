@@ -79,7 +79,7 @@ class Group
      *
      * @param string $name
      *
-     * @return Group Self object
+     * @return self This object
      */
     public function setName($name)
     {
@@ -107,7 +107,7 @@ class Group
      *
      * @param array $lights Light ids or Light objects
      *
-     * @return Group Self object
+     * @return self This object
      */
     public function setLights(array $lights)
     {
@@ -141,7 +141,7 @@ class Group
      *
      * @param bool $flag True for on, false for off
      *
-     * @return Group Self object
+     * @return self This object
      */
     public function setOn($flag = true)
     {
@@ -169,7 +169,7 @@ class Group
      *
      * @param int $level Brightness level
      *
-     * @return Group Self object
+     * @return self This object
      */
     public function setBrightness($level = SetLightState::BRIGHTNESS_MAX)
     {
@@ -197,7 +197,7 @@ class Group
      *
      * @param int $value Group value
      *
-     * @return Group Self object
+     * @return self This object
      */
     public function setHue($value)
     {
@@ -227,7 +227,7 @@ class Group
      *
      * @param int $value Saturation value
      *
-     * @return Group Self object
+     * @return self This object
      */
     public function setSaturation($value)
     {
@@ -261,7 +261,7 @@ class Group
      * @param float $x X value
      * @param float $y Y value
      *
-     * @return Group Self object
+     * @return self This object
      */
     public function setXY($x, $y)
     {
@@ -291,7 +291,7 @@ class Group
      *
      * @param int $value Color temperature value
      *
-     * @return Group Self object
+     * @return self This object
      */
     public function setColorTemp($value)
     {
@@ -321,7 +321,7 @@ class Group
      *
      * @param string $mode Effect mode
      *
-     * @return Group Self object
+     * @return self This object
      */
     public function setEffect($mode = SetLightState::EFFECT_NONE)
     {
@@ -342,6 +342,22 @@ class Group
     public function getColorMode()
     {
         return $this->attributes->action->colormode;
+    }
+
+    /**
+     * Set scene on group
+     *
+     * @param mixed $scene Scene id or Scene object
+     *
+     * @return self This object
+     */
+    public function setScene($scene)
+    {
+        $this->client->sendCommand(
+            (new SetGroupState($this))->scene((string) $scene)
+        );
+
+        return $this;
     }
 
     /**

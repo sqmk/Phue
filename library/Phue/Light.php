@@ -78,7 +78,7 @@ class Light
      *
      * @param string $name
      *
-     * @return Light Self object
+     * @return self This object
      */
     public function setName($name)
     {
@@ -146,7 +146,7 @@ class Light
      *
      * @param bool $flag True for on, false for off
      *
-     * @return Light Self object
+     * @return self This object
      */
     public function setOn($flag = true)
     {
@@ -174,7 +174,7 @@ class Light
      *
      * @param string $mode Alert mode
      *
-     * @return Light Self object
+     * @return self This object
      */
     public function setAlert($mode = SetLightState::ALERT_LONG_SELECT)
     {
@@ -202,7 +202,7 @@ class Light
      *
      * @param string $mode Effect mode
      *
-     * @return Light Self object
+     * @return self This object
      */
     public function setEffect($mode = SetLightState::EFFECT_NONE)
     {
@@ -230,7 +230,7 @@ class Light
      *
      * @param int $level Brightness level
      *
-     * @return Light Self object
+     * @return self This object
      */
     public function setBrightness($level = SetLightState::BRIGHTNESS_MAX)
     {
@@ -258,7 +258,7 @@ class Light
      *
      * @param int $value Hue value
      *
-     * @return Light Self object
+     * @return self This object
      */
     public function setHue($value)
     {
@@ -288,7 +288,7 @@ class Light
      *
      * @param int $value Saturation value
      *
-     * @return Light Self object
+     * @return self This object
      */
     public function setSaturation($value)
     {
@@ -322,7 +322,7 @@ class Light
      * @param float $x X value
      * @param float $y Y value
      *
-     * @return Light Self object
+     * @return self This object
      */
     public function setXY($x, $y)
     {
@@ -352,7 +352,7 @@ class Light
      *
      * @param int $value Color temperature value
      *
-     * @return Light Self object
+     * @return self This object
      */
     public function setColorTemp($value)
     {
