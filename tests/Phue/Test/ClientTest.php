@@ -35,9 +35,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetHost()
     {
+        $this->client->setHost('127.0.0.2');
+
         $this->assertEquals(
             $this->client->getHost(),
-            '127.0.0.1'
+            '127.0.0.2'
         );
     }
 

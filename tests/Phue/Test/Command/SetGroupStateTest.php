@@ -55,6 +55,36 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Set scene
+     *
+     * @covers \Phue\Command\SetGroupState::scene
+     * @covers \Phue\Command\SetLightState::send
+     */
+    public function testSceneSend()
+    {
+        $scene = 'phue-test';
+
+        // Build command
+        $command = new SetGroupState($this->mockGroup);
+
+        // Set expected payload
+        $this->stubTransportSendRequestWithPayload(
+            (object) [
+                'scene' => $scene
+            ]
+        );
+
+        // Ensure instance is returned
+        $this->assertEquals(
+            $command,
+            $command->scene($scene)
+        );
+
+        // Send
+        $command->send($this->mockClient);
+    }
+
+    /**
      * Test: Send command
      *
      * @covers \Phue\Command\SetGroupState::__construct

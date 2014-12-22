@@ -358,6 +358,22 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Set scene
+     *
+     * @covers \Phue\Group::setScene
+     */
+    public function testSetScene()
+    {
+        $this->stubMockClientSendSetGroupStateCommand();
+
+        // Ensure setScene returns self
+        $this->assertEquals(
+            $this->group,
+            $this->group->setScene('phue-test')
+        );
+    }
+
+    /**
      * Test: Delete
      *
      * @covers \Phue\Group::delete
