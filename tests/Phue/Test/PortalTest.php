@@ -72,7 +72,7 @@ class PortalTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Is outgoing?
      *
-     * @covers \Phue\Portal::isOuting
+     * @covers \Phue\Portal::isOutgoing
      */
     public function testIsOutgoing()
     {
