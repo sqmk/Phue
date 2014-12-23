@@ -75,8 +75,7 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
         // Expect client's sendCommand usage
         $this->mockClient->expects($this->once())
             ->method('sendCommand')
-            ->with($this->isInstanceOf('\Phue\Command\SetBridgeConfig'))
-            ->will($this->returnValue($this->bridge));
+            ->with($this->isInstanceOf('\Phue\Command\SetBridgeConfig'));
 
         // Ensure installUpdates returns self
         $this->assertEquals(
@@ -114,8 +113,7 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
         // Expect client's sendCommand usage
         $this->mockClient->expects($this->once())
             ->method('sendCommand')
-            ->with($this->isInstanceOf('\Phue\Command\SetBridgeConfig'))
-            ->will($this->returnValue($this->bridge));
+            ->with($this->isInstanceOf('\Phue\Command\SetBridgeConfig'));
 
         // Ensure checkForUpdate returns self
         $this->assertEquals(
@@ -133,7 +131,7 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Is bridge updatable?
      *
-     * @covers \Phue\SoftwareUpdate::isBridgeUpdatable?
+     * @covers \Phue\SoftwareUpdate::isBridgeUpdatable
      */
     public function testIsBridgeUpdatable()
     {
@@ -192,8 +190,7 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
         // Expect client's sendCommand usage
         $this->mockClient->expects($this->once())
             ->method('sendCommand')
-            ->with($this->isInstanceOf('\Phue\Command\SetBridgeConfig'))
-            ->will($this->returnValue($this->bridge));
+            ->with($this->isInstanceOf('\Phue\Command\SetBridgeConfig'));
 
         // Ensure disableInstallNotification returns self
         $this->assertEquals(
