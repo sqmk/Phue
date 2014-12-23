@@ -9,12 +9,13 @@ Phue is a PHP client used to connect to and manage the Philips Hue lighting syst
 It is currently registered with Packagist so that this library can easily be included in other projects. For example, one may want to bundle this library with Zend Framework or Symfony to build their own front-end for the Hue system.
 
 The client has the ability to make full use of the Hue's API, including:
-* Authenticating
-* Updating the bridge
-* Finding new lights
-* Getting and managing lights
+* Authenticating and managing users
+* Managing bridge configuration
+* Managing lights
 * Managing groups
 * Managing schedules with various time patterns
+* Managing software updates to the bridge and lights
+* Getting portal configuration
 
 Interested in API docs? You can check out the auto-generated documentation at [GitApiDoc](http://gitapidoc.com/api/sqmk/Phue/)
 
