@@ -10,8 +10,8 @@
 namespace Phue;
 
 use Phue\Command\SetLightState;
-use Phue\LightModel\LightModelFactory;
 use Phue\LightModel\AbstractLightModel;
+use Phue\LightModel\LightModelFactory;
 
 /**
  * Light object
@@ -42,9 +42,9 @@ class Light
     /**
      * Construct a Phue Light object
      *
-     * @param int      $id         Id
+     * @param int       $id         Id
      * @param \stdClass $attributes Light attributes
-     * @param Client   $client     Phue client
+     * @param Client    $client     Phue client
      */
     public function __construct($id, \stdClass $attributes, Client $client)
     {

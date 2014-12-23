@@ -9,8 +9,8 @@
 
 namespace Phue;
 
-use Phue\Command\SetScheduleAttributes;
 use Phue\Command\SchedulableInterface;
+use Phue\Command\SetScheduleAttributes;
 use Phue\TimePattern\AbsoluteTime;
 
 /**
