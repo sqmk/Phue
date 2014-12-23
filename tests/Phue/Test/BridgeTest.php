@@ -189,13 +189,13 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Getting date
      *
-     * @covers \Phue\Bridge::getUtcDate
+     * @covers \Phue\Bridge::getUtcTime
      */
-    public function testGetUtcDate()
+    public function testGetUtcTime()
     {
         $this->assertEquals(
             $this->attributes->UTC,
-            $this->bridge->getUtcDate()
+            $this->bridge->getUtcTime()
         );
     }
 
