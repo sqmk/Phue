@@ -18,6 +18,16 @@ use Phue\Transport\TransportInterface;
 class SetBridgeConfig implements CommandInterface
 {
     /**
+     * Default proxy address
+     */
+    const DEFAULT_PROXY_ADDRESS = 'none';
+
+    /**
+     * Default proxy port
+     */
+    const DEFAULT_PROXY_PORT = 0;
+
+    /**
      * Config
      *
      * @var array
