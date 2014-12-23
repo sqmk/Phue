@@ -168,6 +168,19 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Get release notes brief
+     *
+     * @covers \Phue\SoftwareUpdate::getReleaseNotesBrief
+     */
+    public function testGetReleaseNotesBrief()
+    {
+        $this->assertEquals(
+            $this->attributes->text,
+            $this->softwareUpdate->getReleaseNotesBrief()
+        );
+    }
+
+    /**
      * Test: Is install notification enabled?
      *
      * @covers \Phue\SoftwareUpdate::isInstallNotificationEnabled
