@@ -363,6 +363,16 @@ class Bridge
     }
 
     /**
+     * Get software update
+     *
+     * @return SoftwareUpdate SoftwareUpdate object
+     */
+    public function getSoftwareUpdate()
+    {
+        return new SoftwareUpdate($this->attributes->swupdate, $this->client);
+    }
+
+    /**
      * Is the link button on?
      *
      * @return bool True if the link button on, false if not
@@ -420,15 +430,5 @@ class Bridge
     public function getPortal()
     {
         return new Portal($this->attributes->portalstate, $this->client);
-    }
-
-    /**
-     * Get software update
-     *
-     * @return SoftwareUpdate SoftwareUpdate object
-     */
-    public function getSoftwareUpdate()
-    {
-        return new SoftwareUpdate($this->attributes->swupdate, $this->client);
     }
 }
