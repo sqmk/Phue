@@ -57,7 +57,9 @@ class GetTimezonesTest extends \PHPUnit_Framework_TestCase
     public function testGetTimezones()
     {
         // Mock transport results
-        $mockTransportResults = [];
+        $mockTransportResults = [
+            'UTC'
+        ];
 
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
