@@ -13,8 +13,10 @@ use Phue\Command\CommandInterface;
 use Phue\Command\GetBridge;
 use Phue\Command\GetGroups;
 use Phue\Command\GetLights;
+use Phue\Command\GetRules;
 use Phue\Command\GetScenes;
 use Phue\Command\GetSchedules;
+use Phue\Command\GetSensors;
 use Phue\Command\GetTimezones;
 use Phue\Command\GetUsers;
 use Phue\Transport\Http;
@@ -25,11 +27,6 @@ use Phue\Transport\TransportInterface;
  */
 class Client
 {
-    /**
-     * Client name
-     */
-    const DEFAULT_DEVICE_TYPE = 'Phue';
-
     /**
      * Host address
      *
@@ -180,6 +177,30 @@ class Client
     {
         return $this->sendCommand(
             new GetScenes
+        );
+    }
+
+    /**
+     * Get sensors
+     *
+     * @return Sensor[] List of Sensor objects
+     */
+    public function getSensors()
+    {
+        return $this->sendCommand(
+            new GetSensors
+        );
+    }
+
+    /**
+     * Get rules
+     *
+     * @return Rule[] List of Rule objects
+     */
+    public function getRules()
+    {
+        return $this->sendCommand(
+            new GetRules
         );
     }
 
