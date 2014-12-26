@@ -19,6 +19,8 @@ class SceneTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up
+     *
+     * @covers \Phue\Scene::__construct
      */
     public function setUp()
     {
@@ -43,7 +45,6 @@ class SceneTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Getting Id
      *
-     * @covers \Phue\Scene::__construct
      * @covers \Phue\Scene::getId
      */
     public function testGetId()
@@ -57,7 +58,6 @@ class SceneTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Getting name
      *
-     * @covers \Phue\Scene::__construct
      * @covers \Phue\Scene::getName
      */
     public function testGetName()

@@ -124,7 +124,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Ensure at least three users
         $this->assertEquals(3, count($users));
 
-        // Ensure return type is an array of lights
+        // Ensure return type is an array of users
         $this->assertContainsOnlyInstancesOf(
             '\Phue\User',
             $users
@@ -161,7 +161,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Get lights
         $lights = $this->client->getLights();
 
-        // Ensure at least two lights
+        // Ensure two lights
         $this->assertEquals(2, count($lights));
 
         // Ensure return type is an array of lights
@@ -201,7 +201,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Get groups
         $groups = $this->client->getGroups();
 
-        // Ensure at least two groups
+        // Ensure two groups
         $this->assertEquals(2, count($groups));
 
         // Ensure return type is an array of groups
@@ -242,7 +242,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Get schedules
         $schedules = $this->client->getSchedules();
 
-        // Ensure at least three schedules
+        // Ensure three schedules
         $this->assertEquals(3, count($schedules));
 
         // Ensure return type is an array of schedules
@@ -283,13 +283,93 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Get scenes
         $scenes = $this->client->getScenes();
 
-        // Ensure at least three scenes
+        // Ensure three scenes
         $this->assertEquals(3, count($scenes));
 
-        // Ensure return type is an array of schedules
+        // Ensure return type is an array of scenes
         $this->assertContainsOnlyInstancesOf(
             '\Phue\Scene',
             $scenes
+        );
+    }
+
+    /**
+     * Test: Get sensors
+     *
+     * @covers \Phue\Client::getSensors
+     */
+    public function testGetSensors()
+    {
+        // Mock transport
+        $mockTransport = $this->getMock(
+            '\Phue\Transport\TransportInterface',
+            ['sendRequest']
+        );
+
+        // Mock results for sendRequest
+        $mockResults = (object) [
+            '1' => new \stdClass,
+            '2' => new \stdClass,
+        ];
+
+        // Stub transports sendRequest method
+        $mockTransport->expects($this->once())
+            ->method('sendRequest')
+            ->will($this->returnValue($mockResults));
+
+        // Set transport
+        $this->client->setTransport($mockTransport);
+
+        // Get sensors
+        $sensors = $this->client->getSensors();
+
+        // Ensure two sensors
+        $this->assertEquals(2, count($sensors));
+
+        // Ensure return type is an array of sensors
+        $this->assertContainsOnlyInstancesOf(
+            '\Phue\Sensor',
+            $sensors
+        );
+    }
+
+    /**
+     * Test: Get rules
+     *
+     * @covers \Phue\Client::getRules
+     */
+    public function testGetRules()
+    {
+        // Mock transport
+        $mockTransport = $this->getMock(
+            '\Phue\Transport\TransportInterface',
+            ['sendRequest']
+        );
+
+        // Mock results for sendRequest
+        $mockResults = (object) [
+            '1' => new \stdClass,
+            '2' => new \stdClass,
+        ];
+
+        // Stub transports sendRequest method
+        $mockTransport->expects($this->once())
+            ->method('sendRequest')
+            ->will($this->returnValue($mockResults));
+
+        // Set transport
+        $this->client->setTransport($mockTransport);
+
+        // Get rules
+        $rules = $this->client->getRules();
+
+        // Ensure two rules
+        $this->assertEquals(2, count($rules));
+
+        // Ensure return type is an array of rules
+        $this->assertContainsOnlyInstancesOf(
+            '\Phue\Rule',
+            $rules
         );
     }
 
