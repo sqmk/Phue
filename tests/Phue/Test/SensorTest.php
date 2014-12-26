@@ -37,7 +37,7 @@ class SensorTest extends \PHPUnit_Framework_TestCase
             'type'             => 'Daylight',
             'modelid'          => 'PHDL00',
             'manufacturername' => 'Philips',
-            'sfversion'        => '1.0',
+            'swversion'        => '1.0',
             'uniqueid'         => '00:00:00:00:00:40:03:50-f2',
         ];
 
@@ -118,7 +118,7 @@ class SensorTest extends \PHPUnit_Framework_TestCase
     public function testGetSoftwareVersion()
     {
         $this->assertEquals(
-            $this->attributes->softwareversion,
+            $this->attributes->swversion,
             $this->sensor->getSoftwareVersion()
         );
     }
@@ -131,7 +131,7 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetNullSoftwareVersion()
     {
-        unset($this->attributes->softwareversion);
+        unset($this->attributes->swversion);
 
         $this->assertNull(
             $this->sensor->getSoftwareVersion()
