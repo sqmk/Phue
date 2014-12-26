@@ -115,6 +115,22 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSoftwareVersion()
     {
+        $this->assertEquals(
+            $this->attributes->softwareversion,
+            $this->sensor->getSoftwareVersion()
+        );
+    }
+
+
+    /**
+     * Test: Get null software version
+     *
+     * @covers \Phue\Sensor::getSoftwareVersion
+     */
+    public function testGetNullSoftwareVersion()
+    {
+        unset($this->attributes->softwareversion);
+
         $this->assertNull(
             $this->sensor->getSoftwareVersion()
         );
@@ -127,6 +143,21 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUniqueId()
     {
+        $this->assertEquals(
+            $this->attributes->uniqueid,
+            $this->sensor->getUniqueId()
+        );
+    }
+
+    /**
+     * Test: Get null unique id
+     *
+     * @covers \Phue\Sensor::getUniqueId
+     */
+    public function testGetNullUniqueId()
+    {
+        unset($this->attributes->uniqueid);
+
         $this->assertNull(
             $this->sensor->getUniqueId()
         );
