@@ -13,6 +13,8 @@ The client has the ability to make full use of the Hue's API, including:
 * Managing bridge configuration
 * Managing lights
 * Managing groups
+* Retrieve sensors
+* Retrieve rules
 * Managing schedules with various time patterns
 * Managing software updates to the bridge and lights
 * Getting portal configuration
