@@ -37,6 +37,8 @@ class SensorTest extends \PHPUnit_Framework_TestCase
             'type'             => 'Daylight',
             'modelid'          => 'PHDL00',
             'manufacturername' => 'Philips',
+            'sfversion'        => '1.0',
+            'uniqueid'         => '00:00:00:00:00:40:03:50-f2',
         ];
 
         // Create sensor object
