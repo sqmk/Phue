@@ -18,6 +18,11 @@ use Phue\Transport\TransportInterface;
 class CreateUser implements CommandInterface
 {
     /**
+     * Client name
+     */
+    const DEFAULT_DEVICE_TYPE = 'Phue';
+
+    /**
      * Username to create
      *
      * @var string
@@ -37,7 +42,7 @@ class CreateUser implements CommandInterface
      * @param string $username   Username
      * @param string $deviceType Device type
      */
-    public function __construct($username = null, $deviceType = Client::DEFAULT_DEVICE_TYPE)
+    public function __construct($username = null, $deviceType = self::DEFAULT_DEVICE_TYPE)
     {
         $this->setUsername($username);
         $this->setDeviceType($deviceType);
