@@ -10,7 +10,6 @@
 namespace Phue\Command;
 
 use Phue\Client;
-use Phue\Light;
 
 /**
  * Get new lights command
@@ -61,7 +60,7 @@ class GetNewLights implements CommandInterface
     /**
      * Get lights
      *
-     * @return Light[] List of new lights
+     * @return array List of new lights
      */
     public function getLights()
     {
