@@ -136,6 +136,20 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Delete
+     *
+     * @covers \Phue\Rule::delete
+     */
+    public function testDelete()
+    {
+        $this->mockClient->expects($this->once())
+            ->method('sendCommand')
+            ->with($this->isInstanceOf('\Phue\Command\DeleteRule'));
+
+        $this->rule->delete();
+    }
+
+    /**
      * Test: toString
      *
      * @covers \Phue\Rule::__toString

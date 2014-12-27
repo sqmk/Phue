@@ -9,6 +9,8 @@
 
 namespace Phue;
 
+use Phue\Command\DeleteRule;
+
 /**
  * Rule object
  */
@@ -127,6 +129,16 @@ class Rule
     public function isEnabled()
     {
         return $this->attributes->status == self::STATUS_ENABLED;
+    }
+
+    /**
+     * Delete rule
+     */
+    public function delete()
+    {
+        $this->client->sendCommand(
+            (new DeleteRule($this))
+        );
     }
 
     /**
