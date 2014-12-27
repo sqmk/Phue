@@ -9,6 +9,8 @@
 
 namespace Phue;
 
+use Phue\SensorModel\SensorModelFactory;
+
 /**
  * Sensor object
  */
@@ -87,6 +89,16 @@ class Sensor
     public function getModelId()
     {
         return $this->attributes->modelid;
+    }
+
+    /**
+     * Get model
+     *
+     * @return AbstractSensorModel Sensor model
+     */
+    public function getModel()
+    {
+        return SensorModelFactory::build($this->getModelId());
     }
 
     /**

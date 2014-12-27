@@ -98,6 +98,19 @@ class SensorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Get model
+     *
+     * @covers \Phue\Sensor::getModel
+     */
+    public function testGetModel()
+    {
+        $this->assertInstanceOf(
+            '\Phue\SensorModel\AbstractSensorModel',
+            $this->sensor->getModel()
+        );
+    }
+
+    /**
      * Test: Get manufacturer name
      *
      * @covers \Phue\Sensor::getManufacturerName
