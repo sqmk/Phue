@@ -10,17 +10,17 @@
 namespace Phue\LightModel;
 
 /**
- * Disney Living Colors
+ * Unknown model
  */
-class ModelLlc013 extends AbstractLightModel
+class UnknownModel extends AbstractLightModel
 {
     /**
      * Model id
      */
-    const MODEL_ID = 'LLC013';
+    const MODEL_ID = '';
 
     /**
      * Model name
      */
-    const MODEL_NAME = 'Disney Living Colors';
+    const MODEL_NAME = 'Unknown';
 }

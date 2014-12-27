@@ -10,17 +10,22 @@
 namespace Phue\LightModel;
 
 /**
- * Living Colors Gen3 Iris
+ * Hue LightStrips
  */
-class ModelLlc006 extends AbstractLightModel
+class Lst001Model extends AbstractLightModel
 {
     /**
      * Model id
      */
-    const MODEL_ID = 'LLC006';
+    const MODEL_ID = 'LST001';
 
     /**
      * Model name
      */
-    const MODEL_NAME = 'Living Colors Gen3 Iris';
+    const MODEL_NAME = 'Hue LightStrips';
+
+    /**
+     * Can retain state
+     */
+    const CAN_RETAIN_STATE = true;
 }

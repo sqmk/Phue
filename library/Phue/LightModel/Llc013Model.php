@@ -10,22 +10,17 @@
 namespace Phue\LightModel;
 
 /**
- * Hue Living Colors Bloom
+ * Disney Living Colors
  */
-class ModelLlc012 extends AbstractLightModel
+class Llc013Model extends AbstractLightModel
 {
     /**
      * Model id
      */
-    const MODEL_ID = 'LLC012';
+    const MODEL_ID = 'LLC013';
 
     /**
      * Model name
      */
-    const MODEL_NAME = 'Hue Living Colors Bloom';
-
-    /**
-     * Can retain state
-     */
-    const CAN_RETAIN_STATE = true;
+    const MODEL_NAME = 'Disney Living Colors';
 }

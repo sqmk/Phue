@@ -10,22 +10,17 @@
 namespace Phue\LightModel;
 
 /**
- * Hue LightStrips
+ * Hue Spot BR30
  */
-class ModelLst001 extends AbstractLightModel
+class Lct002Model extends AbstractLightModel
 {
     /**
      * Model id
      */
-    const MODEL_ID = 'LST001';
+    const MODEL_ID = 'LCT002';
 
     /**
      * Model name
      */
-    const MODEL_NAME = 'Hue LightStrips';
-
-    /**
-     * Can retain state
-     */
-    const CAN_RETAIN_STATE = true;
+    const MODEL_NAME = 'Hue Spot BR30';
 }

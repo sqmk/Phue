@@ -24,7 +24,7 @@ class LightModelFactoryTest extends \PHPUnit_Framework_TestCase
     public function testGetUnknownModel()
     {
         $this->assertInstanceOf(
-            '\Phue\LightModel\ModelUnknown',
+            '\Phue\LightModel\UnknownModel',
             LightModelFactory::build('whatever')
         );
     }
@@ -37,7 +37,7 @@ class LightModelFactoryTest extends \PHPUnit_Framework_TestCase
     public function testGetKnownModel()
     {
         $this->assertInstanceOf(
-            '\Phue\LightModel\ModelLst001',
+            '\Phue\LightModel\Lst001Model',
             LightModelFactory::build('LST001')
         );
     }

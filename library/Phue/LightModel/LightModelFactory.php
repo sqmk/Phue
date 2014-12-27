@@ -23,14 +23,14 @@ class LightModelFactory
      */
     public static function build($modelId)
     {
-        $classNamePrefix      = __NAMESPACE__ . '\Model';
-        $classNameModelSuffix = ucfirst(strtolower($modelId));
+        $classNamePrefix = __NAMESPACE__ . '\\';
+        $classNameModel  = ucfirst(strtolower($modelId)) . 'Model';
 
-        if (!class_exists($classNamePrefix . $classNameModelSuffix)) {
-            $classNameModelSuffix = 'Unknown';
+        if (!class_exists($classNamePrefix . $classNameModel)) {
+            $classNameModel = 'UnknownModel';
         }
 
-        $finalClassName = $classNamePrefix . $classNameModelSuffix;
+        $finalClassName = $classNamePrefix . $classNameModel;
 
         return new $finalClassName;
     }

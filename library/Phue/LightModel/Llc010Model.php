@@ -10,17 +10,22 @@
 namespace Phue\LightModel;
 
 /**
- * Hue Spot BR30
+ * Hue Living Colors Iris
  */
-class ModelLct002 extends AbstractLightModel
+class Llc010Model extends AbstractLightModel
 {
     /**
      * Model id
      */
-    const MODEL_ID = 'LCT002';
+    const MODEL_ID = 'LLC010';
 
     /**
      * Model name
      */
-    const MODEL_NAME = 'Hue Spot BR30';
+    const MODEL_NAME = 'Hue Living Colors Iris';
+
+    /**
+     * Can retain state
+     */
+    const CAN_RETAIN_STATE = true;
 }

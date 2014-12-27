@@ -10,17 +10,17 @@
 namespace Phue\LightModel;
 
 /**
- * Color Light Module
+ * Living Colors Gen3 Bloom, Aura
  */
-class ModelLlm001 extends AbstractLightModel
+class Llc007Model extends AbstractLightModel
 {
     /**
      * Model id
      */
-    const MODEL_ID = 'LLM001';
+    const MODEL_ID = 'LLC007';
 
     /**
      * Model name
      */
-    const MODEL_NAME = 'Color Light Module';
+    const MODEL_NAME = 'Living Colors Gen3 Bloom, Aura';
 }

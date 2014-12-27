@@ -10,17 +10,17 @@
 namespace Phue\LightModel;
 
 /**
- * Unknown model
+ * Hue bulb A19
  */
-class ModelUnknown extends AbstractLightModel
+class Lct001Model extends AbstractLightModel
 {
     /**
      * Model id
      */
-    const MODEL_ID = '';
+    const MODEL_ID = 'LCT001';
 
     /**
      * Model name
      */
-    const MODEL_NAME = 'Unknown';
+    const MODEL_NAME = 'Hue bulb A19';
 }

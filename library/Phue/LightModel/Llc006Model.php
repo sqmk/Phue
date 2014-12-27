@@ -10,17 +10,17 @@
 namespace Phue\LightModel;
 
 /**
- * Living Colors Gen3 Bloom, Aura
+ * Living Colors Gen3 Iris
  */
-class ModelLlc007 extends AbstractLightModel
+class Llc006Model extends AbstractLightModel
 {
     /**
      * Model id
      */
-    const MODEL_ID = 'LLC007';
+    const MODEL_ID = 'LLC006';
 
     /**
      * Model name
      */
-    const MODEL_NAME = 'Living Colors Gen3 Bloom, Aura';
+    const MODEL_NAME = 'Living Colors Gen3 Iris';
 }
