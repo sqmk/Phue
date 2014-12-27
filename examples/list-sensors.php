@@ -17,5 +17,6 @@ foreach ($client->getSensors() as $sensor) {
         "\t\t", "Model Id: {$sensor->getModelId()}", "\n",
         "\t\t", "Manufacturer Name: {$sensor->getManufacturerName()}", "\n",
         "\t\t", "Software Version: {$sensor->getSoftwareVersion()}", "\n",
-        "\t\t", "Unique Id: {$sensor->getUniqueId()}", "\n";
+        "\t\t", "Unique Id: {$sensor->getUniqueId()}", "\n",
+        "\t\t", "Model name: {$sensor->getModel()->getName()}", "\n";
 }
