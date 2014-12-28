@@ -17,6 +17,26 @@ use Phue\Command\DeleteRule;
 class Rule
 {
     /**
+     * Operator: Equals
+     */
+    const OP_EQUALS = 'eq';
+
+    /**
+     * Operator: Greater than
+     */
+    const OP_GREATER_THAN = 'gt';
+
+    /**
+     * Operator: Less than
+     */
+    const OP_LESS_THAN = 'lt';
+
+    /**
+     * Operator: Changed
+     */
+    const OP_CHANGED = 'dx';
+
+    /**
      * Status: Enabled
      */
     const STATUS_ENABLED = 'enabled';
