@@ -97,7 +97,7 @@ class CreateScene implements CommandInterface
      *
      * @param Client $client Phue Client
      *
-     * @return int Scene Id
+     * @return string Scene Id
      */
     public function send(Client $client)
     {
@@ -109,5 +109,7 @@ class CreateScene implements CommandInterface
                 'lights' => $this->lights
             ]
         );
+
+        return $this->id;
     }
 }
