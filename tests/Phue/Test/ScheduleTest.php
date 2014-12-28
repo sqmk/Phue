@@ -214,23 +214,23 @@ class ScheduleTest extends \PHPUnit_Framework_TestCase
             ->with($this->isInstanceOf('\Phue\Command\SetScheduleAttributes'))
             ->will($this->returnValue($this->schedule));
 
-        // Mock schedulable command
+        // Mock actionable command
         $mockCommand = $this->getMock(
-            '\Phue\Command\SchedulableInterface',
-            ['getSchedulableParams']
+            '\Phue\Command\ActionableInterface',
+            ['getActionableParams']
         );
 
-        $schedulableParams = [
+        $actionableParams = [
             'address' => '/api/endpoint',
             'method'  => 'POST',
             'body'    => 'Dummy'
         ];
 
-        // Stub command's getSchedulableParams method
+        // Stub command's getActionableParams method
         $mockCommand->expects($this->any())
-            ->method('getSchedulableParams')
+            ->method('getActionableParams')
             ->will(
-                $this->returnValue((object) $schedulableParams)
+                $this->returnValue((object) $actionableParams)
             );
 
         // Ensure setCommand returns self
@@ -241,7 +241,7 @@ class ScheduleTest extends \PHPUnit_Framework_TestCase
 
         // Ensure new command can be retrieved by getCommand
         $this->assertEquals(
-            $schedulableParams,
+            $actionableParams,
             $this->schedule->getCommand()
         );
     }

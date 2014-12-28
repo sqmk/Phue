@@ -53,11 +53,22 @@ class SetScheduleAttributesTest extends \PHPUnit_Framework_TestCase
             ->method('getTransport')
             ->will($this->returnValue($this->mockTransport));
 
-        // Mock schedulable command
+        // Mock actionable command
         $this->mockCommand = $this->getMock(
-            '\Phue\Command\SchedulableInterface',
-            ['getSchedulableParams']
+            '\Phue\Command\ActionableInterface',
+            ['getActionableParams']
         );
+
+        // Stub command's getActionableParams method
+        $this->mockCommand->expects($this->any())
+            ->method('getActionableParams')
+            ->will(
+                $this->returnValue([
+                    'address' => '/thing/value',
+                    'method'  => 'POST',
+                    'body'    => 'Dummy'
+                ])
+            );
     }
 
     /**
@@ -76,7 +87,11 @@ class SetScheduleAttributesTest extends \PHPUnit_Framework_TestCase
             (object) [
                 'name'        => 'Dummy!',
                 'description' => 'Dummy description',
-                'command'     => NULL,
+                'command'     => [
+                    'method'  => TransportInterface::METHOD_POST,
+                    'address' => "/api/{$this->mockClient->getUsername()}/thing/value",
+                    'body'    => "Dummy"
+                ],
             ]
         );
 

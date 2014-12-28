@@ -482,11 +482,11 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Get schedulable params
+     * Test: Get actionable params
      *
-     * @covers \Phue\Command\SetLightState::getSchedulableParams
+     * @covers \Phue\Command\SetLightState::getActionableParams
      */
-    public function testGetSchedulableParams()
+    public function testGetActionableParams()
     {
         // Build command
         $setLightStateCmd = new SetLightState($this->mockLight);
@@ -494,16 +494,16 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         // Change alert
         $setLightStateCmd->alert('select');
 
-        // Ensure schedulable params are expected
+        // Ensure actionable params are expected
         $this->assertEquals(
             [
-                'address' => "/api/{$this->mockClient->getUsername()}/lights/{$this->mockLight->getId()}/state",
+                'address' => "/lights/{$this->mockLight->getId()}/state",
                 'method'  => 'PUT',
                 'body'    => (object) [
                     'alert' => 'select'
                 ]
             ],
-            $setLightStateCmd->getSchedulableParams($this->mockClient)
+            $setLightStateCmd->getActionableParams($this->mockClient)
         );
     }
 

@@ -108,11 +108,11 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Get schedulable params
+     * Test: Get actionable params
      *
-     * @covers \Phue\Command\SetGroupState::getSchedulableParams
+     * @covers \Phue\Command\SetGroupState::getActionableParams
      */
-    public function testGetSchedulableParams()
+    public function testGetActionableParams()
     {
         // Build command
         $setGroupStateCmd = new SetGroupState($this->mockGroup);
@@ -123,13 +123,13 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
         // Ensure schedulable params are expected
         $this->assertEquals(
             [
-                'address' => "/api/{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action",
+                'address' => "/groups/{$this->mockGroup->getId()}/action",
                 'method'  => 'PUT',
                 'body'    => (object) [
                     'alert' => 'select'
                 ]
             ],
-            $setGroupStateCmd->getSchedulableParams($this->mockClient)
+            $setGroupStateCmd->getActionableParams($this->mockClient)
         );
     }
 
