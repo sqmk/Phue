@@ -29,7 +29,7 @@ class CreateSchedule implements CommandInterface
     /**
      * Command
      *
-     * @var SchedulableInterface
+     * @var ActionableInterface
      */
     protected $command;
 
@@ -43,14 +43,14 @@ class CreateSchedule implements CommandInterface
     /**
      * Constructs a create schedule command
      *
-     * @param string                $name    Name of schedule
-     * @param mixed                 $time    Time to run command
-     * @param SchedulableInterface  $command Schedulable command
+     * @param string               $name    Name of schedule
+     * @param mixed                $time    Time to run command
+     * @param ActionableInterface  $command Actionable command
      */
     public function __construct(
         $name = null,
         $time = null,
-        SchedulableInterface $command = null
+        ActionableInterface $command = null
     ) {
         // Set name, time, command if passed
         $name    !== null && $this->name($name);
@@ -110,11 +110,11 @@ class CreateSchedule implements CommandInterface
     /**
      * Set command
      *
-     * @param SchedulableInterface $command Schedulable command
+     * @param ActionableInterface $command Actionable command
      *
      * @return CreateSchedule Self object
      */
-    public function command(SchedulableInterface $command)
+    public function command(ActionableInterface $command)
     {
         $this->command = $command;
 
@@ -160,7 +160,10 @@ class CreateSchedule implements CommandInterface
     {
         // Set command attribute if passed
         if ($this->command) {
-            $this->attributes['command'] = $this->command->getSchedulableParams($client);
+            $params            = $this->command->getActionableParams($client);
+            $params['address'] = "/api/{$client->getUsername()}" . $params['address'];
+
+            $this->attributes['command'] = $params;
         }
 
         // Set time attribute if passed

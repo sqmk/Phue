@@ -43,7 +43,10 @@ class SetScheduleAttributes extends CreateSchedule implements CommandInterface
     {
         // Set command attribute if passed
         if ($this->command) {
-            $this->attributes['command'] = $this->command->getSchedulableParams($client);
+            $params            = $this->command->getActionableParams($client);
+            $params['address'] = "/api/{$client->getUsername()}" . $params['address'];
+
+            $this->attributes['command'] = $params;
         }
 
         $client->getTransport()->sendRequest(

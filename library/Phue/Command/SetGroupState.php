@@ -15,7 +15,7 @@ use Phue\Transport\TransportInterface;
 /**
  * Set group action command
  */
-class SetGroupState extends SetLightState implements SchedulableInterface
+class SetGroupState extends SetLightState implements ActionableInterface
 {
     /**
      * Group Id
@@ -56,27 +56,27 @@ class SetGroupState extends SetLightState implements SchedulableInterface
     public function send(Client $client)
     {
         // Get params
-        $params = $this->getSchedulableParams($client);
+        $params = $this->getActionableParams($client);
 
         // Send request
         $client->getTransport()->sendRequest(
-            $params['address'],
+            "/api/{$client->getUsername()}" . $params['address'],
             $params['method'],
             $params['body']
         );
     }
 
     /**
-     * Get schedulable params
+     * Get actionable params
      *
      * @param Client $client Phue Client
      *
      * @return array Key/value pairs of params
      */
-    public function getSchedulableParams(Client $client)
+    public function getActionableParams(Client $client)
     {
         return [
-            'address' => "/api/{$client->getUsername()}/groups/{$this->groupId}/action",
+            'address' => "/groups/{$this->groupId}/action",
             'method'  => TransportInterface::METHOD_PUT,
             'body'    => (object) $this->params
         ];
