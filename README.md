@@ -14,7 +14,7 @@ The client has the ability to make full use of the Hue's API, including:
 * Managing lights
 * Managing groups
 * Retrieve sensors
-* Retrieve rules
+* Managing rules for sensors
 * Managing schedules with various time patterns
 * Managing software updates to the bridge and lights
 * Getting portal configuration
@@ -427,7 +427,7 @@ $schedule = $client->getSchedules()[2];
 $schedule->delete();
 ```
 
-If you noticed in the above example, a ```Schedulable``` command must be passed to ```CreateSchedule```. The only commands that are schedulable are:
+If you noticed in the above example, a ```Actionable``` command must be passed to ```CreateSchedule```. The only commands that are actionable are:
 * ```SetLightState```
 * ```SetGroupState```
 
@@ -452,6 +452,10 @@ Not all commands have been documented. You can view all the available commands b
 Some notable commands not yet documented include managing the bridge itself.
 * ```\Phue\Command\GetBridge```
 * ```\Phue\Command\SetBridgeConfig```
+
+### Examples
+
+If you are interested in seeing examples for all sorts of commands, check out the ```examples``` directory.
 
 ## Example/convenience scripts
 
