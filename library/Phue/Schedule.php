@@ -9,7 +9,7 @@
 
 namespace Phue;
 
-use Phue\Command\SchedulableInterface;
+use Phue\Command\ActionableInterface;
 use Phue\Command\SetScheduleAttributes;
 use Phue\TimePattern\AbsoluteTime;
 
@@ -142,17 +142,17 @@ class Schedule
     /**
      * Set command
      *
-     * @param SchedulableInterface $command Schedulable command
+     * @param ActionableInterface $command Actionable command
      *
      * @return self This object
      */
-    public function setCommand(SchedulableInterface $command)
+    public function setCommand(ActionableInterface $command)
     {
         $this->client->sendCommand(
             (new SetScheduleAttributes($this))->command($command)
         );
 
-        $this->attributes->command = $command->getSchedulableParams($this->client);
+        $this->attributes->command = $command->getActionableParams($this->client);
 
         return $this;
     }
