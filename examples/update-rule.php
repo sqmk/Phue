@@ -1,8 +1,8 @@
 <?php
 /**
- * Example: Create test rule.
+ * Example: Update test rule.
  *
- * Usage: HUE_HOST=127.0.0.1 HUE_USERNAME=1234567890 php create-rule.php
+ * Usage: HUE_HOST=127.0.0.1 HUE_USERNAME=1234567890 php update-rule.php
  */
 
 require_once 'common.php';

@@ -1,8 +1,8 @@
 <?php
 /**
- * Example: Show bridge config.
+ * Example: Set bridge config.
  *
- * Usage: HUE_HOST=127.0.0.1 HUE_USERNAME=1234567890 php show-bridge-config.php
+ * Usage: HUE_HOST=127.0.0.1 HUE_USERNAME=1234567890 php set-bridge-config.php
  */
 
 require_once 'common.php';
