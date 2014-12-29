@@ -101,7 +101,9 @@ class CreateRuleTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getTransport->sendRequest')
             ->andReturn((object) ['id' => '5']);
 
-        $command = new CreateRule('test');
+        $command = (new CreateRule('test'))
+            ->addCondition(Mockery::mock('\Phue\Condition')->makePartial())
+            ->addAction(Mockery::mock('\Phue\Command\ActionableInterface')->shouldIgnoreMissing());
 
         $this->assertEquals(
             '5',
