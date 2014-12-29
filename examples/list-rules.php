@@ -27,4 +27,9 @@ foreach ($client->getRules() as $rule) {
             $condition->getOperator(), " ",
             $condition->getValue(), "\n";
     }
+
+    echo "\t\t", "Actions: ", "\n";
+    foreach ($rule->getActions() as $action) {
+        echo "\t\t\t", json_encode($action, true), "\n";
+    }
 }
