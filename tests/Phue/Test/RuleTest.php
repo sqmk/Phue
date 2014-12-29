@@ -39,6 +39,26 @@ class RuleTest extends \PHPUnit_Framework_TestCase
             'timestriggered' => 27,
             'owner'          => '78H56B12BA',
             'status'         => 'enabled',
+            'conditions'  => [
+                (object) [
+                    'address'  => '/sensors/2/state/buttonevent',
+                    'operator' => 'eq',
+                    'value'    => '16'
+                ],
+                (object) [
+                    'address'  => '/sensors/2/state/lastupdated',
+                    'operator' => 'dx'
+                ]
+            ],
+            'actions' => [
+                (object) [
+                    'address' => '/groups/0/action',
+                    'method'  => 'PUT',
+                    'body'    => [
+                        'scene' => 'S3'
+                    ]
+                ]
+            ]
         ];
 
         // Create rule object
@@ -132,6 +152,46 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     {
         return $this->assertTrue(
             $this->rule->isEnabled()
+        );
+    }
+
+    /**
+     * Test: Get conditions
+     *
+     * @covers \Phue\Rule::getConditions
+     */
+    public function testGetConditions()
+    {
+        $conditions = $this->rule->getConditions();
+
+        $this->assertEquals(
+            2,
+            count($conditions)
+        );
+
+        $this->assertContainsOnlyInstancesOf(
+            '\Phue\Condition',
+            $conditions
+        );
+    }
+
+    /**
+     * Test: Get actions
+     *
+     * @covers \Phue\Rule::getActions
+     */
+    public function testGetActions()
+    {
+        $actions = $this->rule->getActions();
+
+        $this->assertEquals(
+            1,
+            count($actions)
+        );
+
+        $this->assertContainsOnlyInstancesOf(
+            '\stdClass',
+            $actions
         );
     }
 
