@@ -180,7 +180,7 @@ class Condition
         $this->setSensorId(explode('/', $condition->address)[2]);
         $this->setAttribute(explode('/', $condition->address)[4]);
         $this->setOperator((string) $condition->operator);
-        $this->setValue((string) $condition->value);
+        isset($condition->value) && $this->setValue((string) $condition->value);
 
         return $this;
     }
