@@ -64,6 +64,9 @@ class UpdateRuleTest extends \PHPUnit_Framework_TestCase
         $mockClient
             ->shouldReceive('getTransport->sendRequest');
 
-        $command = new UpdateRule('5');
+        $command = (new UpdateRule('5'))
+            ->addCondition(Mockery::mock('\Phue\Condition')->makePartial())
+            ->addAction(Mockery::mock('\Phue\Command\ActionableInterface')->shouldIgnoreMissing())
+            ->send($mockClient);
     }
 }
