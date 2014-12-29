@@ -119,7 +119,7 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Export
      *
-     * @covers \Phue\Condition:export
+     * @covers \Phue\Condition::export
      */
     public function testExport()
     {
