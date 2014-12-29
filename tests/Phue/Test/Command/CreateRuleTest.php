@@ -32,9 +32,9 @@ class CreateRuleTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Set name
      *
-     * @covers \Phue\Command\CreateRule::setName
+     * @covers \Phue\Command\CreateRule::name
      */
-    public function testSetName()
+    public function testName()
     {
         $command = new CreateRule;
 
