@@ -16,15 +16,17 @@ $sensor = $client->getSensors()[2];
 $ruleId = $client->sendCommand(
     (new \Phue\Command\CreateRule('Button 1 press'))
         ->addCondition(
-            $sensor,
-            'buttonevent',
-            \Phue\Rule::OP_EQUALS,
-            \Phue\SensorModel\ZgpswitchModel::BUTTON_2
+            (new \Phue\Condition)
+                ->setSensorId($sensor)
+                ->setAttribute('buttonevent')
+                ->equals()
+                ->setValue(\Phue\SensorModel\ZgpswitchModel::BUTTON_2)
         )
         ->addCondition(
-            $sensor,
-            'lastupdated',
-            \Phue\Rule::OP_CHANGED
+            (new \Phue\Condition)
+                ->setSensorId($sensor)
+                ->setAttribute('lastupdated')
+                ->changed()
         )
         ->addAction(
             (new \Phue\Command\SetGroupState(0))

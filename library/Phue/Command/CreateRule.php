@@ -10,6 +10,7 @@
 namespace Phue\Command;
 
 use Phue\Client;
+use Phue\Condition;
 use Phue\Transport\TransportInterface;
 
 /**
@@ -65,24 +66,12 @@ class CreateRule implements CommandInterface
     /**
      * Add condition
      *
-     * @param string $sensorId  Sensor Id
-     * @param string $attribute Attribute
-     * @param string $operator  Operator
-     * @param string $value     Value
+     * @param Condition $condition Condition
      *
      * @return self This object
      */
-    public function addCondition($sensorId, $attribute, $operator, $value = null)
+    public function addCondition(Condition $condition)
     {
-        $condition = [
-            'address'  => "/sensors/{$sensorId}/state/{$attribute}",
-            'operator' => (string) $operator,
-        ];
-
-        if ($value !== null) {
-            $condition['value'] = (string) $value;
-        }
-
         $this->conditions[] = $condition;
 
         return $this;
@@ -111,18 +100,23 @@ class CreateRule implements CommandInterface
      */
     public function send(Client $client)
     {
-        $actions = [];
-        foreach ($this->actions as $action) {
-            $actions[] = $action->getActionableParams($client);
-        }
-
         $response = $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/rules",
             TransportInterface::METHOD_POST,
             (object) [
                 'name'       => $this->name,
-                'conditions' => $this->conditions,
-                'actions'    => $actions,
+                'conditions' => array_map(
+                    function ($condition) {
+                        return $condition->export();
+                    },
+                    $this->conditions
+                ),
+                'actions'    => array_map(
+                    function ($action) use ($client) {
+                        return $action->getActionableParams($client);
+                    },
+                    $this->actions
+                ),
             ]
         );
 

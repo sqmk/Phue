@@ -65,7 +65,7 @@ class UpdateRule extends CreateRule
         $attributes = $this->attributes;
 
         foreach ($this->conditions as $condition) {
-            $attributes['conditions'][] = $condition;
+            $attributes['conditions'][] = $condition->export();
         }
 
         foreach ($this->actions as $action) {

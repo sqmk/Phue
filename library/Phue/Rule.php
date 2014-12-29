@@ -17,26 +17,6 @@ use Phue\Command\DeleteRule;
 class Rule
 {
     /**
-     * Operator: Equals
-     */
-    const OP_EQUALS = 'eq';
-
-    /**
-     * Operator: Greater than
-     */
-    const OP_GREATER_THAN = 'gt';
-
-    /**
-     * Operator: Less than
-     */
-    const OP_LESS_THAN = 'lt';
-
-    /**
-     * Operator: Changed
-     */
-    const OP_CHANGED = 'dx';
-
-    /**
      * Status: Enabled
      */
     const STATUS_ENABLED = 'enabled';
@@ -149,6 +129,38 @@ class Rule
     public function isEnabled()
     {
         return $this->attributes->status == self::STATUS_ENABLED;
+    }
+
+    /**
+     * Get conditions
+     *
+     * @return array List of conditions
+     */
+    public function getConditions()
+    {
+        $conditions = [];
+
+        foreach ($this->attributes->conditions as $condition) {
+            $conditions[] = new Condition($condition);
+        }
+
+        return $conditions;
+    }
+
+    /**
+     * Get actions
+     *
+     * @return array List of actions
+     */
+    public function getActions()
+    {
+        $actions = [];
+
+        foreach ($this->attributes->actions as $action) {
+            $actions[] = $action;
+        }
+
+        return $actions;
     }
 
     /**

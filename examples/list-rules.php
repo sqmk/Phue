@@ -18,4 +18,13 @@ foreach ($client->getRules() as $rule) {
         "\t\t", "Times triggered: {$rule->getTriggeredCount()}", "\n",
         "\t\t", "Owner: {$rule->getOwner()}", "\n",
         "\t\t", "Status: ", $rule->isEnabled() ? 'Yes' : 'No', "\n";
+
+    echo "\t\t", "Conditions: ", "\n";
+    foreach ($rule->getConditions() as $condition) {
+        echo "\t\t\t", "When sensor ",
+            $condition->getSensorId(), " ",
+            $condition->getAttribute(), " ",
+            $condition->getOperator(), " ",
+            $condition->getValue(), "\n";
+    }
 }

@@ -18,9 +18,10 @@ $client->sendCommand(
     (new \Phue\Command\UpdateRule($rule))
         ->name('New name')
         ->addCondition(
-            $sensor,
-            'lastupdated',
-            \Phue\Rule::OP_CHANGED
+            (new \Phue\Condition)
+                ->setSensorId($sensor)
+                ->setAttribute('lastupdated')
+                ->changed()
         )
         ->addAction(
             (new \Phue\Command\SetGroupState(0))
