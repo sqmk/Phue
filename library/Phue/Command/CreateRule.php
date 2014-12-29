@@ -44,7 +44,7 @@ class CreateRule implements CommandInterface
      *
      * @param string $name Name
      */
-    public function __construct($name)
+    public function __construct($name = '')
     {
         $this->name($name);
     }
