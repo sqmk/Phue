@@ -12,5 +12,6 @@ $client = new \Phue\Client($hueHost, $hueUsername);
 echo 'Listing lights:', "\n";
 
 foreach ($client->getLights() as $light) {
-    echo "\t", "#{$light->getId()} - {$light->getName()} - {$light->getModel()}", "\n";
+    echo "\t", "#{$light->getId()} - {$light->getName()} - {$light->getModel()}", "\n",
+        "\t\t", "Unique Id: {$light->getUniqueId()}", "\n";
 }

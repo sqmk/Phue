@@ -34,6 +34,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
             'name'      => 'Hue light',
             'type'      => 'Dummy type',
             'modelid'   => 'LCT001',
+            'uniqueid'  => '00:17:88:01:00:bd:d6:54-0d',
             'swversion' => '12345',
             'state'     => (object) [
                 'on'        => false,
@@ -147,11 +148,24 @@ class LightTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Get unique id
+     *
+     * @covers \Phue\Light::getUniqueId
+     */
+    public function testGetUniqueId()
+    {
+        $this->assertEquals(
+            $this->attributes->uniqueid,
+            $this->light->getUniqueId()
+        );
+    }
+
+    /**
      * Test: Get software version
      *
      * @covers \Phue\Light::getSoftwareVersion
      */
-    public function testSoftwareVersion()
+    public function testGetSoftwareVersion()
     {
         $this->assertEquals(
             $this->attributes->swversion,

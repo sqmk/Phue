@@ -122,6 +122,16 @@ class Light
     }
 
     /**
+     * Get unique id
+     *
+     * @return string Unique Id
+     */
+    public function getUniqueId()
+    {
+        return $this->attributes->uniqueid;
+    }
+
+    /**
      * Get software version
      *
      * @return string
