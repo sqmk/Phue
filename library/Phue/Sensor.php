@@ -140,6 +140,26 @@ class Sensor
     }
 
     /**
+     * Get state
+     *
+     * @return \stdClass State
+     */
+    public function getState()
+    {
+        return (object) $this->attributes->state;
+    }
+
+    /**
+     * Get config
+     *
+     * @return \stdClass Config
+     */
+    public function getConfig()
+    {
+        return (object) $this->attributes->config;
+    }
+
+    /**
      * __toString
      *
      * @return string Sensor Id

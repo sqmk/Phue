@@ -43,9 +43,9 @@ class CreateSchedule implements CommandInterface
     /**
      * Constructs a create schedule command
      *
-     * @param string               $name    Name of schedule
-     * @param mixed                $time    Time to run command
-     * @param ActionableInterface  $command Actionable command
+     * @param string              $name    Name of schedule
+     * @param mixed               $time    Time to run command
+     * @param ActionableInterface $command Actionable command
      */
     public function __construct(
         $name = null,
@@ -66,7 +66,7 @@ class CreateSchedule implements CommandInterface
      *
      * @param string $name Name
      *
-     * @return CreateSchedule Self object
+     * @return self This object
      */
     public function name($name)
     {
@@ -80,7 +80,7 @@ class CreateSchedule implements CommandInterface
      *
      * @param string $description Description
      *
-     * @return CreateSchedule Self object
+     * @return self This object
      */
     public function description($description)
     {
@@ -94,7 +94,7 @@ class CreateSchedule implements CommandInterface
      *
      * @param string $time Time
      *
-     * @return CreateSchedule Self object
+     * @return self This object
      */
     public function time($time)
     {
@@ -112,7 +112,7 @@ class CreateSchedule implements CommandInterface
      *
      * @param ActionableInterface $command Actionable command
      *
-     * @return CreateSchedule Self object
+     * @return self This object
      */
     public function command(ActionableInterface $command)
     {
@@ -126,7 +126,7 @@ class CreateSchedule implements CommandInterface
      *
      * @return string $status Status
      *
-     * @return CreateSchedule Self object
+     * @return self This object
      */
     public function status($status)
     {
@@ -140,7 +140,7 @@ class CreateSchedule implements CommandInterface
      *
      * @param bool $flag Flag
      *
-     * @return CreateSchedule Self object
+     * @return self This object
      */
     public function autodelete($flag)
     {
@@ -154,7 +154,7 @@ class CreateSchedule implements CommandInterface
      *
      * @param Client $client Phue Client
      *
-     * @return int Group Id
+     * @return int Schedule Id
      */
     public function send(Client $client)
     {
