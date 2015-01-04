@@ -33,6 +33,17 @@ class SensorTest extends \PHPUnit_Framework_TestCase
 
         // Build stub attributes
         $this->attributes = (object) [
+            'state' => [
+                'daylight'    => false,
+                'lastupdated' => '2014-06-27T07:38:51'
+            ],
+            'config' => [
+                'on'            => true,
+                'long'          => 'none',
+                'lat'           => 'none',
+                'sunriseoffset' => 50,
+                'sunsetoffset'  => 50
+            ],
             'name'             => 'Daylight',
             'type'             => 'Daylight',
             'modelid'          => 'PHDL00',
@@ -175,6 +186,32 @@ class SensorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull(
             $this->sensor->getUniqueId()
+        );
+    }
+
+    /**
+     * Test: Get state
+     *
+     * @covers \Phue\Sensor::getState
+     */
+    public function testGetState()
+    {
+        $this->assertInstanceOf(
+            '\stdClass',
+            $this->sensor->getState()
+        );
+    }
+
+    /**
+     * Test: Get config
+     *
+     * @covers \Phue\Sensor::getConfig
+     */
+    public function testGetConfig()
+    {
+        $this->assertInstanceOf(
+            '\stdClass',
+            $this->sensor->getConfig()
         );
     }
 

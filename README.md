@@ -13,7 +13,7 @@ The client has the ability to make full use of the Hue's API, including:
 * Managing bridge configuration
 * Managing lights
 * Managing groups
-* Retrieve sensors
+* Managing sensors
 * Managing rules for sensors
 * Managing schedules with various time patterns
 * Managing software updates to the bridge and lights
@@ -32,7 +32,7 @@ The Phue library is available in Packagist. You'll want to include ```sqmk/phue`
 
 You can also use this library without composer. The library directory is ```library```. You'll want to map your namespace ```Phue``` to this directory in your autoloader of choice.
 
-The scripts in ```bin``` are dependent on composer's class/namespace mapper within ```vendor```. You'll need to ```composer install``` from root directory of this repo to get those working.
+The scripts in ```bin``` and ```examples``` are dependent on composer's class/namespace mapper within ```vendor```. You'll need to ```composer install``` from root directory of this repo to get those working.
 
 After all the packages are installed, include composer's generated autoloader. The autoloader is ```vendor/autoload.php```. An example of including this from the root directory of this repository:
 
