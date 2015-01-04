@@ -17,3 +17,13 @@ $client->sendCommand(
     (new \Phue\Command\UpdateSensor($sensor))
         ->name('Test sensor new name')
 );
+
+$client->sendCommand(
+    (new \Phue\Command\UpdateSensorState($sensor))
+        ->stateAttribute('flag', false)
+);
+
+$client->sendCommand(
+    (new \Phue\Command\UpdateSensorConfig($sensor))
+        ->configAttribute('battery', 99)
+);
