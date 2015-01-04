@@ -453,10 +453,6 @@ Some notable commands not yet documented include managing the bridge itself.
 * ```\Phue\Command\GetBridge```
 * ```\Phue\Command\SetBridgeConfig```
 
-### Examples
-
-If you are interested in seeing examples for all sorts of commands, check out the ```examples``` directory.
-
 ## Example/convenience scripts
 
 There are a few scripts included in this package which serve as both convenience and further examples of using the client.
@@ -548,3 +544,7 @@ Done scanning
 ```
 
 Now that you have found and registered new lights with the bridge, you can now manage the lights! If you happen to add additional Hue lights to your home, you can use the Phue client and/or this script to invoke scanning and retrieving them.
+
+### More examples
+
+If you are interested in seeing examples for all sorts of commands, check out the ```examples``` directory.
