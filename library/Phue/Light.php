@@ -388,7 +388,7 @@ class Light
     }
 
     /**
-     * Get wether or not the bulb is reachable.
+     * Get whether or not the bulb is reachable.
      *
      * @return bool
      */
