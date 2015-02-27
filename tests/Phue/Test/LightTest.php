@@ -421,11 +421,11 @@ class LightTest extends \PHPUnit_Framework_TestCase
     *
     * @covers \Phue\Group::getColorMode
     */
-    public function testGetReachable()
+    public function testIsReachable()
     {
         $this->assertEquals(
           $this->attributes->state->reachable,
-          $this->light->getReachable()
+          $this->light->isReachable()
         );
     }
 

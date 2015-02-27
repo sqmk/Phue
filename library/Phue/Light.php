@@ -392,7 +392,7 @@ class Light
      *
      * @return bool
      */
-    public function getReachable()
+    public function isReachable()
     {
         return $this->attributes->state->reachable;
     }
