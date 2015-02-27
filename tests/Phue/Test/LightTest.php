@@ -46,6 +46,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
                 'alert'     => 'none',
                 'effect'    => 'none',
                 'colormode' => 'hs',
+                'reachable' => true,
             ],
         ];
 
@@ -412,6 +413,19 @@ class LightTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $this->attributes->state->colormode,
             $this->light->getColorMode()
+        );
+    }
+
+    /**
+    * Test: Get color mode
+    *
+    * @covers \Phue\Group::getColorMode
+    */
+    public function testIsReachable()
+    {
+        $this->assertEquals(
+          $this->attributes->state->reachable,
+          $this->light->isReachable()
         );
     }
 
