@@ -388,6 +388,16 @@ class Light
     }
 
     /**
+     * Get wether or not the bulb is reachable.
+     *
+     * @return bool
+     */
+    public function getReachable()
+    {
+        return $this->attributes->state->reachable;
+    }
+
+    /**
      * __toString
      *
      * @return string Light Id
