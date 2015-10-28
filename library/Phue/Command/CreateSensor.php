@@ -10,8 +10,6 @@
 namespace Phue\Command;
 
 use Phue\Client;
-use Phue\TimePattern\AbsoluteTime;
-use Phue\TimePattern\TimePatternInterface;
 use Phue\Transport\TransportInterface;
 
 /**
