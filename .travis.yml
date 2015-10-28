@@ -9,7 +9,7 @@ php:
 
 before_install:
     - composer self-update
-    - composer install --verbose --dev --prefer-source --no-interaction -o
+    - composer install --verbose --prefer-source --no-interaction -o
 
 script:
     - ./vendor/bin/phpcs --standard=tests/phpcs.xml library/
