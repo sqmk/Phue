@@ -1,4 +1,6 @@
-# Phue - A PHP client for Philips Hue
+# Phue - Philips Hue client for PHP
+
+[![Latest Stable Version](https://poser.pugx.org/sqmk/Phue/version)](https://packagist.org/packages/sqmk/Phue)
 [![Build Status](https://api.travis-ci.org/sqmk/Phue.svg?branch=master)](https://travis-ci.org/sqmk/Phue)
 
 ## Introduction
