@@ -23,7 +23,7 @@ Interested in API docs? You can check out the auto-generated documentation at [G
 
 ## Requirements
 
-* PHP 5.4
+* PHP 5.4+
 * cURL extension (optional)
 
 ## Installation
