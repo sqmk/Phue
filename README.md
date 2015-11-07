@@ -102,11 +102,11 @@ If the username provided is not created, you can use the convenience script to a
 ```php
 // Push the bridge's link button prior to running this
 try {
-	$client->sendCommand(
-		new \Phue\Command\CreateUser($client->getUsername())
+	$response = $client->sendCommand(
+		new \Phue\Command\CreateUser
 	);
 
-	echo 'You are now authenticated';
+	echo 'New user created: ' . $response->username;
 } catch (\Phue\Transport\Exception\LinkButtonException $e) {
 	echo 'The link button was not pressed!';
 }
@@ -491,12 +491,12 @@ If the script provided doesn't find your bridge, or if you don't have internet c
 
 To test connectivity and authenticate with the bridge, you can use ```bin/phue-create-user```. The script uses the Phue library to make requests and receive responses from the Philips Hue bridge.
 
-At this point, you should be ready to authenticate with the bridge. The bridge expects a username between 10 and 40 characters with alphanumeric characters to authenticate with.
+At this point, you should be ready to authenticate with the bridge. The bridge will generate a username for you.
 
 Here's how to run the script for authenticating/creating a user:
 
 ```
-$ ./bin/phue-create-user 10.0.1.31 yourusername
+$ ./bin/phue-create-user 10.0.1.31
 ```
 
 If the connection is ok, you will get a response similar to this:
@@ -516,10 +516,10 @@ Attempting to create user:
 Press the Bridge's button!
 Waiting..........
 
-Successfully created new user: yourusername
+Successfully created new user: abcdef0123456 
 ```
 
-From then on, you should be able to use the username you just created for interacting with the Philips Hue bridge!
+From then on, you should be able to use the username generated for interacting with the Philips Hue bridge!
 
 ### Scanning / registering new lights
 

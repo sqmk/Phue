@@ -23,13 +23,6 @@ class CreateUser implements CommandInterface
     const DEFAULT_DEVICE_TYPE = 'Phue';
 
     /**
-     * Username to create
-     *
-     * @var string
-     */
-    protected $username;
-
-    /**
      * Device type
      *
      * @var string
@@ -39,39 +32,11 @@ class CreateUser implements CommandInterface
     /**
      * Instantiates a create user command
      *
-     * @param string $username   Username
      * @param string $deviceType Device type
      */
-    public function __construct($username = null, $deviceType = self::DEFAULT_DEVICE_TYPE)
+    public function __construct($deviceType = self::DEFAULT_DEVICE_TYPE)
     {
-        $this->setUsername($username);
         $this->setDeviceType($deviceType);
-    }
-
-    /**
-     * Set username
-     *
-     * @param string $username Username
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return self This object
-     */
-    public function setUsername($username)
-    {
-        // Allow for null username
-        if ($username === null) {
-            return;
-        }
-
-        // Match username format
-        if (!preg_match('/^[a-z0-9]{10,40}$/i', $username)) {
-            throw new \InvalidArgumentException(
-                "Username must contain alphanumeric characters, and be between 10 and 40 characters"
-            );
-        }
-
-        $this->username = $username;
     }
 
     /**
@@ -128,11 +93,6 @@ class CreateUser implements CommandInterface
         $request = [
             'devicetype' => $this->deviceType
         ];
-
-        // Leave username blank if one not provided
-        if ($this->username !== null) {
-            $request['username'] = (string) $this->username;
-        }
 
         return (object) $request;
     }

@@ -51,25 +51,11 @@ class CreateUserTest extends \PHPUnit_Framework_TestCase
      * Test: Instantiating CreateUser command
      *
      * @covers \Phue\Command\CreateUser::__construct
-     * @covers \Phue\Command\CreateUser::setUsername
      * @covers \Phue\Command\CreateUser::setDeviceType
      */
     public function testInstantiation()
     {
-        $command = new CreateUser('testuser0123', 'phpunit');
-    }
-
-    /**
-     * Test: Setting invalid username
-     *
-     * @covers \Phue\Command\CreateUser::setUsername
-     *
-     * @expectedException \InvalidArgumentException
-     */
-    public function testExceptionOnInvalidUsername()
-    {
-        $command = new CreateUser;
-        $command->setUsername('test');
+        $command = new CreateUser('phpunit');
     }
 
     /**
@@ -93,8 +79,7 @@ class CreateUserTest extends \PHPUnit_Framework_TestCase
      */
     public function testSend()
     {
-        // Set up username and device type to pass to create user command
-        $username   = 'testuser0123';
+        // Set up device type to pass to create user command
         $deviceType = 'phpunit';
 
         // Stub transport's sendRequest method
@@ -109,7 +94,7 @@ class CreateUserTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             'success!',
-            (new CreateUser('testuser0123', 'phpunit'))->send($this->mockClient)
+            (new CreateUser('phpunit'))->send($this->mockClient)
         );
     }
 }
