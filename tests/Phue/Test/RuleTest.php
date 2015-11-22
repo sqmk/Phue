@@ -35,7 +35,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
         $this->attributes = (object) [
             'name'           => 'Wall Switch Rule',
             'lasttriggered'  => '2013-10-17T01:23:20',
-            'creationtime'   => '2013-10-10T21:11:45',
+            'created'        => '2013-10-10T21:11:45',
             'timestriggered' => 27,
             'owner'          => '78H56B12BA',
             'status'         => 'enabled',
@@ -105,14 +105,14 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Getting creation time
+     * Test: Getting create date
      *
-     * @covers \Phue\Rule::getCreationTime
+     * @covers \Phue\Rule::getCreateDate
      */
-    public function testGetCreationTime()
+    public function testGetCreateDate()
     {
         $this->assertEquals(
-            $this->attributes->creationtime,
+            $this->attributes->created,
             $this->rule->getCreationTime()
         );
     }

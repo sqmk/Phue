@@ -14,7 +14,7 @@ echo 'Listing rules:', "\n";
 foreach ($client->getRules() as $rule) {
     echo "\t", "#{$rule->getId()} - {$rule->getName()}", "\n",
         "\t\t", "Last Triggered Time: {$rule->getLastTriggeredTime()}", "\n",
-        "\t\t", "Creation time: {$rule->getCreationTime()}", "\n",
+        "\t\t", "Created date: {$rule->getCreatedDate()}", "\n",
         "\t\t", "Times triggered: {$rule->getTriggeredCount()}", "\n",
         "\t\t", "Owner: {$rule->getOwner()}", "\n",
         "\t\t", "Status: ", $rule->isEnabled() ? 'Yes' : 'No', "\n";

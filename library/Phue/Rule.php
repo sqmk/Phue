@@ -92,13 +92,13 @@ class Rule
     }
 
     /**
-     * Get creation time
+     * Get create date
      *
      * @return string Time
      */
-    public function getCreationTime()
+    public function getCreateDate()
     {
-        return $this->attributes->creationtime;
+        return $this->attributes->created;
     }
 
     /**
