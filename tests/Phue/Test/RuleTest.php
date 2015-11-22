@@ -113,7 +113,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->attributes->created,
-            $this->rule->getCreationTime()
+            $this->rule->getCreateDate()
         );
     }
 
