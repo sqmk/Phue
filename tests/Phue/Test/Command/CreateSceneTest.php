@@ -138,6 +138,19 @@ class CreateSceneTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Setting invalid transition time
+     *
+     * @covers \Phue\Command\CreateScene::transitionTime
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testExceptionOnInvalidTransitionTime()
+    {
+        $command = new CreateScene('phue-test', 'Scene test', [1, 2]);
+        $command->transitionTime(-1);
+    }
+
+    /**
      * Test: Send command
      *
      * @covers \Phue\Command\CreateScene::__construct
