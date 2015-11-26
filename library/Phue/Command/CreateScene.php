@@ -32,6 +32,13 @@ class CreateScene implements CommandInterface
     protected $lights = [];
 
     /**
+     * Transition time
+     *
+     * @var mixed
+     */
+    protected $transitionTime = null;
+
+    /**
      * Constructs a command
      *
      * @param string $id     Id
@@ -93,6 +100,28 @@ class CreateScene implements CommandInterface
     }
 
     /**
+     * Set transition time
+     *
+     * @param double $seconds Time in seconds
+     *
+     * @return self This object
+     */
+    public function transitionTime($seconds)
+    {
+        // Don't continue if seconds is not valid
+        if ((double) $seconds < 0) {
+            throw new \InvalidArgumentException(
+                'Time must be at least 0'
+            );
+        }
+
+        // Value is in 1/10 seconds
+        $this->transitionTime = (int) ($seconds * 10);
+
+        return $this;
+    }
+
+    /**
      * Send command
      *
      * @param Client $client Phue Client
@@ -101,13 +130,19 @@ class CreateScene implements CommandInterface
      */
     public function send(Client $client)
     {
+        $body = (object) [
+            'name'   => $this->name,
+            'lights' => $this->lights
+        ];
+
+        if ($this->transitionTime !== null) {
+            $body->transitiontime = $this->transitionTime;
+        }
+
         $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/scenes/{$this->id}",
             TransportInterface::METHOD_PUT,
-            (object) [
-                'name'   => $this->name,
-                'lights' => $this->lights
-            ]
+            $body
         );
 
         return $this->id;

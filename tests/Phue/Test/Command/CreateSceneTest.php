@@ -117,6 +117,27 @@ class CreateSceneTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Set transition time
+     *
+     * @covers \Phue\Command\CreateScene::transitionTime
+     */
+    public function testTransitionTime()
+    {
+        $command = new CreateScene('phue-test', 'Scene test', [1, 2]);
+        $command->transitionTime(2);
+
+        // Ensure property is set properly
+        $this->assertAttributeEquals(
+            20,
+            'transitionTime',
+            $command
+        );
+
+        // Ensure self object is returned
+        $this->assertEquals($command, $command->transitionTime(1));
+    }
+
+    /**
      * Test: Send command
      *
      * @covers \Phue\Command\CreateScene::__construct
@@ -125,6 +146,7 @@ class CreateSceneTest extends \PHPUnit_Framework_TestCase
     public function testSend()
     {
         $command = new CreateScene('phue-test', 'Scene test', [2, 3]);
+        $command->transitionTime(5);
 
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
@@ -134,8 +156,9 @@ class CreateSceneTest extends \PHPUnit_Framework_TestCase
                 $this->equalTo(TransportInterface::METHOD_PUT),
                 $this->equalTo(
                     (object) [
-                        'name'   => 'Scene test',
-                        'lights' => [2, 3]
+                        'name'           => 'Scene test',
+                        'lights'         => [2, 3],
+                        'transitiontime' => 50,
                     ]
                 )
             );
