@@ -25,40 +25,70 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['sendCommand'],
-            ['127.0.0.1']
-        );
+//TODO             ['sendCommand'],
+//             ['127.0.0.1']
+            array('sendCommand'),
+            array('127.0.0.1')
+        		);
 
         // Build stub attributes
-        $this->attributes = (object) [
-            'name'             => 'Hue Bridge',
-            'zigbeechannel'    => 15,
-            'mac'              => '00:11:22:33:44:55',
-            'dhcp'             => true,
-            'ipaddress'        => '127.0.0.1',
-            'netmask'          => '255.255.255.0',
-            'gateway'          => '10.0.1.0',
-            'proxyaddress'     => '123.123.123.123',
-            'proxyport'        => '999',
-            'UTC'              => 'somedate',
-            'localtime'        => 'someotherdate',
-            'timezone'         => 'UTC',
-            'whitelist'        => [
-                'abcdefabcdef01234567890123456789' => (object) [
-                    'name'          => 'Client name',
-                    'create date'   => '12-30-2000',
-                    'last use date' => '12-30-2001',
-                ]
-            ],
-            'swversion'        => '12345',
-            'apiversion'       => '1.5.0',
-            'swupdate'         => (object) [],
-            'linkbutton'       => true,
-            'portalservices'   => false,
-            'portalconnection' => 'connected',
-            'portalstate'      => (object) [],
-        ];
-
+//         $this->attributes = (object) [
+//             'name'             => 'Hue Bridge',
+//             'zigbeechannel'    => 15,
+//             'mac'              => '00:11:22:33:44:55',
+//             'dhcp'             => true,
+//             'ipaddress'        => '127.0.0.1',
+//             'netmask'          => '255.255.255.0',
+//             'gateway'          => '10.0.1.0',
+//             'proxyaddress'     => '123.123.123.123',
+//             'proxyport'        => '999',
+//             'UTC'              => 'somedate',
+//             'localtime'        => 'someotherdate',
+//             'timezone'         => 'UTC',
+//             'whitelist'        => [
+//                 'abcdefabcdef01234567890123456789' => (object) [
+//                     'name'          => 'Client name',
+//                     'create date'   => '12-30-2000',
+//                     'last use date' => '12-30-2001',
+//                 ]
+//             ],
+//             'swversion'        => '12345',
+//             'apiversion'       => '1.5.0',
+//             'swupdate'         => (object) [],
+//             'linkbutton'       => true,
+//             'portalservices'   => false,
+//             'portalconnection' => 'connected',
+//             'portalstate'      => (object) [],
+//         ];
+        $this->attributes = (object) array(
+        		'name'             => 'Hue Bridge',
+        		'zigbeechannel'    => 15,
+        		'mac'              => '00:11:22:33:44:55',
+        		'dhcp'             => true,
+        		'ipaddress'        => '127.0.0.1',
+        		'netmask'          => '255.255.255.0',
+        		'gateway'          => '10.0.1.0',
+        		'proxyaddress'     => '123.123.123.123',
+        		'proxyport'        => '999',
+        		'UTC'              => 'somedate',
+        		'localtime'        => 'someotherdate',
+        		'timezone'         => 'UTC',
+        		'whitelist'        => array (
+        				'abcdefabcdef01234567890123456789' => (object) array(
+        						'name'          => 'Client name',
+        						'create date'   => '12-30-2000',
+        						'last use date' => '12-30-2001',
+        				)
+        		),
+        		'swversion'        => '12345',
+        		'apiversion'       => '1.5.0',
+        		'swupdate'         => (object) array(),
+        		'linkbutton'       => true,
+        		'portalservices'   => false,
+        		'portalconnection' => 'connected',
+        		'portalstate'      => (object) array(),
+        );
+        
         // Create bridge object
         $this->bridge = new Bridge($this->attributes, $this->mockClient);
     }
