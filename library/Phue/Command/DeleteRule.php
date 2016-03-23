@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Transport\TransportInterface;
  */
 class DeleteRule implements CommandInterface
 {
+
     /**
      * Rule Id
      *
@@ -27,7 +27,8 @@ class DeleteRule implements CommandInterface
     /**
      * Constructs a command
      *
-     * @param mixed $rule Rule Id or Rule object
+     * @param mixed $rule
+     *            Rule Id or Rule object
      */
     public function __construct($rule)
     {
@@ -37,7 +38,8 @@ class DeleteRule implements CommandInterface
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      */
     public function send(Client $client)
     {

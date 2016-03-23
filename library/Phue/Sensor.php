@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue;
 
 use Phue\SensorModel\SensorModelFactory;
@@ -16,6 +15,7 @@ use Phue\SensorModel\SensorModelFactory;
  */
 class Sensor
 {
+
     /**
      * Id
      *
@@ -40,15 +40,18 @@ class Sensor
     /**
      * Construct a Phue Sensor object
      *
-     * @param string    $id         Id
-     * @param \stdClass $attributes Sensor attributes
-     * @param Client    $client     Phue client
+     * @param string $id
+     *            Id
+     * @param \stdClass $attributes
+     *            Sensor attributes
+     * @param Client $client
+     *            Phue client
      */
     public function __construct($id, \stdClass $attributes, Client $client)
     {
-        $this->id         = $id;
+        $this->id = $id;
         $this->attributes = $attributes;
-        $this->client     = $client;
+        $this->client = $client;
     }
 
     /**
@@ -121,7 +124,7 @@ class Sensor
         if (isset($this->attributes->swversion)) {
             return $this->attributes->swversion;
         }
-
+        
         return null;
     }
 
@@ -135,7 +138,7 @@ class Sensor
         if (isset($this->attributes->uniqueid)) {
             return $this->attributes->uniqueid;
         }
-
+        
         return null;
     }
 

@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Transport\Adapter;
 
 /**
@@ -14,6 +13,7 @@ namespace Phue\Transport\Adapter;
  */
 interface AdapterInterface
 {
+
     /**
      * Opens the connection
      */
@@ -22,9 +22,12 @@ interface AdapterInterface
     /**
      * Sends request
      *
-     * @param string $address Request path
-     * @param string $method  Request method
-     * @param string $body    Body data
+     * @param string $address
+     *            Request path
+     * @param string $method
+     *            Request method
+     * @param string $body
+     *            Body data
      *
      * @return string Result
      */

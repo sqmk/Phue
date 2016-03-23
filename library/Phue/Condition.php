@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue;
 
 /**
@@ -14,6 +13,7 @@ namespace Phue;
  */
 class Condition
 {
+
     /**
      * Operator: Equals
      */
@@ -65,7 +65,8 @@ class Condition
     /**
      * Construct a condition object
      *
-     * @param \stdClass $condition Condition attributes
+     * @param \stdClass $condition
+     *            Condition attributes
      */
     public function __construct(\stdClass $condition = null)
     {
@@ -85,14 +86,15 @@ class Condition
     /**
      * Set sensor Id
      *
-     * @param mixed $sensorId Sensor Id or Sensor object
+     * @param mixed $sensorId
+     *            Sensor Id or Sensor object
      *
      * @return self This object
      */
     public function setSensorId($sensorId)
     {
         $this->sensorId = (string) $sensorId;
-
+        
         return $this;
     }
 
@@ -109,14 +111,15 @@ class Condition
     /**
      * Set attribute to target condition
      *
-     * @param string $attribute Attribute
+     * @param string $attribute
+     *            Attribute
      *
      * @return self This object
      */
     public function setAttribute($attribute)
     {
         $this->attribute = (string) $attribute;
-
+        
         return $this;
     }
 
@@ -133,14 +136,15 @@ class Condition
     /**
      * Set operator
      *
-     * @param string $operator Operator
+     * @param string $operator
+     *            Operator
      *
      * @return self This object
      */
     public function setOperator($operator)
     {
         $this->operator = (string) $operator;
-
+        
         return $this;
     }
 
@@ -157,31 +161,35 @@ class Condition
     /**
      * Set value to match
      *
-     * @param string $value Value
+     * @param string $value
+     *            Value
      *
      * @return self This object
      */
     public function setValue($value)
     {
         $this->value = (string) $value;
-
+        
         return $this;
     }
 
     /**
      * Import from API response
      *
-     * @param \stdClass $condition Condition values
+     * @param \stdClass $condition
+     *            Condition values
      *
      * @return self This object
      */
     public function import(\stdClass $condition)
     {
-        $this->setSensorId(explode('/', $condition->address)[2]);
-        $this->setAttribute(explode('/', $condition->address)[4]);
+        $x = explode('/', $condition->address);
+        $this->setSensorId($x[2]);
+        $y = explode('/', $condition->address);
+        $this->setAttribute($y[4]);
         $this->setOperator((string) $condition->operator);
         isset($condition->value) && $this->setValue((string) $condition->value);
-
+        
         return $this;
     }
 
@@ -192,18 +200,17 @@ class Condition
      */
     public function export()
     {
-        $result = [
-            'address'  => "/sensors/{$this->getSensorId()}/state/{$this->getAttribute()}",
-            'operator' => $this->getOperator(),
-        ];
-
+        $result = array(
+            'address' => "/sensors/{$this->getSensorId()}/state/{$this->getAttribute()}",
+            'operator' => $this->getOperator()
+        );
+        
         if ($this->value !== null) {
             $result['value'] = $this->getValue();
         }
-
+        
         return (object) $result;
     }
-
 
     /**
      * Set operator to equals
@@ -213,7 +220,7 @@ class Condition
     public function equals()
     {
         $this->operator = self::OPERATOR_EQUALS;
-
+        
         return $this;
     }
 
@@ -225,7 +232,7 @@ class Condition
     public function greaterThan()
     {
         $this->operator = self::OPERATOR_GREATER_THAN;
-
+        
         return $this;
     }
 
@@ -237,7 +244,7 @@ class Condition
     public function lessThan()
     {
         $this->operator = self::OPERATOR_LESS_THAN;
-
+        
         return $this;
     }
 
@@ -249,7 +256,7 @@ class Condition
     public function changed()
     {
         $this->operator = self::OPERATOR_CHANGED;
-
+        
         return $this;
     }
 }

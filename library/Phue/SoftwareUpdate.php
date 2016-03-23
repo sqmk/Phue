@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue;
 
 use Phue\Command\SetBridgeConfig;
@@ -16,6 +15,7 @@ use Phue\Command\SetBridgeConfig;
  */
 class SoftwareUpdate
 {
+
     /**
      * State: No update
      */
@@ -53,13 +53,15 @@ class SoftwareUpdate
     /**
      * Construct a Phue SoftwareUpdate object
      *
-     * @param \stdClass $attributes SoftwareUpdate attributes
-     * @param Client    $client     Phue client
+     * @param \stdClass $attributes
+     *            SoftwareUpdate attributes
+     * @param Client $client
+     *            Phue client
      */
     public function __construct(\stdClass $attributes, Client $client)
     {
         $this->attributes = $attributes;
-        $this->client     = $client;
+        $this->client = $client;
     }
 
     /**
@@ -81,17 +83,17 @@ class SoftwareUpdate
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                [
-                    'swupdate' => [
+                array(
+                    'swupdate' => array(
                         'updatestate' => self::STATE_INSTALLING
-                    ]
-                ]
+                    )
+                )
             )
         );
-
-        $this->attributes->updatestate = self::STATE_INSTALLING;
-
-        return $this;
+        
+                $this->attributes->updatestate = self::STATE_INSTALLING;
+        
+                return $this;
     }
 
     /**
@@ -107,7 +109,8 @@ class SoftwareUpdate
     /**
      * Check for update
      *
-     * @param bool $state True to check for update, false if not
+     * @param bool $state
+     *            True to check for update, false if not
      *
      * @return self This object
      */
@@ -115,17 +118,17 @@ class SoftwareUpdate
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                [
-                    'swupdate' => [
+                array(
+                    'swupdate' => array(
                         'checkforupdate' => true
-                    ]
-                ]
+                    )
+                )
             )
         );
-
-        $this->attributes->checkforupdate = true;
-
-        return $this;
+        
+                $this->attributes->checkforupdate = true;
+        
+                return $this;
     }
 
     /**
@@ -187,16 +190,16 @@ class SoftwareUpdate
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                [
-                    'swupdate' => [
+                array(
+                    'swupdate' => array(
                         'notify' => false
-                    ]
-                ]
+                    )
+                )
             )
         );
-
-        $this->attributes->notify = false;
-
-        return $this;
+        
+                $this->attributes->notify = false;
+        
+                return $this;
     }
 }

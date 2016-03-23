@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Command;
 
 use Phue\Client;
@@ -19,6 +18,7 @@ use Phue\Transport\TransportInterface;
  */
 class CreateScheduleTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      */
@@ -26,46 +26,48 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
     {
         // Ensure proper timezone
         date_default_timezone_set('UTC');
-
+        
         // Mock client
-        $this->mockClient = $this->getMock(
-            '\Phue\Client',
-            ['getUsername', 'getTransport'],
-            ['127.0.0.1']
-        );
-
+        $this->mockClient = $this->getMock('\Phue\Client', 
+            array(
+                'getUsername',
+                'getTransport'
+            ), array(
+                '127.0.0.1'
+            ));
+        
         // Mock transport
-        $this->mockTransport = $this->getMock(
-            '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
-
+        $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+            array(
+                'sendRequest'
+            ));
+        
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
             ->method('getUsername')
             ->will($this->returnValue('abcdefabcdef01234567890123456789'));
-
+        
         // Stub client's getTransport method
         $this->mockClient->expects($this->any())
             ->method('getTransport')
             ->will($this->returnValue($this->mockTransport));
-
+        
         // Mock actionable command
-        $this->mockCommand = $this->getMock(
-            '\Phue\Command\ActionableInterface',
-            ['getActionableParams']
-        );
-
+        $this->mockCommand = $this->getMock('\Phue\Command\ActionableInterface', 
+            array(
+                'getActionableParams'
+            ));
+        
         // Stub command's getActionableParams method
         $this->mockCommand->expects($this->any())
             ->method('getActionableParams')
             ->will(
-                $this->returnValue([
+            $this->returnValue(
+                array(
                     'address' => '/thing/value',
-                    'method'  => 'POST',
-                    'body'    => 'Dummy'
-                ])
-            );
+                    'method' => 'POST',
+                    'body' => 'Dummy'
+                )));
     }
 
     /**
@@ -75,11 +77,12 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testName()
     {
-        $command = (new CreateSchedule())->name('Dummy!');
-
+        $x = new CreateSchedule();
+        $command = $x->name('Dummy!');
+        
         // Ensure property is set properly
         $this->assertAttributeContains('Dummy!', 'attributes', $command);
-
+        
         // Ensure self object is returned
         $this->assertEquals($command, $command->name('Dummy!'));
     }
@@ -91,11 +94,12 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testDescription()
     {
-        $command = (new CreateSchedule())->description('Description!');
-
+        $x = new CreateSchedule();
+        $command = $x->description('Description!');
+        
         // Ensure property is set properly
         $this->assertAttributeContains('Description!', 'attributes', $command);
-
+        
         // Ensure self object is returned
         $this->assertEquals($command, $command->name('Description!'));
     }
@@ -107,11 +111,13 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testTime()
     {
-        $command = (new CreateSchedule())->time('2010-10-20T10:11:12');
-
+        $x = new CreateSchedule();
+        $command = $x->time('2010-10-20T10:11:12');
+        
         // Ensure property is set properly
-        $this->assertAttributeInstanceOf('\Phue\TimePattern\TimePatternInterface', 'time', $command);
-
+        $this->assertAttributeInstanceOf('\Phue\TimePattern\TimePatternInterface', 
+            'time', $command);
+        
         // Ensure self object is returned
         $this->assertEquals($command, $command->time('+10 seconds'));
     }
@@ -123,15 +129,12 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testCommand()
     {
-        $command = (new CreateSchedule())->command($this->mockCommand);
-
+        $x = new CreateSchedule();
+        $command = $x->command($this->mockCommand);
+        
         // Ensure properties are set properly
-        $this->assertAttributeEquals(
-            $this->mockCommand,
-            'command',
-            $command
-        );
-
+        $this->assertAttributeEquals($this->mockCommand, 'command', $command);
+        
         // Ensure self object is returned
         $this->assertEquals($command, $command->command($this->mockCommand));
     }
@@ -143,11 +146,13 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testStatus()
     {
-        $command = (new CreateSchedule())->status(Schedule::STATUS_ENABLED);
-
+        $x = new CreateSchedule();
+        $command = $x->status(Schedule::STATUS_ENABLED);
+        
         // Ensure property is set properly
-        $this->assertAttributeContains(Schedule::STATUS_ENABLED, 'attributes', $command);
-
+        $this->assertAttributeContains(Schedule::STATUS_ENABLED, 'attributes', 
+            $command);
+        
         // Ensure self object is returned
         $this->assertEquals($command, $command->status(Schedule::STATUS_ENABLED));
     }
@@ -159,11 +164,11 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testAutoDelete()
     {
-        $command = (new CreateSchedule())->autodelete(true);
-
+        $x = new CreateSchedule();
+        $command = $x->autodelete(true);
         // Ensure property is set properly
         $this->assertAttributeContains(true, 'attributes', $command);
-
+        
         // Ensure self object is returned
         $this->assertEquals($command, $command->autodelete(true));
     }
@@ -176,33 +181,32 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testSend()
     {
-        $command = new CreateSchedule('Dummy!', '2012-12-30T10:11:12', $this->mockCommand);
+        $command = new CreateSchedule('Dummy!', '2012-12-30T10:11:12', 
+            $this->mockCommand);
         $command->description('Description!');
-
+        
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with(
-                $this->equalTo("/api/{$this->mockClient->getUsername()}/schedules"),
-                $this->equalTo(TransportInterface::METHOD_POST),
-                $this->equalTo(
-                    (object) [
-                        'name'        => 'Dummy!',
-                        'description' => 'Description!',
-                        'time'        => '2012-12-30T10:11:12',
-                        'command'     => [
-                            'method'  => TransportInterface::METHOD_POST,
-                            'address' => "/api/{$this->mockClient->getUsername()}/thing/value",
-                            'body'    => "Dummy"
-                        ]
-                    ]
-                )
-            )
+            $this->equalTo("/api/{$this->mockClient->getUsername()}/schedules"), 
+            $this->equalTo(TransportInterface::METHOD_POST), 
+            $this->equalTo(
+                (object) array(
+                    'name' => 'Dummy!',
+                    'description' => 'Description!',
+                    'time' => '2012-12-30T10:11:12',
+                    'command' => array(
+                        'method' => TransportInterface::METHOD_POST,
+                        'address' => "/api/{$this->mockClient->getUsername()}/thing/value",
+                        'body' => "Dummy"
+                    )
+                )))
             ->will($this->returnValue(4));
-
+        
         // Send command and get response
         $scheduleId = $command->send($this->mockClient);
-
+        
         // Ensure we have a schedule id
         $this->assertEquals(4, $scheduleId);
     }

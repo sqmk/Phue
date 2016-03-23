@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Light;
  */
 class GetLightById implements CommandInterface
 {
+
     /**
      * Light Id
      *
@@ -27,7 +27,8 @@ class GetLightById implements CommandInterface
     /**
      * Constructs a command
      *
-     * @param int $lightId Light Id
+     * @param int $lightId
+     *            Light Id
      */
     public function __construct($lightId)
     {
@@ -37,7 +38,8 @@ class GetLightById implements CommandInterface
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      *
      * @return Light Light object
      */
@@ -47,7 +49,7 @@ class GetLightById implements CommandInterface
         $attributes = $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/lights/{$this->lightId}"
         );
-
+        
         return new Light($this->lightId, $attributes, $client);
     }
 }

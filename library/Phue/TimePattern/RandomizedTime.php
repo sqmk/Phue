@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\TimePattern;
 
 use DateTime;
@@ -17,6 +16,7 @@ use DateTimeZone;
  */
 class RandomizedTime extends AbstractTimePattern
 {
+
     /**
      * Date
      *
@@ -34,14 +34,16 @@ class RandomizedTime extends AbstractTimePattern
     /**
      * Instantiate
      *
-     * @param string $time                Time value
-     * @param int    $randomWithinSeconds Random within seconds
+     * @param string $time
+     *            Time value
+     * @param int $randomWithinSeconds
+     *            Random within seconds
      */
     public function __construct($time, $randomWithinSeconds = null)
     {
-        $this->date = (new DateTime((string) $time))
-            ->setTimeZone(new DateTimeZone('UTC'));
-
+        $this->date = (new DateTime((string) $time));
+        $this->date->setTimeZone(new DateTimeZone('UTC'));
+        
         $this->randomWithinSeconds = $randomWithinSeconds;
     }
 
@@ -53,11 +55,11 @@ class RandomizedTime extends AbstractTimePattern
     public function __toString()
     {
         $time = $this->date->format('Y-m-d\TH:i:s');
-
+        
         if ($this->randomWithinSeconds !== null) {
             $time .= 'A' . date('H:i:s', $this->randomWithinSeconds);
         }
-
+        
         return $time;
     }
 }

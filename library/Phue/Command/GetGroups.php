@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -17,10 +16,12 @@ use Phue\Group;
  */
 class GetGroups implements CommandInterface
 {
+
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      *
      * @return Group[] List of Group objects
      */
@@ -30,13 +31,13 @@ class GetGroups implements CommandInterface
         $results = $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/groups"
         );
-
-        $groups = [];
-
+        
+        $groups = array();
+        
         foreach ($results as $groupId => $attributes) {
             $groups[$groupId] = new Group($groupId, $attributes, $client);
         }
-
+        
         return $groups;
     }
 }

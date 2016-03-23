@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Transport\Adapter;
 
 /**
@@ -14,6 +13,7 @@ namespace Phue\Transport\Adapter;
  */
 class Curl implements AdapterInterface
 {
+
     /**
      * cURL resource
      *
@@ -27,7 +27,7 @@ class Curl implements AdapterInterface
     public function __construct()
     {
         // Throw exception if cURL extension is not loaded
-        if (!extension_loaded('curl')) {
+        if (! extension_loaded('curl')) {
             throw new \BadFunctionCallException('The cURL extension is required.');
         }
     }
@@ -43,9 +43,12 @@ class Curl implements AdapterInterface
     /**
      * Sends request
      *
-     * @param string $address Request path
-     * @param string $method  Request method
-     * @param string $body    Body data
+     * @param string $address
+     *            Request path
+     * @param string $method
+     *            Request method
+     * @param string $body
+     *            Body data
      *
      * @return string Result
      */
@@ -56,11 +59,11 @@ class Curl implements AdapterInterface
         curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($this->curl, CURLOPT_HEADER, false);
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
-
+        
         if (strlen($body)) {
             curl_setopt($this->curl, CURLOPT_POSTFIELDS, $body);
         }
-
+        
         return curl_exec($this->curl);
     }
 

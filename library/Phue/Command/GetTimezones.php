@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -16,10 +15,12 @@ use Phue\Client;
  */
 class GetTimezones implements CommandInterface
 {
+
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      *
      * @return array List of timezones
      */
@@ -29,13 +30,12 @@ class GetTimezones implements CommandInterface
         $response = $client->getTransport()->sendRequestBypassBodyValidation(
             "/api/{$client->getUsername()}/info/timezones"
         );
-
-        $timezones = [];
-
+        
+        $timezones = array();
         foreach ($response as $timezone) {
             $timezones[] = $timezone;
         }
-
+        
         return $timezones;
     }
 }

@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Transport;
 
 /**
@@ -14,6 +13,7 @@ namespace Phue\Transport;
  */
 interface TransportInterface
 {
+
     /**
      * Get method
      */
@@ -37,9 +37,12 @@ interface TransportInterface
     /**
      * Send request
      *
-     * @param string    $path    API path
-     * @param string    $method  Request method
-     * @param \stdClass $data    Body data
+     * @param string $path
+     *            API path
+     * @param string $method
+     *            Request method
+     * @param \stdClass $data
+     *            Body data
      *
      * @return mixed Command result
      */

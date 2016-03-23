@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue;
 
 use Phue\Command\DeleteRule;
@@ -16,6 +15,7 @@ use Phue\Command\DeleteRule;
  */
 class Rule
 {
+
     /**
      * Status: Enabled
      */
@@ -50,15 +50,18 @@ class Rule
     /**
      * Construct a Phue Rule object
      *
-     * @param string    $id         Id
-     * @param \stdClass $attributes Rule attributes
-     * @param Client    $client     Phue client
+     * @param string $id
+     *            Id
+     * @param \stdClass $attributes
+     *            Rule attributes
+     * @param Client $client
+     *            Phue client
      */
     public function __construct($id, \stdClass $attributes, Client $client)
     {
-        $this->id         = $id;
+        $this->id = $id;
         $this->attributes = $attributes;
-        $this->client     = $client;
+        $this->client = $client;
     }
 
     /**
@@ -138,12 +141,12 @@ class Rule
      */
     public function getConditions()
     {
-        $conditions = [];
-
+        $conditions = array();
+        
         foreach ($this->attributes->conditions as $condition) {
             $conditions[] = new Condition($condition);
         }
-
+        
         return $conditions;
     }
 
@@ -154,12 +157,12 @@ class Rule
      */
     public function getActions()
     {
-        $actions = [];
-
+        $actions = array();
+        
         foreach ($this->attributes->actions as $action) {
             $actions[] = $action;
         }
-
+        
         return $actions;
     }
 
@@ -168,9 +171,7 @@ class Rule
      */
     public function delete()
     {
-        $this->client->sendCommand(
-            (new DeleteRule($this))
-        );
+        $this->client->sendCommand((new DeleteRule($this)));
     }
 
     /**

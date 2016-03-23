@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Command;
 
 use Phue\Client;
@@ -18,29 +17,31 @@ use Phue\Transport\TransportInterface;
  */
 class GetScheduleByIdTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      */
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock(
-            '\Phue\Client',
-            ['getTransport'],
-            ['127.0.0.1']
-        );
-
+        $this->mockClient = $this->getMock('\Phue\Client', 
+            array(
+                'getTransport'
+            ), array(
+                '127.0.0.1'
+            ));
+        
         // Mock transport
-        $this->mockTransport = $this->getMock(
-            '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
-
+        $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+            array(
+                'sendRequest'
+            ));
+        
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
             ->method('getUsername')
             ->will($this->returnValue('abcdefabcdef01234567890123456789'));
-
+        
         // Stub client getTransport usage
         $this->mockClient->expects($this->any())
             ->method('getTransport')
@@ -59,15 +60,13 @@ class GetScheduleByIdTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with("/api/{$this->mockClient->getUsername()}/schedules/9")
-            ->will($this->returnValue(new \stdClass));
-
+            ->will($this->returnValue(new \stdClass()));
+        
         // Get schedule
-        $schedule = (new GetScheduleById(9))->send($this->mockClient);
-
+        $sched = new GetScheduleById(9);
+        $schedule = $sched->send($this->mockClient);
+        
         // Ensure type is correct
-        $this->assertInstanceOf(
-            '\Phue\Schedule',
-            $schedule
-        );
+        $this->assertInstanceOf('\Phue\Schedule', $schedule);
     }
 }

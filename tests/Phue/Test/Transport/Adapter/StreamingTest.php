@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Transport\Adapter;
 
 use Phue\Transport\Adapter\Streaming as StreamingAdapter;
@@ -16,12 +15,13 @@ use Phue\Transport\Adapter\Streaming as StreamingAdapter;
  */
 class StreamingTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      */
     public function setUp()
     {
-        $this->streamingAdapter = new StreamingAdapter;
+        $this->streamingAdapter = new StreamingAdapter();
     }
 
     /**
@@ -44,16 +44,10 @@ class StreamingTest extends \PHPUnit_Framework_TestCase
         $this->streamingAdapter->open();
         $this->streamingAdapter->send(false, 'GET', 'dummy');
         $this->streamingAdapter->close();
-
-        $this->assertAttributeEmpty(
-            'streamContext',
-            $this->streamingAdapter
-        );
-
-        $this->assertAttributeEmpty(
-            'fileStream',
-            $this->streamingAdapter
-        );
+        
+        $this->assertAttributeEmpty('streamContext', $this->streamingAdapter);
+        
+        $this->assertAttributeEmpty('fileStream', $this->streamingAdapter);
     }
 
     /**
@@ -64,11 +58,9 @@ class StreamingTest extends \PHPUnit_Framework_TestCase
     public function testSend()
     {
         $this->streamingAdapter->open();
-
-        $this->assertFalse(
-            $this->streamingAdapter->send(false, 'GET', 'dummy')
-        );
-
+        
+        $this->assertFalse($this->streamingAdapter->send(false, 'GET', 'dummy'));
+        
         $this->streamingAdapter->close();
     }
 
@@ -80,11 +72,9 @@ class StreamingTest extends \PHPUnit_Framework_TestCase
     public function testGetHttpStatusCode()
     {
         $this->streamingAdapter->open();
-
-        $this->assertEmpty(
-            $this->streamingAdapter->getHttpStatusCode()
-        );
-
+        
+        $this->assertEmpty($this->streamingAdapter->getHttpStatusCode());
+        
         $this->streamingAdapter->close();
     }
 
@@ -96,11 +86,9 @@ class StreamingTest extends \PHPUnit_Framework_TestCase
     public function testGetContentType()
     {
         $this->streamingAdapter->open();
-
-        $this->assertEmpty(
-            $this->streamingAdapter->getContentType()
-        );
-
+        
+        $this->assertEmpty($this->streamingAdapter->getContentType());
+        
         $this->streamingAdapter->close();
     }
 

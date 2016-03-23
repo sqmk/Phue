@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -17,10 +16,12 @@ use Phue\Scene;
  */
 class GetScenes implements CommandInterface
 {
+
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      *
      * @return Scene[] List of Scene objects
      */
@@ -30,13 +31,13 @@ class GetScenes implements CommandInterface
         $results = $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/scenes"
         );
-
-        $scenes = [];
-
+        
+        $scenes = array();
+        
         foreach ($results as $sceneId => $attributes) {
             $scenes[$sceneId] = new Scene($sceneId, $attributes, $client);
         }
-
+        
         return $scenes;
     }
 }

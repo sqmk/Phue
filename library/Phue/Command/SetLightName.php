@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -18,6 +17,7 @@ use Phue\Transport\TransportInterface;
  */
 class SetLightName implements CommandInterface
 {
+
     /**
      * Light Id
      *
@@ -35,28 +35,31 @@ class SetLightName implements CommandInterface
     /**
      * Constructs a command
      *
-     * @param mixed  $light Light Id or Light object
-     * @param string $name  Name of light
+     * @param mixed $light
+     *            Light Id or Light object
+     * @param string $name
+     *            Name of light
      */
     public function __construct($light, $name)
     {
         $this->lightId = (string) $light;
-        $this->name    = (string) $name;
+        $this->name = (string) $name;
     }
 
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      */
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/lights/{$this->lightId}",
             TransportInterface::METHOD_PUT,
-            (object) [
+            (object) array(
                 'name' => $this->name
-            ]
+            )
         );
     }
 }

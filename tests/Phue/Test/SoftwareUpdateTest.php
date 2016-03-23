@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\SoftwareUpdate;
  */
 class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      *
@@ -25,31 +25,33 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock(
-            '\Phue\Client',
-            ['sendCommand'],
-            ['127.0.0.1']
-        );
-
+        $this->mockClient = $this->getMock('\Phue\Client', 
+            array(
+                'sendCommand'
+            ), array(
+                '127.0.0.1'
+            ));
+        
         // Build stub attributes
-        $this->attributes = (object) [
-            'updatestate'    => 2,
+        $this->attributes = (object) array(
+            'updatestate' => 2,
             'checkforupdate' => false,
-            'devicetypes' => (object) [
+            'devicetypes' => (object) array(
                 'bridge' => true,
-                'lights' => [
+                'lights' => array(
                     '1',
                     '2',
-                    '3',
-                ]
-            ],
-            'url'    => '',
-            'text'   => '010000000',
-            'notify' => false,
-        ];
-
+                    '3'
+                )
+            ),
+            'url' => '',
+            'text' => '010000000',
+            'notify' => false
+        );
+        
         // Create software update object
-        $this->softwareUpdate = new SoftwareUpdate($this->attributes, $this->mockClient);
+        $this->softwareUpdate = new SoftwareUpdate($this->attributes, 
+            $this->mockClient);
     }
 
     /**
@@ -59,10 +61,8 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUpdateState()
     {
-        $this->assertEquals(
-            $this->attributes->updatestate,
-            $this->softwareUpdate->getUpdateState()
-        );
+        $this->assertEquals($this->attributes->updatestate, 
+            $this->softwareUpdate->getUpdateState());
     }
 
     /**
@@ -76,18 +76,13 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
         $this->mockClient->expects($this->once())
             ->method('sendCommand')
             ->with($this->isInstanceOf('\Phue\Command\SetBridgeConfig'));
-
+        
         // Ensure installUpdates returns self
-        $this->assertEquals(
-            $this->softwareUpdate,
-            $this->softwareUpdate->installUpdates()
-        );
-
+        $this->assertEquals($this->softwareUpdate, 
+            $this->softwareUpdate->installUpdates());
+        
         // Ensure new value can be retrieved by getUpdateState
-        $this->assertEquals(
-            3,
-            $this->softwareUpdate->getUpdateState()
-        );
+        $this->assertEquals(3, $this->softwareUpdate->getUpdateState());
     }
 
     /**
@@ -97,10 +92,8 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckingForUpdate()
     {
-        $this->assertEquals(
-            $this->attributes->checkforupdate,
-            $this->softwareUpdate->checkingForUpdate()
-        );
+        $this->assertEquals($this->attributes->checkforupdate, 
+            $this->softwareUpdate->checkingForUpdate());
     }
 
     /**
@@ -114,18 +107,13 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
         $this->mockClient->expects($this->once())
             ->method('sendCommand')
             ->with($this->isInstanceOf('\Phue\Command\SetBridgeConfig'));
-
+        
         // Ensure checkForUpdate returns self
-        $this->assertEquals(
-            $this->softwareUpdate,
-            $this->softwareUpdate->checkForUpdate()
-        );
-
+        $this->assertEquals($this->softwareUpdate, 
+            $this->softwareUpdate->checkForUpdate());
+        
         // Ensure new value can be retrieved by checkingForUpdate
-        $this->assertEquals(
-            true,
-            $this->softwareUpdate->checkingForUpdate()
-        );
+        $this->assertEquals(true, $this->softwareUpdate->checkingForUpdate());
     }
 
     /**
@@ -135,10 +123,8 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsBridgeUpdatable()
     {
-        $this->assertEquals(
-            $this->attributes->devicetypes->bridge,
-            $this->softwareUpdate->isBridgeUpdatable()
-        );
+        $this->assertEquals($this->attributes->devicetypes->bridge, 
+            $this->softwareUpdate->isBridgeUpdatable());
     }
 
     /**
@@ -148,10 +134,8 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUpdatableLights()
     {
-        $this->assertEquals(
-            $this->attributes->devicetypes->lights,
-            $this->softwareUpdate->getUpdatableLights()
-        );
+        $this->assertEquals($this->attributes->devicetypes->lights, 
+            $this->softwareUpdate->getUpdatableLights());
     }
 
     /**
@@ -161,10 +145,8 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetReleaseNotesUrl()
     {
-        $this->assertEquals(
-            $this->attributes->url,
-            $this->softwareUpdate->getReleaseNotesUrl()
-        );
+        $this->assertEquals($this->attributes->url, 
+            $this->softwareUpdate->getReleaseNotesUrl());
     }
 
     /**
@@ -174,10 +156,8 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetReleaseNotesBrief()
     {
-        $this->assertEquals(
-            $this->attributes->text,
-            $this->softwareUpdate->getReleaseNotesBrief()
-        );
+        $this->assertEquals($this->attributes->text, 
+            $this->softwareUpdate->getReleaseNotesBrief());
     }
 
     /**
@@ -187,10 +167,8 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsInstallNotificationEnabled()
     {
-        $this->assertEquals(
-            $this->attributes->notify,
-            $this->softwareUpdate->isInstallNotificationEnabled()
-        );
+        $this->assertEquals($this->attributes->notify, 
+            $this->softwareUpdate->isInstallNotificationEnabled());
     }
 
     /**
@@ -204,17 +182,13 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
         $this->mockClient->expects($this->once())
             ->method('sendCommand')
             ->with($this->isInstanceOf('\Phue\Command\SetBridgeConfig'));
-
+        
         // Ensure disableInstallNotification returns self
-        $this->assertEquals(
-            $this->softwareUpdate,
-            $this->softwareUpdate->disableInstallNotification()
-        );
-
+        $this->assertEquals($this->softwareUpdate, 
+            $this->softwareUpdate->disableInstallNotification());
+        
         // Ensure new value can be retrieved by isInstallNotificationEnabled
-        $this->assertEquals(
-            false,
-            $this->softwareUpdate->isInstallNotificationEnabled()
-        );
+        $this->assertEquals(false, 
+            $this->softwareUpdate->isInstallNotificationEnabled());
     }
 }

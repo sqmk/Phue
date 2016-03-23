@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Transport\TransportInterface;
  */
 class DeleteSchedule implements CommandInterface
 {
+
     /**
      * Schedule Id
      *
@@ -27,7 +27,8 @@ class DeleteSchedule implements CommandInterface
     /**
      * Constructs a command
      *
-     * @param mixed $schedule Schedule Id or Schedule object
+     * @param mixed $schedule
+     *            Schedule Id or Schedule object
      */
     public function __construct($schedule)
     {
@@ -37,7 +38,8 @@ class DeleteSchedule implements CommandInterface
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      */
     public function send(Client $client)
     {

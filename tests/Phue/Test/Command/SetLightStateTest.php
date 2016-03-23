@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Command;
 
 use Phue\Client;
@@ -18,36 +17,39 @@ use Phue\Transport\TransportInterface;
  */
 class SetLightStateTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      */
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock(
-            '\Phue\Client',
-            ['getTransport'],
-            ['127.0.0.1']
-        );
-
+        $this->mockClient = $this->getMock('\Phue\Client', 
+            array(
+                'getTransport'
+            ), array(
+                '127.0.0.1'
+            ));
+        
         // Mock transport
-        $this->mockTransport = $this->getMock(
-            '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
-
+        $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+            array(
+                'sendRequest'
+            ));
+        
         // Mock light
-        $this->mockLight = $this->getMock(
-            '\Phue\Light',
-            null,
-            [3, new \stdClass, $this->mockClient]
-        );
-
+        $this->mockLight = $this->getMock('\Phue\Light', null, 
+            array(
+                3,
+                new \stdClass(),
+                $this->mockClient
+            ));
+        
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
             ->method('getUsername')
             ->will($this->returnValue('abcdefabcdef01234567890123456789'));
-
+        
         // Stub client's getTransport method
         $this->mockClient->expects($this->any())
             ->method('getTransport')
@@ -66,20 +68,16 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     {
         // Build command
         $command = new SetLightState($this->mockLight);
-
+        
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-            (object) [
+            (object) array(
                 'on' => $state
-            ]
-        );
-
+            ));
+        
         // Ensure instance is returned
-        $this->assertEquals(
-            $command,
-            $command->on($state)
-        );
-
+        $this->assertEquals($command, $command->on($state));
+        
         // Send
         $command->send($this->mockClient);
     }
@@ -95,7 +93,8 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidBrightness($brightness)
     {
-        (new SetLightState($this->mockLight))->brightness($brightness);
+        $x = new SetLightState($this->mockLight);
+        $x->brightness($brightness);
     }
 
     /**
@@ -110,20 +109,16 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     {
         // Build command
         $command = new SetLightState($this->mockLight);
-
+        
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-            (object) [
+            (object) array(
                 'bri' => $brightness
-            ]
-        );
-
+            ));
+        
         // Ensure instance is returned
-        $this->assertEquals(
-            $command,
-            $command->brightness($brightness)
-        );
-
+        $this->assertEquals($command, $command->brightness($brightness));
+        
         // Send
         $command->send($this->mockClient);
     }
@@ -137,7 +132,8 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidHueValue()
     {
-        (new SetLightState($this->mockLight))->hue(70000);
+        $x = new SetLightState($this->mockLight);
+        $x->hue(70000);
     }
 
     /**
@@ -152,20 +148,16 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     {
         // Build command
         $command = new SetLightState($this->mockLight);
-
+        
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-            (object) [
+            (object) array(
                 'hue' => $value
-            ]
-        );
-
+            ));
+        
         // Ensure instance is returned
-        $this->assertEquals(
-            $command,
-            $command->hue($value)
-        );
-
+        $this->assertEquals($command, $command->hue($value));
+        
         // Send
         $command->send($this->mockClient);
     }
@@ -179,7 +171,8 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidSaturationValue()
     {
-        (new SetLightState($this->mockLight))->saturation(300);
+        $x = new SetLightState($this->mockLight);
+        $x->saturation(300);
     }
 
     /**
@@ -194,20 +187,16 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     {
         // Build command
         $command = new SetLightState($this->mockLight);
-
+        
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-            (object) [
+            (object) array(
                 'sat' => $value
-            ]
-        );
-
+            ));
+        
         // Ensure instance is returned
-        $this->assertEquals(
-            $command,
-            $command->saturation($value)
-        );
-
+        $this->assertEquals($command, $command->saturation($value));
+        
         // Send
         $command->send($this->mockClient);
     }
@@ -223,7 +212,8 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidXYValue($x, $y)
     {
-        (new SetLightState($this->mockLight))->xy($x, $y);
+        $_x = new SetLightState($this->mockLight);
+        $_x->xy($x, $y);
     }
 
     /**
@@ -238,20 +228,19 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     {
         // Build command
         $command = new SetLightState($this->mockLight);
-
+        
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-            (object) [
-                'xy' => [$x, $y]
-            ]
-        );
-
+            (object) array(
+                'xy' => array(
+                    $x,
+                    $y
+                )
+            ));
+        
         // Ensure instance is returned
-        $this->assertEquals(
-            $command,
-            $command->xy($x, $y)
-        );
-
+        $this->assertEquals($command, $command->xy($x, $y));
+        
         // Send
         $command->send($this->mockClient);
     }
@@ -267,7 +256,8 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidColorTempValue($temp)
     {
-        (new SetLightState($this->mockLight))->colorTemp($temp);
+        $x = new SetLightState($this->mockLight);
+        $x->colorTemp($temp);
     }
 
     /**
@@ -282,20 +272,16 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     {
         // Build command
         $command = new SetLightState($this->mockLight);
-
+        
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-            (object) [
+            (object) array(
                 'ct' => $temp
-            ]
-        );
-
+            ));
+        
         // Ensure instance is returned
-        $this->assertEquals(
-            $command,
-            $command->colorTemp($temp)
-        );
-
+        $this->assertEquals($command, $command->colorTemp($temp));
+        
         // Send
         $command->send($this->mockClient);
     }
@@ -307,13 +293,10 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetAlertModes()
     {
-        $this->assertNotEmpty(
-            SetLightState::getAlertModes()
-        );
-
+        $this->assertNotEmpty(SetLightState::getAlertModes());
+        
         $this->assertTrue(
-            in_array(SetLightState::ALERT_SELECT, SetLightState::getAlertModes())
-        );
+            in_array(SetLightState::ALERT_SELECT, SetLightState::getAlertModes()));
     }
 
     /**
@@ -325,7 +308,8 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidAlertMode()
     {
-        (new SetLightState($this->mockLight))->alert('invalidmode');
+        $x = new SetLightState($this->mockLight);
+        $x->alert('invalidmode');
     }
 
     /**
@@ -340,20 +324,16 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     {
         // Build command
         $command = new SetLightState($this->mockLight);
-
+        
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-            (object) [
+            (object) array(
                 'alert' => $mode
-            ]
-        );
-
+            ));
+        
         // Ensure instance is returned
-        $this->assertEquals(
-            $command,
-            $command->alert($mode)
-        );
-
+        $this->assertEquals($command, $command->alert($mode));
+        
         // Send
         $command->send($this->mockClient);
     }
@@ -365,13 +345,10 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetEffectModes()
     {
-        $this->assertNotEmpty(
-            SetLightState::getEffectModes()
-        );
-
+        $this->assertNotEmpty(SetLightState::getEffectModes());
+        
         $this->assertTrue(
-            in_array(SetLightState::EFFECT_NONE, SetLightState::getEffectModes())
-        );
+            in_array(SetLightState::EFFECT_NONE, SetLightState::getEffectModes()));
     }
 
     /**
@@ -383,7 +360,8 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidEffectMode()
     {
-        (new SetLightState($this->mockLight))->effect('invalidmode');
+        $x = new SetLightState($this->mockLight);
+        $x->effect('invalidmode');
     }
 
     /**
@@ -398,20 +376,16 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     {
         // Build command
         $command = new SetLightState($this->mockLight);
-
+        
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-            (object) [
+            (object) array(
                 'effect' => $mode
-            ]
-        );
-
+            ));
+        
         // Ensure instance is returned
-        $this->assertEquals(
-            $command,
-            $command->effect($mode)
-        );
-
+        $this->assertEquals($command, $command->effect($mode));
+        
         // Send
         $command->send($this->mockClient);
     }
@@ -425,7 +399,8 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidTransitionTime()
     {
-        (new SetLightState($this->mockLight))->transitionTime(-10);
+        $x = new SetLightState($this->mockLight);
+        $x->transitionTime(- 10);
     }
 
     /**
@@ -440,20 +415,16 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     {
         // Build command
         $command = new SetLightState($this->mockLight);
-
+        
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-            (object) [
+            (object) array(
                 'transitiontime' => $time * 10
-            ]
-        );
-
+            ));
+        
         // Ensure instance is returned
-        $this->assertEquals(
-            $command,
-            $command->transitionTime($time)
-        );
-
+        $this->assertEquals($command, $command->transitionTime($time));
+        
         // Send
         $command->send($this->mockClient);
     }
@@ -468,17 +439,15 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     {
         // Build command
         $setLightStateCmd = new SetLightState($this->mockLight);
-
+        
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-            (object) [
+            (object) array(
                 'alert' => 'select'
-            ]
-        );
-
+            ));
+        
         // Change alert and set state
-        $setLightStateCmd->alert('select')
-                         ->send($this->mockClient);
+        $setLightStateCmd->alert('select')->send($this->mockClient);
     }
 
     /**
@@ -490,27 +459,26 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     {
         // Build command
         $setLightStateCmd = new SetLightState($this->mockLight);
-
+        
         // Change alert
         $setLightStateCmd->alert('select');
-
+        
         // Ensure actionable params are expected
         $this->assertEquals(
-            [
+            array(
                 'address' => "/lights/{$this->mockLight->getId()}/state",
-                'method'  => 'PUT',
-                'body'    => (object) [
+                'method' => 'PUT',
+                'body' => (object) array(
                     'alert' => 'select'
-                ]
-            ],
-            $setLightStateCmd->getActionableParams($this->mockClient)
-        );
+                )
+            ), $setLightStateCmd->getActionableParams($this->mockClient));
     }
 
     /**
      * Stub transport's sendRequest with an expected payload
      *
-     * @param \stdClass $payload Payload
+     * @param \stdClass $payload
+     *            Payload
      */
     protected function stubTransportSendRequestWithPayload(\stdClass $payload)
     {
@@ -518,12 +486,9 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with(
-                $this->equalTo(
-                    "/api/{$this->mockClient->getUsername()}/lights/{$this->mockLight->getId()}/state"
-                ),
-                $this->equalTo('PUT'),
-                $payload
-            );
+            $this->equalTo(
+                "/api/{$this->mockClient->getUsername()}/lights/{$this->mockLight->getId()}/state"), 
+            $this->equalTo('PUT'), $payload);
     }
 
     /**
@@ -533,10 +498,14 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function providerOnState()
     {
-        return [
-            [true],
-            [false]
-        ];
+        return array(
+            array(
+                true
+            ),
+            array(
+                false
+            )
+        );
     }
 
     /**
@@ -546,10 +515,14 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function providerInvalidBrightness()
     {
-        return [
-            [-1],
-            [256],
-        ];
+        return array(
+            array(
+                - 1
+            ),
+            array(
+                256
+            )
+        );
     }
 
     /**
@@ -559,11 +532,17 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function providerBrightness()
     {
-        return [
-            [0],
-            [128],
-            [255]
-        ];
+        return array(
+            array(
+                0
+            ),
+            array(
+                128
+            ),
+            array(
+                255
+            )
+        );
     }
 
     /**
@@ -573,11 +552,17 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function providerHue()
     {
-        return [
-            [10000],
-            [35000],
-            [42]
-        ];
+        return array(
+            array(
+                10000
+            ),
+            array(
+                35000
+            ),
+            array(
+                42
+            )
+        );
     }
 
     /**
@@ -587,11 +572,17 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function providerSaturation()
     {
-        return [
-            [0],
-            [128],
-            [255]
-        ];
+        return array(
+            array(
+                0
+            ),
+            array(
+                128
+            ),
+            array(
+                255
+            )
+        );
     }
 
     /**
@@ -601,12 +592,24 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function providerInvalidXY()
     {
-        return [
-            [-0.1, -0.1],
-            [.5, -.5],
-            [1.1, .5],
-            [.5, 1.1]
-        ];
+        return array(
+            array(
+                - 0.1,
+                - 0.1
+            ),
+            array(
+                .5,
+                - .5
+            ),
+            array(
+                1.1,
+                .5
+            ),
+            array(
+                .5,
+                1.1
+            )
+        );
     }
 
     /**
@@ -616,11 +619,20 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function providerXY()
     {
-        return [
-            [0, 1],
-            [.1, .9],
-            [.5, .5],
-        ];
+        return array(
+            array(
+                0,
+                1
+            ),
+            array(
+                .1,
+                .9
+            ),
+            array(
+                .5,
+                .5
+            )
+        );
     }
 
     /**
@@ -630,11 +642,17 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function providerInvalidColorTemp()
     {
-        return [
-            [152],
-            [550],
-            [-130],
-        ];
+        return array(
+            array(
+                152
+            ),
+            array(
+                550
+            ),
+            array(
+                - 130
+            )
+        );
     }
 
     /**
@@ -644,11 +662,17 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function providerColorTemp()
     {
-        return [
-            [153],
-            [200],
-            [500],
-        ];
+        return array(
+            array(
+                153
+            ),
+            array(
+                200
+            ),
+            array(
+                500
+            )
+        );
     }
 
     /**
@@ -658,11 +682,17 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function providerAlert()
     {
-        return [
-            [SetLightState::ALERT_NONE],
-            [SetLightState::ALERT_SELECT],
-            [SetLightState::ALERT_LONG_SELECT],
-        ];
+        return array(
+            array(
+                SetLightState::ALERT_NONE
+            ),
+            array(
+                SetLightState::ALERT_SELECT
+            ),
+            array(
+                SetLightState::ALERT_LONG_SELECT
+            )
+        );
     }
 
     /**
@@ -672,10 +702,14 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function providerEffect()
     {
-        return [
-            [SetLightState::EFFECT_NONE],
-            [SetLightState::EFFECT_COLORLOOP],
-        ];
+        return array(
+            array(
+                SetLightState::EFFECT_NONE
+            ),
+            array(
+                SetLightState::EFFECT_COLORLOOP
+            )
+        );
     }
 
     /**
@@ -685,10 +719,16 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
      */
     public function providerTransitionTime()
     {
-        return [
-            [1],
-            [25],
-            [.5]
-        ];
+        return array(
+            array(
+                1
+            ),
+            array(
+                25
+            ),
+            array(
+                .5
+            )
+        );
     }
 }

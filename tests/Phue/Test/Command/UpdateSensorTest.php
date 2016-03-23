@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Command;
 
 use Mockery;
@@ -19,6 +18,7 @@ use Phue\Transport\TransportInterface;
  */
 class UpdateSensorTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test: Instantiating UpdateSensor command
      *
@@ -37,11 +37,8 @@ class UpdateSensorTest extends \PHPUnit_Framework_TestCase
     public function testName()
     {
         $command = new UpdateSensor('4');
-
-        $this->assertEquals(
-            $command,
-            $command->name('dummy name')
-        );
+        
+        $this->assertEquals($command, $command->name('dummy name'));
     }
 
     /**
@@ -52,19 +49,20 @@ class UpdateSensorTest extends \PHPUnit_Framework_TestCase
     public function testSend()
     {
         // Mock client
-        $mockClient = Mockery::mock(
-            '\Phue\Client',
-            [
+        $mockClient = Mockery::mock('\Phue\Client', 
+            // [
+            // 'getUsername' => 'abcdefabcdef01234567890123456789'
+            // ]
+            array(
                 'getUsername' => 'abcdefabcdef01234567890123456789'
-            ]
-        )
-            ->makePartial();
-
+            ))->makePartial();
+        
         // Mock client commands
-        $mockClient
-            ->shouldReceive('getTransport->sendRequest');
-
-        $command = (new UpdateSensor('5'))
-            ->send($mockClient);
+        $mockClient->shouldReceive('getTransport->sendRequest');
+        
+        // $command = (new UpdateSensor('5'))
+        // ->send($mockClient);
+        $sensor = new UpdateSensor('5');
+        $command = $sensor->send($mockClient);
     }
 }

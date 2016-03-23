@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Transport\Adapter;
 
 /**
@@ -14,6 +13,7 @@ namespace Phue\Transport\Adapter;
  */
 class Streaming implements AdapterInterface
 {
+
     /**
      * Stream context
      *
@@ -39,35 +39,38 @@ class Streaming implements AdapterInterface
     /**
      * Sends request
      *
-     * @param string $address Request path
-     * @param string $method  Request method
-     * @param string $body    Body data
+     * @param string $address
+     *            Request path
+     * @param string $method
+     *            Request method
+     * @param string $body
+     *            Body data
      *
      * @return string Result
      */
     public function send($address, $method, $body = null)
     {
         // Init stream options
-        $streamOptions = [
+        $streamOptions = array(
             'ignore_errors' => true,
-            'method'        => $method
-        ];
-
+            'method' => $method
+        );
+        
         // Set body if there is one
         if (strlen($body)) {
             $streamOptions['content'] = $body;
         }
-
+        
         $this->streamContext = stream_context_create(
-            ['http' => $streamOptions]
+            array(
+                'http' => $streamOptions
+            )
         );
-
+        
         // Make request
-        $this->fileStream = @fopen($address, 'r', false, $this->streamContext);
-
-        return $this->fileStream
-             ? stream_get_contents($this->fileStream)
-             : false;
+            $this->fileStream = @fopen($address, 'r', false, $this->streamContext);
+        
+            return $this->fileStream ? stream_get_contents($this->fileStream) : false;
     }
 
     /**
@@ -78,10 +81,8 @@ class Streaming implements AdapterInterface
     public function getHttpStatusCode()
     {
         preg_match('#^HTTP/1\.1 (\d+)#mi', $this->getHeaders(), $matches);
-
-        return isset($matches[1])
-             ? $matches[1]
-             : false;
+        
+        return isset($matches[1]) ? $matches[1] : false;
     }
 
     /**
@@ -92,10 +93,8 @@ class Streaming implements AdapterInterface
     public function getContentType()
     {
         preg_match('#^Content-type: ([^;]+?)$#mi', $this->getHeaders(), $matches);
-
-        return isset($matches[1])
-             ? $matches[1]
-             : false;
+        
+        return isset($matches[1]) ? $matches[1] : false;
     }
 
     /**
@@ -106,12 +105,13 @@ class Streaming implements AdapterInterface
     public function getHeaders()
     {
         // Don't continue if file stream isn't valid
-        if (!$this->fileStream) {
+        if (! $this->fileStream) {
             return;
         }
-
+        
+        $meta_data = stream_get_meta_data($this->fileStream);
         return implode(
-            stream_get_meta_data($this->fileStream)['wrapper_data'],
+            $meta_data['wrapper_data'],
             "\r\n"
         );
     }
@@ -124,7 +124,7 @@ class Streaming implements AdapterInterface
         if (is_resource($this->fileStream)) {
             fclose($this->fileStream);
         }
-
+        
         unset($this->streamContext);
     }
 }

@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Sensor;
  */
 class SensorTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      *
@@ -25,33 +25,34 @@ class SensorTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock(
-            '\Phue\Client',
-            ['sendCommand'],
-            ['127.0.0.1']
-        );
-
+        $this->mockClient = $this->getMock('\Phue\Client', 
+            array(
+                'sendCommand'
+            ), array(
+                '127.0.0.1'
+            ));
+        
         // Build stub attributes
-        $this->attributes = (object) [
-            'state' => [
-                'daylight'    => false,
+        $this->attributes = (object) array(
+            'state' => array(
+                'daylight' => false,
                 'lastupdated' => '2014-06-27T07:38:51'
-            ],
-            'config' => [
-                'on'            => true,
-                'long'          => 'none',
-                'lat'           => 'none',
+            ),
+            'config' => array(
+                'on' => true,
+                'long' => 'none',
+                'lat' => 'none',
                 'sunriseoffset' => 50,
-                'sunsetoffset'  => 50
-            ],
-            'name'             => 'Daylight',
-            'type'             => 'Daylight',
-            'modelid'          => 'PHDL00',
+                'sunsetoffset' => 50
+            ),
+            'name' => 'Daylight',
+            'type' => 'Daylight',
+            'modelid' => 'PHDL00',
             'manufacturername' => 'Philips',
-            'swversion'        => '1.0',
-            'uniqueid'         => '00:00:00:00:00:40:03:50-f2',
-        ];
-
+            'swversion' => '1.0',
+            'uniqueid' => '00:00:00:00:00:40:03:50-f2'
+        );
+        
         // Create sensor object
         $this->sensor = new Sensor(7, $this->attributes, $this->mockClient);
     }
@@ -63,10 +64,7 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetId()
     {
-        $this->assertEquals(
-            7,
-            $this->sensor->getId()
-        );
+        $this->assertEquals(7, $this->sensor->getId());
     }
 
     /**
@@ -76,10 +74,7 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetName()
     {
-        $this->assertEquals(
-            $this->attributes->name,
-            $this->sensor->getName()
-        );
+        $this->assertEquals($this->attributes->name, $this->sensor->getName());
     }
 
     /**
@@ -89,10 +84,7 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetType()
     {
-        $this->assertEquals(
-            $this->attributes->type,
-            $this->sensor->getType()
-        );
+        $this->assertEquals($this->attributes->type, $this->sensor->getType());
     }
 
     /**
@@ -102,10 +94,7 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetModelId()
     {
-        $this->assertEquals(
-            $this->attributes->modelid,
-            $this->sensor->getModelId()
-        );
+        $this->assertEquals($this->attributes->modelid, $this->sensor->getModelId());
     }
 
     /**
@@ -115,10 +104,8 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetModel()
     {
-        $this->assertInstanceOf(
-            '\Phue\SensorModel\AbstractSensorModel',
-            $this->sensor->getModel()
-        );
+        $this->assertInstanceOf('\Phue\SensorModel\AbstractSensorModel', 
+            $this->sensor->getModel());
     }
 
     /**
@@ -128,10 +115,8 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetManufacturerName()
     {
-        $this->assertEquals(
-            $this->attributes->manufacturername,
-            $this->sensor->getManufacturerName()
-        );
+        $this->assertEquals($this->attributes->manufacturername, 
+            $this->sensor->getManufacturerName());
     }
 
     /**
@@ -141,12 +126,9 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSoftwareVersion()
     {
-        $this->assertEquals(
-            $this->attributes->swversion,
-            $this->sensor->getSoftwareVersion()
-        );
+        $this->assertEquals($this->attributes->swversion, 
+            $this->sensor->getSoftwareVersion());
     }
-
 
     /**
      * Test: Get null software version
@@ -156,10 +138,8 @@ class SensorTest extends \PHPUnit_Framework_TestCase
     public function testGetNullSoftwareVersion()
     {
         unset($this->attributes->swversion);
-
-        $this->assertNull(
-            $this->sensor->getSoftwareVersion()
-        );
+        
+        $this->assertNull($this->sensor->getSoftwareVersion());
     }
 
     /**
@@ -169,10 +149,8 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUniqueId()
     {
-        $this->assertEquals(
-            $this->attributes->uniqueid,
-            $this->sensor->getUniqueId()
-        );
+        $this->assertEquals($this->attributes->uniqueid, 
+            $this->sensor->getUniqueId());
     }
 
     /**
@@ -183,10 +161,8 @@ class SensorTest extends \PHPUnit_Framework_TestCase
     public function testGetNullUniqueId()
     {
         unset($this->attributes->uniqueid);
-
-        $this->assertNull(
-            $this->sensor->getUniqueId()
-        );
+        
+        $this->assertNull($this->sensor->getUniqueId());
     }
 
     /**
@@ -196,10 +172,7 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetState()
     {
-        $this->assertInstanceOf(
-            '\stdClass',
-            $this->sensor->getState()
-        );
+        $this->assertInstanceOf('\stdClass', $this->sensor->getState());
     }
 
     /**
@@ -209,10 +182,7 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetConfig()
     {
-        $this->assertInstanceOf(
-            '\stdClass',
-            $this->sensor->getConfig()
-        );
+        $this->assertInstanceOf('\stdClass', $this->sensor->getConfig());
     }
 
     /**
@@ -222,9 +192,6 @@ class SensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testToString()
     {
-        $this->assertEquals(
-            $this->sensor->getId(),
-            (string) $this->sensor
-        );
+        $this->assertEquals($this->sensor->getId(), (string) $this->sensor);
     }
 }

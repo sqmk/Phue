@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Command;
 
 use Mockery;
@@ -19,6 +18,7 @@ use Phue\Transport\TransportInterface;
  */
 class CreateSensorTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test: Instantiating CreateSensor command
      *
@@ -36,12 +36,9 @@ class CreateSensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testName()
     {
-        $command = new CreateSensor;
-
-        $this->assertEquals(
-            $command,
-            $command->name('dummy name')
-        );
+        $command = new CreateSensor();
+        
+        $this->assertEquals($command, $command->name('dummy name'));
     }
 
     /**
@@ -51,12 +48,9 @@ class CreateSensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testModelId()
     {
-        $command = new CreateSensor;
-
-        $this->assertEquals(
-            $command,
-            $command->modelId('modelid')
-        );
+        $command = new CreateSensor();
+        
+        $this->assertEquals($command, $command->modelId('modelid'));
     }
 
     /**
@@ -66,12 +60,9 @@ class CreateSensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testSoftwareVersion()
     {
-        $command = new CreateSensor;
-
-        $this->assertEquals(
-            $command,
-            $command->softwareVersion('123')
-        );
+        $command = new CreateSensor();
+        
+        $this->assertEquals($command, $command->softwareVersion('123'));
     }
 
     /**
@@ -81,12 +72,9 @@ class CreateSensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testType()
     {
-        $command = new CreateSensor;
-
-        $this->assertEquals(
-            $command,
-            $command->type('sensortype')
-        );
+        $command = new CreateSensor();
+        
+        $this->assertEquals($command, $command->type('sensortype'));
     }
 
     /**
@@ -96,12 +84,9 @@ class CreateSensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testUniqueId()
     {
-        $command = new CreateSensor;
-
-        $this->assertEquals(
-            $command,
-            $command->uniqueId('123.456.789')
-        );
+        $command = new CreateSensor();
+        
+        $this->assertEquals($command, $command->uniqueId('123.456.789'));
     }
 
     /**
@@ -111,12 +96,9 @@ class CreateSensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testManufacturerName()
     {
-        $command = new CreateSensor;
-
-        $this->assertEquals(
-            $command,
-            $command->manufacturerName('PhueClient')
-        );
+        $command = new CreateSensor();
+        
+        $this->assertEquals($command, $command->manufacturerName('PhueClient'));
     }
 
     /**
@@ -126,12 +108,9 @@ class CreateSensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testConfigAttribute()
     {
-        $command = new CreateSensor;
-
-        $this->assertEquals(
-            $command,
-            $command->configAttribute('key', 'value')
-        );
+        $command = new CreateSensor();
+        
+        $this->assertEquals($command, $command->configAttribute('key', 'value'));
     }
 
     /**
@@ -141,12 +120,9 @@ class CreateSensorTest extends \PHPUnit_Framework_TestCase
      */
     public function testStateAttribute()
     {
-        $command = new CreateSensor;
-
-        $this->assertEquals(
-            $command,
-            $command->stateAttribute('key', 'value')
-        );
+        $command = new CreateSensor();
+        
+        $this->assertEquals($command, $command->stateAttribute('key', 'value'));
     }
 
     /**
@@ -157,24 +133,19 @@ class CreateSensorTest extends \PHPUnit_Framework_TestCase
     public function testSend()
     {
         // Mock client
-        $mockClient = Mockery::mock(
-            '\Phue\Client',
-            [
+        $mockClient = Mockery::mock('\Phue\Client', 
+            array(
                 'getUsername' => 'abcdefabcdef01234567890123456789'
-            ]
-        )
-            ->makePartial();
-
+            ))->makePartial();
+        
         // Mock client commands
-        $mockClient
-            ->shouldReceive('getTransport->sendRequest')
-            ->andReturn((object) ['id' => '5']);
-
+        $mockClient->shouldReceive('getTransport->sendRequest')->
+        andReturn((object) array(
+            'id' => '5'
+        ));
+        
         $command = (new CreateSensor('test'));
-
-        $this->assertEquals(
-            '5',
-            $command->send($mockClient)
-        );
+        
+        $this->assertEquals('5', $command->send($mockClient));
     }
 }

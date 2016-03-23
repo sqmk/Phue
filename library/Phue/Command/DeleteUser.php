@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Transport\TransportInterface;
  */
 class DeleteUser implements CommandInterface
 {
+
     /**
      * Username
      *
@@ -27,7 +27,8 @@ class DeleteUser implements CommandInterface
     /**
      * Constructs a command
      *
-     * @param mixed $username Username or User object
+     * @param mixed $username
+     *            Username or User object
      */
     public function __construct($username)
     {
@@ -37,7 +38,8 @@ class DeleteUser implements CommandInterface
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      */
     public function send(Client $client)
     {

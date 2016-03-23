@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\SensorModel;
 
 use Phue\SensorModel\SensorModelFactory;
@@ -16,6 +15,7 @@ use Phue\SensorModel\SensorModelFactory;
  */
 class SensorModelFactoryTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test: Getting unknown model
      *
@@ -23,10 +23,8 @@ class SensorModelFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUnknownModel()
     {
-        $this->assertInstanceOf(
-            '\Phue\SensorModel\UnknownModel',
-            SensorModelFactory::build('whatever')
-        );
+        $this->assertInstanceOf('\Phue\SensorModel\UnknownModel', 
+            SensorModelFactory::build('whatever'));
     }
 
     /**
@@ -36,9 +34,7 @@ class SensorModelFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetKnownModel()
     {
-        $this->assertInstanceOf(
-            '\Phue\SensorModel\ZgpswitchModel',
-            SensorModelFactory::build('ZGPSWITCH')
-        );
+        $this->assertInstanceOf('\Phue\SensorModel\ZgpswitchModel', 
+            SensorModelFactory::build('ZGPSWITCH'));
     }
 }

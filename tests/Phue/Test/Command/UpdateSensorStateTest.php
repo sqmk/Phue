@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Command;
 
 use Mockery;
@@ -19,6 +18,7 @@ use Phue\Transport\TransportInterface;
  */
 class UpdateSensorStateTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test: Instantiating UpdateSensorState command
      *
@@ -37,11 +37,8 @@ class UpdateSensorStateTest extends \PHPUnit_Framework_TestCase
     public function testName()
     {
         $command = new UpdateSensorState('4');
-
-        $this->assertEquals(
-            $command,
-            $command->stateAttribute('key', 'value')
-        );
+        
+        $this->assertEquals($command, $command->stateAttribute('key', 'value'));
     }
 
     /**
@@ -52,20 +49,18 @@ class UpdateSensorStateTest extends \PHPUnit_Framework_TestCase
     public function testSend()
     {
         // Mock client
-        $mockClient = Mockery::mock(
-            '\Phue\Client',
-            [
+        $mockClient = Mockery::mock('\Phue\Client', 
+            array(
                 'getUsername' => 'abcdefabcdef01234567890123456789'
-            ]
-        )
-            ->makePartial();
-
+            ))->makePartial();
+        
         // Mock client commands
-        $mockClient
-            ->shouldReceive('getTransport->sendRequest');
-
-        $command = (new UpdateSensorState('5'))
-            ->stateAttribute('key', 'value')
-            ->send($mockClient);
+        $mockClient->shouldReceive('getTransport->sendRequest');
+        
+        // $command = (new UpdateSensorState('5'))
+        // ->stateAttribute('key', 'value')
+        // ->send($mockClient);
+        $sensor = new UpdateSensorState('5');
+        $command = $sensor->stateAttribute('key', 'value')->send($mockClient);
     }
 }

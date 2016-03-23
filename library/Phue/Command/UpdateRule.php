@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Transport\TransportInterface;
  */
 class UpdateRule extends CreateRule
 {
+
     /**
      * Rule Id
      *
@@ -29,12 +29,13 @@ class UpdateRule extends CreateRule
      *
      * @var array
      */
-    protected $attributes = [];
+    protected $attributes = array();
 
     /**
      * Constructs a command
      *
-     * @param mixed $rule Rule Id or Rule object
+     * @param mixed $rule
+     *            Rule Id or Rule object
      */
     public function __construct($rule)
     {
@@ -44,34 +45,36 @@ class UpdateRule extends CreateRule
     /**
      * Set name
      *
-     * @param string $name Name
+     * @param string $name
+     *            Name
      *
      * @return self This object
      */
     public function name($name)
     {
         $this->attributes['name'] = (string) $name;
-
+        
         return $this;
     }
 
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      */
     public function send(Client $client)
     {
         $attributes = $this->attributes;
-
+        
         foreach ($this->conditions as $condition) {
             $attributes['conditions'][] = $condition->export();
         }
-
+        
         foreach ($this->actions as $action) {
             $attributes['actions'][] = $action->getActionableParams($client);
         }
-
+        
         $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/rules/{$this->ruleId}",
             TransportInterface::METHOD_PUT,

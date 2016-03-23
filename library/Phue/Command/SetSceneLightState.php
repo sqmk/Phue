@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Transport\TransportInterface;
  */
 class SetSceneLightState extends SetLightState
 {
+
     /**
      * Scene Id
      *
@@ -34,8 +34,10 @@ class SetSceneLightState extends SetLightState
     /**
      * Constructs a command
      *
-     * @param mixed $scene Scene Id or Scene object
-     * @param mixed $light Light Id or Light object
+     * @param mixed $scene
+     *            Scene Id or Scene object
+     * @param mixed $light
+     *            Light Id or Light object
      */
     public function __construct($scene, $light)
     {
@@ -46,7 +48,8 @@ class SetSceneLightState extends SetLightState
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      */
     public function send(Client $client)
     {

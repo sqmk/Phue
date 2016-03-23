@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Transport\TransportInterface;
  */
 class DeleteGroup implements CommandInterface
 {
+
     /**
      * Group Id
      *
@@ -27,7 +27,8 @@ class DeleteGroup implements CommandInterface
     /**
      * Constructs a command
      *
-     * @param mixed $group Group Id or Group object
+     * @param mixed $group
+     *            Group Id or Group object
      */
     public function __construct($group)
     {
@@ -37,7 +38,8 @@ class DeleteGroup implements CommandInterface
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      */
     public function send(Client $client)
     {

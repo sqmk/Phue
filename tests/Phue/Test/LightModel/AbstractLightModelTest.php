@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\LightModel;
 
 use Phue\LightModel\AbstractLightModel;
@@ -16,6 +15,7 @@ use Phue\LightModel\AbstractLightModel;
  */
 class AbstractLightModelTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      */
@@ -23,8 +23,7 @@ class AbstractLightModelTest extends \PHPUnit_Framework_TestCase
     {
         // Mock client
         $this->mockAbstractLightModel = $this->getMockForAbstractClass(
-            '\Phue\LightModel\AbstractLightModel'
-        );
+            '\Phue\LightModel\AbstractLightModel');
     }
 
     /**
@@ -34,10 +33,8 @@ class AbstractLightModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetId()
     {
-        $this->assertEquals(
-            $this->mockAbstractLightModel->getId(),
-            AbstractLightModel::MODEL_ID
-        );
+        $this->assertEquals($this->mockAbstractLightModel->getId(), 
+            AbstractLightModel::MODEL_ID);
     }
 
     /**
@@ -47,10 +44,8 @@ class AbstractLightModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetName()
     {
-        $this->assertEquals(
-            $this->mockAbstractLightModel->getName(),
-            AbstractLightModel::MODEL_NAME
-        );
+        $this->assertEquals($this->mockAbstractLightModel->getName(), 
+            AbstractLightModel::MODEL_NAME);
     }
 
     /**
@@ -60,10 +55,8 @@ class AbstractLightModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testCanRetainState()
     {
-        $this->assertEquals(
-            $this->mockAbstractLightModel->canRetainState(),
-            AbstractLightModel::CAN_RETAIN_STATE
-        );
+        $this->assertEquals($this->mockAbstractLightModel->canRetainState(), 
+            AbstractLightModel::CAN_RETAIN_STATE);
     }
 
     /**
@@ -73,9 +66,7 @@ class AbstractLightModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testToString()
     {
-        $this->assertEquals(
-            (string) $this->mockAbstractLightModel,
-            AbstractLightModel::MODEL_NAME
-        );
+        $this->assertEquals((string) $this->mockAbstractLightModel, 
+            AbstractLightModel::MODEL_NAME);
     }
 }

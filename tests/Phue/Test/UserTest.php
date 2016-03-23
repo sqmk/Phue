@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test;
 
 use Phue\Client;
@@ -17,28 +16,30 @@ use Phue\User;
  */
 class UserTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      */
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock(
-            '\Phue\Client',
-            ['sendCommand'],
-            ['127.0.0.1']
-        );
-
+        $this->mockClient = $this->getMock('\Phue\Client', 
+            array(
+                'sendCommand'
+            ), array(
+                '127.0.0.1'
+            ));
+        
         // Stub username
         $this->username = 'phpunittest';
-
+        
         // Build stub attributes
-        $this->attributes = (object) [
-            'name'          => 'Phue',
-            'create date'   => '1984-12-30T03:04:05',
-            'last use date' => '1984-12-30T06:07:08',
-        ];
-
+        $this->attributes = (object) array(
+            'name' => 'Phue',
+            'create date' => '1984-12-30T03:04:05',
+            'last use date' => '1984-12-30T06:07:08'
+        );
+        
         // Create user object
         $this->user = new User($this->username, $this->attributes, $this->mockClient);
     }
@@ -51,10 +52,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUsername()
     {
-        $this->assertEquals(
-            $this->username,
-            $this->user->getUsername()
-        );
+        $this->assertEquals($this->username, $this->user->getUsername());
     }
 
     /**
@@ -64,10 +62,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetDeviceType()
     {
-        $this->assertEquals(
-            $this->attributes->name,
-            $this->user->getDeviceType()
-        );
+        $this->assertEquals($this->attributes->name, $this->user->getDeviceType());
     }
 
     /**
@@ -77,10 +72,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetCreateDate()
     {
-        $this->assertEquals(
-            $this->attributes->{'create date'},
-            $this->user->getCreateDate()
-        );
+        $this->assertEquals($this->attributes->{'create date'}, 
+            $this->user->getCreateDate());
     }
 
     /**
@@ -90,10 +83,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLastUseDate()
     {
-        $this->assertEquals(
-            $this->attributes->{'last use date'},
-            $this->user->getLastUseDate()
-        );
+        $this->assertEquals($this->attributes->{'last use date'}, 
+            $this->user->getLastUseDate());
     }
 
     /**
@@ -106,7 +97,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->mockClient->expects($this->once())
             ->method('sendCommand')
             ->with($this->isInstanceOf('\Phue\Command\DeleteUser'));
-
+        
         $this->user->delete();
     }
 
@@ -117,9 +108,6 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testToString()
     {
-        $this->assertEquals(
-            $this->user->getUsername(),
-            (string) $this->user
-        );
+        $this->assertEquals($this->user->getUsername(), (string) $this->user);
     }
 }

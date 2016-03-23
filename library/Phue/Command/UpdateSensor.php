@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Transport\TransportInterface;
  */
 class UpdateSensor extends CreateSensor
 {
+
     /**
      * Sensor Id
      *
@@ -29,12 +29,13 @@ class UpdateSensor extends CreateSensor
      *
      * @var array
      */
-    protected $attributes = [];
+    protected $attributes = array();
 
     /**
      * Constructs a command
      *
-     * @param mixed $sensor Sensor Id or Sensor object
+     * @param mixed $sensor
+     *            Sensor Id or Sensor object
      */
     public function __construct($sensor)
     {
@@ -44,21 +45,23 @@ class UpdateSensor extends CreateSensor
     /**
      * Set name
      *
-     * @param string $name Name
+     * @param string $name
+     *            Name
      *
      * @return self This object
      */
     public function name($name)
     {
         $this->attributes['name'] = (string) $name;
-
+        
         return $this;
     }
 
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      */
     public function send(Client $client)
     {
