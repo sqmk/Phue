@@ -26,15 +26,18 @@ class PingTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getTransport'],
-            ['127.0.0.1']
-        );
+//TODO             ['getTransport'],
+//             ['127.0.0.1']
+            array('getTransport'),
+            array('127.0.0.1')
+        		);
 
         // Mock transport
         $this->mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Stub client getTransport usage
         $this->mockClient->expects($this->any())
@@ -53,7 +56,9 @@ class PingTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with($this->equalTo('/api/none/config'));
-
-        (new Ping)->send($this->mockClient);
+		
+// TODO (new Ping)->send($this->mockClient);
+        $ping = new Ping;
+        $ping->send($this->mockClient);
     }
 }
