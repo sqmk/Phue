@@ -43,7 +43,7 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         $this->mockLight = $this->getMock(
             '\Phue\Light',
             null,
-//             [3, new \stdClass, $this->mockClient]
+// TODO             [3, new \stdClass, $this->mockClient]
         	array(3, new \stdClass, $this->mockClient)
         );
 
@@ -246,8 +246,8 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
     public function testInvalidXYValue($x, $y)
     {
 // TODO        (new SetLightState($this->mockLight))->xy($x, $y);
-		$x = new SetLightState($this->mockLight);
-    	$x->xy($x, $y);
+		$_x = new SetLightState($this->mockLight);
+    	$_x->xy($x, $y);
     }
 
     /**
