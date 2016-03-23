@@ -12,8 +12,8 @@
     "license": "BSD-3-Clause",
     "authors": [
         {
-            "name":  "André Feld",
-            "email": "andre.feld@anrath.net",
+            "name":  "Michael Squires",
+            "email": "sqmk@php.net",
             "role":  "lead"
         }
     ],
