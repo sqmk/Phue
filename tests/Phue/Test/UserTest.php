@@ -25,20 +25,27 @@ class UserTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['sendCommand'],
-            ['127.0.0.1']
-        );
+// TODO             ['sendCommand'],
+//             ['127.0.0.1']
+            array('sendCommand'),
+            array('127.0.0.1')
+        		);
 
         // Stub username
         $this->username = 'phpunittest';
 
         // Build stub attributes
-        $this->attributes = (object) [
-            'name'          => 'Phue',
-            'create date'   => '1984-12-30T03:04:05',
-            'last use date' => '1984-12-30T06:07:08',
-        ];
-
+//TODO         $this->attributes = (object) [
+//             'name'          => 'Phue',
+//             'create date'   => '1984-12-30T03:04:05',
+//             'last use date' => '1984-12-30T06:07:08',
+//         ];
+        $this->attributes = (object) array(
+        		'name'          => 'Phue',
+        		'create date'   => '1984-12-30T03:04:05',
+        		'last use date' => '1984-12-30T06:07:08',
+        );
+        
         // Create user object
         $this->user = new User($this->username, $this->attributes, $this->mockClient);
     }

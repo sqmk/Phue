@@ -27,17 +27,24 @@ class SceneTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['sendCommand'],
-            ['127.0.0.1']
-        );
+// TODO             ['sendCommand'],
+//             ['127.0.0.1']
+            array('sendCommand'),
+            array('127.0.0.1')
+        		);
 
         // Build stub attributes
-        $this->attributes = (object) [
-            'name'   => 'Dummy scene',
-            'lights' => [2, 3, 5],
-            'active' => true,
-        ];
-
+// TODO         $this->attributes = (object) [
+//             'name'   => 'Dummy scene',
+//             'lights' => [2, 3, 5],
+//             'active' => true,
+//         ];
+        $this->attributes = (object) array(
+        		'name'   => 'Dummy scene',
+        		'lights' => array(2, 3, 5),
+        		'active' => true,
+        );
+        
         // Create scene object
         $this->scene = new Scene('custom-id', $this->attributes, $this->mockClient);
     }

@@ -28,24 +28,38 @@ class ScheduleTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['sendCommand'],
-            ['127.0.0.1']
-        );
+// TODO             ['sendCommand'],
+//             ['127.0.0.1']
+            array('sendCommand'),
+            array('127.0.0.1')
+        		);
 
         // Build stub attributes
-        $this->attributes = (object) [
-            'name'        => 'Dummy schedule',
-            'description' => 'Dummy description',
-            'time'        => '12-30-2012T01:02:03',
-            'command'     => (object) [
-                'method'  => 'POST',
-                'address' => 'api/something',
-                'body'    => 'body!'
-            ],
-            'status'      => Schedule::STATUS_ENABLED,
-            'autodelete'  => false,
-        ];
-
+// TODO         $this->attributes = (object) [
+//             'name'        => 'Dummy schedule',
+//             'description' => 'Dummy description',
+//             'time'        => '12-30-2012T01:02:03',
+//             'command'     => (object) [
+//                 'method'  => 'POST',
+//                 'address' => 'api/something',
+//                 'body'    => 'body!'
+//             ],
+//             'status'      => Schedule::STATUS_ENABLED,
+//             'autodelete'  => false,
+//         ];
+        $this->attributes = (object) array(
+        		'name'        => 'Dummy schedule',
+        		'description' => 'Dummy description',
+        		'time'        => '12-30-2012T01:02:03',
+        		'command'     => (object) array(
+        				'method'  => 'POST',
+        				'address' => 'api/something',
+        				'body'    => 'body!'
+        		),
+        		'status'      => Schedule::STATUS_ENABLED,
+        		'autodelete'  => false,
+        );
+        
         // Create schedule object
         $this->schedule = new Schedule(6, $this->attributes, $this->mockClient);
     }
@@ -217,15 +231,21 @@ class ScheduleTest extends \PHPUnit_Framework_TestCase
         // Mock actionable command
         $mockCommand = $this->getMock(
             '\Phue\Command\ActionableInterface',
-            ['getActionableParams']
+// TODO            ['getActionableParams']
+            array('getActionableParams')
+        		);
+
+// TODO         $actionableParams = [
+//             'address' => '/api/endpoint',
+//             'method'  => 'POST',
+//             'body'    => 'Dummy'
+//         ];
+        $actionableParams = array(
+        		'address' => '/api/endpoint',
+        		'method'  => 'POST',
+        		'body'    => 'Dummy'
         );
-
-        $actionableParams = [
-            'address' => '/api/endpoint',
-            'method'  => 'POST',
-            'body'    => 'Dummy'
-        ];
-
+        
         // Stub command's getActionableParams method
         $mockCommand->expects($this->any())
             ->method('getActionableParams')
