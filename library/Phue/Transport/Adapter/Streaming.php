@@ -48,10 +48,14 @@ class Streaming implements AdapterInterface
     public function send($address, $method, $body = null)
     {
         // Init stream options
-        $streamOptions = [
-            'ignore_errors' => true,
-            'method'        => $method
-        ];
+// TODO    $streamOptions = [
+//             'ignore_errors' => true,
+//             'method'        => $method
+//         ];
+		$streamOptions = array(
+				'ignore_errors' => true,
+				'method'		=> $method
+		);
 
         // Set body if there is one
         if (strlen($body)) {
@@ -59,7 +63,8 @@ class Streaming implements AdapterInterface
         }
 
         $this->streamContext = stream_context_create(
-            ['http' => $streamOptions]
+// TODO        ['http' => $streamOptions]
+        		array('http' => $streamOptions)
         );
 
         // Make request
@@ -109,9 +114,11 @@ class Streaming implements AdapterInterface
         if (!$this->fileStream) {
             return;
         }
-
+        
+		$meta_data = stream_get_meta_data($this->fileStream);
         return implode(
-            stream_get_meta_data($this->fileStream)['wrapper_data'],
+// TODO        stream_get_meta_data($this->fileStream)['wrapper_data'],
+			$meta_data['wrapper_data'],
             "\r\n"
         );
     }

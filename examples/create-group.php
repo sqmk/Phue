@@ -11,13 +11,19 @@ $client = new \Phue\Client($hueHost, $hueUsername);
 
 echo 'Creating test group', "\n";
 
+$lights = $client->getLights();
+
 $groupId = $client->sendCommand(
     new \Phue\Command\CreateGroup(
         'Test Group',
-        [
-            $client->getLights()[4],
-            $client->getLights()[5],
-        ]
+// TODO    [
+//             $client->getLights()[4],
+//             $client->getLights()[5],
+//         ]
+		array(
+				$lights[4],
+				$lights[5],
+		)
     )
 );
 

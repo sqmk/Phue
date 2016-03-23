@@ -11,17 +11,10 @@ $client = new \Phue\Client($hueHost, $hueUsername);
 
 echo 'Scheduling group 1 state.', "\n";
 
-$client->sendCommand(
-    (new \Phue\Command\CreateSchedule)
-        ->name('Group 1 dimmer')
-        ->description('Dims the lights for group 1')
-        ->time('+10 seconds')
-        ->command(
-            (new \Phue\Command\SetGroupState(1))
-                ->brightness(255)
-        )
-        ->status(\Phue\Schedule::STATUS_ENABLED)
-        ->autodelete(true)
-);
+$x = new \Phue\Command\CreateSchedule;
+$y = new \Phue\Command\SetGroupState(1);
+$z = $x->name('Group 1 dimmer')->description('Dims the lights for group 1')->time('+10 seconds')
+        ->command($y->brightness(255))->status(\Phue\Schedule::STATUS_ENABLED)->autodelete(true);
+$client->sendCommand($z);
 
 echo 'Done.', "\n";

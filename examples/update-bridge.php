@@ -18,12 +18,19 @@ if ($softwareUpdate->isBridgeUpdatable()) {
         'Release notes URL: ', $softwareUpdate->getReleaseNotesUrl(), "\n",
         'Release notes brief: ', $softwareUpdate->getReleaseNotesBrief(), "\n";
 
-    $updateState = [
+// TODO    $updateState = [
+//     		\Phue\SoftwareUpdate::STATE_NO_UPDATE        => 'No updates.',
+//     		\Phue\SoftwareUpdate::STATE_DOWNLOADING      => 'Downloading updates.',
+//     		\Phue\SoftwareUpdate::STATE_READY_TO_INSTALL => 'Ready to install.',
+//     		\Phue\SoftwareUpdate::STATE_INSTALLING       => 'Installing.',
+//     ];
+    
+    $updateState = array(
         \Phue\SoftwareUpdate::STATE_NO_UPDATE        => 'No updates.',
         \Phue\SoftwareUpdate::STATE_DOWNLOADING      => 'Downloading updates.',
         \Phue\SoftwareUpdate::STATE_READY_TO_INSTALL => 'Ready to install.',
         \Phue\SoftwareUpdate::STATE_INSTALLING       => 'Installing.',
-    ];
+    );
 
     echo 'Update state: ', $updateState[$softwareUpdate->getUpdateState()], "\n";
 

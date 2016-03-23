@@ -11,24 +11,34 @@ $client = new \Phue\Client($hueHost, $hueUsername);
 
 echo 'Scheduling lights to dim, then become bright, 3 times, 1 second periods.', "\n";
 
-$client->sendCommand(
-    new \Phue\Command\CreateSchedule(
-        'Dim all lights',
-        (new \Phue\TimePattern\Timer(1))
-            ->repeat(3),
-        (new \Phue\Command\SetGroupState(0))
-            ->brightness(1)
-    )
-);
+// TODO $client->sendCommand(
+//     new \Phue\Command\CreateSchedule(
+//         'Dim all lights',
+//         (new \Phue\TimePattern\Timer(1))
+//             ->repeat(3),
+//         (new \Phue\Command\SetGroupState(0))
+//             ->brightness(1)
+//     )
+// );
 
-$client->sendCommand(
-    new \Phue\Command\CreateSchedule(
-        'Brighten all lights',
-        (new \Phue\TimePattern\Timer(1))
-            ->repeat(3),
-        (new \Phue\Command\SetGroupState(0))
-            ->brightness(255)
-    )
-);
+$x1 = new \Phue\TimePattern\Timer(1);
+$y1 = new \Phue\Command\SetGroupState(0);
+$z1 = new \Phue\Command\CreateSchedule('Dim all lights', $x1->repeat(3), $y1->brightness(1));
+$client->sendCommand($z1);
+
+// TODO $client->sendCommand(
+//     new \Phue\Command\CreateSchedule(
+//         'Brighten all lights',
+//         (new \Phue\TimePattern\Timer(1))
+//             ->repeat(3),
+//         (new \Phue\Command\SetGroupState(0))
+//             ->brightness(255)
+//     )
+// );
+
+$x2 = new \Phue\TimePattern\Timer(1);
+$y2 = new \Phue\Command\SetGroupState(0);
+$z2 = new \Phue\Command\CreateSchedule('Brighten all lights', $x2->repeat(3), $y2->brightness(255));
+$client->sendCommand($z2);
 
 echo 'Done.', "\n";
