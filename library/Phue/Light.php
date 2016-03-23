@@ -363,7 +363,7 @@ class Light
 //         );
 		$_x = new SetLightState($this);
 		$_y = $_x->xy((float) $x, (float) $y);
-        $this->client->sendCommand($y);
+        $this->client->sendCommand($_y);
         
         // Change both internal xy and colormode state
 //TODO        $this->attributes->state->xy        = [$x, $y];

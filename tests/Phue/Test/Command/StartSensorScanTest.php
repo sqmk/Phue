@@ -29,7 +29,7 @@ class StartSensorScanTest extends \PHPUnit_Framework_TestCase
 // TODO             ['getTransport'],
 //             ['127.0.0.1']
        		array('getTransport'),
-            ('127.0.0.1')
+            array('127.0.0.1')
         );
 
         // Mock transport

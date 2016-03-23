@@ -64,8 +64,8 @@ class RecurringTime extends AbstractTimePattern
 //             ->setTime($hour, $minute, $second)
 //             ->setTimeZone(new DateTimeZone('UTC'))
 //             ->format('H:i:s');
-        $this->timeOfDay = (new DateTime);
-        $this->timeOfDay->setTime($hour, $minute, $second)
+        $timeOfDay = new DateTime;
+        $this->timeOfDay = $timeOfDay->setTime($hour, $minute, $second)
         ->setTimeZone(new DateTimeZone('UTC'))
         ->format('H:i:s');
     }
