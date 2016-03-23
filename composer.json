@@ -1,5 +1,5 @@
 {
-    "name": "jonofe/phue",
+    "name": "sqmk/phue",
     "description": "Phue - Philips Hue PHP client",
     "type": "library",
     "keywords": [
