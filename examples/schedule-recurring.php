@@ -15,7 +15,7 @@ $timePattern = new \Phue\TimePattern\RecurringTime(
     \Phue\TimePattern\RecurringTime::THURSDAY | \Phue\TimePattern\RecurringTime::SATURDAY,
     7,
     50
-),
+);
 
 $client->sendCommand(
     new \Phue\Command\CreateSchedule(
