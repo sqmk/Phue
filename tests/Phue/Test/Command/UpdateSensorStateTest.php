@@ -54,18 +54,26 @@ class UpdateSensorStateTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $mockClient = Mockery::mock(
             '\Phue\Client',
-            [
+// TODO            [
+//                 'getUsername' => 'abcdefabcdef01234567890123456789'
+//             ]
+            array(
                 'getUsername' => 'abcdefabcdef01234567890123456789'
-            ]
-        )
+            )
+        		)
             ->makePartial();
 
         // Mock client commands
         $mockClient
             ->shouldReceive('getTransport->sendRequest');
 
-        $command = (new UpdateSensorState('5'))
-            ->stateAttribute('key', 'value')
+        
+//         $command = (new UpdateSensorState('5'))
+//             ->stateAttribute('key', 'value')
+//             ->send($mockClient);
+		$sensor = new UpdateSensorState('5');
+        $command = $sensor
+        	->stateAttribute('key', 'value')
             ->send($mockClient);
     }
 }

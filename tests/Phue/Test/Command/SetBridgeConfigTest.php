@@ -26,15 +26,18 @@ class SetBridgeConfigTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getTransport'],
-            ['127.0.0.1']
-        );
+// TODO             ['getTransport'],
+//             ['127.0.0.1']
+            array('getTransport'),
+            array('127.0.0.1')
+        		);
 
         // Mock transport
         $this->mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
@@ -66,6 +69,8 @@ class SetBridgeConfigTest extends \PHPUnit_Framework_TestCase
                 $this->isInstanceOf('\stdClass')
             );
 
-        (new SetBridgeConfig(['name' => 'test']))->send($this->mockClient);
+// TODO        (new SetBridgeConfig(['name' => 'test']))->send($this->mockClient);
+		$bridgeconfig =new SetBridgeConfig(array('name' => 'test')); 
+        $bridgeconfig->send($this->mockClient);
     }
 }

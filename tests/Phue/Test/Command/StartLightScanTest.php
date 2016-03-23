@@ -26,15 +26,18 @@ class StartLightScanTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getTransport'],
-            ['127.0.0.1']
-        );
+//TODO             ['getTransport'],
+//             ['127.0.0.1']
+            array('getTransport'),
+            array('127.0.0.1')
+        		);
 
         // Mock transport
         $this->mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
@@ -63,9 +66,14 @@ class StartLightScanTest extends \PHPUnit_Framework_TestCase
             )
             ->will($this->returnValue('success!'));
 
+//         $this->assertEquals(
+//             'success!',
+//             (new StartLightScan)->send($this->mockClient)
+//         );
+		$lightscan = new StartLightScan; 
         $this->assertEquals(
             'success!',
-            (new StartLightScan)->send($this->mockClient)
+            $lightscan->send($this->mockClient)
         );
     }
 }

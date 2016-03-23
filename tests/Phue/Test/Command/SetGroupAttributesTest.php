@@ -26,21 +26,25 @@ class SetGroupAttributesTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getTransport'],
-            ['127.0.0.1']
+// TODO             ['getTransport'],
+//             ['127.0.0.1']
+            array('getTransport'),
+            array('127.0.0.1')
         );
 
         // Mock transport
         $this->mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+  		);
 
         // Mock group
         $this->mockGroup = $this->getMock(
             '\Phue\Group',
             null,
-            [2, new \stdClass, $this->mockClient]
+// TODO            [2, new \stdClass, $this->mockClient]
+            array(2, new \stdClass, $this->mockClient)
         );
 
         // Stub client's getUsername method
@@ -69,15 +73,20 @@ class SetGroupAttributesTest extends \PHPUnit_Framework_TestCase
 
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-            (object) [
+// TODO             (object) [
+//                 'name'   => 'Dummy!',
+//                 'lights' => [3]
+//             ]
+            (object) array(
                 'name'   => 'Dummy!',
-                'lights' => [3]
-            ]
-        );
+                'lights' => array(3)
+            )
+       	);
 
         // Change name and lights
         $setGroupAttributesCmd->name('Dummy!')
-            ->lights([3])
+// TODO            ->lights([3])
+            ->lights(array(3))
             ->send($this->mockClient);
     }
 

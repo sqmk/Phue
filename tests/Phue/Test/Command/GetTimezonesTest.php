@@ -28,15 +28,18 @@ class GetTimezonesTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getUsername', 'getTransport'],
-            ['127.0.0.1']
-        );
+// TODO             ['getUsername', 'getTransport'],
+//             ['127.0.0.1']
+            array('getUsername', 'getTransport'),
+            array('127.0.0.1')
+   		);
 
         // Mock transport
         $this->mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest', 'sendRequestBypassBodyValidation']
-        );
+// TODO            ['sendRequest', 'sendRequestBypassBodyValidation']
+            array('sendRequest', 'sendRequestBypassBodyValidation')
+        		);
 
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
@@ -57,10 +60,13 @@ class GetTimezonesTest extends \PHPUnit_Framework_TestCase
     public function testGetTimezones()
     {
         // Mock transport results
-        $mockTransportResults = [
-            'UTC'
-        ];
-
+// TODO         $mockTransportResults = [
+//             'UTC'
+//         ];
+        $mockTransportResults = array(
+        		'UTC'
+        );
+        
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
             ->method('sendRequestBypassBodyValidation')

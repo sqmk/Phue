@@ -28,15 +28,18 @@ class GetUsersTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getUsername', 'getTransport'],
-            ['127.0.0.1']
-        );
+// TODO             ['getUsername', 'getTransport'],
+//             ['127.0.0.1']
+            array('getUsername', 'getTransport'),
+            array('127.0.0.1')
+   		);
 
         // Mock transport
         $this->mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
@@ -78,13 +81,19 @@ class GetUsersTest extends \PHPUnit_Framework_TestCase
     public function testFoundUsers()
     {
         // Mock transport results
-        $mockTransportResults = (object) [
-            'whitelist' => [
-                'someusername'    => new \stdClass,
-                'anotherusername' => new \stdClass,
-            ]
-        ];
-
+// TODO         $mockTransportResults = (object) [
+//             'whitelist' => [
+//                 'someusername'    => new \stdClass,
+//                 'anotherusername' => new \stdClass,
+//             ]
+//         ];
+        $mockTransportResults = (object) array(
+        		'whitelist' => array(
+        				'someusername'    => new \stdClass,
+        				'anotherusername' => new \stdClass,
+        		)
+        );
+        
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')

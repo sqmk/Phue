@@ -26,15 +26,18 @@ class GetScheduleByIdTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getTransport'],
-            ['127.0.0.1']
-        );
+// TODO             ['getTransport'],
+//             ['127.0.0.1']
+            array('getTransport'),
+            array('127.0.0.1')
+        		);
 
         // Mock transport
         $this->mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
@@ -62,8 +65,10 @@ class GetScheduleByIdTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(new \stdClass));
 
         // Get schedule
-        $schedule = (new GetScheduleById(9))->send($this->mockClient);
-
+// TODO        $schedule = (new GetScheduleById(9))->send($this->mockClient);
+		$sched = new GetScheduleById(9);
+        $schedule = $sched->send($this->mockClient);
+        
         // Ensure type is correct
         $this->assertInstanceOf(
             '\Phue\Schedule',

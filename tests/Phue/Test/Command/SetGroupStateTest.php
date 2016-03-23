@@ -26,21 +26,25 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getTransport'],
-            ['127.0.0.1']
-        );
+// TODO             ['getTransport'],
+//             ['127.0.0.1']
+            array('getTransport'),
+            array('127.0.0.1')
+        		);
 
         // Mock transport
         $this->mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
+// TODO            ['sendRequest']
+            array('sendRequest')
         );
 
         // Mock group
         $this->mockGroup = $this->getMock(
             '\Phue\Group',
             null,
-            [2, new \stdClass, $this->mockClient]
+// TODO            [2, new \stdClass, $this->mockClient]
+            array(2, new \stdClass, $this->mockClient)
         );
 
         // Stub client's getUsername method
@@ -69,10 +73,13 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
 
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-            (object) [
+// TODO             (object) [
+//                 'scene' => $scene
+//             ]
+            (object) array(
                 'scene' => $scene
-            ]
-        );
+            )
+       	);
 
         // Ensure instance is returned
         $this->assertEquals(
@@ -97,9 +104,12 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
 
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-            (object) [
+// TODO             (object) [
+//                 'ct' => '300'
+//             ]
+            (object) array(
                 'ct' => '300'
-            ]
+            )
         );
 
         // Change color temp and set state
@@ -122,13 +132,20 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
 
         // Ensure schedulable params are expected
         $this->assertEquals(
-            [
+// TODO             [
+//                 'address' => "/groups/{$this->mockGroup->getId()}/action",
+//                 'method'  => 'PUT',
+//                 'body'    => (object) [
+//                     'alert' => 'select'
+//                 ]
+//             ],
+            array(
                 'address' => "/groups/{$this->mockGroup->getId()}/action",
                 'method'  => 'PUT',
-                'body'    => (object) [
+                'body'    => (object) array(
                     'alert' => 'select'
-                ]
-            ],
+                )
+            ),
             $setGroupStateCmd->getActionableParams($this->mockClient)
         );
     }

@@ -26,15 +26,18 @@ class StartSensorScanTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getTransport'],
-            ['127.0.0.1']
+// TODO             ['getTransport'],
+//             ['127.0.0.1']
+       		array('getTransport'),
+            ('127.0.0.1')
         );
 
         // Mock transport
         $this->mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
@@ -63,9 +66,14 @@ class StartSensorScanTest extends \PHPUnit_Framework_TestCase
             )
             ->will($this->returnValue('success!'));
 
+// TODO         $this->assertEquals(
+//             'success!',
+//             (new StartSensorScan)->send($this->mockClient)
+//         );
+		$sensor = new StartSensorScan; 
         $this->assertEquals(
             'success!',
-            (new StartSensorScan)->send($this->mockClient)
+            $sensor->send($this->mockClient)
         );
     }
 }
