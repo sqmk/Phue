@@ -1,5 +1,5 @@
 {
-    "name": "sqmk/phue",
+    "name": "jonofe/phue",
     "description": "Phue - Philips Hue PHP client",
     "type": "library",
     "keywords": [
@@ -8,7 +8,7 @@
         "hue",
         "client"
     ],
-    "homepage": "http://github.com/sqmk/Phue",
+    "homepage": "http://github.com/jonofe/Phue",
     "license": "BSD-3-Clause",
     "authors": [
         {
