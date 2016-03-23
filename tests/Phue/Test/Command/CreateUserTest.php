@@ -25,8 +25,6 @@ class CreateUserTest extends \PHPUnit_Framework_TestCase
     {
         // Mock client
         $this->mockClient = $this->getMock('\Phue\Client', 
-            // TODO ['getUsername', 'getTransport'],
-            // ['127.0.0.1']
             array(
                 'getUsername',
                 'getTransport'
@@ -36,7 +34,6 @@ class CreateUserTest extends \PHPUnit_Framework_TestCase
         
         // Mock transport
         $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
@@ -95,7 +92,6 @@ class CreateUserTest extends \PHPUnit_Framework_TestCase
         
         $x = new CreateUser('phpunit');
         $this->assertEquals('success!', 
-            // TODO (new CreateUser('phpunit'))->send($this->mockClient)
             $x->send($this->mockClient));
     }
 }

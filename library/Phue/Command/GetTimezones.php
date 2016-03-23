@@ -30,7 +30,6 @@ class GetTimezones implements CommandInterface
         $response = $client->getTransport()->sendRequestBypassBodyValidation(
             "/api/{$client->getUsername()}/info/timezones");
         
-        // TODO $timezones = [];
         $timezones = array();
         foreach ($response as $timezone) {
             $timezones[] = $timezone;

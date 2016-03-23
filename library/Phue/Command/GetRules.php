@@ -31,7 +31,6 @@ class GetRules implements CommandInterface
         $results = $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/rules");
         
-        // TODO $rules = [];
         $rules = array();
         
         foreach ($results as $ruleId => $attributes) {

@@ -28,7 +28,6 @@ class GetNewSensors implements CommandInterface
      *
      * @var array
      */
-    // TODO protected $sensors = [];
     protected $sensors = array();
 
     /**

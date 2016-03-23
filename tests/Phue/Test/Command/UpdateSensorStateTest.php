@@ -50,9 +50,6 @@ class UpdateSensorStateTest extends \PHPUnit_Framework_TestCase
     {
         // Mock client
         $mockClient = Mockery::mock('\Phue\Client', 
-            // TODO [
-            // 'getUsername' => 'abcdefabcdef01234567890123456789'
-            // ]
             array(
                 'getUsername' => 'abcdefabcdef01234567890123456789'
             ))->makePartial();

@@ -26,8 +26,6 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
     {
         // Mock client
         $this->mockClient = $this->getMock('\Phue\Client', 
-            // TODO ['sendCommand'],
-            // ['127.0.0.1']
             array(
                 'sendCommand'
             ), array(
@@ -35,21 +33,6 @@ class SoftwareUpdateTest extends \PHPUnit_Framework_TestCase
             ));
         
         // Build stub attributes
-        // TODO $this->attributes = (object) [
-        // 'updatestate' => 2,
-        // 'checkforupdate' => false,
-        // 'devicetypes' => (object) [
-        // 'bridge' => true,
-        // 'lights' => [
-        // '1',
-        // '2',
-        // '3',
-        // ]
-        // ],
-        // 'url' => '',
-        // 'text' => '010000000',
-        // 'notify' => false,
-        // ];
         $this->attributes = (object) array(
             'updatestate' => 2,
             'checkforupdate' => false,

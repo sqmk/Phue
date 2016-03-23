@@ -31,7 +31,6 @@ class GetLights implements CommandInterface
         $response = $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/lights");
         
-        // TODO $lights = [];
         $lights = array();
         
         foreach ($response as $lightId => $attributes) {

@@ -31,7 +31,6 @@ class GetGroups implements CommandInterface
         $results = $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/groups");
         
-        // TODO $groups = [];
         $groups = array();
         
         foreach ($results as $groupId => $attributes) {

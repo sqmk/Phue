@@ -14,15 +14,6 @@ $timePattern = new \Phue\TimePattern\RecurringTime(
     \Phue\TimePattern\RecurringTime::THURSDAY |
          \Phue\TimePattern\RecurringTime::SATURDAY, 7, 50);
 
-// TODO $client->sendCommand(
-// new \Phue\Command\CreateSchedule(
-// 'Dim all lights',
-// $timePattern,
-// (new \Phue\Command\SetGroupState(0))
-// ->brightness(1)
-// )
-// );
-
 $x = new \Phue\Command\SetGroupState(0);
 $y = new \Phue\Command\CreateSchedule('Dim all lights', $timePattern, 
     $x->brightness(1));

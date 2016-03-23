@@ -10,20 +10,6 @@ $client = new \Phue\Client($hueHost, $hueUsername);
 
 echo 'Creating test sensor', "\n";
 
-// TODO $sensorId = $client->sendCommand(
-// (new \Phue\Command\CreateSensor('Test sensor'))
-// ->modelId('TestSensor')
-// ->softwareVersion(1)
-// ->type('CLIPGenericFlag')
-// ->uniqueId('123.456.789')
-// ->manufacturerName('PhueClient')
-// ->stateAttribute('flag', true)
-// ->configAttribute('on', true)
-// ->configAttribute('reachable', true)
-// ->configAttribute('battery', 100)
-// ->configAttribute('url', 'http://example.org')
-// );
-
 $x = new \Phue\Command\CreateSensor('Test sensor');
 $y = $x->modelId('TestSensor')
     ->softwareVersion(1)

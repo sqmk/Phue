@@ -183,8 +183,6 @@ class Condition
      */
     public function import(\stdClass $condition)
     {
-        // TODO $this->setSensorId(explode('/', $condition->address)[2]);
-        // $this->setAttribute(explode('/', $condition->address)[4]);
         $x = explode('/', $condition->address);
         $this->setSensorId($x[2]);
         $y = explode('/', $condition->address);
@@ -202,10 +200,6 @@ class Condition
      */
     public function export()
     {
-        // TODO $result = [
-        // 'address' => "/sensors/{$this->getSensorId()}/state/{$this->getAttribute()}",
-        // 'operator' => $this->getOperator(),
-        // ];
         $result = array(
             'address' => "/sensors/{$this->getSensorId()}/state/{$this->getAttribute()}",
             'operator' => $this->getOperator()

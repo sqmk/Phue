@@ -29,7 +29,6 @@ class CreateGroup implements CommandInterface
      *
      * @var array List of light Ids
      */
-    // TODO protected $lights = [];
     protected $lights = array();
 
     /**
@@ -40,7 +39,6 @@ class CreateGroup implements CommandInterface
      * @param array $lights
      *            List of light Ids or Light objects
      */
-    // TODO public function __construct($name, array $lights = [])
     public function __construct($name, array $lights = array())
     {
         $this->name($name);
@@ -70,10 +68,8 @@ class CreateGroup implements CommandInterface
      *            
      * @return self This object
      */
-    // TODO public function lights(array $lights = [])
     public function lights(array $lights = array())
     {
-        // TODO $this->lights = [];
         $this->lights = array();
         
         // Iterate through each light and append id to group list
@@ -100,13 +96,8 @@ class CreateGroup implements CommandInterface
                 'name' => $this->name,
                 'lights' => $this->lights
             ))
-        // TODO (object) [
-        // 'name' => $this->name,
-        // 'lights' => $this->lights
-        // ]
         ;
         
-        // TODO return explode('/', $response->id)[2];
         $r = explode('/', $response->id);
         return $r[2];
     }

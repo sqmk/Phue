@@ -29,7 +29,6 @@ class CreateScene implements CommandInterface
      *
      * @var array List of light Ids
      */
-    // TODO protected $lights = [];
     protected $lights = array();
 
     /**
@@ -49,7 +48,6 @@ class CreateScene implements CommandInterface
      * @param array $lights
      *            List of light Ids or Light objects
      */
-    // TODO public function __construct($id, $name, array $lights = [])
     public function __construct($id, $name, array $lights = array())
     {
         $this->id($id);
@@ -95,10 +93,8 @@ class CreateScene implements CommandInterface
      *            
      * @return self This object
      */
-    // TODO public function lights(array $lights = [])
     public function lights(array $lights = array())
     {
-        // TODO $this->lights = [];
         $this->lights = array();
         // Iterate through each light and append id to scene list
         foreach ($lights as $light) {
@@ -139,10 +135,6 @@ class CreateScene implements CommandInterface
      */
     public function send(Client $client)
     {
-        // TODO $body = (object) [
-        // 'name' => $this->name,
-        // 'lights' => $this->lights
-        // ];
         $body = (object) array(
             'name' => $this->name,
             'lights' => $this->lights

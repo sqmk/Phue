@@ -41,8 +41,6 @@ class RandomizedTime extends AbstractTimePattern
      */
     public function __construct($time, $randomWithinSeconds = null)
     {
-        // TODO $this->date = (new DateTime((string) $time))
-        // ->setTimeZone(new DateTimeZone('UTC'));
         $this->date = (new DateTime((string) $time));
         $this->date->setTimeZone(new DateTimeZone('UTC'));
         

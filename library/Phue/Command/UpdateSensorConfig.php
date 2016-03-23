@@ -29,7 +29,6 @@ class UpdateSensorConfig extends CreateSensor
      *
      * @var array
      */
-    // TODO protected $config = [];
     protected $config = array();
 
     /**

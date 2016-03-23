@@ -14,10 +14,6 @@ $lights = $client->getLights();
 
 $groupId = $client->sendCommand(
     new \Phue\Command\CreateGroup('Test Group', 
-        // TODO [
-        // $client->getLights()[4],
-        // $client->getLights()[5],
-        // ]
         array(
             $lights[4],
             $lights[5]

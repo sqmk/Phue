@@ -39,7 +39,6 @@ class Http implements TransportInterface
      *
      * @var array
      */
-    // TODO public static $exceptionMap = [
     public static $exceptionMap = array(
         0 => 'Phue\Transport\Exception\BridgeException',
         1 => 'Phue\Transport\Exception\UnauthorizedUserException',
@@ -75,7 +74,6 @@ class Http implements TransportInterface
         705 => 'Phue\Transport\Exception\ScheduleTimeInPastException',
         901 => 'Phue\Transport\Exception\InternalErrorException'
     );
-    // TODO ]
     /**
      * Construct Http transport
      *

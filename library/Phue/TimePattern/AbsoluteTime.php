@@ -32,8 +32,6 @@ class AbsoluteTime extends AbstractTimePattern
      */
     public function __construct($time)
     {
-        // TODO $this->date = (new DateTime((string) $time))
-        // ->setTimeZone(new DateTimeZone('UTC'));
         $this->date = (new DateTime((string) $time));
         $this->date->setTimeZone(new DateTimeZone('UTC'));
     }

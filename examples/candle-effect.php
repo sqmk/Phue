@@ -17,12 +17,6 @@ while (true) {
     $transitionTime = rand(0, 3) / 10;
     
     // Send command
-    // TODO $client->sendCommand(
-    // (new \Phue\Command\SetLightState(4))
-    // ->brightness($brightness)
-    // ->colorTemp($colorTemp)
-    // ->transitionTime($transitionTime)
-    // );
     
     $x = new \Phue\Command\SetLightState(4);
     $y = $x->brightness($brightness)

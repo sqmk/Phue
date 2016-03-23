@@ -22,7 +22,6 @@ class CreateSensor implements CommandInterface
      *
      * @var array
      */
-    // TODO protected $attributes = [];
     protected $attributes = array();
 
     /**
@@ -30,7 +29,6 @@ class CreateSensor implements CommandInterface
      *
      * @var array
      */
-    // TODO protected $state = [];
     protected $state = array();
 
     /**
@@ -38,7 +36,6 @@ class CreateSensor implements CommandInterface
      *
      * @var array
      */
-    // TODO protected $config = [];
     protected $config = array();
 
     /**
@@ -189,10 +186,6 @@ class CreateSensor implements CommandInterface
         $response = $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/sensors", TransportInterface::METHOD_POST, 
             (object) array_merge($this->attributes, 
-                // TODO [
-                // 'state' => $this->state,
-                // 'config' => $this->config,
-                // ]
                 array(
                     'state' => $this->state,
                     'config' => $this->config

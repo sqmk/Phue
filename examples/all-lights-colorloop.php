@@ -10,10 +10,6 @@ $client = new \Phue\Client($hueHost, $hueUsername);
 
 echo 'Setting all lights to colorloop effect.', "\n";
 
-// TODO $client->sendCommand(
-// (new \Phue\Command\SetGroupState(0))
-// ->effect('colorloop')
-// )
 
 $x = new \Phue\Command\SetGroupState(0);
 $y = $x->effect('colorloop');

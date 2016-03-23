@@ -31,7 +31,6 @@ class GetSensors implements CommandInterface
         $results = $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/sensors");
         
-        // TODO $sensors = [];
         $sensors = array();
         
         foreach ($results as $sensorId => $attributes) {

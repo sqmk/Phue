@@ -31,7 +31,6 @@ class GetSchedules implements CommandInterface
         $response = $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/schedules");
         
-        // TODO $schedules = [];
         $schedules = array();
         
         foreach ($response as $scheduleId => $attributes) {

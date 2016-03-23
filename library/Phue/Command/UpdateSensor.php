@@ -29,7 +29,6 @@ class UpdateSensor extends CreateSensor
      *
      * @var array
      */
-    // TODO protected $attributes = [];
     protected $attributes = array();
 
     /**

@@ -33,25 +33,6 @@ class LightTest extends \PHPUnit_Framework_TestCase
             ));
         
         // Build stub attributes
-        // TODO $this->attributes = (object) [
-        // 'name' => 'Hue light',
-        // 'type' => 'Dummy type',
-        // 'modelid' => 'LCT001',
-        // 'uniqueid' => '00:17:88:01:00:bd:d6:54-0d',
-        // 'swversion' => '12345',
-        // 'state' => (object) [
-        // 'on' => false,
-        // 'bri' => '66',
-        // 'hue' => '60123',
-        // 'sat' => 213,
-        // 'xy' => [.5, .4],
-        // 'ct' => 300,
-        // 'alert' => 'none',
-        // 'effect' => 'none',
-        // 'colormode' => 'hs',
-        // 'reachable' => true,
-        // ],
-        // ];
         $this->attributes = (object) array(
             'name' => 'Hue light',
             'type' => 'Dummy type',
@@ -268,10 +249,6 @@ class LightTest extends \PHPUnit_Framework_TestCase
         
         // Make sure original xy is retrievable
         $this->assertEquals(
-            // TODO [
-            // 'x' => $this->attributes->state->xy[0],
-            // 'y' => $this->attributes->state->xy[1]
-            // ],
             array(
                 'x' => $this->attributes->state->xy[0],
                 'y' => $this->attributes->state->xy[1]
@@ -282,7 +259,6 @@ class LightTest extends \PHPUnit_Framework_TestCase
         
         // Make sure light attributes are updated
         $this->assertEquals(
-            // TODO ['x' => 0.1, 'y' => 0.2],
             array(
                 'x' => 0.1,
                 'y' => 0.2

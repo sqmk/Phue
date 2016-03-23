@@ -27,8 +27,6 @@ class GetUsersTest extends \PHPUnit_Framework_TestCase
         
         // Mock client
         $this->mockClient = $this->getMock('\Phue\Client', 
-            // TODO ['getUsername', 'getTransport'],
-            // ['127.0.0.1']
             array(
                 'getUsername',
                 'getTransport'
@@ -38,7 +36,6 @@ class GetUsersTest extends \PHPUnit_Framework_TestCase
         
         // Mock transport
         $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
@@ -83,12 +80,6 @@ class GetUsersTest extends \PHPUnit_Framework_TestCase
     public function testFoundUsers()
     {
         // Mock transport results
-        // TODO $mockTransportResults = (object) [
-        // 'whitelist' => [
-        // 'someusername' => new \stdClass,
-        // 'anotherusername' => new \stdClass,
-        // ]
-        // ];
         $mockTransportResults = (object) array(
             'whitelist' => array(
                 'someusername' => new \stdClass(),

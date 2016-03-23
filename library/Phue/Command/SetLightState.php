@@ -104,7 +104,6 @@ class SetLightState implements CommandInterface, ActionableInterface
      *
      * @var array
      */
-    // TODO protected $params = [];
     protected $params = array();
 
     /**
@@ -114,11 +113,6 @@ class SetLightState implements CommandInterface, ActionableInterface
      */
     public static function getAlertModes()
     {
-        // TODO return [
-        // self::ALERT_NONE,
-        // self::ALERT_SELECT,
-        // self::ALERT_LONG_SELECT,
-        // ];
         return array(
             self::ALERT_NONE,
             self::ALERT_SELECT,
@@ -133,10 +127,6 @@ class SetLightState implements CommandInterface, ActionableInterface
      */
     public static function getEffectModes()
     {
-        // TODO return [
-        // self::EFFECT_NONE,
-        // self::EFFECT_COLORLOOP,
-        // ];
         return array(
             self::EFFECT_NONE,
             self::EFFECT_COLORLOOP
@@ -255,7 +245,6 @@ class SetLightState implements CommandInterface, ActionableInterface
     public function xy($x, $y)
     {
         // Don't continue if x or y values are invalid
-        // TODO foreach ([$x, $y] as $value) {
         foreach (array(
             $x,
             $y
@@ -267,7 +256,6 @@ class SetLightState implements CommandInterface, ActionableInterface
             }
         }
         
-        // TODO $this->params['xy'] = [(float) $x, (float) $y];
         $this->params['xy'] = array(
             (float) $x,
             (float) $y
@@ -394,11 +382,6 @@ class SetLightState implements CommandInterface, ActionableInterface
      */
     public function getActionableParams(Client $client)
     {
-        // TODO return [
-        // 'address' => "/lights/{$this->lightId}/state",
-        // 'method' => TransportInterface::METHOD_PUT,
-        // 'body' => (object) $this->params
-        // ];
         return array(
             'address' => "/lights/{$this->lightId}/state",
             'method' => TransportInterface::METHOD_PUT,

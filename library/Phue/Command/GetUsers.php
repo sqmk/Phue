@@ -36,7 +36,6 @@ class GetUsers implements CommandInterface
             return array();
         }
         
-        // TODO $users = [];
         $users = array();
         
         foreach ($response->whitelist as $username => $attributes) {

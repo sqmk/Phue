@@ -66,7 +66,6 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                // TODO ['name' => (string) $name]
                 array(
                     'name' => (string) $name
                 )));
@@ -100,7 +99,6 @@ class Bridge
             new SetBridgeConfig(array(
                 'zigbeechannel' => (int) $channel
             ))
-            // TODO ['zigbeechannel' => (int) $channel]
             );
         
         $this->attributes->zigbeechannel = (int) $channel;
@@ -140,7 +138,6 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                // TODO ['dhcp' => (bool) $state]
                 array(
                     'dhcp' => (bool) $state
                 )));
@@ -172,7 +169,6 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                // TODO ['ipaddress' => (string) $ipAddress]
                 array(
                     'ipaddress' => (string) $ipAddress
                 )));
@@ -204,7 +200,6 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                // TODO ['netmask' => (string) $netmask]
                 array(
                     'netmask' => (string) $netmask
                 )));
@@ -236,7 +231,6 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                // TODO ['gateway' => (string) $gateway]
                 array(
                     'gateway' => (string) $gateway
                 )));
@@ -269,7 +263,6 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                // TODO ['proxyaddress' => (string) $proxyAddress]
                 array(
                     'proxyaddress' => (string) $proxyAddress
                 )));
@@ -353,7 +346,6 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                // TODO ['timezone' => (string) $timezone]
                 array(
                     'timezone' => (string) $timezone
                 )));
@@ -415,7 +407,6 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                // TODO ['linkbutton' => (bool) $state]
                 array(
                     'linkbutton' => (bool) $state
                 )));

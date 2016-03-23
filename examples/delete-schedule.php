@@ -11,7 +11,6 @@ $client = new \Phue\Client($hueHost, $hueUsername);
 echo 'Deleting schedule 1:', "\n";
 
 $schedules = $client->getSchedules();
-// TODO $client->getSchedules()[1]->delete();
 $schedules[1]->delete();
 
 echo 'Done.', "\n";

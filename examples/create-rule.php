@@ -13,27 +13,6 @@ echo 'Creating test rule', "\n";
 $sensors = $client->getSensors();
 $sensor = $sensors[2];
 
-// TODO $ruleId = $client->sendCommand(
-// (new \Phue\Command\CreateRule('Button 1 press'))
-// ->addCondition(
-// (new \Phue\Condition)
-// ->setSensorId($sensor)
-// ->setAttribute('buttonevent')
-// ->equals()
-// ->setValue(\Phue\SensorModel\ZgpswitchModel::BUTTON_2)
-// )
-// ->addCondition(
-// (new \Phue\Condition)
-// ->setSensorId($sensor)
-// ->setAttribute('lastupdated')
-// ->changed()
-// )
-// ->addAction(
-// (new \Phue\Command\SetGroupState(0))
-// ->brightness(2)
-// )
-// );
-
 $rule = new \Phue\Command\CreateRule('Button 1 press');
 $cond1 = new \Phue\Condition();
 $cond2 = new \Phue\Condition();

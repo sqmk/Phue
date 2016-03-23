@@ -124,12 +124,6 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function testSendRequestErrorResponse()
     {
         // Mock response
-        // TODO $mockResponse = [
-        // 'error' => [
-        // 'type' => 1,
-        // 'description' => 'Some kind of error'
-        // ]
-        // ];
         $mockResponse = array(
             'error' => array(
                 'type' => 1,
@@ -184,9 +178,6 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function testSendRequestSuccess()
     {
         // Mock response
-        // TODO $mockResponse = [
-        // 'success' => '123'
-        // ];
         $mockResponse = array(
             'success' => '123'
         );
@@ -222,9 +213,6 @@ class HttpTest extends \PHPUnit_Framework_TestCase
      */
     public function providerErrorTypes()
     {
-        // TODO $errorTypes = [
-        // [-1, 'Phue\Transport\Exception\BridgeException']
-        // ];
         $errorTypes = array(
             array(
                 - 1,
@@ -233,7 +221,6 @@ class HttpTest extends \PHPUnit_Framework_TestCase
         );
         
         foreach (Http::$exceptionMap as $errorId => $errorClass) {
-            // TODO $errorTypes[] = [$errorId, $errorClass];
             $errorTypes[] = array(
                 $errorId,
                 $errorClass

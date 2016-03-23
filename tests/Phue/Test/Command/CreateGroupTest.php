@@ -25,8 +25,6 @@ class CreateGroupTest extends \PHPUnit_Framework_TestCase
     {
         // Mock client
         $this->mockClient = $this->getMock('\Phue\Client', 
-            // TODO ['getUsername', 'getTransport'],
-            // ['127.0.0.1']
             array(
                 'getUsername',
                 'getTransport'
@@ -36,7 +34,6 @@ class CreateGroupTest extends \PHPUnit_Framework_TestCase
         
         // Mock transport
         $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
@@ -77,7 +74,6 @@ class CreateGroupTest extends \PHPUnit_Framework_TestCase
      */
     public function testLights()
     {
-        // TODO $command = new CreateGroup('Dummy!', [1, 2]);
         $command = new CreateGroup('Dummy!', array(
             1,
             2
@@ -85,14 +81,12 @@ class CreateGroupTest extends \PHPUnit_Framework_TestCase
         
         // Ensure property is set properly
         $this->assertAttributeEquals(
-            // TODO [1, 2],
             array(
                 1,
                 2
             ), 'lights', $command);
         
         // Ensure self object is returned
-        // TODO $this->assertEquals($command, $command->lights([1]));
         $this->assertEquals($command, $command->lights(array(
             1
         )));
@@ -106,7 +100,6 @@ class CreateGroupTest extends \PHPUnit_Framework_TestCase
      */
     public function testSend()
     {
-        // TODO $command = new CreateGroup('Dummy', [2, 3]);
         $command = new CreateGroup('Dummy', array(
             2,
             3
@@ -118,10 +111,6 @@ class CreateGroupTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo("/api/{$this->mockClient->getUsername()}/groups"), 
             $this->equalTo(TransportInterface::METHOD_POST), 
             $this->equalTo(
-                // TODO (object) [
-                // 'name' => 'Dummy',
-                // TODO 'lights' => [2, 3]
-                // ]
                 (object) array(
                     'name' => 'Dummy',
                     'lights' => array(

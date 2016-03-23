@@ -10,10 +10,6 @@ $client = new \Phue\Client($hueHost, $hueUsername);
 
 echo 'Setting all lights to a scene.', "\n";
 
-// TODO $client->sendCommand(
-// (new \Phue\Command\SetGroupState(0))
-// ->scene('phue-test')
-// );
 
 $x = new \Phue\Command\SetGroupState(0);
 $y = $x->scene('phue-test');

@@ -106,11 +106,6 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
     public function testExport()
     {
         $this->assertEquals(
-            // TODO (object) [
-            // 'address' => '/sensors/2/state/buttonevent',
-            // 'operator' => 'eq',
-            // 'value' => '16'
-            // ],
             (object) array(
                 'address' => '/sensors/2/state/buttonevent',
                 'operator' => 'eq',

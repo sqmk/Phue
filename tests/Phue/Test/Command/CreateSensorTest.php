@@ -134,16 +134,12 @@ class CreateSensorTest extends \PHPUnit_Framework_TestCase
     {
         // Mock client
         $mockClient = Mockery::mock('\Phue\Client', 
-            // TODO [
-            // 'getUsername' => 'abcdefabcdef01234567890123456789'
-            // ]
             array(
                 'getUsername' => 'abcdefabcdef01234567890123456789'
             ))->makePartial();
         
         // Mock client commands
         $mockClient->shouldReceive('getTransport->sendRequest')->
-        // TODO ->andReturn((object) ['id' => '5']);
         andReturn((object) array(
             'id' => '5'
         ));

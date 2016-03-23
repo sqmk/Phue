@@ -50,9 +50,6 @@ class UpdateSensorConfigTest extends \PHPUnit_Framework_TestCase
     {
         // Mock client
         $mockClient = Mockery::mock('\Phue\Client', 
-            // TODO [
-            // 'getUsername' => 'abcdefabcdef01234567890123456789'
-            // ]
             array(
                 'getUsername' => 'abcdefabcdef01234567890123456789'
             ))->makePartial();
@@ -60,9 +57,6 @@ class UpdateSensorConfigTest extends \PHPUnit_Framework_TestCase
         // Mock client commands
         $mockClient->shouldReceive('getTransport->sendRequest');
         
-        // TODO $command = (new UpdateSensorConfig('5'))
-        // ->configAttribute('key', 'value')
-        // ->send($mockClient);
         $sensor = new UpdateSensorConfig('5');
         $command = $sensor->configAttribute('key', 'value')->send($mockClient);
     }

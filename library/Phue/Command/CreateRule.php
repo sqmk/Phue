@@ -30,7 +30,6 @@ class CreateRule implements CommandInterface
      *
      * @var array
      */
-    // TODO protected $conditions = [];
     protected $conditions = array();
 
     /**
@@ -38,7 +37,6 @@ class CreateRule implements CommandInterface
      *
      * @var array
      */
-    // TODO protected $actions = [];
     protected $actions = array();
 
     /**
@@ -109,21 +107,6 @@ class CreateRule implements CommandInterface
     {
         $response = $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/rules", TransportInterface::METHOD_POST, 
-            // TODO (object) [
-            // 'name' => $this->name,
-            // 'conditions' => array_map(
-            // function ($condition) {
-            // return $condition->export();
-            // },
-            // $this->conditions
-            // ),
-            // 'actions' => array_map(
-            // function ($action) use ($client) {
-            // return $action->getActionableParams($client);
-            // },
-            // $this->actions
-            // ),
-            // ]
             (object) array(
                 'name' => $this->name,
                 'conditions' => array_map(

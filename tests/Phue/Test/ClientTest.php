@@ -63,7 +63,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         // Mock transport
         $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO: ['sendRequest']
             array(
                 'sendRequest'
             ));
@@ -89,19 +88,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         // Mock transport
         $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
         
         // Mock results for sendRequest
-        // TODO $mockResults = (object) [
-        // 'whitelist' => [
-        // 'someusername' => new \stdClass,
-        // 'anotherusername' => new \stdClass,
-        // 'thirdusername' => new \stdClass,
-        // ]
-        // ];
         $mockResults = (object) array(
             'whitelist' => array(
                 'someusername' => new \stdClass(),
@@ -137,7 +128,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         // Mock transport
         $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
@@ -179,7 +169,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         // Mock transport
         $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
@@ -221,17 +210,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         // Mock transport
         $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
         
         // Mock results for sendRequest
-        // TODO $mockResults = (object) [
-        // '1' => new \stdClass,
-        // '2' => new \stdClass,
-        // '3' => new \stdClass,
-        // ];
         $mockResults = (object) array(
             '1' => new \stdClass(),
             '2' => new \stdClass(),
@@ -265,7 +248,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         // Mock transport
         $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
@@ -309,16 +291,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         // Mock transport
         $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
         
         // Mock results for sendRequest
-        // TODO $mockResults = (object) [
-        // '1' => new \stdClass,
-        // '2' => new \stdClass,
-        // ];
         $mockResults = (object) array(
             '1' => new \stdClass(),
             '2' => new \stdClass()
@@ -351,16 +328,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         // Mock transport
         $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
         
         // Mock results for sendRequest
-        // TODO $mockResults = (object) [
-        // '1' => new \stdClass,
-        // '2' => new \stdClass,
-        // ];
         $mockResults = (object) array(
             '1' => new \stdClass(),
             '2' => new \stdClass()
@@ -393,14 +365,12 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         // Mock transport
         $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest', 'sendRequestBypassBodyValidation']
             array(
                 'sendRequest',
                 'sendRequestBypassBodyValidation'
             ));
         
         // Mock results for sendRequestBypassBodyValidation
-        // TODO $mockResults = [];
         $mockResults = array();
         
         // Stub transports sendRequestBypassBodyValidation method
@@ -455,7 +425,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         // Mock command
         $mockCommand = $this->getMock('Phue\Command\CommandInterface', 
-            // TODO ['send']
             array(
                 'send'
             ));

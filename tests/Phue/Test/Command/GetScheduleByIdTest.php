@@ -25,8 +25,6 @@ class GetScheduleByIdTest extends \PHPUnit_Framework_TestCase
     {
         // Mock client
         $this->mockClient = $this->getMock('\Phue\Client', 
-            // TODO ['getTransport'],
-            // ['127.0.0.1']
             array(
                 'getTransport'
             ), array(
@@ -35,7 +33,6 @@ class GetScheduleByIdTest extends \PHPUnit_Framework_TestCase
         
         // Mock transport
         $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
@@ -66,7 +63,6 @@ class GetScheduleByIdTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(new \stdClass()));
         
         // Get schedule
-        // TODO $schedule = (new GetScheduleById(9))->send($this->mockClient);
         $sched = new GetScheduleById(9);
         $schedule = $sched->send($this->mockClient);
         

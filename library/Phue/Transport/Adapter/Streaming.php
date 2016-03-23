@@ -51,10 +51,6 @@ class Streaming implements AdapterInterface
     public function send($address, $method, $body = null)
     {
         // Init stream options
-        // TODO $streamOptions = [
-        // 'ignore_errors' => true,
-        // 'method' => $method
-        // ];
         $streamOptions = array(
             'ignore_errors' => true,
             'method' => $method
@@ -66,7 +62,6 @@ class Streaming implements AdapterInterface
         }
         
         $this->streamContext = stream_context_create(
-            // TODO ['http' => $streamOptions]
             array(
                 'http' => $streamOptions
             ));
@@ -115,7 +110,6 @@ class Streaming implements AdapterInterface
         
         $meta_data = stream_get_meta_data($this->fileStream);
         return implode(
-            // TODO stream_get_meta_data($this->fileStream)['wrapper_data'],
             $meta_data['wrapper_data'], "\r\n");
     }
 

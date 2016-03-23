@@ -24,8 +24,6 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     {
         // Mock client
         $this->mockClient = $this->getMock('\Phue\Client', 
-            // TODO ['sendCommand'],
-            // ['127.0.0.1']
             array(
                 'sendCommand'
             ), array(

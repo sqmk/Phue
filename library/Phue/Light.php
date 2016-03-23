@@ -162,9 +162,6 @@ class Light
      */
     public function setOn($flag = true)
     {
-        // TODO $this->client->sendCommand(
-        // (new SetLightState($this))->on((bool) $flag)
-        // );
         $x = new SetLightState($this);
         $y = $x->on((bool) $flag);
         $this->client->sendCommand($y);
@@ -194,9 +191,6 @@ class Light
      */
     public function setAlert($mode = SetLightState::ALERT_LONG_SELECT)
     {
-        // TODO $this->client->sendCommand(
-        // (new SetLightState($this))->alert($mode)
-        // );
         $x = new SetLightState($this);
         $y = $x->alert($mode);
         $this->client->sendCommand($y);
@@ -226,9 +220,6 @@ class Light
      */
     public function setEffect($mode = SetLightState::EFFECT_NONE)
     {
-        // TODO $this->client->sendCommand(
-        // (new SetLightState($this))->effect($mode)
-        // );
         $x = new SetLightState($this);
         $y = $x->effect($mode);
         $this->client->sendCommand($y);
@@ -258,9 +249,6 @@ class Light
      */
     public function setBrightness($level = SetLightState::BRIGHTNESS_MAX)
     {
-        // TODO $this->client->sendCommand(
-        // (new SetLightState($this))->brightness((int) $level)
-        // );
         $x = new SetLightState($this);
         $y = $x->brightness((int) $level);
         $this->client->sendCommand($y);
@@ -290,9 +278,6 @@ class Light
      */
     public function setHue($value)
     {
-        // TODO $this->client->sendCommand(
-        // (new SetLightState($this))->hue((int) $value)
-        // );
         $x = new SetLightState($this);
         $y = $x->hue((int) $value);
         $this->client->sendCommand($y);
@@ -324,9 +309,6 @@ class Light
      */
     public function setSaturation($value)
     {
-        // TODO $this->client->sendCommand(
-        // (new SetLightState($this))->saturation((int) $value)
-        // );
         $x = new SetLightState($this);
         $y = $x->saturation((int) $value);
         $this->client->sendCommand($y);
@@ -345,10 +327,6 @@ class Light
      */
     public function getXY()
     {
-        // TODO return [
-        // 'x' => $this->attributes->state->xy[0],
-        // 'y' => $this->attributes->state->xy[1],
-        // ];
         return array(
             'x' => $this->attributes->state->xy[0],
             'y' => $this->attributes->state->xy[1]
@@ -367,15 +345,11 @@ class Light
      */
     public function setXY($x, $y)
     {
-        // TODO $this->client->sendCommand(
-        // (new SetLightState($this))->xy((float) $x, (float) $y)
-        // );
         $_x = new SetLightState($this);
         $_y = $_x->xy((float) $x, (float) $y);
         $this->client->sendCommand($_y);
         
         // Change both internal xy and colormode state
-        // TODO $this->attributes->state->xy = [$x, $y];
         $this->attributes->state->xy = array(
             $x,
             $y
@@ -405,9 +379,6 @@ class Light
      */
     public function setColorTemp($value)
     {
-        // TODO $this->client->sendCommand(
-        // (new SetLightState($this))->colorTemp((int) $value)
-        // );
         $x = new SetLightState($this);
         $y = $x->colorTemp((int) $value);
         $this->client->sendCommand($y);

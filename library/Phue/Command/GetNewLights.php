@@ -28,7 +28,6 @@ class GetNewLights implements CommandInterface
      *
      * @var array
      */
-    // TODO protected $lights = [];
     protected $lights = array();
 
     /**

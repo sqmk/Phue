@@ -15,13 +15,6 @@ echo 'Checking if bridge needs updating.', "\n";
 if ($softwareUpdate->isBridgeUpdatable()) {
     echo 'Update available!', "\n", 'Release notes URL: ', $softwareUpdate->getReleaseNotesUrl(), "\n", 'Release notes brief: ', $softwareUpdate->getReleaseNotesBrief(), "\n";
     
-    // TODO $updateState = [
-    // \Phue\SoftwareUpdate::STATE_NO_UPDATE => 'No updates.',
-    // \Phue\SoftwareUpdate::STATE_DOWNLOADING => 'Downloading updates.',
-    // \Phue\SoftwareUpdate::STATE_READY_TO_INSTALL => 'Ready to install.',
-    // \Phue\SoftwareUpdate::STATE_INSTALLING => 'Installing.',
-    // ];
-    
     $updateState = array(
         \Phue\SoftwareUpdate::STATE_NO_UPDATE => 'No updates.',
         \Phue\SoftwareUpdate::STATE_DOWNLOADING => 'Downloading updates.',

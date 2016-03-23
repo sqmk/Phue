@@ -25,8 +25,6 @@ class GetLightByIdTest extends \PHPUnit_Framework_TestCase
     {
         // Mock client
         $this->mockClient = $this->getMock('\Phue\Client', 
-            // TODO ['getUsername', 'getTransport'],
-            // ['127.0.0.1']
             array(
                 'getUsername',
                 'getTransport'
@@ -36,7 +34,6 @@ class GetLightByIdTest extends \PHPUnit_Framework_TestCase
         
         // Mock transport
         $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
@@ -67,7 +64,6 @@ class GetLightByIdTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(new \stdClass()));
         
         // Get light
-        // TODO $light = (new GetLightById(10))->send($this->mockClient);
         $x = new GetLightById(10);
         $light = $x->send($this->mockClient);
         

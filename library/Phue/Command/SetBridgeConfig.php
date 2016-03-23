@@ -32,7 +32,6 @@ class SetBridgeConfig implements CommandInterface
      *
      * @var array
      */
-    // TODO protected $config = [];
     protected $config = array();
 
     /**

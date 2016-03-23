@@ -25,8 +25,6 @@ class SetScheduleAttributesTest extends \PHPUnit_Framework_TestCase
     {
         // Mock client
         $this->mockClient = $this->getMock('\Phue\Client', 
-            // TODO ['getTransport'],
-            // ['127.0.0.1']
             array(
                 'getTransport'
             ), array(
@@ -35,14 +33,12 @@ class SetScheduleAttributesTest extends \PHPUnit_Framework_TestCase
         
         // Mock transport
         $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
         
         // Mock schedule
         $this->mockSchedule = $this->getMock('\Phue\Schedule', null, 
-            // TODO [12, new \stdClass, $this->mockClient]
             array(
                 12,
                 new \stdClass(),
@@ -61,7 +57,6 @@ class SetScheduleAttributesTest extends \PHPUnit_Framework_TestCase
         
         // Mock actionable command
         $this->mockCommand = $this->getMock('\Phue\Command\ActionableInterface', 
-            // TODO ['getActionableParams']
             array(
                 'getActionableParams'
             ));
@@ -95,17 +90,6 @@ class SetScheduleAttributesTest extends \PHPUnit_Framework_TestCase
         $setScheduleAttributesCmd = new SetScheduleAttributes($this->mockSchedule);
         
         // Set expected payload
-        // TODO $this->stubTransportSendRequestWithPayload(
-        // (object) [
-        // 'name' => 'Dummy!',
-        // 'description' => 'Dummy description',
-        // 'command' => [
-        // 'method' => TransportInterface::METHOD_POST,
-        // 'address' => "/api/{$this->mockClient->getUsername()}/thing/value",
-        // 'body' => "Dummy"
-        // ],
-        // ]
-        // );
         $this->stubTransportSendRequestWithPayload(
             (object) array(
                 'name' => 'Dummy!',

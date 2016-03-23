@@ -25,8 +25,6 @@ class CreateSceneTest extends \PHPUnit_Framework_TestCase
     {
         // Mock client
         $this->mockClient = $this->getMock('\Phue\Client', 
-            // TODO ['getUsername', 'getTransport'],
-            // ['127.0.0.1']
             array(
                 'getUsername',
                 'getTransport'
@@ -36,7 +34,6 @@ class CreateSceneTest extends \PHPUnit_Framework_TestCase
         
         // Mock transport
         $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
@@ -94,7 +91,6 @@ class CreateSceneTest extends \PHPUnit_Framework_TestCase
      */
     public function testLights()
     {
-        // TODO $command = new CreateScene('phue-test', 'Scene test', [1, 2]);
         $command = new CreateScene('phue-test', 'Scene test', array(
             1,
             2
@@ -102,14 +98,12 @@ class CreateSceneTest extends \PHPUnit_Framework_TestCase
         
         // Ensure property is set properly
         $this->assertAttributeEquals(
-            // TODO [1, 2],
             array(
                 1,
                 2
             ), 'lights', $command);
         
         // Ensure self object is returned
-        // TODO $this->assertEquals($command, $command->lights([1]));
         $this->assertEquals($command, $command->lights(array(
             1
         )));
@@ -122,7 +116,6 @@ class CreateSceneTest extends \PHPUnit_Framework_TestCase
      */
     public function testTransitionTime()
     {
-        // TODO $command = new CreateScene('phue-test', 'Scene test', [1, 2]);
         $command = new CreateScene('phue-test', 'Scene test', array(
             1,
             2
@@ -145,7 +138,6 @@ class CreateSceneTest extends \PHPUnit_Framework_TestCase
      */
     public function testExceptionOnInvalidTransitionTime()
     {
-        // TODO $command = new CreateScene('phue-test', 'Scene test', [1, 2]);
         $command = new CreateScene('phue-test', 'Scene test', array(
             1,
             2
@@ -161,7 +153,6 @@ class CreateSceneTest extends \PHPUnit_Framework_TestCase
      */
     public function testSend()
     {
-        // TODO $command = new CreateScene('phue-test', 'Scene test', [2, 3]);
         $command = new CreateScene('phue-test', 'Scene test', array(
             2,
             3
@@ -176,11 +167,6 @@ class CreateSceneTest extends \PHPUnit_Framework_TestCase
                 "/api/{$this->mockClient->getUsername()}/scenes/phue-test"), 
             $this->equalTo(TransportInterface::METHOD_PUT), 
             $this->equalTo(
-                // TODO (object) [
-                // 'name' => 'Scene test',
-                // TODO 'lights' => [2, 3],
-                // 'transitiontime' => 50,
-                // ]
                 (object) array(
                     'name' => 'Scene test',
                     'lights' => array(

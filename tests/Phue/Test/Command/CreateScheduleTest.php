@@ -29,8 +29,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         
         // Mock client
         $this->mockClient = $this->getMock('\Phue\Client', 
-            // TODO ['getUsername', 'getTransport'],
-            // ['127.0.0.1']
             array(
                 'getUsername',
                 'getTransport'
@@ -40,7 +38,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         
         // Mock transport
         $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
@@ -57,7 +54,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         
         // Mock actionable command
         $this->mockCommand = $this->getMock('\Phue\Command\ActionableInterface', 
-            // TODO ['getActionableParams']
             array(
                 'getActionableParams'
             ));
@@ -66,11 +62,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         $this->mockCommand->expects($this->any())
             ->method('getActionableParams')
             ->will(
-            // TODO $this->returnValue([
-            // 'address' => '/thing/value',
-            // 'method' => 'POST',
-            // 'body' => 'Dummy'
-            // ])
             $this->returnValue(
                 array(
                     'address' => '/thing/value',
@@ -86,7 +77,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testName()
     {
-        // TODO $command = (new CreateSchedule())->name('Dummy!');
         $x = new CreateSchedule();
         $command = $x->name('Dummy!');
         
@@ -104,7 +94,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testDescription()
     {
-        // TODO $command = (new CreateSchedule())->description('Description!');
         $x = new CreateSchedule();
         $command = $x->description('Description!');
         
@@ -122,7 +111,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testTime()
     {
-        // TODO $command = (new CreateSchedule())->time('2010-10-20T10:11:12');
         $x = new CreateSchedule();
         $command = $x->time('2010-10-20T10:11:12');
         
@@ -141,7 +129,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testCommand()
     {
-        // TODO $command = (new CreateSchedule())->command($this->mockCommand);
         $x = new CreateSchedule();
         $command = $x->command($this->mockCommand);
         
@@ -159,7 +146,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testStatus()
     {
-        // TODO $command = (new CreateSchedule())->status(Schedule::STATUS_ENABLED);
         $x = new CreateSchedule();
         $command = $x->status(Schedule::STATUS_ENABLED);
         
@@ -178,7 +164,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testAutoDelete()
     {
-        // TODO $command = (new CreateSchedule())->autodelete(true);
         $x = new CreateSchedule();
         $command = $x->autodelete(true);
         // Ensure property is set properly
@@ -207,16 +192,6 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
             $this->equalTo("/api/{$this->mockClient->getUsername()}/schedules"), 
             $this->equalTo(TransportInterface::METHOD_POST), 
             $this->equalTo(
-                // TODO (object) [
-                // 'name' => 'Dummy!',
-                // 'description' => 'Description!',
-                // 'time' => '2012-12-30T10:11:12',
-                // 'command' => [
-                // 'method' => TransportInterface::METHOD_POST,
-                // 'address' => "/api/{$this->mockClient->getUsername()}/thing/value",
-                // 'body' => "Dummy"
-                // ]
-                // ]
                 (object) array(
                     'name' => 'Dummy!',
                     'description' => 'Description!',

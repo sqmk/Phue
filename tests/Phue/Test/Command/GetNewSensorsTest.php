@@ -27,8 +27,6 @@ class GetNewSensorsTest extends \PHPUnit_Framework_TestCase
         
         // Mock client
         $this->mockClient = $this->getMock('\Phue\Client', 
-            // TODO ['getUsername', 'getTransport'],
-            // ['127.0.0.1']
             array(
                 'getUsername',
                 'getTransport'
@@ -38,7 +36,6 @@ class GetNewSensorsTest extends \PHPUnit_Framework_TestCase
         
         // Mock transport
         $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
-            // TODO ['sendRequest']
             array(
                 'sendRequest'
             ));
@@ -54,11 +51,6 @@ class GetNewSensorsTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->mockTransport));
         
         // Mock transport results
-        // TODO $mockTransportResults = (object) [
-        // TODO '1' => (object) ['name' => 'Sensor 1'],
-        // TODO '2' => (object) ['name' => 'Sensor 2'],
-        // 'lastscan' => 'active'
-        // ];
         $mockTransportResults = (object) array(
             '1' => (object) array(
                 'name' => 'Sensor 1'

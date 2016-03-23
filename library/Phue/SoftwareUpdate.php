@@ -83,11 +83,6 @@ class SoftwareUpdate
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                // TODO [
-                // 'swupdate' => [
-                // 'updatestate' => self::STATE_INSTALLING
-                // ]
-                // ]
                 array(
                     'swupdate' => array(
                         'updatestate' => self::STATE_INSTALLING
@@ -121,11 +116,6 @@ class SoftwareUpdate
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                // TODO [
-                // 'swupdate' => [
-                // 'checkforupdate' => true
-                // ]
-                // ]
                 array(
                     'swupdate' => array(
                         'checkforupdate' => true
@@ -196,11 +186,6 @@ class SoftwareUpdate
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                // TODO [
-                // 'swupdate' => [
-                // 'notify' => false
-                // ]
-                // ]
                 array(
                     'swupdate' => array(
                         'notify' => false

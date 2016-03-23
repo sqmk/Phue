@@ -154,7 +154,6 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         
         // Ensure setLights return self
         $this->assertEquals($this->group, 
-            // TODO $this->group->setLights([1, 2, 3, 4])
             $this->group->setLights(array(
                 1,
                 2,
@@ -164,7 +163,6 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         
         // Ensure lights can be retrieved by getLights
         $this->assertEquals(
-            // TODO [1, 2, 3, 4],
             array(
                 1,
                 2,
@@ -281,7 +279,6 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         
         // Make sure group attributes are updated
         $this->assertEquals(
-            // TODO ['x' => 0.1, 'y' => 0.2],
             array(
                 'x' => 0.1,
                 'y' => 0.2

@@ -26,8 +26,6 @@ class SensorTest extends \PHPUnit_Framework_TestCase
     {
         // Mock client
         $this->mockClient = $this->getMock('\Phue\Client', 
-            // TODO ['sendCommand'],
-            // ['127.0.0.1']
             array(
                 'sendCommand'
             ), array(
@@ -35,25 +33,6 @@ class SensorTest extends \PHPUnit_Framework_TestCase
             ));
         
         // Build stub attributes
-        // TODO $this->attributes = (object) [
-        // 'state' => [
-        // 'daylight' => false,
-        // 'lastupdated' => '2014-06-27T07:38:51'
-        // ],
-        // 'config' => [
-        // 'on' => true,
-        // 'long' => 'none',
-        // 'lat' => 'none',
-        // 'sunriseoffset' => 50,
-        // 'sunsetoffset' => 50
-        // ],
-        // 'name' => 'Daylight',
-        // 'type' => 'Daylight',
-        // 'modelid' => 'PHDL00',
-        // 'manufacturername' => 'Philips',
-        // 'swversion' => '1.0',
-        // 'uniqueid' => '00:00:00:00:00:40:03:50-f2',
-        // ];
         $this->attributes = (object) array(
             'state' => array(
                 'daylight' => false,

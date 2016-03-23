@@ -11,7 +11,6 @@ $client = new \Phue\Client($hueHost, $hueUsername);
 echo 'Creating test scene', "\n";
 
 $sceneId = 'phue-test';
-// TODO $lightIds = [4, 5];
 $lightIds = array(
     4,
     5
@@ -25,12 +24,6 @@ echo 'Buffering light states', "\n";
 
 // Iterate through each light and buffer state
 foreach ($lightIds as $lightId) {
-    // TODO $client->sendCommand(
-    // (new \Phue\Command\SetSceneLightState($sceneId, $lightId))
-    // ->brightness(255)
-    // ->hue(50000)
-    // ->transitionTime(0)
-    // );
     $x = new \Phue\Command\SetSceneLightState($sceneId, $lightId);
     $y = $x->brightness(255)
         ->hue(50000)
