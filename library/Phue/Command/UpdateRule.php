@@ -47,7 +47,7 @@ class UpdateRule extends CreateRule
      *
      * @param string $name
      *            Name
-     *            
+     *
      * @return self This object
      */
     public function name($name)
@@ -76,7 +76,9 @@ class UpdateRule extends CreateRule
         }
         
         $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/rules/{$this->ruleId}", 
-            TransportInterface::METHOD_PUT, (object) $attributes);
+            "/api/{$client->getUsername()}/rules/{$this->ruleId}",
+            TransportInterface::METHOD_PUT,
+            (object) $attributes
+        );
     }
 }

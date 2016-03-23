@@ -35,14 +35,15 @@ class GetNewLights implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return self This object
      */
     public function send(Client $client)
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/lights/new");
+            "/api/{$client->getUsername()}/lights/new"
+        );
         
         $this->lastScan = $response->lastscan;
         

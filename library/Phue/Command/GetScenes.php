@@ -22,14 +22,15 @@ class GetScenes implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return Scene[] List of Scene objects
      */
     public function send(Client $client)
     {
         // Get response
         $results = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/scenes");
+            "/api/{$client->getUsername()}/scenes"
+        );
         
         $scenes = array();
         

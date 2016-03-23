@@ -22,14 +22,15 @@ class GetRules implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return Rule[] List of Rule objects
      */
     public function send(Client $client)
     {
         // Get response
         $results = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/rules");
+            "/api/{$client->getUsername()}/rules"
+        );
         
         $rules = array();
         

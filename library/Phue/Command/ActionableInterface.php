@@ -21,7 +21,7 @@ interface ActionableInterface
      *
      * @param Client $client
      *            Phue client
-     *            
+     *
      * @return array Key/value array of request params
      */
     public function getActionableParams(Client $client);

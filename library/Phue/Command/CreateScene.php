@@ -60,7 +60,7 @@ class CreateScene implements CommandInterface
      *
      * @param string $id
      *            Custom scene id
-     *            
+     *
      * @return self This object
      */
     public function id($id)
@@ -75,7 +75,7 @@ class CreateScene implements CommandInterface
      *
      * @param string $name
      *            Name
-     *            
+     *
      * @return self This object
      */
     public function name($name)
@@ -90,7 +90,7 @@ class CreateScene implements CommandInterface
      *
      * @param array $lights
      *            List of light Ids or Light objects
-     *            
+     *
      * @return self This object
      */
     public function lights(array $lights = array())
@@ -109,7 +109,7 @@ class CreateScene implements CommandInterface
      *
      * @param double $seconds
      *            Time in seconds
-     *            
+     *
      * @return self This object
      */
     public function transitionTime($seconds)
@@ -130,7 +130,7 @@ class CreateScene implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return string Scene Id
      */
     public function send(Client $client)
@@ -145,8 +145,10 @@ class CreateScene implements CommandInterface
         }
         
         $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/scenes/{$this->id}", 
-            TransportInterface::METHOD_PUT, $body);
+            "/api/{$client->getUsername()}/scenes/{$this->id}",
+            TransportInterface::METHOD_PUT,
+            $body
+        );
         
         return $this->id;
     }

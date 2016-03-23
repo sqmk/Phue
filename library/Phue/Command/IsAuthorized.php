@@ -22,7 +22,7 @@ class IsAuthorized implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return bool True if authorized, false if not
      */
     public function send(Client $client)

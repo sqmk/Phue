@@ -40,14 +40,15 @@ class GetScheduleById implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return Schedule Schedule object
      */
     public function send(Client $client)
     {
         // Get response
         $attributes = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/schedules/{$this->scheduleId}");
+            "/api/{$client->getUsername()}/schedules/{$this->scheduleId}"
+        );
         
         return new Schedule($this->scheduleId, $attributes, $client);
     }

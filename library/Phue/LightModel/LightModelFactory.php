@@ -19,7 +19,7 @@ class LightModelFactory
      *
      * @param string $modelId
      *            Model id
-     *            
+     *
      * @return AbstractLightModel Light model
      */
     public static function build($modelId)

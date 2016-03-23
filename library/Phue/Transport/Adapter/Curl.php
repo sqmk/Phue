@@ -49,7 +49,7 @@ class Curl implements AdapterInterface
      *            Request method
      * @param string $body
      *            Body data
-     *            
+     *
      * @return string Result
      */
     public function send($address, $method, $body = null)

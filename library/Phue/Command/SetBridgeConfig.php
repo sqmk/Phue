@@ -53,7 +53,10 @@ class SetBridgeConfig implements CommandInterface
      */
     public function send(Client $client)
     {
-        $client->getTransport()->sendRequest("/api/{$client->getUsername()}/config", 
-            TransportInterface::METHOD_PUT, (object) $this->config);
+        $client->getTransport()->sendRequest(
+            "/api/{$client->getUsername()}/config",
+            TransportInterface::METHOD_PUT,
+            (object) $this->config
+        );
     }
 }

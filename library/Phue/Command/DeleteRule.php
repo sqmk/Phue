@@ -44,7 +44,8 @@ class DeleteRule implements CommandInterface
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/rules/{$this->ruleId}", 
-            TransportInterface::METHOD_DELETE);
+            "/api/{$client->getUsername()}/rules/{$this->ruleId}",
+            TransportInterface::METHOD_DELETE
+        );
     }
 }

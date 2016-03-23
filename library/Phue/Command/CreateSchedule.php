@@ -50,9 +50,12 @@ class CreateSchedule implements CommandInterface
      * @param ActionableInterface $command
      *            Actionable command
      */
-    public function __construct($name = null, $time = null, 
-        ActionableInterface $command = null)
-    {
+    public function __construct(
+        $name = null,
+        $time = null,
+        ActionableInterface $command = null
+    ) {
+    
         // Set name, time, command if passed
         $name !== null && $this->name($name);
         $time !== null && $this->time($time);
@@ -67,7 +70,7 @@ class CreateSchedule implements CommandInterface
      *
      * @param string $name
      *            Name
-     *            
+     *
      * @return self This object
      */
     public function name($name)
@@ -82,7 +85,7 @@ class CreateSchedule implements CommandInterface
      *
      * @param string $description
      *            Description
-     *            
+     *
      * @return self This object
      */
     public function description($description)
@@ -97,7 +100,7 @@ class CreateSchedule implements CommandInterface
      *
      * @param string $time
      *            Time
-     *            
+     *
      * @return self This object
      */
     public function time($time)
@@ -116,7 +119,7 @@ class CreateSchedule implements CommandInterface
      *
      * @param ActionableInterface $command
      *            Actionable command
-     *            
+     *
      * @return self This object
      */
     public function command(ActionableInterface $command)
@@ -130,7 +133,7 @@ class CreateSchedule implements CommandInterface
      * Set status
      *
      * @return string $status Status
-     *        
+     *
      * @return self This object
      */
     public function status($status)
@@ -145,7 +148,7 @@ class CreateSchedule implements CommandInterface
      *
      * @param bool $flag
      *            Flag
-     *            
+     *
      * @return self This object
      */
     public function autodelete($flag)
@@ -160,7 +163,7 @@ class CreateSchedule implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return int Schedule Id
      */
     public function send(Client $client)
@@ -180,8 +183,10 @@ class CreateSchedule implements CommandInterface
         
         // Create schedule
         $scheduleId = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/schedules", 
-            TransportInterface::METHOD_POST, (object) $this->attributes);
+            "/api/{$client->getUsername()}/schedules",
+            TransportInterface::METHOD_POST,
+            (object) $this->attributes
+        );
         
         return $scheduleId;
     }

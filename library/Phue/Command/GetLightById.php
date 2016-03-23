@@ -40,14 +40,15 @@ class GetLightById implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return Light Light object
      */
     public function send(Client $client)
     {
         // Get response
         $attributes = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/lights/{$this->lightId}");
+            "/api/{$client->getUsername()}/lights/{$this->lightId}"
+        );
         
         return new Light($this->lightId, $attributes, $client);
     }

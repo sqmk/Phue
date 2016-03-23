@@ -22,14 +22,15 @@ class GetUsers implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return User[] List of User objects
      */
     public function send(Client $client)
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/config");
+            "/api/{$client->getUsername()}/config"
+        );
         
         // Return empty list if no users
         if (! isset($response->whitelist)) {

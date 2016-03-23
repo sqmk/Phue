@@ -59,7 +59,7 @@ class Bridge
      *
      * @param string $name
      *            Name
-     *            
+     *
      * @return self This object
      */
     public function setName($name)
@@ -68,11 +68,13 @@ class Bridge
             new SetBridgeConfig(
                 array(
                     'name' => (string) $name
-                )));
+                )
+            )
+        );
         
-        $this->attributes->name = (string) $name;
+                $this->attributes->name = (string) $name;
         
-        return $this;
+                return $this;
     }
 
     /**
@@ -90,7 +92,7 @@ class Bridge
      *
      * @param int $channel
      *            Channel
-     *            
+     *
      * @return self This object
      */
     public function setZigBeeChannel($channel)
@@ -99,7 +101,7 @@ class Bridge
             new SetBridgeConfig(array(
                 'zigbeechannel' => (int) $channel
             ))
-            );
+        );
         
         $this->attributes->zigbeechannel = (int) $channel;
         
@@ -131,7 +133,7 @@ class Bridge
      *
      * @param bool $state
      *            True to enable, false to disable
-     *            
+     *
      * @return self This object
      */
     public function enableDhcp($state = true)
@@ -140,11 +142,13 @@ class Bridge
             new SetBridgeConfig(
                 array(
                     'dhcp' => (bool) $state
-                )));
+                )
+            )
+        );
         
-        $this->attributes->dhcp = (bool) $state;
+                $this->attributes->dhcp = (bool) $state;
         
-        return $this;
+                return $this;
     }
 
     /**
@@ -162,7 +166,7 @@ class Bridge
      *
      * @param string $ipAddress
      *            IP Address
-     *            
+     *
      * @return self This object
      */
     public function setIpAddress($ipAddress)
@@ -171,11 +175,13 @@ class Bridge
             new SetBridgeConfig(
                 array(
                     'ipaddress' => (string) $ipAddress
-                )));
+                )
+            )
+        );
         
-        $this->attributes->ipaddress = (string) $ipAddress;
+                $this->attributes->ipaddress = (string) $ipAddress;
         
-        return $this;
+                return $this;
     }
 
     /**
@@ -193,7 +199,7 @@ class Bridge
      *
      * @param string $netmask
      *            Netmask
-     *            
+     *
      * @return self This object
      */
     public function setNetmask($netmask)
@@ -202,11 +208,13 @@ class Bridge
             new SetBridgeConfig(
                 array(
                     'netmask' => (string) $netmask
-                )));
+                )
+            )
+        );
         
-        $this->attributes->netmask = (string) $netmask;
+                $this->attributes->netmask = (string) $netmask;
         
-        return $this;
+                return $this;
     }
 
     /**
@@ -224,7 +232,7 @@ class Bridge
      *
      * @param string $gateway
      *            Gateway
-     *            
+     *
      * @return self This object
      */
     public function setGateway($gateway)
@@ -233,11 +241,13 @@ class Bridge
             new SetBridgeConfig(
                 array(
                     'gateway' => (string) $gateway
-                )));
+                )
+            )
+        );
         
-        $this->attributes->gateway = (string) $gateway;
+                $this->attributes->gateway = (string) $gateway;
         
-        return $this;
+                return $this;
     }
 
     /**
@@ -255,21 +265,24 @@ class Bridge
      *
      * @param string $proxyAddress
      *            Proxy address
-     *            
+     *
      * @return self This object
      */
     public function setProxyAddress(
-        $proxyAddress = SetBridgeConfig::DEFAULT_PROXY_ADDRESS)
-    {
+        $proxyAddress = SetBridgeConfig::DEFAULT_PROXY_ADDRESS
+    ) {
+    
         $this->client->sendCommand(
             new SetBridgeConfig(
                 array(
                     'proxyaddress' => (string) $proxyAddress
-                )));
+                )
+            )
+        );
         
-        $this->attributes->proxyaddress = (string) $proxyAddress;
+                $this->attributes->proxyaddress = (string) $proxyAddress;
         
-        return $this;
+                return $this;
     }
 
     /**
@@ -287,7 +300,7 @@ class Bridge
      *
      * @param int $proxyAddress
      *            Proxy port
-     *            
+     *
      * @return self This object
      */
     public function setProxyPort($proxyPort = SetBridgeConfig::DEFAULT_PROXY_PORT)
@@ -297,11 +310,13 @@ class Bridge
                 // ['proxyport' => (int) $proxyPort]
                 array(
                     'proxyport' => (int) $proxyPort
-                )));
+                )
+            )
+        );
         
-        $this->attributes->proxyport = (int) $proxyPort;
+                $this->attributes->proxyport = (int) $proxyPort;
         
-        return $this;
+                return $this;
     }
 
     /**
@@ -339,7 +354,7 @@ class Bridge
      *
      * @param string $timezone
      *            Timezone
-     *            
+     *
      * @return self This object
      */
     public function setTimezone($timezone)
@@ -348,11 +363,13 @@ class Bridge
             new SetBridgeConfig(
                 array(
                     'timezone' => (string) $timezone
-                )));
+                )
+            )
+        );
         
-        $this->attributes->timezone = (string) $timezone;
+                $this->attributes->timezone = (string) $timezone;
         
-        return $this;
+                return $this;
     }
 
     /**
@@ -400,7 +417,7 @@ class Bridge
      *
      * @param bool $state
      *            True for on, false for off
-     *            
+     *
      * @return self This object
      */
     public function setLinkButtonOn($state = true)
@@ -409,11 +426,13 @@ class Bridge
             new SetBridgeConfig(
                 array(
                     'linkbutton' => (bool) $state
-                )));
+                )
+            )
+        );
         
-        $this->attributes->linkbutton = (bool) $state;
+                $this->attributes->linkbutton = (bool) $state;
         
-        return $this;
+                return $this;
     }
 
     /**

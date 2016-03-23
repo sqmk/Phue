@@ -44,7 +44,8 @@ class DeleteGroup implements CommandInterface
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/groups/{$this->groupId}", 
-            TransportInterface::METHOD_DELETE);
+            "/api/{$client->getUsername()}/groups/{$this->groupId}",
+            TransportInterface::METHOD_DELETE
+        );
     }
 }

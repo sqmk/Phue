@@ -50,7 +50,7 @@ class CreateGroup implements CommandInterface
      *
      * @param string $name
      *            Name
-     *            
+     *
      * @return self This object
      */
     public function name($name)
@@ -65,7 +65,7 @@ class CreateGroup implements CommandInterface
      *
      * @param array $lights
      *            List of light Ids or Light objects
-     *            
+     *
      * @return self This object
      */
     public function lights(array $lights = array())
@@ -85,20 +85,22 @@ class CreateGroup implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return int Group Id
      */
     public function send(Client $client)
     {
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/groups", TransportInterface::METHOD_POST, 
+            "/api/{$client->getUsername()}/groups",
+            TransportInterface::METHOD_POST,
             (object) array(
                 'name' => $this->name,
                 'lights' => $this->lights
-            ))
-        ;
+            )
+        )
+            ;
         
-        $r = explode('/', $response->id);
-        return $r[2];
+            $r = explode('/', $response->id);
+            return $r[2];
     }
 }

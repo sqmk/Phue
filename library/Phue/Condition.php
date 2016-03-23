@@ -88,7 +88,7 @@ class Condition
      *
      * @param mixed $sensorId
      *            Sensor Id or Sensor object
-     *            
+     *
      * @return self This object
      */
     public function setSensorId($sensorId)
@@ -113,7 +113,7 @@ class Condition
      *
      * @param string $attribute
      *            Attribute
-     *            
+     *
      * @return self This object
      */
     public function setAttribute($attribute)
@@ -138,7 +138,7 @@ class Condition
      *
      * @param string $operator
      *            Operator
-     *            
+     *
      * @return self This object
      */
     public function setOperator($operator)
@@ -163,7 +163,7 @@ class Condition
      *
      * @param string $value
      *            Value
-     *            
+     *
      * @return self This object
      */
     public function setValue($value)
@@ -178,7 +178,7 @@ class Condition
      *
      * @param \stdClass $condition
      *            Condition values
-     *            
+     *
      * @return self This object
      */
     public function import(\stdClass $condition)

@@ -35,14 +35,15 @@ class GetNewSensors implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return self This object
      */
     public function send(Client $client)
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/sensors/new");
+            "/api/{$client->getUsername()}/sensors/new"
+        );
         
         $this->lastScan = $response->lastscan;
         

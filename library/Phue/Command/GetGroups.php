@@ -22,14 +22,15 @@ class GetGroups implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return Group[] List of Group objects
      */
     public function send(Client $client)
     {
         // Get response
         $results = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/groups");
+            "/api/{$client->getUsername()}/groups"
+        );
         
         $groups = array();
         

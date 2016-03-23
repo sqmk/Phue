@@ -21,14 +21,15 @@ class GetTimezones implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return array List of timezones
      */
     public function send(Client $client)
     {
         // Get response
         $response = $client->getTransport()->sendRequestBypassBodyValidation(
-            "/api/{$client->getUsername()}/info/timezones");
+            "/api/{$client->getUsername()}/info/timezones"
+        );
         
         $timezones = array();
         foreach ($response as $timezone) {

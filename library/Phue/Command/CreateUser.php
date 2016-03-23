@@ -45,7 +45,7 @@ class CreateUser implements CommandInterface
      *
      * @param string $deviceType
      *            Device type
-     *            
+     *
      * @throws \InvalidArgumentException
      *
      * @return self This object
@@ -54,7 +54,8 @@ class CreateUser implements CommandInterface
     {
         if (strlen($deviceType) > 40) {
             throw new \InvalidArgumentException(
-                "Device type must not have a length have more than 40 characters");
+                "Device type must not have a length have more than 40 characters"
+            );
         }
         
         $this->deviceType = (string) $deviceType;
@@ -67,14 +68,17 @@ class CreateUser implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return \stdClass Authentication response
      */
     public function send(Client $client)
     {
         // Get response
-        $response = $client->getTransport()->sendRequest('/api', 
-            TransportInterface::METHOD_POST, $this->buildRequestData($client));
+        $response = $client->getTransport()->sendRequest(
+            '/api',
+            TransportInterface::METHOD_POST,
+            $this->buildRequestData($client)
+        );
         
         return $response;
     }
@@ -84,7 +88,7 @@ class CreateUser implements CommandInterface
      *
      * @param Client $client
      *            Phue client
-     *            
+     *
      * @return \stdClass Request data object
      */
     protected function buildRequestData(Client $client)

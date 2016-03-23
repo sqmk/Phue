@@ -54,7 +54,7 @@ class CreateSensor implements CommandInterface
      *
      * @param string $name
      *            Name
-     *            
+     *
      * @return self This object
      */
     public function name($name)
@@ -69,7 +69,7 @@ class CreateSensor implements CommandInterface
      *
      * @param string $modelId
      *            Model Id
-     *            
+     *
      * @return self This object
      */
     public function modelId($modelId)
@@ -84,7 +84,7 @@ class CreateSensor implements CommandInterface
      *
      * @param string $softwareVersion
      *            Software version
-     *            
+     *
      * @return self This object
      */
     public function softwareVersion($softwareVersion)
@@ -99,7 +99,7 @@ class CreateSensor implements CommandInterface
      *
      * @param string $type
      *            Type of sensor
-     *            
+     *
      * @return self This object
      */
     public function type($type)
@@ -114,7 +114,7 @@ class CreateSensor implements CommandInterface
      *
      * @param string $uniqueId
      *            Unique Id
-     *            
+     *
      * @return self This object
      */
     public function uniqueId($uniqueId)
@@ -129,7 +129,7 @@ class CreateSensor implements CommandInterface
      *
      * @param string $manufacturerName
      *            Manufacturer name
-     *            
+     *
      * @return self This object
      */
     public function manufacturerName($manufacturerName)
@@ -146,7 +146,7 @@ class CreateSensor implements CommandInterface
      *            Key
      * @param mixed $value
      *            Value
-     *            
+     *
      * @return self This object
      */
     public function stateAttribute($key, $value)
@@ -163,7 +163,7 @@ class CreateSensor implements CommandInterface
      *            Key
      * @param mixed $value
      *            Value
-     *            
+     *
      * @return self This object
      */
     public function configAttribute($key, $value)
@@ -178,19 +178,23 @@ class CreateSensor implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return int Sensor Id
      */
     public function send(Client $client)
     {
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/sensors", TransportInterface::METHOD_POST, 
-            (object) array_merge($this->attributes, 
+            "/api/{$client->getUsername()}/sensors",
+            TransportInterface::METHOD_POST,
+            (object) array_merge(
+                $this->attributes,
                 array(
                     'state' => $this->state,
                     'config' => $this->config
-                )));
+                )
+            )
+        );
         
-        return $response->id;
+                return $response->id;
     }
 }

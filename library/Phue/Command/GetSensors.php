@@ -22,14 +22,15 @@ class GetSensors implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return Sensor[] List of Sensor objects
      */
     public function send(Client $client)
     {
         // Get response
         $results = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/sensors");
+            "/api/{$client->getUsername()}/sensors"
+        );
         
         $sensors = array();
         

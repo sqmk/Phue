@@ -49,7 +49,7 @@ class UpdateSensorState extends CreateSensor
      *            Key
      * @param mixed $value
      *            Value
-     *            
+     *
      * @return self This object
      */
     public function stateAttribute($key, $value)
@@ -68,7 +68,9 @@ class UpdateSensorState extends CreateSensor
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/sensors/{$this->sensorId}/state", 
-            TransportInterface::METHOD_PUT, (object) $this->state);
+            "/api/{$client->getUsername()}/sensors/{$this->sensorId}/state",
+            TransportInterface::METHOD_PUT,
+            (object) $this->state
+        );
     }
 }

@@ -87,11 +87,13 @@ class SoftwareUpdate
                     'swupdate' => array(
                         'updatestate' => self::STATE_INSTALLING
                     )
-                )));
+                )
+            )
+        );
         
-        $this->attributes->updatestate = self::STATE_INSTALLING;
+                $this->attributes->updatestate = self::STATE_INSTALLING;
         
-        return $this;
+                return $this;
     }
 
     /**
@@ -109,7 +111,7 @@ class SoftwareUpdate
      *
      * @param bool $state
      *            True to check for update, false if not
-     *            
+     *
      * @return self This object
      */
     public function checkForUpdate()
@@ -120,11 +122,13 @@ class SoftwareUpdate
                     'swupdate' => array(
                         'checkforupdate' => true
                     )
-                )));
+                )
+            )
+        );
         
-        $this->attributes->checkforupdate = true;
+                $this->attributes->checkforupdate = true;
         
-        return $this;
+                return $this;
     }
 
     /**
@@ -190,10 +194,12 @@ class SoftwareUpdate
                     'swupdate' => array(
                         'notify' => false
                     )
-                )));
+                )
+            )
+        );
         
-        $this->attributes->notify = false;
+                $this->attributes->notify = false;
         
-        return $this;
+                return $this;
     }
 }

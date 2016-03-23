@@ -22,14 +22,15 @@ class GetSchedules implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return Schedule[] List of Schedule objects
      */
     public function send(Client $client)
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/schedules");
+            "/api/{$client->getUsername()}/schedules"
+        );
         
         $schedules = array();
         

@@ -22,14 +22,15 @@ class GetLights implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return Light[] List of Light objects
      */
     public function send(Client $client)
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/lights");
+            "/api/{$client->getUsername()}/lights"
+        );
         
         $lights = array();
         

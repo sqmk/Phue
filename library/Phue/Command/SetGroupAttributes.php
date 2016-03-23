@@ -47,7 +47,7 @@ class SetGroupAttributes implements CommandInterface
      *
      * @param string $name
      *            Name
-     *            
+     *
      * @return self This object
      */
     public function name($name)
@@ -62,7 +62,7 @@ class SetGroupAttributes implements CommandInterface
      *
      * @param array $lights
      *            List of light Ids or Light objects
-     *            
+     *
      * @return self This object
      */
     public function lights(array $lights)
@@ -87,7 +87,9 @@ class SetGroupAttributes implements CommandInterface
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/groups/{$this->groupId}", 
-            TransportInterface::METHOD_PUT, (object) $this->attributes);
+            "/api/{$client->getUsername()}/groups/{$this->groupId}",
+            TransportInterface::METHOD_PUT,
+            (object) $this->attributes
+        );
     }
 }

@@ -22,14 +22,15 @@ class GetBridge implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return Bridge Bridge object
      */
     public function send(Client $client)
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/config");
+            "/api/{$client->getUsername()}/config"
+        );
         
         return new Bridge($response, $client);
     }

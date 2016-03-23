@@ -49,7 +49,7 @@ class UpdateSensorConfig extends CreateSensor
      *            Key
      * @param mixed $value
      *            Value
-     *            
+     *
      * @return self This object
      */
     public function configAttribute($key, $value)
@@ -68,7 +68,9 @@ class UpdateSensorConfig extends CreateSensor
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/sensors/{$this->sensorId}/config", 
-            TransportInterface::METHOD_PUT, (object) $this->config);
+            "/api/{$client->getUsername()}/sensors/{$this->sensorId}/config",
+            TransportInterface::METHOD_PUT,
+            (object) $this->config
+        );
     }
 }

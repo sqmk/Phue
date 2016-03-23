@@ -54,7 +54,9 @@ class SetSceneLightState extends SetLightState
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/scenes/{$this->sceneId}/lights/{$this->lightId}/state", 
-            TransportInterface::METHOD_PUT, (object) $this->params);
+            "/api/{$client->getUsername()}/scenes/{$this->sceneId}/lights/{$this->lightId}/state",
+            TransportInterface::METHOD_PUT,
+            (object) $this->params
+        );
     }
 }

@@ -44,7 +44,7 @@ class Timer extends AbstractTimePattern
      *
      * @param int $count
      *            Number of times to repeat
-     *            
+     *
      * @return self This object
      */
     public function repeat($count)

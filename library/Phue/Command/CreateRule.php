@@ -55,7 +55,7 @@ class CreateRule implements CommandInterface
      *
      * @param string $name
      *            Name
-     *            
+     *
      * @return self This object
      */
     public function name($name)
@@ -70,7 +70,7 @@ class CreateRule implements CommandInterface
      *
      * @param Condition $condition
      *            Condition
-     *            
+     *
      * @return self This object
      */
     public function addCondition(Condition $condition)
@@ -85,7 +85,7 @@ class CreateRule implements CommandInterface
      *
      * @param ActionableInterface $action
      *            Actionable command
-     *            
+     *
      * @return self This object
      */
     public function addAction(ActionableInterface $command)
@@ -100,25 +100,31 @@ class CreateRule implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return int Rule Id
      */
     public function send(Client $client)
     {
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/rules", TransportInterface::METHOD_POST, 
+            "/api/{$client->getUsername()}/rules",
+            TransportInterface::METHOD_POST,
             (object) array(
                 'name' => $this->name,
                 'conditions' => array_map(
                     function ($condition) {
                         return $condition->export();
-                    }, $this->conditions),
+                    },
+                    $this->conditions
+                ),
                 'actions' => array_map(
                     function ($action) use ($client) {
                         return $action->getActionableParams($client);
-                    }, $this->actions)
-            ));
+                    },
+                    $this->actions
+                )
+            )
+        );
         
-        return $response->id;
+            return $response->id;
     }
 }

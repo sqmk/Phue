@@ -40,14 +40,15 @@ class GetGroupById implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return Group Group object
      */
     public function send(Client $client)
     {
         // Get response
         $attributes = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/groups/{$this->groupId}");
+            "/api/{$client->getUsername()}/groups/{$this->groupId}"
+        );
         
         return new Group($this->groupId, $attributes, $client);
     }

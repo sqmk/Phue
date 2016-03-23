@@ -22,14 +22,16 @@ class StartSensorScan implements CommandInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return mixed
      */
     public function send(Client $client)
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/sensors", TransportInterface::METHOD_POST);
+            "/api/{$client->getUsername()}/sensors",
+            TransportInterface::METHOD_POST
+        );
         
         return $response;
     }

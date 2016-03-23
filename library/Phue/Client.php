@@ -77,7 +77,7 @@ class Client
      *
      * @param string $host
      *            Host
-     *            
+     *
      * @return self This object
      */
     public function setHost($host)
@@ -102,7 +102,7 @@ class Client
      *
      * @param string $username
      *            Username
-     *            
+     *
      * @return self This object
      */
     public function setUsername($username)
@@ -222,7 +222,7 @@ class Client
      *
      * @param TransportInterface $transport
      *            Transport
-     *            
+     *
      * @return self This object
      */
     public function setTransport(TransportInterface $transport)
@@ -237,7 +237,7 @@ class Client
      *
      * @param CommandInterface $command
      *            Phue command
-     *            
+     *
      * @return mixed Command result
      */
     public function sendCommand(CommandInterface $command)

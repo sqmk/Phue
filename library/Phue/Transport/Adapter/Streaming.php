@@ -45,7 +45,7 @@ class Streaming implements AdapterInterface
      *            Request method
      * @param string $body
      *            Body data
-     *            
+     *
      * @return string Result
      */
     public function send($address, $method, $body = null)
@@ -64,12 +64,13 @@ class Streaming implements AdapterInterface
         $this->streamContext = stream_context_create(
             array(
                 'http' => $streamOptions
-            ));
+            )
+        );
         
         // Make request
-        $this->fileStream = @fopen($address, 'r', false, $this->streamContext);
+            $this->fileStream = @fopen($address, 'r', false, $this->streamContext);
         
-        return $this->fileStream ? stream_get_contents($this->fileStream) : false;
+            return $this->fileStream ? stream_get_contents($this->fileStream) : false;
     }
 
     /**
@@ -110,7 +111,9 @@ class Streaming implements AdapterInterface
         
         $meta_data = stream_get_meta_data($this->fileStream);
         return implode(
-            $meta_data['wrapper_data'], "\r\n");
+            $meta_data['wrapper_data'],
+            "\r\n"
+        );
     }
 
     /**

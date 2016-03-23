@@ -89,7 +89,7 @@ class Schedule
     /**
      * Set name of schedule
      *
-     * @param string $name            
+     * @param string $name
      *
      * @return self This object
      */
@@ -117,7 +117,7 @@ class Schedule
     /**
      * Set description
      *
-     * @param string $description            
+     * @param string $description
      *
      * @return self This object
      */
@@ -147,7 +147,7 @@ class Schedule
      *
      * @param ActionableInterface $command
      *            Actionable command
-     *            
+     *
      * @return self This object
      */
     public function setCommand(ActionableInterface $command)
@@ -176,7 +176,7 @@ class Schedule
      *
      * @param string $status
      *            Status.
-     *            
+     *
      * @return self This object
      */
     public function setStatus($status)
@@ -215,7 +215,7 @@ class Schedule
      *
      * @param string $time
      *            Time
-     *            
+     *
      * @return self This object
      */
     public function setTime($time)
@@ -248,7 +248,7 @@ class Schedule
      *
      * @param bool $flag
      *            True to auto delete, false if not
-     *            
+     *
      * @return self This object
      */
     public function setAutoDelete($flag)

@@ -149,7 +149,7 @@ class SetLightState implements CommandInterface, ActionableInterface
      *
      * @param bool $flag
      *            True if on, false if not
-     *            
+     *
      * @return self This object
      */
     public function on($flag = true)
@@ -164,7 +164,7 @@ class SetLightState implements CommandInterface, ActionableInterface
      *
      * @param int $level
      *            Brightness level
-     *            
+     *
      * @throws \InvalidArgumentException
      *
      * @return self This object
@@ -175,7 +175,8 @@ class SetLightState implements CommandInterface, ActionableInterface
         if (! (self::BRIGHTNESS_MIN <= $level && $level <= self::BRIGHTNESS_MAX)) {
             throw new \InvalidArgumentException(
                 "Brightness must be between " . self::BRIGHTNESS_MIN . " and " .
-                     self::BRIGHTNESS_MAX);
+                self::BRIGHTNESS_MAX
+            );
         }
         
         $this->params['bri'] = (int) $level;
@@ -188,7 +189,7 @@ class SetLightState implements CommandInterface, ActionableInterface
      *
      * @param int $value
      *            Hue value
-     *            
+     *
      * @throws \InvalidArgumentException
      *
      * @return self This object
@@ -198,7 +199,8 @@ class SetLightState implements CommandInterface, ActionableInterface
         // Don't continue if hue value is invalid
         if (! (self::HUE_MIN <= $value && $value <= self::HUE_MAX)) {
             throw new \InvalidArgumentException(
-                "Hue value must be between " . self::HUE_MIN . " and " . self::HUE_MAX);
+                "Hue value must be between " . self::HUE_MIN . " and " . self::HUE_MAX
+            );
         }
         
         $this->params['hue'] = (int) $value;
@@ -211,7 +213,7 @@ class SetLightState implements CommandInterface, ActionableInterface
      *
      * @param int $value
      *            Saturation value
-     *            
+     *
      * @throws \InvalidArgumentException
      *
      * @return self This object
@@ -222,7 +224,8 @@ class SetLightState implements CommandInterface, ActionableInterface
         if (! (self::SATURATION_MIN <= $value && $value <= self::SATURATION_MAX)) {
             throw new \InvalidArgumentException(
                 "Saturation value must be between " . self::SATURATION_MIN . " and " .
-                     self::SATURATION_MAX);
+                self::SATURATION_MAX
+            );
         }
         
         $this->params['sat'] = (int) $value;
@@ -237,7 +240,7 @@ class SetLightState implements CommandInterface, ActionableInterface
      *            X value
      * @param float $y
      *            Y value
-     *            
+     *
      * @throws \InvalidArgumentException
      *
      * @return self This object
@@ -252,7 +255,8 @@ class SetLightState implements CommandInterface, ActionableInterface
             if (! (self::XY_MIN <= $value && $value <= self::XY_MAX)) {
                 throw new \InvalidArgumentException(
                     "x/y value must be between " . self::XY_MIN . " and " .
-                         self::XY_MAX);
+                    self::XY_MAX
+                );
             }
         }
         
@@ -269,7 +273,7 @@ class SetLightState implements CommandInterface, ActionableInterface
      *
      * @param int $value
      *            Color temperature value
-     *            
+     *
      * @throws \InvalidArgumentException
      *
      * @return self This object
@@ -280,7 +284,8 @@ class SetLightState implements CommandInterface, ActionableInterface
         if (! (self::COLOR_TEMP_MIN <= $value && $value <= self::COLOR_TEMP_MAX)) {
             throw new \InvalidArgumentException(
                 "Color temperature value must be between " . self::COLOR_TEMP_MIN .
-                     " and " . self::COLOR_TEMP_MAX);
+                " and " . self::COLOR_TEMP_MAX
+            );
         }
         
         $this->params['ct'] = $value;
@@ -293,7 +298,7 @@ class SetLightState implements CommandInterface, ActionableInterface
      *
      * @param string $mode
      *            Alert mode
-     *            
+     *
      * @throws \InvalidArgumentException
      *
      * @return self This object
@@ -315,7 +320,7 @@ class SetLightState implements CommandInterface, ActionableInterface
      *
      * @param string $mode
      *            Effect mode
-     *            
+     *
      * @throws \InvalidArgumentException
      *
      * @return self This object
@@ -337,7 +342,7 @@ class SetLightState implements CommandInterface, ActionableInterface
      *
      * @param double $seconds
      *            Time in seconds
-     *            
+     *
      * @throws \InvalidArgumentException
      *
      * @return self This object
@@ -368,8 +373,10 @@ class SetLightState implements CommandInterface, ActionableInterface
         
         // Send request
         $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}" . $params['address'], $params['method'], 
-            $params['body']);
+            "/api/{$client->getUsername()}" . $params['address'],
+            $params['method'],
+            $params['body']
+        );
     }
 
     /**
@@ -377,7 +384,7 @@ class SetLightState implements CommandInterface, ActionableInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return array Key/value pairs of params
      */
     public function getActionableParams(Client $client)

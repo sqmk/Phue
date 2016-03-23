@@ -40,7 +40,7 @@ class SetGroupState extends SetLightState implements ActionableInterface
      *
      * @param mixed $scene
      *            Scene id or Scene object
-     *            
+     *
      * @return self This object
      */
     public function scene($scene)
@@ -63,8 +63,10 @@ class SetGroupState extends SetLightState implements ActionableInterface
         
         // Send request
         $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}" . $params['address'], $params['method'], 
-            $params['body']);
+            "/api/{$client->getUsername()}" . $params['address'],
+            $params['method'],
+            $params['body']
+        );
     }
 
     /**
@@ -72,7 +74,7 @@ class SetGroupState extends SetLightState implements ActionableInterface
      *
      * @param Client $client
      *            Phue Client
-     *            
+     *
      * @return array Key/value pairs of params
      */
     public function getActionableParams(Client $client)

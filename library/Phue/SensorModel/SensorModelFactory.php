@@ -19,7 +19,7 @@ class SensorModelFactory
      *
      * @param string $modelId
      *            Model id
-     *            
+     *
      * @return AbstractSensorModel Sensor model
      */
     public static function build($modelId)

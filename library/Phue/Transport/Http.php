@@ -77,7 +77,7 @@ class Http implements TransportInterface
     /**
      * Construct Http transport
      *
-     * @param Client $client            
+     * @param Client $client
      */
     public function __construct(Client $client)
     {
@@ -105,7 +105,7 @@ class Http implements TransportInterface
      *
      * @param AdapterInterface $adapter
      *            Transport adapter
-     *            
+     *
      * @return self This object
      */
     public function setAdapter(AdapterInterface $adapter)
@@ -122,7 +122,7 @@ class Http implements TransportInterface
      *            Error type
      * @param string $description
      *            Description of error
-     *            
+     *
      * @return \Exception Built exception
      */
     public function getExceptionByType($type, $description)
@@ -142,7 +142,7 @@ class Http implements TransportInterface
      *            Request method
      * @param \stdClass $body
      *            Post body
-     *            
+     *
      * @throws ConnectionException
      * @throws \Exception
      *
@@ -159,8 +159,10 @@ class Http implements TransportInterface
         
         // Get error type
         if (isset($jsonResults->error)) {
-            throw $this->getExceptionByType($jsonResults->error->type, 
-                $jsonResults->error->description);
+            throw $this->getExceptionByType(
+                $jsonResults->error->type,
+                $jsonResults->error->description
+            );
         }
         
         // Get success object only if available
@@ -180,15 +182,18 @@ class Http implements TransportInterface
      *            Request method
      * @param \stdClass $body
      *            Post body
-     *            
+     *
      * @throws ConnectionException
      * @throws \Exception
      *
      * @return string Request response
      */
-    public function sendRequestBypassBodyValidation($address, 
-        $method = self::METHOD_GET, \stdClass $body = null)
-    {
+    public function sendRequestBypassBodyValidation(
+        $address,
+        $method = self::METHOD_GET,
+        \stdClass $body = null
+    ) {
+    
         return $this->getJsonResponse($address, $method, $body);
     }
 
@@ -201,7 +206,7 @@ class Http implements TransportInterface
      *            Request method
      * @param \stdClass $body
      *            Post body
-     *            
+     *
      * @return \stdClass Json body
      */
     protected function getJsonResponse($address, $method = self::METHOD_GET, \stdClass $body = null)
@@ -213,8 +218,11 @@ class Http implements TransportInterface
         $this->getAdapter()->open();
         
         // Send and get response
-        $results = $this->getAdapter()->send($url, $method, 
-            $body ? json_encode($body) : null);
+        $results = $this->getAdapter()->send(
+            $url,
+            $method,
+            $body ? json_encode($body) : null
+        );
         $status = $this->getAdapter()->getHttpStatusCode();
         $contentType = $this->getAdapter()->getContentType();
         

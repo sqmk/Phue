@@ -47,7 +47,7 @@ class UpdateSensor extends CreateSensor
      *
      * @param string $name
      *            Name
-     *            
+     *
      * @return self This object
      */
     public function name($name)
@@ -66,7 +66,9 @@ class UpdateSensor extends CreateSensor
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/sensors/{$this->sensorId}", 
-            TransportInterface::METHOD_PUT, (object) $this->attributes);
+            "/api/{$client->getUsername()}/sensors/{$this->sensorId}",
+            TransportInterface::METHOD_PUT,
+            (object) $this->attributes
+        );
     }
 }
