@@ -70,8 +70,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Mock transport
         $mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO:            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
@@ -98,18 +99,26 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Mock transport
         $mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Mock results for sendRequest
-        $mockResults = (object) [
-            'whitelist' => [
-                'someusername'    => new \stdClass,
-                'anotherusername' => new \stdClass,
-                'thirdusername'   => new \stdClass,
-            ]
-        ];
-
+//TODO         $mockResults = (object) [
+//             'whitelist' => [
+//                 'someusername'    => new \stdClass,
+//                 'anotherusername' => new \stdClass,
+//                 'thirdusername'   => new \stdClass,
+//             ]
+//         ];
+        $mockResults = (object) array(
+        		'whitelist' => array(
+        				'someusername'    => new \stdClass,
+        				'anotherusername' => new \stdClass,
+        				'thirdusername'   => new \stdClass,
+        		)
+        );
+        
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
             ->method('sendRequest')
@@ -141,15 +150,20 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Mock transport
         $mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Mock results for sendRequest
-        $mockResults = (object) [
-            '1' => new \stdClass,
-            '2' => new \stdClass,
-        ];
-
+//         $mockResults = (object) [
+//             '1' => new \stdClass,
+//             '2' => new \stdClass,
+//         ];
+        $mockResults = (object) array(
+        		'1' => new \stdClass,
+        		'2' => new \stdClass,
+        );
+        
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
             ->method('sendRequest')
@@ -181,15 +195,20 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Mock transport
         $mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Mock results for sendRequest
-        $mockResults = (object) [
-            '1' => new \stdClass,
-            '2' => new \stdClass,
-        ];
-
+//         $mockResults = (object) [
+//             '1' => new \stdClass,
+//             '2' => new \stdClass,
+//         ];
+        $mockResults = (object) array(
+        		'1' => new \stdClass,
+        		'2' => new \stdClass,
+        );
+        
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
             ->method('sendRequest')
@@ -221,16 +240,22 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Mock transport
         $mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Mock results for sendRequest
-        $mockResults = (object) [
-            '1' => new \stdClass,
-            '2' => new \stdClass,
-            '3' => new \stdClass,
-        ];
-
+//TODO         $mockResults = (object) [
+//             '1' => new \stdClass,
+//             '2' => new \stdClass,
+//             '3' => new \stdClass,
+//         ];
+        $mockResults = (object) array(
+        		'1' => new \stdClass,
+        		'2' => new \stdClass,
+        		'3' => new \stdClass,
+        );
+        
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
             ->method('sendRequest')
@@ -262,16 +287,22 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Mock transport
         $mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Mock results for sendRequest
-        $mockResults = (object) [
-            '1' => new \stdClass,
-            '2' => new \stdClass,
-            '3' => new \stdClass,
-        ];
-
+//         $mockResults = (object) [
+//             '1' => new \stdClass,
+//             '2' => new \stdClass,
+//             '3' => new \stdClass,
+//         ];
+        $mockResults = (object) array(
+        		'1' => new \stdClass,
+        		'2' => new \stdClass,
+        		'3' => new \stdClass,
+        );
+        
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
             ->method('sendRequest')
@@ -303,15 +334,20 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Mock transport
         $mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Mock results for sendRequest
-        $mockResults = (object) [
-            '1' => new \stdClass,
-            '2' => new \stdClass,
-        ];
-
+// TODO         $mockResults = (object) [
+//             '1' => new \stdClass,
+//             '2' => new \stdClass,
+//         ];
+        $mockResults = (object) array(
+        		'1' => new \stdClass,
+        		'2' => new \stdClass,
+        );
+        
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
             ->method('sendRequest')
@@ -343,15 +379,20 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Mock transport
         $mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
-        );
+// TODO            ['sendRequest']
+            array('sendRequest')
+        		);
 
         // Mock results for sendRequest
-        $mockResults = (object) [
-            '1' => new \stdClass,
-            '2' => new \stdClass,
-        ];
-
+// TODO         $mockResults = (object) [
+//             '1' => new \stdClass,
+//             '2' => new \stdClass,
+//         ];
+        $mockResults = (object) array(
+        		'1' => new \stdClass,
+        		'2' => new \stdClass,
+        );
+        
         // Stub transports sendRequest method
         $mockTransport->expects($this->once())
             ->method('sendRequest')
@@ -383,12 +424,14 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Mock transport
         $mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest', 'sendRequestBypassBodyValidation']
-        );
+// TODO            ['sendRequest', 'sendRequestBypassBodyValidation']
+            array('sendRequest', 'sendRequestBypassBodyValidation')
+        		);
 
         // Mock results for sendRequestBypassBodyValidation
-        $mockResults = [];
-
+// TODO        $mockResults = [];
+        $mockResults = array();
+        
         // Stub transports sendRequestBypassBodyValidation method
         $mockTransport->expects($this->once())
             ->method('sendRequestBypassBodyValidation')
@@ -450,8 +493,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         // Mock command
         $mockCommand = $this->getMock(
             'Phue\Command\CommandInterface',
-            ['send']
-        );
+// TODO            ['send']
+            array('send')
+        		);
 
         // Stub command's send method
         $mockCommand->expects($this->once())

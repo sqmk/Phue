@@ -27,18 +27,26 @@ class PortalTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['sendCommand'],
-            ['127.0.0.1']
-        );
+// TODO             ['sendCommand'],
+//             ['127.0.0.1']
+            array('sendCommand'),
+            array('127.0.0.1')
+        		);
 
         // Build stub attributes
-        $this->attributes = (object) [
-            'signedon'      => true,
-            'incoming'      => false,
-            'outgoing'      => true,
-            'communication' => 'disconnected'
-        ];
-
+//         $this->attributes = (object) [
+//             'signedon'      => true,
+//             'incoming'      => false,
+//             'outgoing'      => true,
+//             'communication' => 'disconnected'
+//         ];
+        $this->attributes = (object) array(
+        		'signedon'      => true,
+        		'incoming'      => false,
+        		'outgoing'      => true,
+        		'communication' => 'disconnected'
+        );
+        
         // Create portal object
         $this->portal = new Portal($this->attributes, $this->mockClient);
     }

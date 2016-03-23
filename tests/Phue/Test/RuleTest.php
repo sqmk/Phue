@@ -27,40 +27,70 @@ class RuleTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['sendCommand'],
-            ['127.0.0.1']
-        );
+// TODO             ['sendCommand'],
+//             ['127.0.0.1']
+            array('sendCommand'),
+            array('127.0.0.1')
+        		);
 
         // Build stub attributes
-        $this->attributes = (object) [
-            'name'           => 'Wall Switch Rule',
-            'lasttriggered'  => '2013-10-17T01:23:20',
-            'created'        => '2013-10-10T21:11:45',
-            'timestriggered' => 27,
-            'owner'          => '78H56B12BA',
-            'status'         => 'enabled',
-            'conditions'  => [
-                (object) [
-                    'address'  => '/sensors/2/state/buttonevent',
-                    'operator' => 'eq',
-                    'value'    => '16'
-                ],
-                (object) [
-                    'address'  => '/sensors/2/state/lastupdated',
-                    'operator' => 'dx'
-                ]
-            ],
-            'actions' => [
-                (object) [
-                    'address' => '/groups/0/action',
-                    'method'  => 'PUT',
-                    'body'    => [
-                        'scene' => 'S3'
-                    ]
-                ]
-            ]
-        ];
-
+//         $this->attributes = (object) [
+//             'name'           => 'Wall Switch Rule',
+//             'lasttriggered'  => '2013-10-17T01:23:20',
+//             'created'        => '2013-10-10T21:11:45',
+//             'timestriggered' => 27,
+//             'owner'          => '78H56B12BA',
+//             'status'         => 'enabled',
+//             'conditions'  => [
+//                 (object) [
+//                     'address'  => '/sensors/2/state/buttonevent',
+//                     'operator' => 'eq',
+//                     'value'    => '16'
+//                 ],
+//                 (object) [
+//                     'address'  => '/sensors/2/state/lastupdated',
+//                     'operator' => 'dx'
+//                 ]
+//             ],
+//             'actions' => [
+//                 (object) [
+//                     'address' => '/groups/0/action',
+//                     'method'  => 'PUT',
+//                     'body'    => [
+//                         'scene' => 'S3'
+//                     ]
+//                 ]
+//             ]
+//         ];
+        $this->attributes = (object) array(
+        		'name'           => 'Wall Switch Rule',
+        		'lasttriggered'  => '2013-10-17T01:23:20',
+        		'created'        => '2013-10-10T21:11:45',
+        		'timestriggered' => 27,
+        		'owner'          => '78H56B12BA',
+        		'status'         => 'enabled',
+        		'conditions'  => array(
+        				(object) array(
+        						'address'  => '/sensors/2/state/buttonevent',
+        						'operator' => 'eq',
+        						'value'    => '16'
+        				),
+        				(object) array(
+        						'address'  => '/sensors/2/state/lastupdated',
+        						'operator' => 'dx'
+        				)
+        		),
+        		'actions' => array(
+        				(object) array(
+        						'address' => '/groups/0/action',
+        						'method'  => 'PUT',
+        						'body'    => array(
+        								'scene' => 'S3'
+        						)
+        				)
+        		)
+        );
+        
         // Create rule object
         $this->rule = new Rule(4, $this->attributes, $this->mockClient);
     }

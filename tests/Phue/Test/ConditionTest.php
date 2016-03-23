@@ -25,11 +25,16 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->condition = new Condition((object) [
+//         $this->condition = new Condition((object) [
+//             'address'  => '/sensors/2/state/buttonevent',
+//             'operator' => 'eq',
+//             'value'    => '16'
+//         ]);
+        $this->condition = new Condition((object) array(
             'address'  => '/sensors/2/state/buttonevent',
             'operator' => 'eq',
             'value'    => '16'
-        ]);
+        ));
     }
 
     /**
@@ -124,12 +129,17 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
     public function testExport()
     {
         $this->assertEquals(
-            (object) [
+// TODO             (object) [
+//                 'address'  => '/sensors/2/state/buttonevent',
+//                 'operator' => 'eq',
+//                 'value'    => '16'
+//             ],
+            (object) array(
                 'address'  => '/sensors/2/state/buttonevent',
                 'operator' => 'eq',
                 'value'    => '16'
-            ],
-            $this->condition->export()
+            ),
+        	$this->condition->export()
         );
     }
 

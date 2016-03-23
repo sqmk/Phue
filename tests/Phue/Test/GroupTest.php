@@ -25,27 +25,44 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['sendCommand'],
-            ['127.0.0.1']
-        );
+//             ['sendCommand'],
+//             ['127.0.0.1']
+            array('sendCommand'),
+            array('127.0.0.1')
+        		);
 
         // Build stub attributes
-        $this->attributes = (object) [
-            'name'      => 'Dummy group',
-            'action'    => (object) [
-                'on'        => false,
-                'bri'       => '66',
-                'hue'       => '60123',
-                'sat'       => 213,
-                'xy'        => [0.5, 0.4],
-                'ct'        => 300,
-                'colormode' => 'hs',
-                'effect'    => 'none',
-            ],
-            'lights'    => [2, 3, 5],
-            'type'      => 'LightGroup',
-        ];
-
+//         $this->attributes = (object) [
+//             'name'      => 'Dummy group',
+//             'action'    => (object) [
+//                 'on'        => false,
+//                 'bri'       => '66',
+//                 'hue'       => '60123',
+//                 'sat'       => 213,
+//                 'xy'        => [0.5, 0.4],
+//                 'ct'        => 300,
+//                 'colormode' => 'hs',
+//                 'effect'    => 'none',
+//             ],
+//             'lights'    => [2, 3, 5],
+//             'type'      => 'LightGroup',
+//         ];
+        $this->attributes = (object) array(
+        		'name'      => 'Dummy group',
+        		'action'    => (object) array(
+        				'on'        => false,
+        				'bri'       => '66',
+        				'hue'       => '60123',
+        				'sat'       => 213,
+        				'xy'        => array(0.5, 0.4),
+        				'ct'        => 300,
+        				'colormode' => 'hs',
+        				'effect'    => 'none',
+        		),
+        		'lights'    => array(2, 3, 5),
+        		'type'      => 'LightGroup',
+        );
+        
         // Create group object
         $this->group = new Group(6, $this->attributes, $this->mockClient);
     }
@@ -148,13 +165,15 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         // Ensure setLights return self
         $this->assertEquals(
             $this->group,
-            $this->group->setLights([1, 2, 3, 4])
-        );
+// TODO           $this->group->setLights([1, 2, 3, 4])
+            $this->group->setLights(array(1, 2, 3, 4))
+   		);
 
         // Ensure lights can be retrieved by getLights
         $this->assertEquals(
-            [1, 2, 3, 4],
-            $this->group->getLightIds()
+// TODO            [1, 2, 3, 4],
+            array(1, 2, 3, 4),
+        		$this->group->getLightIds()
         );
     }
 
@@ -280,11 +299,15 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original xy is retrievable
         $this->assertEquals(
-            [
+//             [
+//                 'x' => $this->attributes->action->xy[0],
+//                 'y' => $this->attributes->action->xy[1]
+//             ],
+            array(
                 'x' => $this->attributes->action->xy[0],
                 'y' => $this->attributes->action->xy[1]
-            ],
-            $this->group->getXY()
+            ),
+        		$this->group->getXY()
         );
 
         // Ensure setXY returns self
@@ -295,8 +318,9 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         // Make sure group attributes are updated
         $this->assertEquals(
-            ['x' => 0.1, 'y' => 0.2],
-            $this->group->getXY()
+// TODO            ['x' => 0.1, 'y' => 0.2],
+            array('x' => 0.1, 'y' => 0.2),
+        		$this->group->getXY()
         );
     }
 

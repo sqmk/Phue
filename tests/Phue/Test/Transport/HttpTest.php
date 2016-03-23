@@ -24,9 +24,11 @@ class HttpTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getTransport'],
-            ['127.0.0.1']
-        );
+//             ['getTransport'],
+//             ['127.0.0.1']
+            array('getTransport'),
+            array('127.0.0.1')
+        		);
 
         // Mock transport adapter
         $this->mockAdapter = $this->getMock(
@@ -131,13 +133,19 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function testSendRequestErrorResponse()
     {
         // Mock response
-        $mockResponse = [
-            'error' => [
-                'type'        => 1,
-                'description' => 'Some kind of error'
-            ]
-        ];
-
+//TODO         $mockResponse = [
+//             'error' => [
+//                 'type'        => 1,
+//                 'description' => 'Some kind of error'
+//             ]
+//         ];
+        $mockResponse = array(
+        		'error' => array(
+        				'type'        => 1,
+        				'description' => 'Some kind of error'
+        		)
+        );
+        
         // Stub adapter methods
         $this->stubMockAdapterResponseMethods($mockResponse, 200, 'application/json');
 
@@ -157,10 +165,13 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function testSendRequestArray()
     {
         // Mock response
-        $mockResponse = [
-            'value 1', 'value 2'
-        ];
-
+//         $mockResponse = [
+//             'value 1', 'value 2'
+//         ];
+        $mockResponse = array(
+        		'value 1', 'value 2'
+        );
+        
         // Stub adapter methods
         $this->stubMockAdapterResponseMethods($mockResponse, 200, 'application/json');
 
@@ -183,10 +194,13 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function testSendRequestSuccess()
     {
         // Mock response
-        $mockResponse = [
-            'success' => '123'
-        ];
-
+//TODO         $mockResponse = [
+//             'success' => '123'
+//         ];
+        $mockResponse = array(
+        		'success' => '123'
+        );
+        
         // Stub adapter methods
         $this->stubMockAdapterResponseMethods($mockResponse, 200, 'application/json');
 
@@ -222,12 +236,16 @@ class HttpTest extends \PHPUnit_Framework_TestCase
      */
     public function providerErrorTypes()
     {
-        $errorTypes = [
-            [-1, 'Phue\Transport\Exception\BridgeException']
-        ];
-
+//TODO         $errorTypes = [
+//             [-1, 'Phue\Transport\Exception\BridgeException']
+//         ];
+        $errorTypes = array(
+        		array(-1, 'Phue\Transport\Exception\BridgeException')
+        );
+        
         foreach (Http::$exceptionMap as $errorId => $errorClass) {
-            $errorTypes[] = [$errorId, $errorClass];
+// TODO            $errorTypes[] = [$errorId, $errorClass];
+            $errorTypes[] = array($errorId, $errorClass);
         }
 
         return $errorTypes;

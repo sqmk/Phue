@@ -23,9 +23,14 @@ class TimerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateTime()
     {
+//TODO         $this->assertRegExp(
+//             '/^R12\/PT01:05:25$/',
+//             (string) (new Timer(3925))->repeat(12)
+//         );
+		$timer = new Timer(3925);
         $this->assertRegExp(
             '/^R12\/PT01:05:25$/',
-            (string) (new Timer(3925))->repeat(12)
+            (string) $timer->repeat(12)
         );
     }
 }

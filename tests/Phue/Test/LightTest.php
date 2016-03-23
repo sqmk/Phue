@@ -25,31 +25,52 @@ class LightTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['sendCommand'],
-            ['127.0.0.1']
-        );
+//             ['sendCommand'],
+//             ['127.0.0.1']
+            array('sendCommand'),
+            array('127.0.0.1')
+        		);
 
         // Build stub attributes
-        $this->attributes = (object) [
-            'name'      => 'Hue light',
-            'type'      => 'Dummy type',
-            'modelid'   => 'LCT001',
-            'uniqueid'  => '00:17:88:01:00:bd:d6:54-0d',
-            'swversion' => '12345',
-            'state'     => (object) [
-                'on'        => false,
-                'bri'       => '66',
-                'hue'       => '60123',
-                'sat'       => 213,
-                'xy'        => [.5, .4],
-                'ct'        => 300,
-                'alert'     => 'none',
-                'effect'    => 'none',
-                'colormode' => 'hs',
-                'reachable' => true,
-            ],
-        ];
-
+// TODO         $this->attributes = (object) [
+//             'name'      => 'Hue light',
+//             'type'      => 'Dummy type',
+//             'modelid'   => 'LCT001',
+//             'uniqueid'  => '00:17:88:01:00:bd:d6:54-0d',
+//             'swversion' => '12345',
+//             'state'     => (object) [
+//                 'on'        => false,
+//                 'bri'       => '66',
+//                 'hue'       => '60123',
+//                 'sat'       => 213,
+//                 'xy'        => [.5, .4],
+//                 'ct'        => 300,
+//                 'alert'     => 'none',
+//                 'effect'    => 'none',
+//                 'colormode' => 'hs',
+//                 'reachable' => true,
+//             ],
+//         ];
+        $this->attributes = (object) array(
+        		'name'      => 'Hue light',
+        		'type'      => 'Dummy type',
+        		'modelid'   => 'LCT001',
+        		'uniqueid'  => '00:17:88:01:00:bd:d6:54-0d',
+        		'swversion' => '12345',
+        		'state'     => (object) array(
+        				'on'        => false,
+        				'bri'       => '66',
+        				'hue'       => '60123',
+        				'sat'       => 213,
+        				'xy'        => array(.5, .4),
+        				'ct'        => 300,
+        				'alert'     => 'none',
+        				'effect'    => 'none',
+        				'colormode' => 'hs',
+        				'reachable' => true,
+        		),
+        );
+        
         // Create light object
         $this->light = new Light(5, $this->attributes, $this->mockClient);
     }
@@ -296,11 +317,15 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure original xy is retrievable
         $this->assertEquals(
-            [
+// TODO             [
+//                 'x' => $this->attributes->state->xy[0],
+//                 'y' => $this->attributes->state->xy[1]
+//             ],
+            array(
                 'x' => $this->attributes->state->xy[0],
                 'y' => $this->attributes->state->xy[1]
-            ],
-            $this->light->getXY()
+            ),
+        		$this->light->getXY()
         );
 
         // Ensure setXY returns self
@@ -311,8 +336,9 @@ class LightTest extends \PHPUnit_Framework_TestCase
 
         // Make sure light attributes are updated
         $this->assertEquals(
-            ['x' => 0.1, 'y' => 0.2],
-            $this->light->getXY()
+// TODO            ['x' => 0.1, 'y' => 0.2],
+            array('x' => 0.1, 'y' => 0.2),
+        		$this->light->getXY()
         );
     }
 
