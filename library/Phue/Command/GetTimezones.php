@@ -30,8 +30,8 @@ class GetTimezones implements CommandInterface
             "/api/{$client->getUsername()}/info/timezones"
         );
 
-        $timezones = [];
-
+//TODO     $timezones = [];
+        $timezones = array();
         foreach ($response as $timezone) {
             $timezones[] = $timezone;
         }

@@ -31,8 +31,9 @@ class GetGroups implements CommandInterface
             "/api/{$client->getUsername()}/groups"
         );
 
-        $groups = [];
-
+//TODO     $groups = [];
+        $groups = array();
+        
         foreach ($results as $groupId => $attributes) {
             $groups[$groupId] = new Group($groupId, $attributes, $client);
         }

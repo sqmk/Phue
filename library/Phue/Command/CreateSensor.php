@@ -22,22 +22,22 @@ class CreateSensor implements CommandInterface
      *
      * @var array
      */
-    protected $attributes = [];
-
+//TODO    protected $attributes = [];
+	protected $attributes = array();
     /**
      * Sensor state
      *
      * @var array
      */
-    protected $state = [];
-
+// TODO    protected $state = [];
+	protected $state = array();
     /**
      * Config
      *
      * @var array
      */
-    protected $config = [];
-
+//TODO    protected $config = [];
+	protected $config = array();
     /**
      * Constructs a command
      *
@@ -176,11 +176,15 @@ class CreateSensor implements CommandInterface
             TransportInterface::METHOD_POST,
             (object) array_merge(
                 $this->attributes,
-                [
+//TODO             [
+//                     'state'  => $this->state,
+//                     'config' => $this->config,
+//                 ]
+                array(
                     'state'  => $this->state,
                     'config' => $this->config,
-                ]
-            )
+                )
+            		)
         );
 
         return $response->id;

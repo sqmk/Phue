@@ -29,8 +29,9 @@ class UpdateRule extends CreateRule
      *
      * @var array
      */
-    protected $attributes = [];
-
+//TODO protected $attributes = [];
+    protected $attributes = array();
+    
     /**
      * Constructs a command
      *

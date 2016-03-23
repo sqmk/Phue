@@ -104,8 +104,9 @@ class SetLightState implements CommandInterface, ActionableInterface
      *
      * @var array
      */
-    protected $params = [];
-
+//TODO    protected $params = [];
+    protected $params = array();
+    
     /**
      * Get alert modes
      *
@@ -113,11 +114,16 @@ class SetLightState implements CommandInterface, ActionableInterface
      */
     public static function getAlertModes()
     {
-        return [
+//TODO     return [
+//             self::ALERT_NONE,
+//             self::ALERT_SELECT,
+//             self::ALERT_LONG_SELECT,
+//         ];
+        return array(
             self::ALERT_NONE,
             self::ALERT_SELECT,
             self::ALERT_LONG_SELECT,
-        ];
+        );
     }
 
     /**
@@ -127,10 +133,14 @@ class SetLightState implements CommandInterface, ActionableInterface
      */
     public static function getEffectModes()
     {
-        return [
+//TODO     return [
+//             self::EFFECT_NONE,
+//             self::EFFECT_COLORLOOP,
+//         ];
+        return array(
             self::EFFECT_NONE,
             self::EFFECT_COLORLOOP,
-        ];
+        );
     }
 
     /**
@@ -242,8 +252,9 @@ class SetLightState implements CommandInterface, ActionableInterface
     public function xy($x, $y)
     {
         // Don't continue if x or y values are invalid
-        foreach ([$x, $y] as $value) {
-            if (!(self::XY_MIN <= $value && $value <= self::XY_MAX)) {
+//TODO        foreach ([$x, $y] as $value) {
+        foreach (array($x, $y) as $value) {
+        	if (!(self::XY_MIN <= $value && $value <= self::XY_MAX)) {
                 throw new \InvalidArgumentException(
                     "x/y value must be between " . self::XY_MIN
                     . " and " . self::XY_MAX
@@ -251,8 +262,9 @@ class SetLightState implements CommandInterface, ActionableInterface
             }
         }
 
-        $this->params['xy'] = [(float) $x, (float) $y];
-
+//TODO        $this->params['xy'] = [(float) $x, (float) $y];
+        $this->params['xy'] = array((float) $x, (float) $y);
+        
         return $this;
     }
 
@@ -377,10 +389,15 @@ class SetLightState implements CommandInterface, ActionableInterface
      */
     public function getActionableParams(Client $client)
     {
-        return [
+//TODO     return [
+//             'address' => "/lights/{$this->lightId}/state",
+//             'method'  => TransportInterface::METHOD_PUT,
+//             'body'    => (object) $this->params
+//         ];
+        return array(
             'address' => "/lights/{$this->lightId}/state",
             'method'  => TransportInterface::METHOD_PUT,
             'body'    => (object) $this->params
-        ];
+        );
     }
 }

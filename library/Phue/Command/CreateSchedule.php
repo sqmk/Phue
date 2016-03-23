@@ -24,8 +24,8 @@ class CreateSchedule implements CommandInterface
      *
      * @var array
      */
-    protected $attributes = [];
-
+//TODO    protected $attributes = [];
+	protected $attributes = array();
     /**
      * Command
      *

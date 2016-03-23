@@ -31,8 +31,9 @@ class GetSchedules implements CommandInterface
             "/api/{$client->getUsername()}/schedules"
         );
 
-        $schedules = [];
-
+//TODO     $schedules = [];
+        $schedules = array();
+        
         foreach ($response as $scheduleId => $attributes) {
             $schedules[$scheduleId] = new Schedule($scheduleId, $attributes, $client);
         }

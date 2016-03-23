@@ -63,8 +63,9 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                ['name' => (string) $name]
-            )
+//TODO                ['name' => (string) $name]
+                array('name' => (string) $name)
+            		)
         );
 
         $this->attributes->name = (string) $name;
@@ -93,8 +94,9 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                ['zigbeechannel' => (int) $channel]
-            )
+                array('zigbeechannel' => (int) $channel)
+//TODO                ['zigbeechannel' => (int) $channel]
+            		)
         );
 
         $this->attributes->zigbeechannel = (int) $channel;
@@ -133,8 +135,9 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                ['dhcp' => (bool) $state]
-            )
+//TODO                ['dhcp' => (bool) $state]
+                array('dhcp' => (bool) $state)
+            		)
         );
 
         $this->attributes->dhcp = (bool) $state;
@@ -163,8 +166,9 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                ['ipaddress' => (string) $ipAddress]
-            )
+//TODO                ['ipaddress' => (string) $ipAddress]
+                array('ipaddress' => (string) $ipAddress)
+            		)
         );
 
         $this->attributes->ipaddress = (string) $ipAddress;
@@ -193,8 +197,9 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                ['netmask' => (string) $netmask]
-            )
+//TODO                ['netmask' => (string) $netmask]
+                array('netmask' => (string) $netmask)
+            		)
         );
 
         $this->attributes->netmask = (string) $netmask;
@@ -223,8 +228,9 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                ['gateway' => (string) $gateway]
-            )
+//TODO                ['gateway' => (string) $gateway]
+                array('gateway' => (string) $gateway)
+            		)
         );
 
         $this->attributes->gateway = (string) $gateway;
@@ -253,8 +259,9 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                ['proxyaddress' => (string) $proxyAddress]
-            )
+//TODO                ['proxyaddress' => (string) $proxyAddress]
+                array('proxyaddress' => (string) $proxyAddress)
+            		)
         );
 
         $this->attributes->proxyaddress = (string) $proxyAddress;
@@ -283,7 +290,8 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                ['proxyport' => (int) $proxyPort]
+//                ['proxyport' => (int) $proxyPort]
+                array('proxyport' => (int) $proxyPort)
             )
         );
 
@@ -333,8 +341,9 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                ['timezone' => (string) $timezone]
-            )
+//TODO                ['timezone' => (string) $timezone]
+                array('timezone' => (string) $timezone)
+            		)
         );
 
         $this->attributes->timezone = (string) $timezone;
@@ -393,8 +402,9 @@ class Bridge
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-                ['linkbutton' => (bool) $state]
-            )
+//TODO                ['linkbutton' => (bool) $state]
+                array('linkbutton' => (bool) $state)
+            		)
         );
 
         $this->attributes->linkbutton = (bool) $state;

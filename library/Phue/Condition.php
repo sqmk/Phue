@@ -177,9 +177,13 @@ class Condition
      */
     public function import(\stdClass $condition)
     {
-        $this->setSensorId(explode('/', $condition->address)[2]);
-        $this->setAttribute(explode('/', $condition->address)[4]);
-        $this->setOperator((string) $condition->operator);
+// TODO     $this->setSensorId(explode('/', $condition->address)[2]);
+//         $this->setAttribute(explode('/', $condition->address)[4]);
+		$x = explode('/', $condition->address);
+        $this->setSensorId($x[2]);
+        $y = explode('/', $condition->address);
+        $this->setAttribute($y[4]);
+    	$this->setOperator((string) $condition->operator);
         isset($condition->value) && $this->setValue((string) $condition->value);
 
         return $this;
@@ -192,11 +196,15 @@ class Condition
      */
     public function export()
     {
-        $result = [
-            'address'  => "/sensors/{$this->getSensorId()}/state/{$this->getAttribute()}",
-            'operator' => $this->getOperator(),
-        ];
-
+//TODO     $result = [
+//             'address'  => "/sensors/{$this->getSensorId()}/state/{$this->getAttribute()}",
+//             'operator' => $this->getOperator(),
+//         ];
+    	$result = array(
+    			'address'  => "/sensors/{$this->getSensorId()}/state/{$this->getAttribute()}",
+    			'operator' => $this->getOperator(),
+    			);
+    	 
         if ($this->value !== null) {
             $result['value'] = $this->getValue();
         }

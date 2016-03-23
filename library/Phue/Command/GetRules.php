@@ -31,8 +31,9 @@ class GetRules implements CommandInterface
             "/api/{$client->getUsername()}/rules"
         );
 
-        $rules = [];
-
+//TODO     $rules = [];
+        $rules = array();
+        
         foreach ($results as $ruleId => $attributes) {
             $rules[$ruleId] = new Rule($ruleId, $attributes, $client);
         }

@@ -29,7 +29,8 @@ class CreateGroup implements CommandInterface
      *
      * @var array List of light Ids
      */
-    protected $lights = [];
+// TODO    protected $lights = [];
+    protected $lights = array();
 
     /**
      * Constructs a command
@@ -37,7 +38,8 @@ class CreateGroup implements CommandInterface
      * @param string $name   Name
      * @param array  $lights List of light Ids or Light objects
      */
-    public function __construct($name, array $lights = [])
+// TODO    public function __construct($name, array $lights = [])
+    public function __construct($name, array $lights = array())
     {
         $this->name($name);
         $this->lights($lights);
@@ -64,10 +66,12 @@ class CreateGroup implements CommandInterface
      *
      * @return self This object
      */
-    public function lights(array $lights = [])
+// TODO    public function lights(array $lights = [])
+    public function lights(array $lights = array())
     {
-        $this->lights = [];
-
+// TODO        $this->lights = [];
+        $this->lights = array();
+        
         // Iterate through each light and append id to group list
         foreach ($lights as $light) {
             $this->lights[] = (string) $light;
@@ -88,12 +92,18 @@ class CreateGroup implements CommandInterface
         $response = $client->getTransport()->sendRequest(
             "/api/{$client->getUsername()}/groups",
             TransportInterface::METHOD_POST,
-            (object) [
+            (object) array(
                 'name'   => $this->name,
                 'lights' => $this->lights
-            ]
+            )
+// TODO           (object) [
+//                'name'   => $this->name,
+//                'lights' => $this->lights
+//            ]
         );
-
-        return explode('/', $response->id)[2];
+		
+// TODO        return explode('/', $response->id)[2];
+		$r = explode('/', $response->id);
+        return $r[2];
     }
 }

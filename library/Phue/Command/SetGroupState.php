@@ -75,10 +75,15 @@ class SetGroupState extends SetLightState implements ActionableInterface
      */
     public function getActionableParams(Client $client)
     {
-        return [
+//TODO     return [
+//             'address' => "/groups/{$this->groupId}/action",
+//             'method'  => TransportInterface::METHOD_PUT,
+//             'body'    => (object) $this->params
+//         ];
+        return array(
             'address' => "/groups/{$this->groupId}/action",
             'method'  => TransportInterface::METHOD_PUT,
             'body'    => (object) $this->params
-        ];
+        );
     }
 }

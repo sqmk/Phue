@@ -31,8 +31,9 @@ class GetSensors implements CommandInterface
             "/api/{$client->getUsername()}/sensors"
         );
 
-        $sensors = [];
-
+//TODO     $sensors = [];
+        $sensors = array();
+        
         foreach ($results as $sensorId => $attributes) {
             $sensors[$sensorId] = new Sensor($sensorId, $attributes, $client);
         }

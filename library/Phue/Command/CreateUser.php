@@ -90,10 +90,13 @@ class CreateUser implements CommandInterface
     protected function buildRequestData(Client $client)
     {
         // Initialize data to send
-        $request = [
-            'devicetype' => $this->deviceType
-        ];
-
+//TODO     $request = [
+//             'devicetype' => $this->deviceType
+//         ];
+    	$request = array(
+    			'devicetype' => $this->deviceType
+    	);
+    	 
         return (object) $request;
     }
 }

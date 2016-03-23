@@ -29,8 +29,8 @@ class CreateScene implements CommandInterface
      *
      * @var array List of light Ids
      */
-    protected $lights = [];
-
+//TODO protected $lights = [];
+    protected $lights = array();
     /**
      * Transition time
      *
@@ -45,7 +45,8 @@ class CreateScene implements CommandInterface
      * @param string $name   Name
      * @param array  $lights List of light Ids or Light objects
      */
-    public function __construct($id, $name, array $lights = [])
+//TODO public function __construct($id, $name, array $lights = [])
+    public function __construct($id, $name, array $lights = array())
     {
         $this->id($id);
         $this->name($name);
@@ -87,10 +88,11 @@ class CreateScene implements CommandInterface
      *
      * @return self This object
      */
-    public function lights(array $lights = [])
-    {
-        $this->lights = [];
-
+//TODO  public function lights(array $lights = [])
+  	public function lights(array $lights = array())
+  	{
+// TODO        $this->lights = [];
+  		$this->lights = array();
         // Iterate through each light and append id to scene list
         foreach ($lights as $light) {
             $this->lights[] = (string) $light;
@@ -130,11 +132,15 @@ class CreateScene implements CommandInterface
      */
     public function send(Client $client)
     {
-        $body = (object) [
-            'name'   => $this->name,
-            'lights' => $this->lights
-        ];
-
+// TODO    $body = (object) [
+//             'name'   => $this->name,
+//             'lights' => $this->lights
+//         ];
+    	$body = (object) array(
+    			'name'   => $this->name,
+    			'lights' => $this->lights
+    	);
+    	 
         if ($this->transitionTime !== null) {
             $body->transitiontime = $this->transitionTime;
         }

@@ -29,8 +29,9 @@ class SetGroupAttributes implements CommandInterface
      *
      * @var array
      */
-    protected $attributes = [];
-
+//TODO    protected $attributes = [];
+    protected $attributes = array();
+    
     /**
      * Constructs a command
      *
@@ -64,8 +65,9 @@ class SetGroupAttributes implements CommandInterface
      */
     public function lights(array $lights)
     {
-        $lightList = [];
-
+//TODO        $lightList = [];
+        $lightList = array();
+        
         foreach ($lights as $light) {
             $lightList[] = (string) $light;
         }

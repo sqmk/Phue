@@ -33,10 +33,11 @@ class GetUsers implements CommandInterface
 
         // Return empty list if no users
         if (!isset($response->whitelist)) {
-            return [];
+        	return array();
         }
 
-        $users = [];
+//TODO         $users = [];
+        $users = array();
 
         foreach ($response->whitelist as $username => $attributes) {
             $users[$username] = new User($username, $attributes, $client);
