@@ -17,13 +17,17 @@ $timePattern = new \Phue\TimePattern\RecurringTime(
     50
 );
 
-$client->sendCommand(
-    new \Phue\Command\CreateSchedule(
-        'Dim all lights',
-        $timePattern,
-        (new \Phue\Command\SetGroupState(0))
-            ->brightness(1)
-    )
-);
+// TODO $client->sendCommand(
+//     new \Phue\Command\CreateSchedule(
+//         'Dim all lights',
+//         $timePattern,
+//         (new \Phue\Command\SetGroupState(0))
+//             ->brightness(1)
+//     )
+// );
+
+$x = new \Phue\Command\SetGroupState(0);
+$y = new \Phue\Command\CreateSchedule('Dim all lights', $timePattern, $x->brightness(1));
+$client->sendCommand($y);
 
 echo 'Done.', "\n";

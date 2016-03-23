@@ -11,6 +11,8 @@ $client = new \Phue\Client($hueHost, $hueUsername);
 
 echo 'Deleting group 1:', "\n";
 
-$client->getGroups()[1]->delete();
+$groups = $client->getGroups();
+// TODO $client->getGroups()[1]->delete();
+$groups[1]->delete();
 
 echo "Done.", "\n";

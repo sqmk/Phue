@@ -18,12 +18,18 @@ while (true) {
     $transitionTime = rand(0, 3) / 10;
 
     // Send command
-    $client->sendCommand(
-        (new \Phue\Command\SetLightState(4))
-            ->brightness($brightness)
-            ->colorTemp($colorTemp)
-            ->transitionTime($transitionTime)
-    );
+// TODO     $client->sendCommand(
+//         (new \Phue\Command\SetLightState(4))
+//             ->brightness($brightness)
+//             ->colorTemp($colorTemp)
+//             ->transitionTime($transitionTime)
+//     );
+
+    $x = new \Phue\Command\SetLightState(4);
+    $y = $x->brightness($brightness)
+    	   ->colorTemp($colorTemp)
+    	   ->transitionTime($transitionTime);
+    $client->sendCommand($y);
 
     // Sleep for transition time plus extra for request time
     usleep($transitionTime * 1000000 + 25000);
