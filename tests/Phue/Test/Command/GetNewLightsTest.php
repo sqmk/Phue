@@ -28,14 +28,17 @@ class GetNewLightsTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getUsername', 'getTransport'],
-            ['127.0.0.1']
+// TODO        ['getUsername', 'getTransport'],
+//             ['127.0.0.1']
+        	array('getUsername', 'getTransport'),
+        	array('127.0.0.1')
         );
 
         // Mock transport
         $this->mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
+// TODO        ['sendRequest']
+        	array('sendRequest')
         );
 
         // Stub client's getUsername method
@@ -49,11 +52,16 @@ class GetNewLightsTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->mockTransport));
 
         // Mock transport results
-        $mockTransportResults = (object) [
-            '1'        => (object) ['name' => 'Light 1'],
-            '2'        => (object) ['name' => 'Light 2'],
+// TODO    $mockTransportResults = (object) [
+// TODO        '1'        => (object) ['name' => 'Sensor 1'],
+// TODO        '2'        => (object) ['name' => 'Sensor 2'],
+//             'lastscan' => 'active'
+//         ];
+        $mockTransportResults = (object) array(
+            '1'        => (object) array('name' => 'Sensor 1'),
+            '2'        => (object) array('name' => 'Sensor 2'),
             'lastscan' => 'active'
-        ];
+        );
 
         // Stub transport's sendRequest usage
         $this->mockTransport->expects($this->once())

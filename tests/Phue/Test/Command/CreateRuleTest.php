@@ -90,20 +90,28 @@ class CreateRuleTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $mockClient = Mockery::mock(
             '\Phue\Client',
-            [
-                'getUsername' => 'abcdefabcdef01234567890123456789'
-            ]
+// TODO        [
+//                 'getUsername' => 'abcdefabcdef01234567890123456789'
+//             ]
+        	array(
+        		'getUsername' => 'abcdefabcdef01234567890123456789'
+        	)
         )
             ->makePartial();
 
         // Mock client commands
         $mockClient
             ->shouldReceive('getTransport->sendRequest')
-            ->andReturn((object) ['id' => '5']);
+// TODO        ->andReturn((object) ['id' => '5']);
+        	->andReturn((object) array('id' => '5'));
 
-        $command = (new CreateRule('test'))
-            ->addCondition(Mockery::mock('\Phue\Condition')->makePartial())
-            ->addAction(Mockery::mock('\Phue\Command\ActionableInterface')->shouldIgnoreMissing());
+// TODO    $command = (new CreateRule('test'))
+//             ->addCondition(Mockery::mock('\Phue\Condition')->makePartial())
+//             ->addAction(Mockery::mock('\Phue\Command\ActionableInterface')->shouldIgnoreMissing());
+            $x = new CreateRule('test');
+            $command = $x
+            	->addCondition(Mockery::mock('\Phue\Condition')->makePartial())
+            	->addAction(Mockery::mock('\Phue\Command\ActionableInterface')->shouldIgnoreMissing());
 
         $this->assertEquals(
             '5',

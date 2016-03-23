@@ -30,14 +30,17 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getUsername', 'getTransport'],
-            ['127.0.0.1']
+// TODO        ['getUsername', 'getTransport'],
+//             ['127.0.0.1']
+        	array('getUsername', 'getTransport'),
+        	array('127.0.0.1')
         );
 
         // Mock transport
         $this->mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
+// TODO        ['sendRequest']
+        	array('sendRequest')
         );
 
         // Stub client's getUsername method
@@ -53,18 +56,24 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         // Mock actionable command
         $this->mockCommand = $this->getMock(
             '\Phue\Command\ActionableInterface',
-            ['getActionableParams']
+// TODO        ['getActionableParams']
+        	array('getActionableParams')
         );
 
         // Stub command's getActionableParams method
         $this->mockCommand->expects($this->any())
             ->method('getActionableParams')
             ->will(
-                $this->returnValue([
-                    'address' => '/thing/value',
-                    'method'  => 'POST',
-                    'body'    => 'Dummy'
-                ])
+// TODO            $this->returnValue([
+//                     'address' => '/thing/value',
+//                     'method'  => 'POST',
+//                     'body'    => 'Dummy'
+//                 ])
+            	$this->returnValue(array(
+            		'address' => '/thing/value',
+            		'method'  => 'POST',
+            		'body'    => 'Dummy'
+            	))
             );
     }
 
@@ -75,7 +84,9 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testName()
     {
-        $command = (new CreateSchedule())->name('Dummy!');
+// TODO    $command = (new CreateSchedule())->name('Dummy!');
+    	$x = new CreateSchedule();
+    	$command = $x->name('Dummy!');
 
         // Ensure property is set properly
         $this->assertAttributeContains('Dummy!', 'attributes', $command);
@@ -91,7 +102,9 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testDescription()
     {
-        $command = (new CreateSchedule())->description('Description!');
+// TODO    	$command = (new CreateSchedule())->description('Description!');
+    	$x = new CreateSchedule();
+        $command = $x->description('Description!');
 
         // Ensure property is set properly
         $this->assertAttributeContains('Description!', 'attributes', $command);
@@ -107,7 +120,9 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testTime()
     {
-        $command = (new CreateSchedule())->time('2010-10-20T10:11:12');
+// TODO    $command = (new CreateSchedule())->time('2010-10-20T10:11:12');
+    	$x = new CreateSchedule();
+    	$command = $x->time('2010-10-20T10:11:12');
 
         // Ensure property is set properly
         $this->assertAttributeInstanceOf('\Phue\TimePattern\TimePatternInterface', 'time', $command);
@@ -123,7 +138,9 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testCommand()
     {
-        $command = (new CreateSchedule())->command($this->mockCommand);
+// TODO        $command = (new CreateSchedule())->command($this->mockCommand);
+    	$x = new CreateSchedule();
+    	$command = $x->command($this->mockCommand);
 
         // Ensure properties are set properly
         $this->assertAttributeEquals(
@@ -143,7 +160,9 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testStatus()
     {
-        $command = (new CreateSchedule())->status(Schedule::STATUS_ENABLED);
+// TODO        $command = (new CreateSchedule())->status(Schedule::STATUS_ENABLED);
+    	$x = new CreateSchedule();
+    	$command = $x->status(Schedule::STATUS_ENABLED);
 
         // Ensure property is set properly
         $this->assertAttributeContains(Schedule::STATUS_ENABLED, 'attributes', $command);
@@ -159,8 +178,9 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testAutoDelete()
     {
-        $command = (new CreateSchedule())->autodelete(true);
-
+// TODO        $command = (new CreateSchedule())->autodelete(true);
+    	$x = new CreateSchedule();
+    	$command = $x->autodelete(true);
         // Ensure property is set properly
         $this->assertAttributeContains(true, 'attributes', $command);
 
@@ -186,16 +206,26 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
                 $this->equalTo("/api/{$this->mockClient->getUsername()}/schedules"),
                 $this->equalTo(TransportInterface::METHOD_POST),
                 $this->equalTo(
-                    (object) [
-                        'name'        => 'Dummy!',
-                        'description' => 'Description!',
-                        'time'        => '2012-12-30T10:11:12',
-                        'command'     => [
-                            'method'  => TransportInterface::METHOD_POST,
-                            'address' => "/api/{$this->mockClient->getUsername()}/thing/value",
-                            'body'    => "Dummy"
-                        ]
-                    ]
+// TODO                    (object) [
+//                         'name'        => 'Dummy!',
+//                         'description' => 'Description!',
+//                         'time'        => '2012-12-30T10:11:12',
+//                         'command'     => [
+//                             'method'  => TransportInterface::METHOD_POST,
+//                             'address' => "/api/{$this->mockClient->getUsername()}/thing/value",
+//                             'body'    => "Dummy"
+//                         ]
+//                     ]
+                	(object) array(
+                		'name'        => 'Dummy!',
+                		'description' => 'Description!',
+                		'time'        => '2012-12-30T10:11:12',
+                		'command'     => array(
+                			'method'  => TransportInterface::METHOD_POST,
+                			'address' => "/api/{$this->mockClient->getUsername()}/thing/value",
+                			'body'    => "Dummy"
+                		)
+                	)
                 )
             )
             ->will($this->returnValue(4));

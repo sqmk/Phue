@@ -26,14 +26,17 @@ class CreateUserTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getUsername', 'getTransport'],
-            ['127.0.0.1']
+// TODO        ['getUsername', 'getTransport'],
+//             ['127.0.0.1']
+        	array('getUsername', 'getTransport'),
+        	array('127.0.0.1')
         );
 
         // Mock transport
         $this->mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
+// TODO        ['sendRequest']
+        	array('sendRequest')
         );
 
         // Stub client's getUsername method
@@ -92,9 +95,11 @@ class CreateUserTest extends \PHPUnit_Framework_TestCase
             )
             ->will($this->returnValue('success!'));
 
+        $x = new CreateUser('phpunit');
         $this->assertEquals(
             'success!',
-            (new CreateUser('phpunit'))->send($this->mockClient)
+// TODO        (new CreateUser('phpunit'))->send($this->mockClient)
+        	$x->send($this->mockClient)
         );
     }
 }

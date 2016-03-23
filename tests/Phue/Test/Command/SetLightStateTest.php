@@ -26,21 +26,25 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         // Mock client
         $this->mockClient = $this->getMock(
             '\Phue\Client',
-            ['getTransport'],
-            ['127.0.0.1']
+// TODO        ['getTransport'],
+//             ['127.0.0.1']
+        		array('getTransport'),
+        		array('127.0.0.1')
         );
 
         // Mock transport
         $this->mockTransport = $this->getMock(
             '\Phue\Transport\TransportInterface',
-            ['sendRequest']
+// TODO        ['sendRequest']
+			array('sendRequest')
         );
 
         // Mock light
         $this->mockLight = $this->getMock(
             '\Phue\Light',
             null,
-            [3, new \stdClass, $this->mockClient]
+//             [3, new \stdClass, $this->mockClient]
+        	array(3, new \stdClass, $this->mockClient)
         );
 
         // Stub client's getUsername method
