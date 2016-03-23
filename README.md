@@ -1,6 +1,6 @@
 # Phue - Philips Hue client for PHP 5.3+
 
-[![Latest Stable Version](https://poser.pugx.org/jonofe/Phue/version)](https://packagist.org/packages/jonofe/Phue)
+[Latest Stable Version](https://packagist.org/packages/jonofe/Phue)
 
 
 ## Introduction
