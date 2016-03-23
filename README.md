@@ -1,6 +1,7 @@
-# Phue - Philips Hue client for PHP 5.3+
+# Phue - Philips Hue client
 
-[Latest Stable Version](https://packagist.org/packages/jonofe/Phue) @ Packagist
+[![Latest Stable Version](https://poser.pugx.org/sqmk/Phue/version)](https://packagist.org/packages/sqmk/Phue)
+[![Build Status](https://api.travis-ci.org/sqmk/Phue.svg?branch=master)](https://travis-ci.org/sqmk/Phue)
 
 
 ## Introduction
@@ -29,7 +30,7 @@ Interested in API docs? You can check out the [Philips API documentation](http:/
 
 ## Installation
 
-The Phue library is available in Packagist. You'll want to include ```jonofe/phue``` as a dependency in your project using composer. If you are not familiar with composer, check it out here: [Composer](http://getcomposer.org)
+The Phue library is available in Packagist. You'll want to include ```sqmk/phue``` as a dependency in your project using composer. If you are not familiar with composer, check it out here: [Composer](http://getcomposer.org)
 
 You can also use this library without composer. The library directory is ```library```. You'll want to map your namespace ```Phue``` to this directory in your autoloader of choice.
 
@@ -56,7 +57,7 @@ Here's how to instantiate a client object:
 ```php
 <?php
 
-$client = new \Phue\Client('192.168.0.120', 'jonofe');
+$client = new \Phue\Client('10.0.1.31', 'sqmk');
 ```
 
 ### Issuing commands, testing connection and authorization
@@ -498,7 +499,7 @@ Number of bridges found: 1
 
 The internal IP address(es) listed in the results is what you need for the Phue client.
 
-If the script provided doesn't find your bridge, or if you don't have internet connection on your network, sqmk has created a wiki page that describes a few other convenient ways of finding it: [Finding Philips Hue bridge on network](/sqmk/Phue/wiki/Finding-Philips-Hue-bridge-on-network).
+If the script provided doesn't find your bridge, or if you don't have internet connection on your network, I have created a wiki page that describes a few other convenient ways of finding it: [Finding Philips Hue bridge on network](/sqmk/Phue/wiki/Finding-Philips-Hue-bridge-on-network).
 
 ### Authentication / Creating a User
 
@@ -543,13 +544,13 @@ Another convenience script has been created to demonstrate how to use Phue to ge
 You can pass the same arguments for ```phue-light-finder``` as you did with ```phue-create-user```. Here's how to use the script:
 
 ```
-$ ./bin/phue-light-finder 192.168.0.120 yourusername
+$ ./bin/phue-light-finder 10.0.1.31 yourusername
 ```
 
 Example results are as follows:
 
 ```
-Testing connection to bridge at 192.168.0.120
+Testing connection to bridge at 10.0.1.31
 Scanning for lights. Turn at least one light off, then on...
 Found: Light #1, Hue Lamp 1
 Found: Light #2, Hue Lamp 2
