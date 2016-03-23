@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Condition;
  */
 class ConditionTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      *
@@ -25,16 +25,17 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-//         $this->condition = new Condition((object) [
-//             'address'  => '/sensors/2/state/buttonevent',
-//             'operator' => 'eq',
-//             'value'    => '16'
-//         ]);
-        $this->condition = new Condition((object) array(
-            'address'  => '/sensors/2/state/buttonevent',
-            'operator' => 'eq',
-            'value'    => '16'
-        ));
+        // $this->condition = new Condition((object) [
+        // 'address' => '/sensors/2/state/buttonevent',
+        // 'operator' => 'eq',
+        // 'value' => '16'
+        // ]);
+        $this->condition = new Condition(
+            (object) array(
+                'address' => '/sensors/2/state/buttonevent',
+                'operator' => 'eq',
+                'value' => '16'
+            ));
     }
 
     /**
@@ -45,17 +46,11 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSetSensorId()
     {
-        $this->assertEquals(
-            '2',
-            $this->condition->getSensorId()
-        );
-
+        $this->assertEquals('2', $this->condition->getSensorId());
+        
         $this->condition->setSensorId('3');
-
-        $this->assertEquals(
-            '3',
-            $this->condition->getSensorId()
-        );
+        
+        $this->assertEquals('3', $this->condition->getSensorId());
     }
 
     /**
@@ -66,17 +61,11 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSetAttribute()
     {
-        $this->assertEquals(
-            'buttonevent',
-            $this->condition->getAttribute()
-        );
-
+        $this->assertEquals('buttonevent', $this->condition->getAttribute());
+        
         $this->condition->setAttribute('dummy');
-
-        $this->assertEquals(
-            'dummy',
-            $this->condition->getAttribute()
-        );
+        
+        $this->assertEquals('dummy', $this->condition->getAttribute());
     }
 
     /**
@@ -87,17 +76,11 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSetOperator()
     {
-        $this->assertEquals(
-            'eq',
-            $this->condition->getOperator()
-        );
-
+        $this->assertEquals('eq', $this->condition->getOperator());
+        
         $this->condition->setOperator('dx');
-
-        $this->assertEquals(
-            'dx',
-            $this->condition->getOperator()
-        );
+        
+        $this->assertEquals('dx', $this->condition->getOperator());
     }
 
     /**
@@ -108,17 +91,11 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSetValue()
     {
-        $this->assertEquals(
-            '16',
-            $this->condition->getValue()
-        );
-
+        $this->assertEquals('16', $this->condition->getValue());
+        
         $this->condition->setValue('20');
-
-        $this->assertEquals(
-            '20',
-            $this->condition->getValue()
-        );
+        
+        $this->assertEquals('20', $this->condition->getValue());
     }
 
     /**
@@ -129,18 +106,16 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
     public function testExport()
     {
         $this->assertEquals(
-// TODO             (object) [
-//                 'address'  => '/sensors/2/state/buttonevent',
-//                 'operator' => 'eq',
-//                 'value'    => '16'
-//             ],
+            // TODO (object) [
+            // 'address' => '/sensors/2/state/buttonevent',
+            // 'operator' => 'eq',
+            // 'value' => '16'
+            // ],
             (object) array(
-                'address'  => '/sensors/2/state/buttonevent',
+                'address' => '/sensors/2/state/buttonevent',
                 'operator' => 'eq',
-                'value'    => '16'
-            ),
-        	$this->condition->export()
-        );
+                'value' => '16'
+            ), $this->condition->export());
     }
 
     /**
@@ -151,11 +126,9 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
     public function testEquals()
     {
         $this->condition->equals();
-
-        $this->assertEquals(
-            Condition::OPERATOR_EQUALS,
-            $this->condition->getOperator()
-        );
+        
+        $this->assertEquals(Condition::OPERATOR_EQUALS, 
+            $this->condition->getOperator());
     }
 
     /**
@@ -166,11 +139,9 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
     public function testGreaterThan()
     {
         $this->condition->greaterThan();
-
-        $this->assertEquals(
-            Condition::OPERATOR_GREATER_THAN,
-            $this->condition->getOperator()
-        );
+        
+        $this->assertEquals(Condition::OPERATOR_GREATER_THAN, 
+            $this->condition->getOperator());
     }
 
     /**
@@ -181,11 +152,9 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
     public function testLessThan()
     {
         $this->condition->lessThan();
-
-        $this->assertEquals(
-            Condition::OPERATOR_LESS_THAN,
-            $this->condition->getOperator()
-        );
+        
+        $this->assertEquals(Condition::OPERATOR_LESS_THAN, 
+            $this->condition->getOperator());
     }
 
     /**
@@ -196,10 +165,8 @@ class ConditionTest extends \PHPUnit_Framework_TestCase
     public function testChanged()
     {
         $this->condition->changed();
-
-        $this->assertEquals(
-            Condition::OPERATOR_CHANGED,
-            $this->condition->getOperator()
-        );
+        
+        $this->assertEquals(Condition::OPERATOR_CHANGED, 
+            $this->condition->getOperator());
     }
 }

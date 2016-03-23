@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Transport;
 
 use Phue\Transport\Http;
@@ -16,25 +15,26 @@ use Phue\Transport\Http;
  */
 class HttpTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      */
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock(
-            '\Phue\Client',
-//             ['getTransport'],
-//             ['127.0.0.1']
-            array('getTransport'),
-            array('127.0.0.1')
-        		);
-
+        $this->mockClient = $this->getMock('\Phue\Client', 
+            // ['getTransport'],
+            // ['127.0.0.1']
+            array(
+                'getTransport'
+            ), array(
+                '127.0.0.1'
+            ));
+        
         // Mock transport adapter
         $this->mockAdapter = $this->getMock(
-            '\Phue\Transport\Adapter\AdapterInterface'
-        );
-
+            '\Phue\Transport\Adapter\AdapterInterface');
+        
         // Set transport
         $this->transport = new Http($this->mockClient);
     }
@@ -47,11 +47,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function testClientProperty()
     {
         // Ensure property is set properly
-        $this->assertAttributeEquals(
-            $this->mockClient,
-            'client',
-            $this->transport
-        );
+        $this->assertAttributeEquals($this->mockClient, 'client', $this->transport);
     }
 
     /**
@@ -61,10 +57,8 @@ class HttpTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetDefaultAdapter()
     {
-        $this->assertInstanceOf(
-            '\Phue\Transport\Adapter\AdapterInterface',
-            $this->transport->getAdapter()
-        );
+        $this->assertInstanceOf('\Phue\Transport\Adapter\AdapterInterface', 
+            $this->transport->getAdapter());
     }
 
     /**
@@ -76,11 +70,8 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function testCustomAdapter()
     {
         $this->transport->setAdapter($this->mockAdapter);
-
-        $this->assertEquals(
-            $this->mockAdapter,
-            $this->transport->getAdapter()
-        );
+        
+        $this->assertEquals($this->mockAdapter, $this->transport->getAdapter());
     }
 
     /**
@@ -94,10 +85,10 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     {
         // Stub adapter methods
         $this->stubMockAdapterResponseMethods(null, 500, 'application/json');
-
+        
         // Set mock adapter
         $this->transport->setAdapter($this->mockAdapter);
-
+        
         // Send request
         $this->transport->sendRequest('dummy', 'GET');
     }
@@ -114,10 +105,10 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     {
         // Stub adapter methods
         $this->stubMockAdapterResponseMethods(null, 200, 'unknown');
-
+        
         // Set mock adapter
         $this->transport->setAdapter($this->mockAdapter);
-
+        
         // Send request
         $this->transport->sendRequest('dummy', 'GET');
     }
@@ -133,25 +124,25 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function testSendRequestErrorResponse()
     {
         // Mock response
-//TODO         $mockResponse = [
-//             'error' => [
-//                 'type'        => 1,
-//                 'description' => 'Some kind of error'
-//             ]
-//         ];
+        // TODO $mockResponse = [
+        // 'error' => [
+        // 'type' => 1,
+        // 'description' => 'Some kind of error'
+        // ]
+        // ];
         $mockResponse = array(
-        		'error' => array(
-        				'type'        => 1,
-        				'description' => 'Some kind of error'
-        		)
+            'error' => array(
+                'type' => 1,
+                'description' => 'Some kind of error'
+            )
         );
         
         // Stub adapter methods
         $this->stubMockAdapterResponseMethods($mockResponse, 200, 'application/json');
-
+        
         // Set mock adapter
         $this->transport->setAdapter($this->mockAdapter);
-
+        
         // Send request
         $this->transport->sendRequest('dummy', 'GET');
     }
@@ -165,24 +156,23 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function testSendRequestArray()
     {
         // Mock response
-//         $mockResponse = [
-//             'value 1', 'value 2'
-//         ];
+        // $mockResponse = [
+        // 'value 1', 'value 2'
+        // ];
         $mockResponse = array(
-        		'value 1', 'value 2'
+            'value 1',
+            'value 2'
         );
         
         // Stub adapter methods
         $this->stubMockAdapterResponseMethods($mockResponse, 200, 'application/json');
-
+        
         // Set mock adapter
         $this->transport->setAdapter($this->mockAdapter);
-
+        
         // Send request
-        $this->assertEquals(
-            $mockResponse[0],
-            $this->transport->sendRequest('dummy', 'GET')
-        );
+        $this->assertEquals($mockResponse[0], 
+            $this->transport->sendRequest('dummy', 'GET'));
     }
 
     /**
@@ -194,24 +184,22 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function testSendRequestSuccess()
     {
         // Mock response
-//TODO         $mockResponse = [
-//             'success' => '123'
-//         ];
+        // TODO $mockResponse = [
+        // 'success' => '123'
+        // ];
         $mockResponse = array(
-        		'success' => '123'
+            'success' => '123'
         );
         
         // Stub adapter methods
         $this->stubMockAdapterResponseMethods($mockResponse, 200, 'application/json');
-
+        
         // Set mock adapter
         $this->transport->setAdapter($this->mockAdapter);
-
+        
         // Send request
-        $this->assertEquals(
-            $mockResponse['success'],
-            $this->transport->sendRequest('dummy', 'GET')
-        );
+        $this->assertEquals($mockResponse['success'], 
+            $this->transport->sendRequest('dummy', 'GET'));
     }
 
     /**
@@ -223,10 +211,8 @@ class HttpTest extends \PHPUnit_Framework_TestCase
      */
     public function testThrowExceptionByType($type, $exceptionName)
     {
-        $this->assertInstanceOf(
-            $exceptionName,
-            $this->transport->getExceptionByType($type, null)
-        );
+        $this->assertInstanceOf($exceptionName, 
+            $this->transport->getExceptionByType($type, null));
     }
 
     /**
@@ -236,40 +222,50 @@ class HttpTest extends \PHPUnit_Framework_TestCase
      */
     public function providerErrorTypes()
     {
-//TODO         $errorTypes = [
-//             [-1, 'Phue\Transport\Exception\BridgeException']
-//         ];
+        // TODO $errorTypes = [
+        // [-1, 'Phue\Transport\Exception\BridgeException']
+        // ];
         $errorTypes = array(
-        		array(-1, 'Phue\Transport\Exception\BridgeException')
+            array(
+                - 1,
+                'Phue\Transport\Exception\BridgeException'
+            )
         );
         
         foreach (Http::$exceptionMap as $errorId => $errorClass) {
-// TODO            $errorTypes[] = [$errorId, $errorClass];
-            $errorTypes[] = array($errorId, $errorClass);
+            // TODO $errorTypes[] = [$errorId, $errorClass];
+            $errorTypes[] = array(
+                $errorId,
+                $errorClass
+            );
         }
-
+        
         return $errorTypes;
     }
 
     /**
      * Stub adapter response methods
      *
-     * @param string $response       Response body
-     * @param string $httpStatusCode Http status code
-     * @param string $contentType    Content type
+     * @param string $response
+     *            Response body
+     * @param string $httpStatusCode
+     *            Http status code
+     * @param string $contentType
+     *            Content type
      */
-    protected function stubMockAdapterResponseMethods($response, $httpStatusCode, $contentType)
+    protected function stubMockAdapterResponseMethods($response, $httpStatusCode, 
+        $contentType)
     {
         // Stub send method on transport adapter
         $this->mockAdapter->expects($this->once())
             ->method('send')
             ->will($this->returnValue(json_encode($response)));
-
+        
         // Stub getHttpStatusCode on transport adapter
         $this->mockAdapter->expects($this->once())
             ->method('getHttpStatusCode')
             ->will($this->returnValue($httpStatusCode));
-
+        
         // Stub getContentType on transport adapter
         $this->mockAdapter->expects($this->once())
             ->method('getContentType')

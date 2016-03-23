@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Command;
 
 use Phue\Client;
@@ -18,40 +17,43 @@ use Phue\Transport\TransportInterface;
  */
 class SetGroupStateTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      */
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock(
-            '\Phue\Client',
-// TODO             ['getTransport'],
-//             ['127.0.0.1']
-            array('getTransport'),
-            array('127.0.0.1')
-        		);
-
+        $this->mockClient = $this->getMock('\Phue\Client', 
+            // TODO ['getTransport'],
+            // ['127.0.0.1']
+            array(
+                'getTransport'
+            ), array(
+                '127.0.0.1'
+            ));
+        
         // Mock transport
-        $this->mockTransport = $this->getMock(
-            '\Phue\Transport\TransportInterface',
-// TODO            ['sendRequest']
-            array('sendRequest')
-        );
-
+        $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+            // TODO ['sendRequest']
+            array(
+                'sendRequest'
+            ));
+        
         // Mock group
-        $this->mockGroup = $this->getMock(
-            '\Phue\Group',
-            null,
-// TODO            [2, new \stdClass, $this->mockClient]
-            array(2, new \stdClass, $this->mockClient)
-        );
-
+        $this->mockGroup = $this->getMock('\Phue\Group', null, 
+            // TODO [2, new \stdClass, $this->mockClient]
+            array(
+                2,
+                new \stdClass(),
+                $this->mockClient
+            ));
+        
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
             ->method('getUsername')
             ->will($this->returnValue('abcdefabcdef01234567890123456789'));
-
+        
         // Stub client's getTransport method
         $this->mockClient->expects($this->any())
             ->method('getTransport')
@@ -67,26 +69,22 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
     public function testSceneSend()
     {
         $scene = 'phue-test';
-
+        
         // Build command
         $command = new SetGroupState($this->mockGroup);
-
+        
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-// TODO             (object) [
-//                 'scene' => $scene
-//             ]
+            // TODO (object) [
+            // 'scene' => $scene
+            // ]
             (object) array(
                 'scene' => $scene
-            )
-       	);
-
+            ));
+        
         // Ensure instance is returned
-        $this->assertEquals(
-            $command,
-            $command->scene($scene)
-        );
-
+        $this->assertEquals($command, $command->scene($scene));
+        
         // Send
         $command->send($this->mockClient);
     }
@@ -101,20 +99,18 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
     {
         // Build command
         $setGroupStateCmd = new SetGroupState($this->mockGroup);
-
+        
         // Set expected payload
         $this->stubTransportSendRequestWithPayload(
-// TODO             (object) [
-//                 'ct' => '300'
-//             ]
+            // TODO (object) [
+            // 'ct' => '300'
+            // ]
             (object) array(
                 'ct' => '300'
-            )
-        );
-
+            ));
+        
         // Change color temp and set state
-        $setGroupStateCmd->colorTemp(300)
-            ->send($this->mockClient);
+        $setGroupStateCmd->colorTemp(300)->send($this->mockClient);
     }
 
     /**
@@ -126,34 +122,33 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
     {
         // Build command
         $setGroupStateCmd = new SetGroupState($this->mockGroup);
-
+        
         // Change alert
         $setGroupStateCmd->alert('select');
-
+        
         // Ensure schedulable params are expected
         $this->assertEquals(
-// TODO             [
-//                 'address' => "/groups/{$this->mockGroup->getId()}/action",
-//                 'method'  => 'PUT',
-//                 'body'    => (object) [
-//                     'alert' => 'select'
-//                 ]
-//             ],
+            // TODO [
+            // 'address' => "/groups/{$this->mockGroup->getId()}/action",
+            // 'method' => 'PUT',
+            // 'body' => (object) [
+            // 'alert' => 'select'
+            // ]
+            // ],
             array(
                 'address' => "/groups/{$this->mockGroup->getId()}/action",
-                'method'  => 'PUT',
-                'body'    => (object) array(
+                'method' => 'PUT',
+                'body' => (object) array(
                     'alert' => 'select'
                 )
-            ),
-            $setGroupStateCmd->getActionableParams($this->mockClient)
-        );
+            ), $setGroupStateCmd->getActionableParams($this->mockClient));
     }
 
     /**
      * Stub transport's sendRequest with an expected payload
      *
-     * @param \stdClass $payload Payload
+     * @param \stdClass $payload
+     *            Payload
      */
     protected function stubTransportSendRequestWithPayload(\stdClass $payload)
     {
@@ -161,11 +156,8 @@ class SetGroupStateTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with(
-                $this->equalTo(
-                    "/api/{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action"
-                ),
-                $this->equalTo('PUT'),
-                $payload
-            );
+            $this->equalTo(
+                "/api/{$this->mockClient->getUsername()}/groups/{$this->mockGroup->getId()}/action"), 
+            $this->equalTo('PUT'), $payload);
     }
 }

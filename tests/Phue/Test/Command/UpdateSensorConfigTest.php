@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Command;
 
 use Mockery;
@@ -19,6 +18,7 @@ use Phue\Transport\TransportInterface;
  */
 class UpdateSensorConfigTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test: Instantiating UpdateSensorConfig command
      *
@@ -37,11 +37,8 @@ class UpdateSensorConfigTest extends \PHPUnit_Framework_TestCase
     public function testName()
     {
         $command = new UpdateSensorConfig('4');
-
-        $this->assertEquals(
-            $command,
-            $command->configAttribute('key', 'value')
-        );
+        
+        $this->assertEquals($command, $command->configAttribute('key', 'value'));
     }
 
     /**
@@ -52,27 +49,21 @@ class UpdateSensorConfigTest extends \PHPUnit_Framework_TestCase
     public function testSend()
     {
         // Mock client
-        $mockClient = Mockery::mock(
-            '\Phue\Client',
-// TODO             [
-//                 'getUsername' => 'abcdefabcdef01234567890123456789'
-//             ]
+        $mockClient = Mockery::mock('\Phue\Client', 
+            // TODO [
+            // 'getUsername' => 'abcdefabcdef01234567890123456789'
+            // ]
             array(
                 'getUsername' => 'abcdefabcdef01234567890123456789'
-            )
-        		)
-            ->makePartial();
-
+            ))->makePartial();
+        
         // Mock client commands
-        $mockClient
-            ->shouldReceive('getTransport->sendRequest');
-
-// TODO         $command = (new UpdateSensorConfig('5'))
-//             ->configAttribute('key', 'value')
-//             ->send($mockClient);
-		$sensor = new UpdateSensorConfig('5');
-        $command = $sensor
-            ->configAttribute('key', 'value')
-            ->send($mockClient);
+        $mockClient->shouldReceive('getTransport->sendRequest');
+        
+        // TODO $command = (new UpdateSensorConfig('5'))
+        // ->configAttribute('key', 'value')
+        // ->send($mockClient);
+        $sensor = new UpdateSensorConfig('5');
+        $command = $sensor->configAttribute('key', 'value')->send($mockClient);
     }
 }

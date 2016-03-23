@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Command;
 
 use Mockery;
@@ -19,6 +18,7 @@ use Phue\Transport\TransportInterface;
  */
 class CreateRuleTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test: Instantiating CreateRule command
      *
@@ -36,12 +36,9 @@ class CreateRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testName()
     {
-        $command = new CreateRule;
-
-        $this->assertEquals(
-            $command,
-            $command->name('dummy name')
-        );
+        $command = new CreateRule();
+        
+        $this->assertEquals($command, $command->name('dummy name'));
     }
 
     /**
@@ -51,15 +48,11 @@ class CreateRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddCondition()
     {
-        $condition = Mockery::mock('\Phue\Condition')
-            ->makePartial();
-
-        $command = new CreateRule;
-
-        $this->assertEquals(
-            $command,
-            $command->addCondition($condition)
-        );
+        $condition = Mockery::mock('\Phue\Condition')->makePartial();
+        
+        $command = new CreateRule();
+        
+        $this->assertEquals($command, $command->addCondition($condition));
     }
 
     /**
@@ -69,15 +62,11 @@ class CreateRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddAction()
     {
-        $action = Mockery::mock('\Phue\Command\ActionableInterface')
-            ->makePartial();
-
-        $command = new CreateRule;
-
-        $this->assertEquals(
-            $command,
-            $command->addAction($action)
-        );
+        $action = Mockery::mock('\Phue\Command\ActionableInterface')->makePartial();
+        
+        $command = new CreateRule();
+        
+        $this->assertEquals($command, $command->addAction($action));
     }
 
     /**
@@ -88,34 +77,29 @@ class CreateRuleTest extends \PHPUnit_Framework_TestCase
     public function testSend()
     {
         // Mock client
-        $mockClient = Mockery::mock(
-            '\Phue\Client',
-// TODO        [
-//                 'getUsername' => 'abcdefabcdef01234567890123456789'
-//             ]
-        	array(
-        		'getUsername' => 'abcdefabcdef01234567890123456789'
-        	)
-        )
-            ->makePartial();
-
+        $mockClient = Mockery::mock('\Phue\Client', 
+            // TODO [
+            // 'getUsername' => 'abcdefabcdef01234567890123456789'
+            // ]
+            array(
+                'getUsername' => 'abcdefabcdef01234567890123456789'
+            ))->makePartial();
+        
         // Mock client commands
-        $mockClient
-            ->shouldReceive('getTransport->sendRequest')
-// TODO        ->andReturn((object) ['id' => '5']);
-        	->andReturn((object) array('id' => '5'));
-
-// TODO    $command = (new CreateRule('test'))
-//             ->addCondition(Mockery::mock('\Phue\Condition')->makePartial())
-//             ->addAction(Mockery::mock('\Phue\Command\ActionableInterface')->shouldIgnoreMissing());
-            $x = new CreateRule('test');
-            $command = $x
-            	->addCondition(Mockery::mock('\Phue\Condition')->makePartial())
-            	->addAction(Mockery::mock('\Phue\Command\ActionableInterface')->shouldIgnoreMissing());
-
-        $this->assertEquals(
-            '5',
-            $command->send($mockClient)
-        );
+        $mockClient->shouldReceive('getTransport->sendRequest')->
+        // TODO ->andReturn((object) ['id' => '5']);
+        andReturn((object) array(
+            'id' => '5'
+        ));
+        
+        // TODO $command = (new CreateRule('test'))
+        // ->addCondition(Mockery::mock('\Phue\Condition')->makePartial())
+        // ->addAction(Mockery::mock('\Phue\Command\ActionableInterface')->shouldIgnoreMissing());
+        $x = new CreateRule('test');
+        $command = $x->addCondition(Mockery::mock('\Phue\Condition')->makePartial())
+            ->addAction(
+            Mockery::mock('\Phue\Command\ActionableInterface')->shouldIgnoreMissing());
+        
+        $this->assertEquals('5', $command->send($mockClient));
     }
 }

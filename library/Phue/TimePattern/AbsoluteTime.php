@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\TimePattern;
 
 use DateTime;
@@ -17,6 +16,7 @@ use DateTimeZone;
  */
 class AbsoluteTime extends AbstractTimePattern
 {
+
     /**
      * Date
      *
@@ -27,14 +27,15 @@ class AbsoluteTime extends AbstractTimePattern
     /**
      * Instantiate
      *
-     * @param string $time Time value
+     * @param string $time
+     *            Time value
      */
     public function __construct($time)
     {
-// TODO        $this->date = (new DateTime((string) $time))
-//             ->setTimeZone(new DateTimeZone('UTC'));
-    	$this->date = (new DateTime((string) $time));
-    	$this->date->setTimeZone(new DateTimeZone('UTC'));
+        // TODO $this->date = (new DateTime((string) $time))
+        // ->setTimeZone(new DateTimeZone('UTC'));
+        $this->date = (new DateTime((string) $time));
+        $this->date->setTimeZone(new DateTimeZone('UTC'));
     }
 
     /**

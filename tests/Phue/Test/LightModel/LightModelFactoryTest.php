@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\LightModel;
 
 use Phue\LightModel\LightModelFactory;
@@ -16,6 +15,7 @@ use Phue\LightModel\LightModelFactory;
  */
 class LightModelFactoryTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test: Getting unknown model
      *
@@ -23,10 +23,8 @@ class LightModelFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUnknownModel()
     {
-        $this->assertInstanceOf(
-            '\Phue\LightModel\UnknownModel',
-            LightModelFactory::build('whatever')
-        );
+        $this->assertInstanceOf('\Phue\LightModel\UnknownModel', 
+            LightModelFactory::build('whatever'));
     }
 
     /**
@@ -36,9 +34,7 @@ class LightModelFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetKnownModel()
     {
-        $this->assertInstanceOf(
-            '\Phue\LightModel\Lst001Model',
-            LightModelFactory::build('LST001')
-        );
+        $this->assertInstanceOf('\Phue\LightModel\Lst001Model', 
+            LightModelFactory::build('LST001'));
     }
 }

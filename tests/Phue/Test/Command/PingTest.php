@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Command;
 
 use Phue\Client;
@@ -18,27 +17,29 @@ use Phue\Transport\TransportInterface;
  */
 class PingTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      */
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock(
-            '\Phue\Client',
-//TODO             ['getTransport'],
-//             ['127.0.0.1']
-            array('getTransport'),
-            array('127.0.0.1')
-        		);
-
+        $this->mockClient = $this->getMock('\Phue\Client', 
+            // TODO ['getTransport'],
+            // ['127.0.0.1']
+            array(
+                'getTransport'
+            ), array(
+                '127.0.0.1'
+            ));
+        
         // Mock transport
-        $this->mockTransport = $this->getMock(
-            '\Phue\Transport\TransportInterface',
-// TODO            ['sendRequest']
-            array('sendRequest')
-        		);
-
+        $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+            // TODO ['sendRequest']
+            array(
+                'sendRequest'
+            ));
+        
         // Stub client getTransport usage
         $this->mockClient->expects($this->any())
             ->method('getTransport')
@@ -56,9 +57,9 @@ class PingTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with($this->equalTo('/api/none/config'));
-		
-// TODO (new Ping)->send($this->mockClient);
-        $ping = new Ping;
+        
+        // TODO (new Ping)->send($this->mockClient);
+        $ping = new Ping();
         $ping->send($this->mockClient);
     }
 }

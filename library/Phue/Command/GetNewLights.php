@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -16,6 +15,7 @@ use Phue\Client;
  */
 class GetNewLights implements CommandInterface
 {
+
     /**
      * Last scan
      *
@@ -28,33 +28,33 @@ class GetNewLights implements CommandInterface
      *
      * @var array
      */
-//TODO protected $lights = [];
+    // TODO protected $lights = [];
     protected $lights = array();
-    
+
     /**
      * Send command
      *
-     * @param Client $client Phue Client
-     *
+     * @param Client $client
+     *            Phue Client
+     *            
      * @return self This object
      */
     public function send(Client $client)
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/lights/new"
-        );
-
+            "/api/{$client->getUsername()}/lights/new");
+        
         $this->lastScan = $response->lastscan;
-
+        
         // Remove scan from response
         unset($response->lastscan);
-
+        
         // Iterate through left over properties as lights
         foreach ($response as $lightId => $light) {
             $this->lights[$lightId] = $light->name;
         }
-
+        
         return $this;
     }
 

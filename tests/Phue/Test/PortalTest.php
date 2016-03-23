@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Portal;
  */
 class PortalTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      *
@@ -25,26 +25,27 @@ class PortalTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock(
-            '\Phue\Client',
-// TODO             ['sendCommand'],
-//             ['127.0.0.1']
-            array('sendCommand'),
-            array('127.0.0.1')
-        		);
-
+        $this->mockClient = $this->getMock('\Phue\Client', 
+            // TODO ['sendCommand'],
+            // ['127.0.0.1']
+            array(
+                'sendCommand'
+            ), array(
+                '127.0.0.1'
+            ));
+        
         // Build stub attributes
-//         $this->attributes = (object) [
-//             'signedon'      => true,
-//             'incoming'      => false,
-//             'outgoing'      => true,
-//             'communication' => 'disconnected'
-//         ];
+        // $this->attributes = (object) [
+        // 'signedon' => true,
+        // 'incoming' => false,
+        // 'outgoing' => true,
+        // 'communication' => 'disconnected'
+        // ];
         $this->attributes = (object) array(
-        		'signedon'      => true,
-        		'incoming'      => false,
-        		'outgoing'      => true,
-        		'communication' => 'disconnected'
+            'signedon' => true,
+            'incoming' => false,
+            'outgoing' => true,
+            'communication' => 'disconnected'
         );
         
         // Create portal object
@@ -58,10 +59,7 @@ class PortalTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsSignedOn()
     {
-        $this->assertEquals(
-            $this->attributes->signedon,
-            $this->portal->isSignedOn()
-        );
+        $this->assertEquals($this->attributes->signedon, $this->portal->isSignedOn());
     }
 
     /**
@@ -71,10 +69,7 @@ class PortalTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsIncoming()
     {
-        $this->assertEquals(
-            $this->attributes->incoming,
-            $this->portal->isIncoming()
-        );
+        $this->assertEquals($this->attributes->incoming, $this->portal->isIncoming());
     }
 
     /**
@@ -84,10 +79,7 @@ class PortalTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsOutgoing()
     {
-        $this->assertEquals(
-            $this->attributes->outgoing,
-            $this->portal->isOutgoing()
-        );
+        $this->assertEquals($this->attributes->outgoing, $this->portal->isOutgoing());
     }
 
     /**
@@ -97,9 +89,7 @@ class PortalTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetCommunication()
     {
-        $this->assertEquals(
-            $this->attributes->communication,
-            $this->portal->getCommunication()
-        );
+        $this->assertEquals($this->attributes->communication, 
+            $this->portal->getCommunication());
     }
 }

@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Command;
 
 use Phue\Client;
@@ -18,34 +17,37 @@ use Phue\Transport\TransportInterface;
  */
 class GetUsersTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      */
     public function setUp()
     {
         $this->getUsers = new GetUsers();
-
+        
         // Mock client
-        $this->mockClient = $this->getMock(
-            '\Phue\Client',
-// TODO             ['getUsername', 'getTransport'],
-//             ['127.0.0.1']
-            array('getUsername', 'getTransport'),
-            array('127.0.0.1')
-   		);
-
+        $this->mockClient = $this->getMock('\Phue\Client', 
+            // TODO ['getUsername', 'getTransport'],
+            // ['127.0.0.1']
+            array(
+                'getUsername',
+                'getTransport'
+            ), array(
+                '127.0.0.1'
+            ));
+        
         // Mock transport
-        $this->mockTransport = $this->getMock(
-            '\Phue\Transport\TransportInterface',
-// TODO            ['sendRequest']
-            array('sendRequest')
-        		);
-
+        $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+            // TODO ['sendRequest']
+            array(
+                'sendRequest'
+            ));
+        
         // Stub client's getUsername method
         $this->mockClient->expects($this->any())
             ->method('getUsername')
             ->will($this->returnValue('abcdefabcdef01234567890123456789'));
-
+        
         // Stub client's getTransport method
         $this->mockClient->expects($this->any())
             ->method('getTransport')
@@ -63,11 +65,11 @@ class GetUsersTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with($this->equalTo("/api/{$this->mockClient->getUsername()}/config"))
-            ->will($this->returnValue(new \stdClass));
-
+            ->will($this->returnValue(new \stdClass()));
+        
         // Send command and get response
         $response = $this->getUsers->send($this->mockClient);
-
+        
         // Ensure we have an empty array
         $this->assertInternalType('array', $response);
         $this->assertEmpty($response);
@@ -81,17 +83,17 @@ class GetUsersTest extends \PHPUnit_Framework_TestCase
     public function testFoundUsers()
     {
         // Mock transport results
-// TODO         $mockTransportResults = (object) [
-//             'whitelist' => [
-//                 'someusername'    => new \stdClass,
-//                 'anotherusername' => new \stdClass,
-//             ]
-//         ];
+        // TODO $mockTransportResults = (object) [
+        // 'whitelist' => [
+        // 'someusername' => new \stdClass,
+        // 'anotherusername' => new \stdClass,
+        // ]
+        // ];
         $mockTransportResults = (object) array(
-        		'whitelist' => array(
-        				'someusername'    => new \stdClass,
-        				'anotherusername' => new \stdClass,
-        		)
+            'whitelist' => array(
+                'someusername' => new \stdClass(),
+                'anotherusername' => new \stdClass()
+            )
         );
         
         // Stub transport's sendRequest usage
@@ -99,10 +101,10 @@ class GetUsersTest extends \PHPUnit_Framework_TestCase
             ->method('sendRequest')
             ->with($this->equalTo("/api/{$this->mockClient->getUsername()}/config"))
             ->will($this->returnValue($mockTransportResults));
-
+        
         // Send command and get response
         $response = $this->getUsers->send($this->mockClient);
-
+        
         // Ensure we have an array of Users
         $this->assertInternalType('array', $response);
         $this->assertContainsOnlyInstancesOf('\Phue\User', $response);

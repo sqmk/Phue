@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\TimePattern;
 
 /**
@@ -14,6 +13,7 @@ namespace Phue\TimePattern;
  */
 class Timer extends AbstractTimePattern
 {
+
     /**
      * Number of seconds until event
      *
@@ -31,7 +31,8 @@ class Timer extends AbstractTimePattern
     /**
      * Instantiate
      *
-     * @param string $time Time value
+     * @param string $time
+     *            Time value
      */
     public function __construct($seconds)
     {
@@ -41,14 +42,15 @@ class Timer extends AbstractTimePattern
     /**
      * Repeat count.
      *
-     * @param int $count Number of times to repeat
-     *
+     * @param int $count
+     *            Number of times to repeat
+     *            
      * @return self This object
      */
     public function repeat($count)
     {
         $this->repeat = (int) $count;
-
+        
         return $this;
     }
 
@@ -60,11 +62,11 @@ class Timer extends AbstractTimePattern
     public function __toString()
     {
         $timer = 'PT' . date('H:i:s', $this->seconds);
-
+        
         if ($this->repeat !== null) {
             $timer = sprintf('R%1$02d/%2$s', $this->repeat, $timer);
         }
-
+        
         return $timer;
     }
 }

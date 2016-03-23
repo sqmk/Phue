@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\TimePattern;
 
 use Phue\TimePattern\AbsoluteTime;
@@ -16,6 +15,7 @@ use Phue\TimePattern\AbsoluteTime;
  */
 class AbsoluteTimeTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test: Creating absolute time
      *
@@ -23,9 +23,7 @@ class AbsoluteTimeTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateTime()
     {
-        $this->assertRegExp(
-            '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/',
-            (string) new AbsoluteTime('now')
-        );
+        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/', 
+            (string) new AbsoluteTime('now'));
     }
 }

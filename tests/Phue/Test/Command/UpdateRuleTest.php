@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Command;
 
 use Mockery;
@@ -19,6 +18,7 @@ use Phue\Transport\TransportInterface;
  */
 class UpdateRuleTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test: Instantiating UpdateRule command
      *
@@ -37,11 +37,8 @@ class UpdateRuleTest extends \PHPUnit_Framework_TestCase
     public function testName()
     {
         $command = new UpdateRule('4');
-
-        $this->assertEquals(
-            $command,
-            $command->name('dummy name')
-        );
+        
+        $this->assertEquals($command, $command->name('dummy name'));
     }
 
     /**
@@ -52,29 +49,26 @@ class UpdateRuleTest extends \PHPUnit_Framework_TestCase
     public function testSend()
     {
         // Mock client
-        $mockClient = Mockery::mock(
-            '\Phue\Client',
-// TODO             [
-//                 'getUsername' => 'abcdefabcdef01234567890123456789'
-//             ]
+        $mockClient = Mockery::mock('\Phue\Client', 
+            // TODO [
+            // 'getUsername' => 'abcdefabcdef01234567890123456789'
+            // ]
             array(
                 'getUsername' => 'abcdefabcdef01234567890123456789'
-            )
-        		)
-            ->makePartial();
-
+            ))->makePartial();
+        
         // Mock client commands
-        $mockClient
-            ->shouldReceive('getTransport->sendRequest');
-
-// TODO         $command = (new UpdateRule('5'))
-//             ->addCondition(Mockery::mock('\Phue\Condition')->makePartial())
-//             ->addAction(Mockery::mock('\Phue\Command\ActionableInterface')->shouldIgnoreMissing())
-//             ->send($mockClient);
-		$rule = new UpdateRule('5');
-        $command = $rule
-            ->addCondition(Mockery::mock('\Phue\Condition')->makePartial())
-            ->addAction(Mockery::mock('\Phue\Command\ActionableInterface')->shouldIgnoreMissing())
+        $mockClient->shouldReceive('getTransport->sendRequest');
+        
+        // TODO $command = (new UpdateRule('5'))
+        // ->addCondition(Mockery::mock('\Phue\Condition')->makePartial())
+        // ->addAction(Mockery::mock('\Phue\Command\ActionableInterface')->shouldIgnoreMissing())
+        // ->send($mockClient);
+        $rule = new UpdateRule('5');
+        $command = $rule->addCondition(
+            Mockery::mock('\Phue\Condition')->makePartial())
+            ->addAction(
+            Mockery::mock('\Phue\Command\ActionableInterface')->shouldIgnoreMissing())
             ->send($mockClient);
     }
 }

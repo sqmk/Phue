@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Transport\TransportInterface;
  */
 class UpdateSensorConfig extends CreateSensor
 {
+
     /**
      * Sensor Id
      *
@@ -29,13 +29,14 @@ class UpdateSensorConfig extends CreateSensor
      *
      * @var array
      */
-//TODO    protected $config = [];
+    // TODO protected $config = [];
     protected $config = array();
-    
+
     /**
      * Constructs a command
      *
-     * @param mixed $sensor Sensor Id or Sensor object
+     * @param mixed $sensor
+     *            Sensor Id or Sensor object
      */
     public function __construct($sensor)
     {
@@ -45,29 +46,30 @@ class UpdateSensorConfig extends CreateSensor
     /**
      * Config attribute
      *
-     * @param string $key   Key
-     * @param mixed  $value Value
-     *
+     * @param string $key
+     *            Key
+     * @param mixed $value
+     *            Value
+     *            
      * @return self This object
      */
     public function configAttribute($key, $value)
     {
         $this->config[$key] = $value;
-
+        
         return $this;
     }
 
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      */
     public function send(Client $client)
     {
         $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/sensors/{$this->sensorId}/config",
-            TransportInterface::METHOD_PUT,
-            (object) $this->config
-        );
+            "/api/{$client->getUsername()}/sensors/{$this->sensorId}/config", 
+            TransportInterface::METHOD_PUT, (object) $this->config);
     }
 }

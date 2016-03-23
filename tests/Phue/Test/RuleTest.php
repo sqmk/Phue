@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Rule;
  */
 class RuleTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      *
@@ -25,70 +25,71 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock(
-            '\Phue\Client',
-// TODO             ['sendCommand'],
-//             ['127.0.0.1']
-            array('sendCommand'),
-            array('127.0.0.1')
-        		);
-
+        $this->mockClient = $this->getMock('\Phue\Client', 
+            // TODO ['sendCommand'],
+            // ['127.0.0.1']
+            array(
+                'sendCommand'
+            ), array(
+                '127.0.0.1'
+            ));
+        
         // Build stub attributes
-//         $this->attributes = (object) [
-//             'name'           => 'Wall Switch Rule',
-//             'lasttriggered'  => '2013-10-17T01:23:20',
-//             'created'        => '2013-10-10T21:11:45',
-//             'timestriggered' => 27,
-//             'owner'          => '78H56B12BA',
-//             'status'         => 'enabled',
-//             'conditions'  => [
-//                 (object) [
-//                     'address'  => '/sensors/2/state/buttonevent',
-//                     'operator' => 'eq',
-//                     'value'    => '16'
-//                 ],
-//                 (object) [
-//                     'address'  => '/sensors/2/state/lastupdated',
-//                     'operator' => 'dx'
-//                 ]
-//             ],
-//             'actions' => [
-//                 (object) [
-//                     'address' => '/groups/0/action',
-//                     'method'  => 'PUT',
-//                     'body'    => [
-//                         'scene' => 'S3'
-//                     ]
-//                 ]
-//             ]
-//         ];
+        // $this->attributes = (object) [
+        // 'name' => 'Wall Switch Rule',
+        // 'lasttriggered' => '2013-10-17T01:23:20',
+        // 'created' => '2013-10-10T21:11:45',
+        // 'timestriggered' => 27,
+        // 'owner' => '78H56B12BA',
+        // 'status' => 'enabled',
+        // 'conditions' => [
+        // (object) [
+        // 'address' => '/sensors/2/state/buttonevent',
+        // 'operator' => 'eq',
+        // 'value' => '16'
+        // ],
+        // (object) [
+        // 'address' => '/sensors/2/state/lastupdated',
+        // 'operator' => 'dx'
+        // ]
+        // ],
+        // 'actions' => [
+        // (object) [
+        // 'address' => '/groups/0/action',
+        // 'method' => 'PUT',
+        // 'body' => [
+        // 'scene' => 'S3'
+        // ]
+        // ]
+        // ]
+        // ];
         $this->attributes = (object) array(
-        		'name'           => 'Wall Switch Rule',
-        		'lasttriggered'  => '2013-10-17T01:23:20',
-        		'created'        => '2013-10-10T21:11:45',
-        		'timestriggered' => 27,
-        		'owner'          => '78H56B12BA',
-        		'status'         => 'enabled',
-        		'conditions'  => array(
-        				(object) array(
-        						'address'  => '/sensors/2/state/buttonevent',
-        						'operator' => 'eq',
-        						'value'    => '16'
-        				),
-        				(object) array(
-        						'address'  => '/sensors/2/state/lastupdated',
-        						'operator' => 'dx'
-        				)
-        		),
-        		'actions' => array(
-        				(object) array(
-        						'address' => '/groups/0/action',
-        						'method'  => 'PUT',
-        						'body'    => array(
-        								'scene' => 'S3'
-        						)
-        				)
-        		)
+            'name' => 'Wall Switch Rule',
+            'lasttriggered' => '2013-10-17T01:23:20',
+            'created' => '2013-10-10T21:11:45',
+            'timestriggered' => 27,
+            'owner' => '78H56B12BA',
+            'status' => 'enabled',
+            'conditions' => array(
+                (object) array(
+                    'address' => '/sensors/2/state/buttonevent',
+                    'operator' => 'eq',
+                    'value' => '16'
+                ),
+                (object) array(
+                    'address' => '/sensors/2/state/lastupdated',
+                    'operator' => 'dx'
+                )
+            ),
+            'actions' => array(
+                (object) array(
+                    'address' => '/groups/0/action',
+                    'method' => 'PUT',
+                    'body' => array(
+                        'scene' => 'S3'
+                    )
+                )
+            )
         );
         
         // Create rule object
@@ -102,10 +103,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetId()
     {
-        $this->assertEquals(
-            4,
-            $this->rule->getId()
-        );
+        $this->assertEquals(4, $this->rule->getId());
     }
 
     /**
@@ -115,10 +113,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetName()
     {
-        $this->assertEquals(
-            $this->attributes->name,
-            $this->rule->getName()
-        );
+        $this->assertEquals($this->attributes->name, $this->rule->getName());
     }
 
     /**
@@ -128,10 +123,8 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLastTriggeredTime()
     {
-        $this->assertEquals(
-            $this->attributes->lasttriggered,
-            $this->rule->getLastTriggeredTime()
-        );
+        $this->assertEquals($this->attributes->lasttriggered, 
+            $this->rule->getLastTriggeredTime());
     }
 
     /**
@@ -141,10 +134,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetCreateDate()
     {
-        $this->assertEquals(
-            $this->attributes->created,
-            $this->rule->getCreateDate()
-        );
+        $this->assertEquals($this->attributes->created, $this->rule->getCreateDate());
     }
 
     /**
@@ -154,10 +144,8 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetTriggeredCount()
     {
-        $this->assertEquals(
-            $this->attributes->timestriggered,
-            $this->rule->getTriggeredCount()
-        );
+        $this->assertEquals($this->attributes->timestriggered, 
+            $this->rule->getTriggeredCount());
     }
 
     /**
@@ -167,10 +155,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetOwner()
     {
-        $this->assertEquals(
-            $this->attributes->owner,
-            $this->rule->getOwner()
-        );
+        $this->assertEquals($this->attributes->owner, $this->rule->getOwner());
     }
 
     /**
@@ -180,9 +165,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsEnabled()
     {
-        return $this->assertTrue(
-            $this->rule->isEnabled()
-        );
+        return $this->assertTrue($this->rule->isEnabled());
     }
 
     /**
@@ -193,16 +176,10 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     public function testGetConditions()
     {
         $conditions = $this->rule->getConditions();
-
-        $this->assertEquals(
-            2,
-            count($conditions)
-        );
-
-        $this->assertContainsOnlyInstancesOf(
-            '\Phue\Condition',
-            $conditions
-        );
+        
+        $this->assertEquals(2, count($conditions));
+        
+        $this->assertContainsOnlyInstancesOf('\Phue\Condition', $conditions);
     }
 
     /**
@@ -213,16 +190,10 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     public function testGetActions()
     {
         $actions = $this->rule->getActions();
-
-        $this->assertEquals(
-            1,
-            count($actions)
-        );
-
-        $this->assertContainsOnlyInstancesOf(
-            '\stdClass',
-            $actions
-        );
+        
+        $this->assertEquals(1, count($actions));
+        
+        $this->assertContainsOnlyInstancesOf('\stdClass', $actions);
     }
 
     /**
@@ -235,7 +206,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
         $this->mockClient->expects($this->once())
             ->method('sendCommand')
             ->with($this->isInstanceOf('\Phue\Command\DeleteRule'));
-
+        
         $this->rule->delete();
     }
 
@@ -246,9 +217,6 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testToString()
     {
-        $this->assertEquals(
-            $this->rule->getId(),
-            (string) $this->rule
-        );
+        $this->assertEquals($this->rule->getId(), (string) $this->rule);
     }
 }

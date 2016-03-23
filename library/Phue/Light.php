@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue;
 
 use Phue\Command\SetLightState;
@@ -18,6 +17,7 @@ use Phue\LightModel\LightModelFactory;
  */
 class Light
 {
+
     /**
      * Id
      *
@@ -42,15 +42,18 @@ class Light
     /**
      * Construct a Phue Light object
      *
-     * @param int       $id         Id
-     * @param \stdClass $attributes Light attributes
-     * @param Client    $client     Phue client
+     * @param int $id
+     *            Id
+     * @param \stdClass $attributes
+     *            Light attributes
+     * @param Client $client
+     *            Phue client
      */
     public function __construct($id, \stdClass $attributes, Client $client)
     {
-        $this->id         = (int) $id;
+        $this->id = (int) $id;
         $this->attributes = $attributes;
-        $this->client     = $client;
+        $this->client = $client;
     }
 
     /**
@@ -76,18 +79,16 @@ class Light
     /**
      * Set name of light
      *
-     * @param string $name
+     * @param string $name            
      *
      * @return self This object
      */
     public function setName($name)
     {
-        $this->client->sendCommand(
-            new Command\SetLightName($this, (string) $name)
-        );
-
+        $this->client->sendCommand(new Command\SetLightName($this, (string) $name));
+        
         $this->attributes->name = (string) $name;
-
+        
         return $this;
     }
 
@@ -154,21 +155,22 @@ class Light
     /**
      * Set light on/off
      *
-     * @param bool $flag True for on, false for off
-     *
+     * @param bool $flag
+     *            True for on, false for off
+     *            
      * @return self This object
      */
     public function setOn($flag = true)
     {
-//TODO     $this->client->sendCommand(
-//             (new SetLightState($this))->on((bool) $flag)
-//         );
-		$x = new SetLightState($this);
-		$y = $x->on((bool) $flag);
+        // TODO $this->client->sendCommand(
+        // (new SetLightState($this))->on((bool) $flag)
+        // );
+        $x = new SetLightState($this);
+        $y = $x->on((bool) $flag);
         $this->client->sendCommand($y);
         
         $this->attributes->state->on = (bool) $flag;
-
+        
         return $this;
     }
 
@@ -185,21 +187,22 @@ class Light
     /**
      * Set light alert
      *
-     * @param string $mode Alert mode
-     *
+     * @param string $mode
+     *            Alert mode
+     *            
      * @return self This object
      */
     public function setAlert($mode = SetLightState::ALERT_LONG_SELECT)
     {
-//TODO     $this->client->sendCommand(
-//             (new SetLightState($this))->alert($mode)
-//         );
+        // TODO $this->client->sendCommand(
+        // (new SetLightState($this))->alert($mode)
+        // );
         $x = new SetLightState($this);
         $y = $x->alert($mode);
         $this->client->sendCommand($y);
         
         $this->attributes->state->alert = $mode;
-
+        
         return $this;
     }
 
@@ -216,21 +219,22 @@ class Light
     /**
      * Set effect
      *
-     * @param string $mode Effect mode
-     *
+     * @param string $mode
+     *            Effect mode
+     *            
      * @return self This object
      */
     public function setEffect($mode = SetLightState::EFFECT_NONE)
     {
-//TODO     $this->client->sendCommand(
-//             (new SetLightState($this))->effect($mode)
-//         );
-		$x = new SetLightState($this);
-		$y = $x ->effect($mode);
+        // TODO $this->client->sendCommand(
+        // (new SetLightState($this))->effect($mode)
+        // );
+        $x = new SetLightState($this);
+        $y = $x->effect($mode);
         $this->client->sendCommand($y);
         
         $this->attributes->state->effect = $mode;
-
+        
         return $this;
     }
 
@@ -247,21 +251,22 @@ class Light
     /**
      * Set brightness
      *
-     * @param int $level Brightness level
-     *
+     * @param int $level
+     *            Brightness level
+     *            
      * @return self This object
      */
     public function setBrightness($level = SetLightState::BRIGHTNESS_MAX)
     {
-//TODO     $this->client->sendCommand(
-//             (new SetLightState($this))->brightness((int) $level)
-//         );
-		$x = new SetLightState($this);
-		$y = $x->brightness((int) $level);
+        // TODO $this->client->sendCommand(
+        // (new SetLightState($this))->brightness((int) $level)
+        // );
+        $x = new SetLightState($this);
+        $y = $x->brightness((int) $level);
         $this->client->sendCommand($y);
         
         $this->attributes->state->bri = (int) $level;
-
+        
         return $this;
     }
 
@@ -278,23 +283,24 @@ class Light
     /**
      * Set hue
      *
-     * @param int $value Hue value
-     *
+     * @param int $value
+     *            Hue value
+     *            
      * @return self This object
      */
     public function setHue($value)
     {
-//TODO     $this->client->sendCommand(
-//             (new SetLightState($this))->hue((int) $value)
-//         );
-		$x = new SetLightState($this);
-		$y = $x->hue((int) $value);
+        // TODO $this->client->sendCommand(
+        // (new SetLightState($this))->hue((int) $value)
+        // );
+        $x = new SetLightState($this);
+        $y = $x->hue((int) $value);
         $this->client->sendCommand($y);
         
         // Change both hue and color mode state
-        $this->attributes->state->hue       = (int) $value;
+        $this->attributes->state->hue = (int) $value;
         $this->attributes->state->colormode = 'hs';
-
+        
         return $this;
     }
 
@@ -311,23 +317,24 @@ class Light
     /**
      * Set saturation
      *
-     * @param int $value Saturation value
-     *
+     * @param int $value
+     *            Saturation value
+     *            
      * @return self This object
      */
     public function setSaturation($value)
     {
-//TODO     $this->client->sendCommand(
-//             (new SetLightState($this))->saturation((int) $value)
-//         );
-		$x = new SetLightState($this);
-		$y = $x->saturation((int) $value);
+        // TODO $this->client->sendCommand(
+        // (new SetLightState($this))->saturation((int) $value)
+        // );
+        $x = new SetLightState($this);
+        $y = $x->saturation((int) $value);
         $this->client->sendCommand($y);
         
         // Change both saturation and color mode state
-        $this->attributes->state->sat       = (int) $value;
+        $this->attributes->state->sat = (int) $value;
         $this->attributes->state->colormode = 'hs';
-
+        
         return $this;
     }
 
@@ -338,38 +345,43 @@ class Light
      */
     public function getXY()
     {
-//TODO     return [
-//             'x' => $this->attributes->state->xy[0],
-//             'y' => $this->attributes->state->xy[1],
-//         ];
+        // TODO return [
+        // 'x' => $this->attributes->state->xy[0],
+        // 'y' => $this->attributes->state->xy[1],
+        // ];
         return array(
             'x' => $this->attributes->state->xy[0],
-            'y' => $this->attributes->state->xy[1],
+            'y' => $this->attributes->state->xy[1]
         );
     }
 
     /**
      * Set XY
      *
-     * @param float $x X value
-     * @param float $y Y value
-     *
+     * @param float $x
+     *            X value
+     * @param float $y
+     *            Y value
+     *            
      * @return self This object
      */
     public function setXY($x, $y)
     {
-//TODO     $this->client->sendCommand(
-//             (new SetLightState($this))->xy((float) $x, (float) $y)
-//         );
-		$_x = new SetLightState($this);
-		$_y = $_x->xy((float) $x, (float) $y);
+        // TODO $this->client->sendCommand(
+        // (new SetLightState($this))->xy((float) $x, (float) $y)
+        // );
+        $_x = new SetLightState($this);
+        $_y = $_x->xy((float) $x, (float) $y);
         $this->client->sendCommand($_y);
         
         // Change both internal xy and colormode state
-//TODO        $this->attributes->state->xy        = [$x, $y];
-        $this->attributes->state->xy        = array($x, $y);
+        // TODO $this->attributes->state->xy = [$x, $y];
+        $this->attributes->state->xy = array(
+            $x,
+            $y
+        );
         $this->attributes->state->colormode = 'xy';
-
+        
         return $this;
     }
 
@@ -386,23 +398,24 @@ class Light
     /**
      * Set Color temperature
      *
-     * @param int $value Color temperature value
-     *
+     * @param int $value
+     *            Color temperature value
+     *            
      * @return self This object
      */
     public function setColorTemp($value)
     {
-//TODO         $this->client->sendCommand(
-//             (new SetLightState($this))->colorTemp((int) $value)
-//         );
-		$x = new SetLightState($this);
-		$y = $x->colorTemp((int) $value);
+        // TODO $this->client->sendCommand(
+        // (new SetLightState($this))->colorTemp((int) $value)
+        // );
+        $x = new SetLightState($this);
+        $y = $x->colorTemp((int) $value);
         $this->client->sendCommand($y);
         
         // Change both internal color temp and colormode state
-        $this->attributes->state->ct        = (int) $value;
+        $this->attributes->state->ct = (int) $value;
         $this->attributes->state->colormode = 'ct';
-
+        
         return $this;
     }
 

@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -17,6 +16,7 @@ use Phue\Transport\TransportInterface;
  */
 class SetBridgeConfig implements CommandInterface
 {
+
     /**
      * Default proxy address
      */
@@ -32,13 +32,14 @@ class SetBridgeConfig implements CommandInterface
      *
      * @var array
      */
-//TODO protected $config = [];
+    // TODO protected $config = [];
     protected $config = array();
-    
+
     /**
      * Constructs a command
      *
-     * @param array $config Key/value pair config
+     * @param array $config
+     *            Key/value pair config
      */
     public function __construct(array $config)
     {
@@ -48,14 +49,12 @@ class SetBridgeConfig implements CommandInterface
     /**
      * Send command
      *
-     * @param Client $client Phue Client
+     * @param Client $client
+     *            Phue Client
      */
     public function send(Client $client)
     {
-        $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/config",
-            TransportInterface::METHOD_PUT,
-            (object) $this->config
-        );
+        $client->getTransport()->sendRequest("/api/{$client->getUsername()}/config", 
+            TransportInterface::METHOD_PUT, (object) $this->config);
     }
 }

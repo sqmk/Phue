@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -18,6 +17,7 @@ use Phue\Transport\TransportInterface;
  */
 class CreateRule implements CommandInterface
 {
+
     /**
      * Name
      *
@@ -30,7 +30,7 @@ class CreateRule implements CommandInterface
      *
      * @var array
      */
-// TODO    protected $conditions = [];
+    // TODO protected $conditions = [];
     protected $conditions = array();
 
     /**
@@ -38,13 +38,14 @@ class CreateRule implements CommandInterface
      *
      * @var array
      */
-// TODO    protected $actions = [];
+    // TODO protected $actions = [];
     protected $actions = array();
 
     /**
      * Constructs a command
      *
-     * @param string $name Name
+     * @param string $name
+     *            Name
      */
     public function __construct($name = '')
     {
@@ -54,89 +55,87 @@ class CreateRule implements CommandInterface
     /**
      * Set name
      *
-     * @param string $name Name
-     *
+     * @param string $name
+     *            Name
+     *            
      * @return self This object
      */
     public function name($name)
     {
         $this->name = (string) $name;
-
+        
         return $this;
     }
 
     /**
      * Add condition
      *
-     * @param Condition $condition Condition
-     *
+     * @param Condition $condition
+     *            Condition
+     *            
      * @return self This object
      */
     public function addCondition(Condition $condition)
     {
         $this->conditions[] = $condition;
-
+        
         return $this;
     }
 
     /**
      * Add actionable command
      *
-     * @param ActionableInterface $action Actionable command
-     *
+     * @param ActionableInterface $action
+     *            Actionable command
+     *            
      * @return self This object
      */
     public function addAction(ActionableInterface $command)
     {
         $this->actions[] = $command;
-
+        
         return $this;
     }
 
     /**
      * Send command
      *
-     * @param Client $client Phue Client
-     *
+     * @param Client $client
+     *            Phue Client
+     *            
      * @return int Rule Id
      */
     public function send(Client $client)
     {
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/rules",
-            TransportInterface::METHOD_POST,
-// TODO        (object) [
-//                 'name'       => $this->name,
-//                 'conditions' => array_map(
-//                     function ($condition) {
-//                         return $condition->export();
-//                     },
-//                     $this->conditions
-//                 ),
-//                 'actions'    => array_map(
-//                     function ($action) use ($client) {
-//                         return $action->getActionableParams($client);
-//                     },
-//                     $this->actions
-//                 ),
-//             ]
+            "/api/{$client->getUsername()}/rules", TransportInterface::METHOD_POST, 
+            // TODO (object) [
+            // 'name' => $this->name,
+            // 'conditions' => array_map(
+            // function ($condition) {
+            // return $condition->export();
+            // },
+            // $this->conditions
+            // ),
+            // 'actions' => array_map(
+            // function ($action) use ($client) {
+            // return $action->getActionableParams($client);
+            // },
+            // $this->actions
+            // ),
+            // ]
             (object) array(
-                'name'       => $this->name,
+                'name' => $this->name,
                 'conditions' => array_map(
                     function ($condition) {
                         return $condition->export();
-                    },
-                    $this->conditions
-                ),
-                'actions'    => array_map(
+                    }, $this->conditions),
+                'actions' => array_map(
                     function ($action) use ($client) {
                         return $action->getActionableParams($client);
-                    },
-                    $this->actions
-                ),
-            )
-        );
-
+                    }, $this->actions)
+            ));
+        
         return $response->id;
     }
 }

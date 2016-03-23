@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Test\Transport\Adapter;
 
 use Phue\Transport\Adapter\Curl as CurlAdapter;
@@ -16,17 +15,16 @@ use Phue\Transport\Adapter\Curl as CurlAdapter;
  */
 class CurlTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Set up
      */
     public function setUp()
     {
         try {
-            $this->curlAdapter = new CurlAdapter;
+            $this->curlAdapter = new CurlAdapter();
         } catch (\BadFunctionCallException $e) {
-            $this->markTestSkipped(
-                $e->getMessage()
-            );
+            $this->markTestSkipped($e->getMessage());
         }
     }
 
@@ -37,7 +35,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase
      */
     public function testInstantiation()
     {
-        $curlAdapter = new CurlAdapter;
+        $curlAdapter = new CurlAdapter();
     }
 
     /**
@@ -48,12 +46,8 @@ class CurlTest extends \PHPUnit_Framework_TestCase
     public function testOpen()
     {
         $this->curlAdapter->open();
-
-        $this->assertAttributeInternalType(
-            'resource',
-            'curl',
-            $this->curlAdapter
-        );
+        
+        $this->assertAttributeInternalType('resource', 'curl', $this->curlAdapter);
     }
 
     /**
@@ -65,11 +59,8 @@ class CurlTest extends \PHPUnit_Framework_TestCase
     {
         $this->curlAdapter->open();
         $this->curlAdapter->close();
-
-        $this->assertAttributeEmpty(
-            'curl',
-            $this->curlAdapter
-        );
+        
+        $this->assertAttributeEmpty('curl', $this->curlAdapter);
     }
 
     /**
@@ -80,11 +71,9 @@ class CurlTest extends \PHPUnit_Framework_TestCase
     public function testSend()
     {
         $this->curlAdapter->open();
-
-        $this->assertFalse(
-            $this->curlAdapter->send(false, 'GET', 'dummy')
-        );
-
+        
+        $this->assertFalse($this->curlAdapter->send(false, 'GET', 'dummy'));
+        
         $this->curlAdapter->close();
     }
 
@@ -96,11 +85,9 @@ class CurlTest extends \PHPUnit_Framework_TestCase
     public function testGetHttpStatusCode()
     {
         $this->curlAdapter->open();
-
-        $this->assertEmpty(
-            $this->curlAdapter->getHttpStatusCode()
-        );
-
+        
+        $this->assertEmpty($this->curlAdapter->getHttpStatusCode());
+        
         $this->curlAdapter->close();
     }
 
@@ -112,11 +99,9 @@ class CurlTest extends \PHPUnit_Framework_TestCase
     public function testGetContentType()
     {
         $this->curlAdapter->open();
-
-        $this->assertEmpty(
-            $this->curlAdapter->getContentType()
-        );
-
+        
+        $this->assertEmpty($this->curlAdapter->getContentType());
+        
         $this->curlAdapter->close();
     }
 }

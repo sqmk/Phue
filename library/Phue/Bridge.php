@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue;
 
 use Phue\Command\SetBridgeConfig;
@@ -16,6 +15,7 @@ use Phue\Command\SetBridgeConfig;
  */
 class Bridge
 {
+
     /**
      * Bridge attributes
      *
@@ -33,13 +33,15 @@ class Bridge
     /**
      * Construct a Phue Bridge object
      *
-     * @param \stdClass $attributes Bridge attributes
-     * @param Client    $client     Phue client
+     * @param \stdClass $attributes
+     *            Bridge attributes
+     * @param Client $client
+     *            Phue client
      */
     public function __construct(\stdClass $attributes, Client $client)
     {
         $this->attributes = $attributes;
-        $this->client     = $client;
+        $this->client = $client;
     }
 
     /**
@@ -55,21 +57,22 @@ class Bridge
     /**
      * Set name of bridge
      *
-     * @param string $name Name
-     *
+     * @param string $name
+     *            Name
+     *            
      * @return self This object
      */
     public function setName($name)
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-//TODO                ['name' => (string) $name]
-                array('name' => (string) $name)
-            		)
-        );
-
+                // TODO ['name' => (string) $name]
+                array(
+                    'name' => (string) $name
+                )));
+        
         $this->attributes->name = (string) $name;
-
+        
         return $this;
     }
 
@@ -86,21 +89,22 @@ class Bridge
     /**
      * Set ZigBee channel
      *
-     * @param int $channel Channel
-     *
+     * @param int $channel
+     *            Channel
+     *            
      * @return self This object
      */
     public function setZigBeeChannel($channel)
     {
         $this->client->sendCommand(
-            new SetBridgeConfig(
-                array('zigbeechannel' => (int) $channel)
-//TODO                ['zigbeechannel' => (int) $channel]
-            		)
-        );
-
+            new SetBridgeConfig(array(
+                'zigbeechannel' => (int) $channel
+            ))
+            // TODO ['zigbeechannel' => (int) $channel]
+            );
+        
         $this->attributes->zigbeechannel = (int) $channel;
-
+        
         return $this;
     }
 
@@ -127,21 +131,22 @@ class Bridge
     /**
      * Enable DHCP
      *
-     * @param bool $state True to enable, false to disable
-     *
+     * @param bool $state
+     *            True to enable, false to disable
+     *            
      * @return self This object
      */
     public function enableDhcp($state = true)
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-//TODO                ['dhcp' => (bool) $state]
-                array('dhcp' => (bool) $state)
-            		)
-        );
-
+                // TODO ['dhcp' => (bool) $state]
+                array(
+                    'dhcp' => (bool) $state
+                )));
+        
         $this->attributes->dhcp = (bool) $state;
-
+        
         return $this;
     }
 
@@ -158,21 +163,22 @@ class Bridge
     /**
      * Set IP Address
      *
-     * @param string $ipAddress IP Address
-     *
+     * @param string $ipAddress
+     *            IP Address
+     *            
      * @return self This object
      */
     public function setIpAddress($ipAddress)
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-//TODO                ['ipaddress' => (string) $ipAddress]
-                array('ipaddress' => (string) $ipAddress)
-            		)
-        );
-
+                // TODO ['ipaddress' => (string) $ipAddress]
+                array(
+                    'ipaddress' => (string) $ipAddress
+                )));
+        
         $this->attributes->ipaddress = (string) $ipAddress;
-
+        
         return $this;
     }
 
@@ -189,21 +195,22 @@ class Bridge
     /**
      * Set Netmask
      *
-     * @param string $netmask Netmask
-     *
+     * @param string $netmask
+     *            Netmask
+     *            
      * @return self This object
      */
     public function setNetmask($netmask)
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-//TODO                ['netmask' => (string) $netmask]
-                array('netmask' => (string) $netmask)
-            		)
-        );
-
+                // TODO ['netmask' => (string) $netmask]
+                array(
+                    'netmask' => (string) $netmask
+                )));
+        
         $this->attributes->netmask = (string) $netmask;
-
+        
         return $this;
     }
 
@@ -220,21 +227,22 @@ class Bridge
     /**
      * Set Gateway
      *
-     * @param string $gateway Gateway
-     *
+     * @param string $gateway
+     *            Gateway
+     *            
      * @return self This object
      */
     public function setGateway($gateway)
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-//TODO                ['gateway' => (string) $gateway]
-                array('gateway' => (string) $gateway)
-            		)
-        );
-
+                // TODO ['gateway' => (string) $gateway]
+                array(
+                    'gateway' => (string) $gateway
+                )));
+        
         $this->attributes->gateway = (string) $gateway;
-
+        
         return $this;
     }
 
@@ -251,21 +259,23 @@ class Bridge
     /**
      * Set Proxy address
      *
-     * @param string $proxyAddress Proxy address
-     *
+     * @param string $proxyAddress
+     *            Proxy address
+     *            
      * @return self This object
      */
-    public function setProxyAddress($proxyAddress = SetBridgeConfig::DEFAULT_PROXY_ADDRESS)
+    public function setProxyAddress(
+        $proxyAddress = SetBridgeConfig::DEFAULT_PROXY_ADDRESS)
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-//TODO                ['proxyaddress' => (string) $proxyAddress]
-                array('proxyaddress' => (string) $proxyAddress)
-            		)
-        );
-
+                // TODO ['proxyaddress' => (string) $proxyAddress]
+                array(
+                    'proxyaddress' => (string) $proxyAddress
+                )));
+        
         $this->attributes->proxyaddress = (string) $proxyAddress;
-
+        
         return $this;
     }
 
@@ -282,21 +292,22 @@ class Bridge
     /**
      * Set Proxy port
      *
-     * @param int $proxyAddress Proxy port
-     *
+     * @param int $proxyAddress
+     *            Proxy port
+     *            
      * @return self This object
      */
     public function setProxyPort($proxyPort = SetBridgeConfig::DEFAULT_PROXY_PORT)
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-//                ['proxyport' => (int) $proxyPort]
-                array('proxyport' => (int) $proxyPort)
-            )
-        );
-
+                // ['proxyport' => (int) $proxyPort]
+                array(
+                    'proxyport' => (int) $proxyPort
+                )));
+        
         $this->attributes->proxyport = (int) $proxyPort;
-
+        
         return $this;
     }
 
@@ -333,21 +344,22 @@ class Bridge
     /**
      * Set timezone
      *
-     * @param string $timezone Timezone
-     *
+     * @param string $timezone
+     *            Timezone
+     *            
      * @return self This object
      */
     public function setTimezone($timezone)
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-//TODO                ['timezone' => (string) $timezone]
-                array('timezone' => (string) $timezone)
-            		)
-        );
-
+                // TODO ['timezone' => (string) $timezone]
+                array(
+                    'timezone' => (string) $timezone
+                )));
+        
         $this->attributes->timezone = (string) $timezone;
-
+        
         return $this;
     }
 
@@ -394,21 +406,22 @@ class Bridge
     /**
      * Set link button state
      *
-     * @param bool $state True for on, false for off
-     *
+     * @param bool $state
+     *            True for on, false for off
+     *            
      * @return self This object
      */
     public function setLinkButtonOn($state = true)
     {
         $this->client->sendCommand(
             new SetBridgeConfig(
-//TODO                ['linkbutton' => (bool) $state]
-                array('linkbutton' => (bool) $state)
-            		)
-        );
-
+                // TODO ['linkbutton' => (bool) $state]
+                array(
+                    'linkbutton' => (bool) $state
+                )));
+        
         $this->attributes->linkbutton = (bool) $state;
-
+        
         return $this;
     }
 

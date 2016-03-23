@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue\Command;
 
 use Phue\Client;
@@ -17,27 +16,28 @@ use Phue\Schedule;
  */
 class GetSchedules implements CommandInterface
 {
+
     /**
      * Send command
      *
-     * @param Client $client Phue Client
-     *
+     * @param Client $client
+     *            Phue Client
+     *            
      * @return Schedule[] List of Schedule objects
      */
     public function send(Client $client)
     {
         // Get response
         $response = $client->getTransport()->sendRequest(
-            "/api/{$client->getUsername()}/schedules"
-        );
-
-//TODO     $schedules = [];
+            "/api/{$client->getUsername()}/schedules");
+        
+        // TODO $schedules = [];
         $schedules = array();
         
         foreach ($response as $scheduleId => $attributes) {
             $schedules[$scheduleId] = new Schedule($scheduleId, $attributes, $client);
         }
-
+        
         return $schedules;
     }
 }

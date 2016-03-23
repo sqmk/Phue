@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Phue/wiki/License
  */
-
 namespace Phue;
 
 /**
@@ -14,6 +13,7 @@ namespace Phue;
  */
 class Scene
 {
+
     /**
      * Id
      *
@@ -38,15 +38,18 @@ class Scene
     /**
      * Construct a Phue Scene object
      *
-     * @param string    $id         Id
-     * @param \stdClass $attributes Scene attributes
-     * @param Client    $client     Phue client
+     * @param string $id
+     *            Id
+     * @param \stdClass $attributes
+     *            Scene attributes
+     * @param Client $client
+     *            Phue client
      */
     public function __construct($id, \stdClass $attributes, Client $client)
     {
-        $this->id         = $id;
+        $this->id = $id;
         $this->attributes = $attributes;
-        $this->client     = $client;
+        $this->client = $client;
     }
 
     /**
