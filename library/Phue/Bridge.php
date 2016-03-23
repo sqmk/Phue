@@ -98,9 +98,9 @@ class Bridge
     public function setZigBeeChannel($channel)
     {
         $this->client->sendCommand(
-            new SetBridgeConfig(array(
-                'zigbeechannel' => (int) $channel
-            ))
+            new SetBridgeConfig(
+                array('zigbeechannel' => (int) $channel)
+            )
         );
         
         $this->attributes->zigbeechannel = (int) $channel;
