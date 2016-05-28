@@ -10,6 +10,7 @@ namespace Phue\Test\Command;
 
 use Phue\Client;
 use Phue\Command\SetLightState;
+use Phue\Helper\ColorConversion;
 use Phue\Transport\TransportInterface;
 
 /**
@@ -241,6 +242,52 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
         // Ensure instance is returned
         $this->assertEquals($command, $command->xy($x, $y));
         
+        // Send
+        $command->send($this->mockClient);
+    }
+
+    /**
+     * Test: invalid RGB value
+     *
+     * @dataProvider providerInvalidRGB
+     *
+     * @covers \Phue\Command\SetLightState::rgb
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testInvalidRGBValue($red, $green, $blue)
+    {
+        $_x = new SetLightState($this->mockLight);
+        $_x->rgb($red, $green, $blue);
+    }
+
+    /**
+     * Test: set XY and brightness via RGB
+     *
+     * @dataProvider providerRGB
+     *
+     * @covers \Phue\Command\SetLightState::rgb
+     * @covers \Phue\Command\SetLightState::send
+     */
+    public function testRGBSend($red, $green, $blue)
+    {
+        // Build command
+        $command = new SetLightState($this->mockLight);
+
+        // Set expected payload
+        $xy = ColorConversion::convertRGBToXY($red, $green, $blue);
+        $this->stubTransportSendRequestWithPayload(
+            (object) array(
+                'xy' => array(
+                    $xy['x'],
+                    $xy['y']
+                ),
+                'bri' => $xy['bri']
+            ));
+
+        // Ensure instance is returned
+        $this->assertEquals($command, $command->rgb($red, $green, $blue));
+
         // Send
         $command->send($this->mockClient);
     }
@@ -631,6 +678,68 @@ class SetLightStateTest extends \PHPUnit_Framework_TestCase
             array(
                 .5,
                 .5
+            )
+        );
+    }
+
+    /**
+     * Provider: Invalid RGB
+     *
+     * @return array
+     */
+    public function providerInvalidRGB()
+    {
+        return array(
+            array(
+                - 1,
+                - 1,
+                - 1
+            ),
+            array(
+                50,
+                - 50,
+                50
+            ),
+            array(
+                256,
+                50,
+                50
+            ),
+            array(
+                50,
+                256,
+                50
+            ),
+            array(
+                50,
+                50,
+                256
+            )
+        );
+    }
+
+    /**
+     * Provider: RGB
+     *
+     * @return array
+     */
+    public function providerRGB()
+    {
+        return array(
+            array(
+                0,
+                150,
+                255
+            ),
+            array(
+                10,
+                135,
+                245
+            ),
+            array(
+                150,
+                150,
+                150
             )
         );
     }
