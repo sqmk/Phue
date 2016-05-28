@@ -24,7 +24,8 @@ class ColorConversion
      *
      * @return array x, y, bri key/value
      */
-    public static function convertRGBToXY($red, $green, $blue) {
+    public static function convertRGBToXY($red, $green, $blue) 
+    {
         // Normalize the values to 1
         $normalizedToOne['red'] = $red / 255;
         $normalizedToOne['green'] = $green / 255;
@@ -41,9 +42,9 @@ class ColorConversion
         }
 
         // Convert to XYZ using the Wide RGB D65 formula
-        $xyz['x'] = $color['red'] * 0.649926 + $color['green'] * 0.103455 + $color['blue'] * 0.197109;
-        $xyz['y'] = $color['red'] * 0.234327 + $color['green'] * 0.743075 + $color['blue'] * 0.022598;
-        $xyz['z'] = $color['red'] * 0.000000 + $color['green'] * 0.053077 + $color['blue'] * 1.035763;
+        $xyz['x'] = $color['red'] * 0.664511 + $color['green'] * 0.154324 + $color['blue'] * 0.162028;
+        $xyz['y'] = $color['red'] * 0.283881 + $color['green'] * 0.668433 + $color['blue'] * 0.047685;
+        $xyz['z'] = $color['red'] * 0.000000 + $color['green'] * 0.072310 + $color['blue'] * 0.986039;
 
         // Calculate the x/y values
         if (array_sum($xyz) == 0) {
@@ -58,7 +59,7 @@ class ColorConversion
         return array(
             'x' => $x,
             'y' => $y,
-            'bri' => $xyz['y'] * 255
+            'bri' => round($xyz['y'] * 255)
         );
     }
 
@@ -74,7 +75,8 @@ class ColorConversion
      * 
      * @return array red, green, blue key/value
      */
-    public static function convertXYToRGB($x, $y, $bri = 255) {
+    public static function convertXYToRGB($x, $y, $bri = 255) 
+    {
         // Calculate XYZ
         $z = 1.0 - $x - $y;
         $xyz['y'] = $bri / 255;
