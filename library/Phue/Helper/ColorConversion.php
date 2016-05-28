@@ -24,7 +24,7 @@ class ColorConversion
      *
      * @return array x, y, bri key/value
      */
-    public static function convertRGBToXY($red, $green, $blue) 
+    public static function convertRGBToXY($red, $green, $blue)
     {
         // Normalize the values to 1
         $normalizedToOne['red'] = $red / 255;
@@ -35,8 +35,7 @@ class ColorConversion
         foreach ($normalizedToOne as $key => $normalized) {
             if ($normalized > 0.04045) {
                 $color[$key] = pow(($normalized + 0.055) / (1.0 + 0.055), 2.4);
-            }
-            else {
+            } else {
                 $color[$key] = $normalized / 12.92;
             }
         }
@@ -50,8 +49,7 @@ class ColorConversion
         if (array_sum($xyz) == 0) {
             $x = 0;
             $y = 0;
-        }
-        else {
+        } else {
             $x = $xyz['x'] / array_sum($xyz);
             $y = $xyz['y'] / array_sum($xyz);
         }
@@ -75,7 +73,7 @@ class ColorConversion
      * 
      * @return array red, green, blue key/value
      */
-    public static function convertXYToRGB($x, $y, $bri = 255) 
+    public static function convertXYToRGB($x, $y, $bri = 255)
     {
         // Calculate XYZ
         $z = 1.0 - $x - $y;
@@ -92,8 +90,7 @@ class ColorConversion
             // Apply reverse gamma correction
             if ($normalized <= 0.0031308) {
                 $color[$key] = 12.92 * $normalized;
-            }
-            else {
+            } else {
                 $color[$key] = (1.0 + 0.055) * pow($normalized, 1.0 / 2.4) - 0.055;
             }
             
