@@ -9,6 +9,7 @@
 namespace Phue\Command;
 
 use Phue\Client;
+use Phue\Helper\ColorConversion;
 use Phue\Transport\TransportInterface;
 
 /**
@@ -56,6 +57,16 @@ class SetLightState implements CommandInterface, ActionableInterface
      * XY Max
      */
     const XY_MAX = 1.0;
+
+    /**
+     * RGB Min
+     */
+    const RGB_MIN = 0;
+
+    /**
+     * RGB Max
+     */
+    const RGB_MAX = 255;
 
     /**
      * Color temperature min
@@ -266,6 +277,41 @@ class SetLightState implements CommandInterface, ActionableInterface
         );
         
         return $this;
+    }
+
+    /**
+     * Sets xy and brightness calculated from RGB
+     *
+     * @param int $red
+     *          Red value
+     * @param int $green
+     *          Green value
+     * @param int $blue
+     *          Blue value
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return self This object
+     */
+    public function rgb($red, $green, $blue)
+    {
+        // Don't continue if rgb values are invalid
+        foreach (array(
+            $red,
+            $green,
+            $blue
+        ) as $value) {
+            if (! (self::RGB_MIN <= $value && $value <= self::RGB_MAX)) {
+                throw new \InvalidArgumentException(
+                    "RGB values must be between " . self::RGB_MIN . " and " .
+                    self::RGB_MAX
+                );
+            }
+        }
+
+        $xy = ColorConversion::convertRGBToXY($red, $green, $blue);
+
+        return $this->xy($xy['x'], $xy['y'])->brightness($xy['bri']);
     }
 
     /**

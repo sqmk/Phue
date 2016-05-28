@@ -9,6 +9,7 @@
 namespace Phue;
 
 use Phue\Command\SetLightState;
+use Phue\Helper\ColorConversion;
 use Phue\LightModel\AbstractLightModel;
 use Phue\LightModel\LightModelFactory;
 
@@ -354,6 +355,50 @@ class Light
             $x,
             $y
         );
+        $this->attributes->state->colormode = 'xy';
+        
+        return $this;
+    }
+
+    /**
+     * Get calculated RGB
+     *
+     * @return array red, green, blue key/value
+     */
+    public function getRGB()
+    {
+        $xy = $this->getXY();
+        $bri = $this->getBrightness();
+        $rgb = ColorConversion::convertXYToRGB($xy['x'], $xy['y'], $bri);
+
+        return $rgb;
+    }
+
+    /**
+     * Set XY and brightness calculated from RGB
+     * 
+     * @param int $red
+     *          Red value
+     * @param int $green
+     *          Green value
+     * @param int $blue
+     *          Blue value
+     * 
+     * @return self This object
+     */
+    public function setRGB($red, $green, $blue)
+    {
+        $x = new SetLightState($this);
+        $y = $x->rgb((int) $red, (int) $green, (int) $blue);
+        $this->client->sendCommand($y);
+
+        // Change internal xy, brightness and colormode state
+        $xy = ColorConversion::convertRGBToXY($red, $green, $blue);
+        $this->attributes->state->xy = array(
+            $xy['x'],
+            $xy['y']
+        );
+        $this->attributes->state->bri = $xy['bri'];
         $this->attributes->state->colormode = 'xy';
         
         return $this;
