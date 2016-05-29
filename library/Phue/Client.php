@@ -26,7 +26,6 @@ use Phue\Transport\TransportInterface;
  */
 class Client
 {
-
     /**
      * Host address
      *
@@ -83,7 +82,7 @@ class Client
     public function setHost($host)
     {
         $this->host = (string) $host;
-        
+
         return $this;
     }
 
@@ -108,7 +107,7 @@ class Client
     public function setUsername($username)
     {
         $this->username = (string) $username;
-        
+
         return $this;
     }
 
@@ -213,7 +212,7 @@ class Client
         if ($this->transport === null) {
             $this->setTransport(new Http($this));
         }
-        
+
         return $this->transport;
     }
 
@@ -228,7 +227,7 @@ class Client
     public function setTransport(TransportInterface $transport)
     {
         $this->transport = $transport;
-        
+
         return $this;
     }
 

@@ -15,7 +15,6 @@ use Phue\Command\DeleteUser;
  */
 class User
 {
-
     /**
      * Username
      *

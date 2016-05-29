@@ -18,7 +18,6 @@ use Phue\LightModel\LightModelFactory;
  */
 class Light
 {
-
     /**
      * Id
      *
@@ -87,9 +86,9 @@ class Light
     public function setName($name)
     {
         $this->client->sendCommand(new Command\SetLightName($this, (string) $name));
-        
+
         $this->attributes->name = (string) $name;
-        
+
         return $this;
     }
 
@@ -166,9 +165,9 @@ class Light
         $x = new SetLightState($this);
         $y = $x->on((bool) $flag);
         $this->client->sendCommand($y);
-        
+
         $this->attributes->state->on = (bool) $flag;
-        
+
         return $this;
     }
 
@@ -195,9 +194,9 @@ class Light
         $x = new SetLightState($this);
         $y = $x->alert($mode);
         $this->client->sendCommand($y);
-        
+
         $this->attributes->state->alert = $mode;
-        
+
         return $this;
     }
 
@@ -224,9 +223,9 @@ class Light
         $x = new SetLightState($this);
         $y = $x->effect($mode);
         $this->client->sendCommand($y);
-        
+
         $this->attributes->state->effect = $mode;
-        
+
         return $this;
     }
 
@@ -253,9 +252,9 @@ class Light
         $x = new SetLightState($this);
         $y = $x->brightness((int) $level);
         $this->client->sendCommand($y);
-        
+
         $this->attributes->state->bri = (int) $level;
-        
+
         return $this;
     }
 
@@ -282,11 +281,11 @@ class Light
         $x = new SetLightState($this);
         $y = $x->hue((int) $value);
         $this->client->sendCommand($y);
-        
+
         // Change both hue and color mode state
         $this->attributes->state->hue = (int) $value;
         $this->attributes->state->colormode = 'hs';
-        
+
         return $this;
     }
 
@@ -313,11 +312,11 @@ class Light
         $x = new SetLightState($this);
         $y = $x->saturation((int) $value);
         $this->client->sendCommand($y);
-        
+
         // Change both saturation and color mode state
         $this->attributes->state->sat = (int) $value;
         $this->attributes->state->colormode = 'hs';
-        
+
         return $this;
     }
 
@@ -349,14 +348,14 @@ class Light
         $_x = new SetLightState($this);
         $_y = $_x->xy((float) $x, (float) $y);
         $this->client->sendCommand($_y);
-        
+
         // Change both internal xy and colormode state
         $this->attributes->state->xy = array(
             $x,
             $y
         );
         $this->attributes->state->colormode = 'xy';
-        
+
         return $this;
     }
 
@@ -367,7 +366,7 @@ class Light
      */
     public function getRGB()
     {
-        $xy = $this->getXY();
+        $xy  = $this->getXY();
         $bri = $this->getBrightness();
         $rgb = ColorConversion::convertXYToRGB($xy['x'], $xy['y'], $bri);
 
@@ -376,14 +375,11 @@ class Light
 
     /**
      * Set XY and brightness calculated from RGB
-     * 
-     * @param int $red
-     *          Red value
-     * @param int $green
-     *          Green value
-     * @param int $blue
-     *          Blue value
-     * 
+     *
+     * @param int $red   Red value
+     * @param int $green Green value
+     * @param int $blue  Blue value
+     *
      * @return self This object
      */
     public function setRGB($red, $green, $blue)
@@ -400,7 +396,7 @@ class Light
         );
         $this->attributes->state->bri = $xy['bri'];
         $this->attributes->state->colormode = 'xy';
-        
+
         return $this;
     }
 
@@ -417,8 +413,7 @@ class Light
     /**
      * Set Color temperature
      *
-     * @param int $value
-     *            Color temperature value
+     * @param int $value Color temperature value
      *
      * @return self This object
      */
@@ -427,11 +422,11 @@ class Light
         $x = new SetLightState($this);
         $y = $x->colorTemp((int) $value);
         $this->client->sendCommand($y);
-        
+
         // Change both internal color temp and colormode state
         $this->attributes->state->ct = (int) $value;
         $this->attributes->state->colormode = 'ct';
-        
+
         return $this;
     }
 
