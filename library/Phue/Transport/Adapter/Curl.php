@@ -93,6 +93,6 @@ class Curl implements AdapterInterface
     public function close()
     {
         curl_close($this->curl);
-        unset($this->curl);
+        $this->curl = null;
     }
 }

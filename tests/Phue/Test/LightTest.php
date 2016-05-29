@@ -9,6 +9,7 @@
 namespace Phue\Test;
 
 use Phue\Client;
+use Phue\Helper\ColorConversion;
 use Phue\Light;
 
 /**
@@ -263,6 +264,41 @@ class LightTest extends \PHPUnit_Framework_TestCase
                 'x' => 0.1,
                 'y' => 0.2
             ), $this->light->getXY());
+    }
+
+    /**
+     * Test: Get/Set RGB
+     *
+     * @covers \Phue\Light::getRGB
+     * @covers \Phue\Light::setRGB
+     */
+    public function testGetSetRGB()
+    {
+        $this->stubMockClientSendSetLightStateCommand();
+
+        // Make sure original rgb is retrievable
+        $rgb = ColorConversion::convertXYToRGB(
+            $this->attributes->state->xy[0],
+            $this->attributes->state->xy[1],
+            $this->attributes->state->bri
+        );
+        $this->assertEquals(
+            array(
+                'red' => $rgb['red'],
+                'green' => $rgb['green'],
+                'blue' => $rgb['blue']
+            ), $this->light->getRGB());
+
+        // Ensure setRGB returns self
+        $this->assertEquals($this->light, $this->light->setRGB(50, 50, 50));
+
+        // Make sure light attributes are updated
+        $this->assertEquals(
+            array(
+                'red' => 50,
+                'green' => 50,
+                'blue' => 50
+            ), $this->light->getRGB());
     }
 
     /**

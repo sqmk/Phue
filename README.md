@@ -177,6 +177,9 @@ echo $light->getId(), "\n",
      $light->getSaturation(), "\n",
      $light->getXY()['x'], "\n",
      $light->getXY()['y'], "\n",
+     $light->getRGB()['red'], "\n",
+     $light->getRGB()['green'], "\n",
+     $light->getRGB()['blue'], "\n",
      $light->getEffect(), "\n",
      $light->getColorTemp(), "\n",
      $light->getColorMode(), "\n";
@@ -202,6 +205,9 @@ $light->setSaturation(255);
 // Set xy, CIE 1931 color space (from 0.0 to 1.0 for both x and y)
 // Changes color mode to 'xy'
 $light->setXY(0.25, 0.5);
+
+// Set rgb (0 to 255 each), is converted to XY and brightness
+$light->setRGB(30, 100, 50);
 
 // Set color temp (153 min, 500 max), changes color mode to 'ct'
 $light->setColorTemp(300);
@@ -317,6 +323,9 @@ echo $group->getId(), "\n",
      $group->getSaturation(), "\n",
      $group->getXY()['x'], "\n",
      $group->getXY()['y'], "\n",
+     $group->getRGB()['red'], "\n",
+     $group->getRGB()['green'], "\n",
+     $group->getRGB()['blue'], "\n",
      $group->getColorTemp(), "\n",
      $group->getColorMode(), "\n",
      $group->getEffect(), "\n";
@@ -346,6 +355,9 @@ $group->setSaturation(255);
 // Set xy, CIE 1931 color space (from 0.0 to 1.0 for both x and y)
 // Changes color mode to 'xy'
 $group->setXY(0.25, 0.5);
+
+// Set rgb (0 to 255 each), is converted to XY and brightness
+$group->setRGB(30, 100, 50);
 
 // Set color temp (153 min, 500 max), changes color mode to 'ct'
 $group->setColorTemp(300);
