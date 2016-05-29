@@ -125,6 +125,6 @@ class Streaming implements AdapterInterface
             fclose($this->fileStream);
         }
         
-        unset($this->streamContext);
+        $this->streamContext = null;
     }
 }
