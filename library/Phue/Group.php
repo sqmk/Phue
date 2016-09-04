@@ -193,7 +193,7 @@ class Group
         $this->client->sendCommand($y);
         $this->attributes->action->alert = $mode;
         return $this;
-    }    
+    }
     
     
     /**
