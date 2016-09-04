@@ -170,6 +170,33 @@ class Group
     }
 
     /**
+     * Get alert
+     *
+     * @return string Alert mode
+     */
+    public function getAlert()
+    {
+        return $this->attributes->action->alert;
+    }
+    /**
+     * Set light alert
+     *
+     * @param string $mode
+     *            Alert mode
+     *
+     * @return self This object
+     */
+    public function setAlert($mode = SetLightState::ALERT_LONG_SELECT)
+    {
+        $x = new SetGroupState($this);
+        $y = $x->alert($mode);
+        $this->client->sendCommand($y);
+        $this->attributes->action->alert = $mode;
+        return $this;
+    }    
+    
+    
+    /**
      * Get brightness
      *
      * @return int Brightness level
