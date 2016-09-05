@@ -101,6 +101,6 @@ class CreateGroup implements CommandInterface
             ;
         
             $r = explode('/', $response->id);
-            return $r[2];
+            return $r[0];
     }
 }

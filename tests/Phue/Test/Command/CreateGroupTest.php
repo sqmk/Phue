@@ -121,7 +121,7 @@ class CreateGroupTest extends \PHPUnit_Framework_TestCase
             ->
         // ->will($this->returnValue((object)['id' => '/path/5']));
         will($this->returnValue((object) array(
-            'id' => '/path/5'
+            'id' => '5'
         )));
         
         // Send command and get response
