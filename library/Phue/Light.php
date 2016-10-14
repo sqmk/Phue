@@ -437,7 +437,9 @@ class Light
      */
     public function getColorMode()
     {
-        return property_exists($this->attributes->state, 'colormode') ? $this->attributes->state->colormode : null;
+        return property_exists($this->attributes->state, 'colormode')
+            ? $this->attributes->state->colormode
+            : null;
     }
 
     /**
