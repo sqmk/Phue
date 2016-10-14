@@ -16,7 +16,7 @@ use Phue\LightModel\LightModelFactory;
 /**
  * Light object
  */
-class Light
+class Light implements LightInterface
 {
     /**
      * Id
