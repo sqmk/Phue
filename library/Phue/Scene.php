@@ -85,11 +85,13 @@ class Scene
     /**
      * Is active
      *
-     * @return bool True if active, false if not
+     * @deprecated
+     *
+     * @return null This is now deprecated
      */
     public function isActive()
     {
-        return (bool) $this->attributes->active;
+        return null;
     }
 
     /**

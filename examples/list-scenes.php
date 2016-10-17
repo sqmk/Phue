@@ -11,6 +11,6 @@ $client = new \Phue\Client($hueHost, $hueUsername);
 echo 'Listing scenes:', "\n";
 
 foreach ($client->getScenes() as $scene) {
-    echo "\t", "#{$scene->getId()} - {$scene->getName()}", "\n", "\t\t", "Light Ids: ", implode(
-        ', ', $scene->getLightIds()), "\n", "\t\t", "Is active: ", $scene->isActive() ? 'Yes' : 'No', "\n";
+    echo "\t", "#{$scene->getId()} - {$scene->getName()}", "\n",
+        "\t\t", "Light Ids: ", implode(', ', $scene->getLightIds()), "\n";
 }

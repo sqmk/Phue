@@ -39,8 +39,7 @@ class SceneTest extends \PHPUnit_Framework_TestCase
                 2,
                 3,
                 5
-            ),
-            'active' => true
+            )
         );
         
         // Create scene object
@@ -75,16 +74,6 @@ class SceneTest extends \PHPUnit_Framework_TestCase
     public function testGetLightIds()
     {
         $this->assertEquals($this->attributes->lights, $this->scene->getLightIds());
-    }
-
-    /**
-     * Test: Is active
-     *
-     * @covers \Phue\Scene::isActive
-     */
-    public function testIsActive()
-    {
-        $this->assertEquals($this->attributes->active, $this->scene->isActive());
     }
 
     /**
