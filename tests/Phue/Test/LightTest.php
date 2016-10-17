@@ -373,12 +373,23 @@ class LightTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals($this->attributes->state->colormode, 
             $this->light->getColorMode());
+
+        // Let's assume our light does not support color modes.
+        // That way, the colormode property in state is missing.
+        $reflection = new \ReflectionClass($this->light);
+        $property = $reflection->getProperty('attributes');
+        $property->setAccessible(true);
+
+        $property->setValue($this->light, (object) array('state' => (object) array()));
+
+        $this->assertNull($this->light->getColorMode());
     }
 
+
     /**
-     * Test: Get color mode
+     * Test: Is reachable
      *
-     * @covers \Phue\Group::getColorMode
+     * @covers \Phue\Light::isReachable
      */
     public function testIsReachable()
     {
