@@ -17,7 +17,6 @@ use Phue\Light;
  */
 class LightTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Set up
      */
@@ -371,20 +370,32 @@ class LightTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetColormode()
     {
-        $this->assertEquals($this->attributes->state->colormode, 
-            $this->light->getColorMode());
+        $this->assertEquals(
+            $this->attributes->state->colormode, 
+            $this->light->getColorMode()
+        );
+    }
 
-        // Let's assume our light does not support color modes.
-        // That way, the colormode property in state is missing.
+    /**
+     * Test: Get color mode (missing)
+     *
+     * @covers \Phue\Light::getColorMode
+     */
+    public function testGetColormodeMissing()
+    {
         $reflection = new \ReflectionClass($this->light);
         $property = $reflection->getProperty('attributes');
         $property->setAccessible(true);
 
-        $property->setValue($this->light, (object) array('state' => (object) array()));
+        $property->setValue(
+            $this->light,
+            (object) array(
+                'state' => (object) array()
+            )
+        );
 
         $this->assertNull($this->light->getColorMode());
     }
-
 
     /**
      * Test: Is reachable
