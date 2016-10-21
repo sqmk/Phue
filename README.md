@@ -138,7 +138,7 @@ foreach ($lights as $lightId => $light) {
 }
 ```
 
-You can also retrieve a single light. You can either use the reference from the list of lights via ```getLights``` from the client, or pass in a manual command to the client:
+You can also retrieve a single light. You can either dereference from the list of lights via ```getLights``` from the client, or pass in a manual command to the client:
 
 ```php
 // Retrieve light of id 3 from convenience method
