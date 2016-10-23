@@ -245,7 +245,7 @@ $client->sendCommand(
 
 The bridge API allows you to create, update, and delete groups. Groups are useful for controlling multiple lights at the same time.
 
-Creating a group is easy. All you need is a name, and a list of lights (ids, or ```\Phue\Light``` obejcts) that you want to associate with the group:
+Creating a group is easy. All you need is a name, and a list of lights (ids, or ```\Phue\Light``` objects) that you want to associate with the group:
 
 ```php
 // Create group with list of ids, and get group
@@ -285,7 +285,7 @@ $groups = $client->sendCommand(
 	new \Phue\Command\GetGroups
 );
 
-foreach ($client->getGroups() as $groupId => $group) {
+foreach ($groups as $groupId => $group) {
 	echo $group->getId(), ' - ',
 	     $group->getName(), "\n";
 }
@@ -395,7 +395,7 @@ $group->delete();
 
 // Send command
 $client->sendCommand(
-	new \Phue\Command\DeleteGroup(2)
+	new \Phue\Command\DeleteGroup(1)
 );
 ```
 
