@@ -12,6 +12,7 @@ use Phue\Command\DeleteGroup;
 use Phue\Command\SetLightState;
 use Phue\Command\SetGroupAttributes;
 use Phue\Command\SetGroupState;
+use Phue\Helper\ColorConversion;
 
 /**
  * Group object
