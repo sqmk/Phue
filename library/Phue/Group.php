@@ -331,6 +331,47 @@ class Group implements LightInterface
     }
 
     /**
+     * Get calculated RGB
+     *
+     * @return array red, green, blue key/value
+     */
+    public function getRGB()
+    {
+        $xy  = $this->getXY();
+        $bri = $this->getBrightness();
+        $rgb = ColorConversion::convertXYToRGB($xy['x'], $xy['y'], $bri);
+
+        return $rgb;
+    }
+
+    /**
+     * Set XY and brightness calculated from RGB
+     *
+     * @param int $red   Red value
+     * @param int $green Green value
+     * @param int $blue  Blue value
+     *
+     * @return self This object
+     */
+    public function setRGB($red, $green, $blue)
+    {
+        $x = new SetGroupState($this);
+        $y = $x->rgb((int) $red, (int) $green, (int) $blue);
+        $this->client->sendCommand($y);
+
+        // Change internal xy, brightness and colormode state
+        $xy = ColorConversion::convertRGBToXY($red, $green, $blue);
+        $this->attributes->action->xy = array(
+            $xy['x'],
+            $xy['y']
+        );
+        $this->attributes->action->bri = $xy['bri'];
+        $this->attributes->action->colormode = 'xy';
+
+        return $this;
+    }
+
+    /**
      * Get Color temperature
      *
      * @return int Color temperature value
