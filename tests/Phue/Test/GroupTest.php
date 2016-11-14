@@ -286,6 +286,41 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test: Get/Set RGB
+     *
+     * @covers \Phue\Group::getRGB
+     * @covers \Phue\Group::setRGB
+     */
+    public function testGetSetRGB()
+    {
+        $this->stubMockClientSendSetGroupStateCommand();
+
+        // Make sure original rgb is retrievable
+        $rgb = ColorConversion::convertXYToRGB(
+            $this->attributes->action->xy[0],
+            $this->attributes->action->xy[1],
+            $this->attributes->action->bri
+        );
+        $this->assertEquals(
+            array(
+                'red' => $rgb['red'],
+                'green' => $rgb['green'],
+                'blue' => $rgb['blue']
+            ), $this->light->getRGB());
+
+        // Ensure setRGB returns self
+        $this->assertEquals($this->group, $this->group->setRGB(50, 50, 50));
+
+        // Make sure group attributes are updated
+        $this->assertEquals(
+            array(
+                'red' => 50,
+                'green' => 50,
+                'blue' => 50
+            ), $this->group->getRGB());
+    }
+
+    /**
      * Test: Get/Set Color temp
      *
      * @covers \Phue\Group::getColorTemp
