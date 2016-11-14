@@ -9,6 +9,7 @@
 namespace Phue\Test;
 
 use Phue\Client;
+use Phue\Helper\ColorConversion;
 use Phue\Group;
 
 /**
