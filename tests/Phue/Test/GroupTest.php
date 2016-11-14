@@ -307,7 +307,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
                 'red' => $rgb['red'],
                 'green' => $rgb['green'],
                 'blue' => $rgb['blue']
-            ), $this->light->getRGB());
+            ), $this->group->getRGB());
 
         // Ensure setRGB returns self
         $this->assertEquals($this->group, $this->group->setRGB(50, 50, 50));
