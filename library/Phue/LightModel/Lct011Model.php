@@ -11,13 +11,13 @@ namespace Phue\LightModel;
 /**
  * Hue BR30
  */
-class Lct002Model extends AbstractLightModel
+class Lct011Model extends AbstractLightModel
 {
 
     /**
      * Model id
      */
-    const MODEL_ID = 'LCT002';
+    const MODEL_ID = 'LCT011';
 
     /**
      * Model name
