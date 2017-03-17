@@ -9,7 +9,7 @@
 namespace Phue\LightModel;
 
 /**
- * Hue A19 White
+ * Hue A19 Lux
  */
 class Lwb014Model extends AbstractLightModel
 {
@@ -22,5 +22,5 @@ class Lwb014Model extends AbstractLightModel
     /**
      * Model name
      */
-    const MODEL_NAME = 'Hue A19 White';
+    const MODEL_NAME = 'Hue A19 Lux';
 }

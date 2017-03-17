@@ -9,18 +9,23 @@
 namespace Phue\LightModel;
 
 /**
- * Hue Bulb V3
+ * Hue LightStrips
  */
-class Lct010Model extends AbstractLightModel
+class Lst002Model extends AbstractLightModel
 {
 
     /**
      * Model id
      */
-    const MODEL_ID = 'LCT010';
+    const MODEL_ID = 'LST002';
 
     /**
      * Model name
      */
-    const MODEL_NAME = 'Hue bulb A19 (gamut C)';
+    const MODEL_NAME = 'Hue LightStrips Plus';
+
+    /**
+     * Can retain state
+     */
+    const CAN_RETAIN_STATE = true;
 }

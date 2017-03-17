@@ -22,5 +22,5 @@ class Lct014Model extends AbstractLightModel
     /**
      * Model name
      */
-    const MODEL_NAME = 'Hue Bulb V3';
+    const MODEL_NAME = 'Hue bulb A19 (gamut C)';
 }
