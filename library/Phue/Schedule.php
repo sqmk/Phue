@@ -31,7 +31,7 @@ class Schedule
     /**
      * Id
      *
-     * @var int
+     * @var string
      */
     protected $id;
 
@@ -52,7 +52,7 @@ class Schedule
     /**
      * Construct a Phue Schedule object
      *
-     * @param int $id
+     * @param string $id
      *            Id
      * @param \stdClass $attributes
      *            Schedule attributes
@@ -61,7 +61,7 @@ class Schedule
      */
     public function __construct($id, \stdClass $attributes, Client $client)
     {
-        $this->id = (int) $id;
+        $this->id = (string) $id;
         $this->attributes = $attributes;
         $this->client = $client;
     }
@@ -69,7 +69,7 @@ class Schedule
     /**
      * Get schedule Id
      *
-     * @return int Schedule id
+     * @return string Schedule id
      */
     public function getId()
     {

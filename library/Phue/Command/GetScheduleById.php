@@ -27,12 +27,12 @@ class GetScheduleById implements CommandInterface
     /**
      * Constructs a command
      *
-     * @param int $scheduleId
+     * @param string $scheduleId
      *            Schedule Id
      */
     public function __construct($scheduleId)
     {
-        $this->scheduleId = (int) $scheduleId;
+        $this->scheduleId = (string) $scheduleId;
     }
 
     /**
