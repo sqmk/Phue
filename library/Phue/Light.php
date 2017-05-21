@@ -149,7 +149,7 @@ class Light implements LightInterface
      */
     public function isOn()
     {
-        return (bool) $this->attributes->state->on;
+        return $this->isReachable() && (bool)$this->attributes->state->on;
     }
 
     /**

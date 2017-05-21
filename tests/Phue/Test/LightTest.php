@@ -418,6 +418,46 @@ class LightTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->light->getId(), (string) $this->light);
     }
 
+    public function testIssues121_1()
+    {
+        $attributes = clone $this->attributes;
+        $attributes->state->on = false;
+        $attributes->state->reachable = false;
+        $light = new Light(5, $attributes, $this->mockClient);
+        $this->assertFalse($light->isOn());
+        $this->assertFalse($light->isReachable());
+    }
+
+    public function testIssues121_2()
+    {
+        $attributes = clone $this->attributes;
+        $attributes->state->on = true;
+        $attributes->state->reachable = false;
+        $light = new Light(5, $attributes, $this->mockClient);
+        $this->assertFalse($light->isOn());
+        $this->assertFalse($light->isReachable());
+    }
+
+    public function testIssues121_3()
+    {
+        $attributes = clone $this->attributes;
+        $attributes->state->on = false;
+        $attributes->state->reachable = true;
+        $light = new Light(5, $attributes, $this->mockClient);
+        $this->assertFalse($light->isOn());
+        $this->assertTrue($light->isReachable());
+    }
+
+    public function testIssues121_4()
+    {
+        $attributes = clone $this->attributes;
+        $attributes->state->on = true;
+        $attributes->state->reachable = true;
+        $light = new Light(5, $attributes, $this->mockClient);
+        $this->assertTrue($light->isOn());
+        $this->assertTrue($light->isReachable());
+    }
+
     /**
      * Stub mock client's send command
      */
