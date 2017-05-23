@@ -74,6 +74,9 @@ class ColorConversion
         // Calculate XYZ
         $z = 1.0 - $x - $y;
         $xyz['y'] = $bri / 255;
+        if($y==0){
+            $y=0.01;
+        }
         $xyz['x'] = ($xyz['y'] / $y) * $x;
         $xyz['z'] = ($xyz['y'] / $y) * $z;
 
