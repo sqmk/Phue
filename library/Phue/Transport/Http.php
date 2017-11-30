@@ -227,7 +227,7 @@ class Http implements TransportInterface
         $contentType = $this->getAdapter()->getContentType();
         
         // Throw connection exception if status code isn't 200 or wrong content type
-        if ($status != 200 || $contentType != 'application/json') {
+        if ($status != 200 || substr($contentType, 0, strpos($contentType, ';')) != 'application/json') {
             throw new ConnectionException('Connection failure');
         }
         
