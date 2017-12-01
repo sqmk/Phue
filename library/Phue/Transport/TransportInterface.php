@@ -37,14 +37,22 @@ interface TransportInterface
     /**
      * Send request
      *
-     * @param string $path
-     *            API path
-     * @param string $method
-     *            Request method
-     * @param \stdClass $data
-     *            Body data
+     * @param string $address API path
+     * @param string $method Request method
+     * @param \stdClass $body Body data
      *
      * @return mixed Command result
      */
-    public function sendRequest($path, $method = self::METHOD_GET, \stdClass $data = null);
+    public function sendRequest($address, $method = self::METHOD_GET, \stdClass $body = null);
+
+    /**
+     * Send request, bypass body validation
+     *
+     * @param string $address API path
+     * @param string $method Request method
+     * @param \stdClass $body Body data
+     *
+     * @return mixed Command result
+     */
+    public function sendRequestBypassBodyValidation($address, $method = self::METHOD_GET, \stdClass $body = null);
 }
