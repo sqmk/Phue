@@ -24,7 +24,7 @@ class SetGroupAttributesTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock('\Phue\Client', 
+        $this->mockClient = $this->createMock('\Phue\Client', 
             array(
                 'getTransport'
             ), array(
@@ -32,13 +32,13 @@ class SetGroupAttributesTest extends \PHPUnit_Framework_TestCase
             ));
         
         // Mock transport
-        $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $this->mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));
         
         // Mock group
-        $this->mockGroup = $this->getMock('\Phue\Group', null, 
+        $this->mockGroup = $this->createMock('\Phue\Group', null, 
             array(
                 2,
                 new \stdClass(),

@@ -24,7 +24,7 @@ class SetSceneLightStateTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock('\Phue\Client', 
+        $this->mockClient = $this->createMock('\Phue\Client', 
             array(
                 'getTransport'
             ), array(
@@ -32,13 +32,13 @@ class SetSceneLightStateTest extends \PHPUnit_Framework_TestCase
             ));
         
         // Mock transport
-        $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $this->mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));
         
         // Mock scene
-        $this->mockScene = $this->getMock('\Phue\Scene', null, 
+        $this->mockScene = $this->createMock('\Phue\Scene', null, 
             array(
                 'phue-test',
                 new \stdClass(),
@@ -46,7 +46,7 @@ class SetSceneLightStateTest extends \PHPUnit_Framework_TestCase
             ));
         
         // Mock light
-        $this->mockLight = $this->getMock('\Phue\Light', null, 
+        $this->mockLight = $this->createMock('\Phue\Light', null, 
             array(
                 3,
                 new \stdClass(),

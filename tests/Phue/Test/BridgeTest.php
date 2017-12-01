@@ -23,7 +23,7 @@ class BridgeTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock('\Phue\Client', 
+        $this->mockClient = $this->createMock('\Phue\Client', 
             array(
                 'sendCommand'
             ), array(

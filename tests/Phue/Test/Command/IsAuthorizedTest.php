@@ -25,7 +25,7 @@ class IsAuthorizedTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock('\Phue\Client', 
+        $this->mockClient = $this->createMock('\Phue\Client', 
             array(
                 'getTransport'
             ), array(
@@ -33,7 +33,7 @@ class IsAuthorizedTest extends \PHPUnit_Framework_TestCase
             ));
         
         // Mock transport
-        $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $this->mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));
@@ -76,9 +76,9 @@ class IsAuthorizedTest extends \PHPUnit_Framework_TestCase
         $this->mockTransport->expects($this->once())
             ->method('sendRequest')
             ->with($this->equalTo("/api/{$this->mockClient->getUsername()}"))
-            ->will(
-            $this->throwException(
-                $this->getMock('\Phue\Transport\Exception\UnauthorizedUserException')));
+            ->will($this->throwException(
+                $this->createMock('\Phue\Transport\Exception\UnauthorizedUserException')
+            ));
         
         $auth = new IsAuthorized();
         $this->assertFalse($auth->send($this->mockClient));

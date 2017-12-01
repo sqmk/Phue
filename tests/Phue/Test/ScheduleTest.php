@@ -26,7 +26,7 @@ class ScheduleTest extends \PHPUnit_Framework_TestCase
         date_default_timezone_set('UTC');
         
         // Mock client
-        $this->mockClient = $this->getMock('\Phue\Client', 
+        $this->mockClient = $this->createMock('\Phue\Client', 
             array(
                 'sendCommand'
             ), array(
@@ -187,7 +187,7 @@ class ScheduleTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->schedule));
         
         // Mock actionable command
-        $mockCommand = $this->getMock('\Phue\Command\ActionableInterface', 
+        $mockCommand = $this->createMock('\Phue\Command\ActionableInterface', 
             array(
                 'getActionableParams'
             ));

@@ -24,7 +24,7 @@ class SetScheduleAttributesTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock('\Phue\Client', 
+        $this->mockClient = $this->createMock('\Phue\Client', 
             array(
                 'getTransport'
             ), array(
@@ -32,13 +32,13 @@ class SetScheduleAttributesTest extends \PHPUnit_Framework_TestCase
             ));
         
         // Mock transport
-        $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $this->mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));
         
         // Mock schedule
-        $this->mockSchedule = $this->getMock('\Phue\Schedule', null, 
+        $this->mockSchedule = $this->createMock('\Phue\Schedule', null, 
             array(
                 12,
                 new \stdClass(),
@@ -56,7 +56,7 @@ class SetScheduleAttributesTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->mockTransport));
         
         // Mock actionable command
-        $this->mockCommand = $this->getMock('\Phue\Command\ActionableInterface', 
+        $this->mockCommand = $this->createMock('\Phue\Command\ActionableInterface', 
             array(
                 'getActionableParams'
             ));

@@ -22,7 +22,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock('\Phue\Client', 
+        $this->mockClient = $this->createMock('\Phue\Client', 
             // ['getTransport'],
             // ['127.0.0.1']
             array(
@@ -32,7 +32,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
             ));
         
         // Mock transport adapter
-        $this->mockAdapter = $this->getMock(
+        $this->mockAdapter = $this->createMock(
             '\Phue\Transport\Adapter\AdapterInterface');
         
         // Set transport

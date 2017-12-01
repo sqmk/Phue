@@ -24,9 +24,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock('\Phue\Client', 
-            // ['sendCommand'],
-            // ['127.0.0.1']
+        $this->mockClient = $this->createMock('\Phue\Client', 
             array(
                 'sendCommand'
             ), array(
@@ -34,21 +32,6 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             ));
         
         // Build stub attributes
-        // $this->attributes = (object) [
-        // 'name' => 'Dummy group',
-        // 'action' => (object) [
-        // 'on' => false,
-        // 'bri' => '66',
-        // 'hue' => '60123',
-        // 'sat' => 213,
-        // 'xy' => [0.5, 0.4],
-        // 'ct' => 300,
-        // 'colormode' => 'hs',
-        // 'effect' => 'none',
-        // ],
-        // 'lights' => [2, 3, 5],
-        // 'type' => 'LightGroup',
-        // ];
         $this->attributes = (object) array(
             'name' => 'Dummy group',
             'action' => (object) array(

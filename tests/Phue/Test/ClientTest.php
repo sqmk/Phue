@@ -62,7 +62,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function testGetBridge()
     {
         // Mock transport
-        $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));
@@ -87,7 +87,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function testGetUsers()
     {
         // Mock transport
-        $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));
@@ -127,7 +127,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function testGetLights()
     {
         // Mock transport
-        $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));
@@ -168,7 +168,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function testGetGroups()
     {
         // Mock transport
-        $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));
@@ -209,7 +209,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function testGetSchedules()
     {
         // Mock transport
-        $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));
@@ -247,7 +247,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function testGetScenes()
     {
         // Mock transport
-        $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));
@@ -290,7 +290,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function testGetSensors()
     {
         // Mock transport
-        $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));
@@ -327,7 +327,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function testGetRules()
     {
         // Mock transport
-        $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));
@@ -364,7 +364,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function testGetTimezones()
     {
         // Mock transport
-        $mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest',
                 'sendRequestBypassBodyValidation'
@@ -409,7 +409,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function testPassingTransportDependency()
     {
         // Mock transport
-        $mockTransport = $this->getMock('\Phue\Transport\TransportInterface');
+        $mockTransport = $this->createMock('\Phue\Transport\TransportInterface');
         
         $this->client->setTransport($mockTransport);
         
@@ -424,7 +424,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function testSendCommand()
     {
         // Mock command
-        $mockCommand = $this->getMock('Phue\Command\CommandInterface', 
+        $mockCommand = $this->createMock('Phue\Command\CommandInterface', 
             array(
                 'send'
             ));

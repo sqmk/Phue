@@ -24,7 +24,7 @@ class SetBridgeConfigTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock('\Phue\Client', 
+        $this->mockClient = $this->createMock('\Phue\Client', 
             array(
                 'getTransport'
             ), array(
@@ -32,7 +32,7 @@ class SetBridgeConfigTest extends \PHPUnit_Framework_TestCase
             ));
         
         // Mock transport
-        $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $this->mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));

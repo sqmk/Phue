@@ -28,7 +28,7 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
         date_default_timezone_set('UTC');
         
         // Mock client
-        $this->mockClient = $this->getMock('\Phue\Client', 
+        $this->mockClient = $this->createMock('\Phue\Client', 
             array(
                 'getUsername',
                 'getTransport'
@@ -37,7 +37,7 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
             ));
         
         // Mock transport
-        $this->mockTransport = $this->getMock('\Phue\Transport\TransportInterface', 
+        $this->mockTransport = $this->createMock('\Phue\Transport\TransportInterface', 
             array(
                 'sendRequest'
             ));
@@ -53,7 +53,7 @@ class CreateScheduleTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->mockTransport));
         
         // Mock actionable command
-        $this->mockCommand = $this->getMock('\Phue\Command\ActionableInterface', 
+        $this->mockCommand = $this->createMock('\Phue\Command\ActionableInterface', 
             array(
                 'getActionableParams'
             ));
