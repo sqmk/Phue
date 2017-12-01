@@ -25,8 +25,10 @@ Interested in API docs? You can check out the [Philips API documentation](http:/
 
 ## Requirements
 
-* PHP 5.3+
+* PHP 5.6+
 * cURL extension (optional)
+
+For PHP 5.3 support, please use Phue v1.6.x.
 
 ## Installation
 
