@@ -68,5 +68,12 @@ class ColorConversionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rgb['red'], 61);
         $this->assertEquals($rgb['green'], 178);
         $this->assertEquals($rgb['blue'], 112);
+        
+        // Test to make sure single RGB values falls within 0..255 range.
+        // old situation this was r -18, g 186, b -613.
+        $rgb = ColorConversion::convertXYToRGB(0.1979, 1.5005, 81);
+        $this->assertEquals($rgb['red'], 0);
+        $this->assertEquals($rgb['green'], 186);
+        $this->assertEquals($rgb['blue'], 0);
     }
 }
