@@ -56,7 +56,7 @@ class ColorConversion
         return array(
             'x'   => $x,
             'y'   => $y,
-            'bri' => round($xyz['y'] * 255)
+            'bri' => max($red,$green,$blue)
         );
     }
 
