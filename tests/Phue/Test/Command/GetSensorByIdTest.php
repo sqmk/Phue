@@ -50,7 +50,7 @@ class GetSensorByIdTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Send get light by id command
+     * Test: Send get sensor by id command
      *
      * @covers \Phue\Command\GetSensorById::__construct
      * @covers \Phue\Command\GetSensorById::send
