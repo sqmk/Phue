@@ -468,10 +468,14 @@ Don't have the cURL extension compiled with your PHP install? You can override t
 // Instantiate a client object
 $client = new \Phue\Client('10.0.1.1', 'yourusername');
 
-// Override the default transport
-$client->setTransport(
-	new \Phue\Transport\Adapter\Streaming
-);
+// Instantiate a new transport
+$transport = new \Phue\Transport\Http($client);
+
+// Use the streaming adapter instead of the default Curl adapter
+$transport->setAdapter(new \Phue\Transport\Adapter\Streaming());
+
+// Override the default transport with our Streaming transport
+$client->setTransport($transport);
 ```
 
 ### Other commands
