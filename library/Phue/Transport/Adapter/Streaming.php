@@ -112,7 +112,7 @@ class Streaming implements AdapterInterface
         $meta_data = stream_get_meta_data($this->fileStream);
         return implode(
             $meta_data['wrapper_data'],
-            "\r\n"
+            "\n"
         );
     }
 
