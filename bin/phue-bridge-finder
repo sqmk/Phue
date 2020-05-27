@@ -11,7 +11,7 @@ echo "Philips Hue Bridge Finder", "\n\n";
 
 echo "Checking meethue.com if the bridge has phoned home:", "\n";
 
-$response = @file_get_contents('http://www.meethue.com/api/nupnp');
+$response = @file_get_contents('https://discovery.meethue.com/');
 
 // Don't continue if bad response
 if ($response === false) {
