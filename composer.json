@@ -22,7 +22,7 @@
     },
     "require-dev": {
         "mockery/mockery": "0.8.0",
-        "phpunit/PHPUnit": "3.7.25",
+        "phpunit/phpunit": "3.7.25",
         "squizlabs/php_codesniffer": "1.4.6"
     },
     "suggest": {
