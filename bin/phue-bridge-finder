@@ -31,6 +31,7 @@ foreach ($bridges as $key => $bridge) {
     echo "\tBridge #", ++$key, "\n";
     echo "\t\tID: ", $bridge->id, "\n";
     echo "\t\tInternal IP Address: ", $bridge->internalipaddress, "\n";
-    echo "\t\tMAC Address: ", $bridge->macaddress, "\n";
+    if(isset($bridge->macaddress))
+        echo "\t\tMAC Address: ", $bridge->macaddress, "\n";
     echo "\n";
 }
