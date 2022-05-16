@@ -60,7 +60,8 @@ class Curl implements AdapterInterface
         curl_setopt($this->curl, CURLOPT_HEADER, false);
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
         
-        if (strlen($body)) {
+        if (isset($body) && strlen($body)) {
+            curl_setopt($this->curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Accept: application/json'));
             curl_setopt($this->curl, CURLOPT_POSTFIELDS, $body);
         }
         
